@@ -25,7 +25,9 @@ El presente documento consolida el inventario preliminar de fuentes de datos abi
 
 | Dataset / Categoría | URL de Origen | Entidad | Formato | ¿Tiene identificador de Localidad? |
 | :--- | :--- | :--- | :--- | :--- |
-| **Tipo y razón de camas** | `https://saludata.saludcapital.gov.co/osb/indicadores/tipo-y-razon-de-camas-en-bogota-d-c/` | SDS (SaluData) | CSV / Tabla | ⚠ Pendiente de validar con datos[cite: 2, 6] |
+| **Tipo y razón de camas** | `https://saludata.saludcapital.gov.co/osb/indicadores/tipo-y-razon-de-camas-en-bogota-d-c/` | SDS (SaluData) | CSV / Tabla | Tipo y razón de camas en Bogotá D.C.
+Estado territorial: NO APTO para integración directa por localidad.|
+Uso posible: contexto distrital / referencia general de oferta sanitaria.
 | **Camas UCI y General** | `https://saludata.saludcapital.gov.co/osb/indicadores/camasuci/` <br> `https://saludata.saludcapital.gov.co/osb/indicadores/uci-general/` | SDS (SaluData) | CSV / Tabla | ⚠ Pendiente de validar con datos[cite: 2, 6] |
 | **Instituciones con urgencias** | `https://saludata.saludcapital.gov.co/osb/indicadores/instituciones-de-salud-con-servicios-de-urgencias-en-bogota-d-c/` | SDS (SaluData) | CSV / Tabla | ⚠ Pendiente de validar con datos[cite: 2, 6] |
 | **Tipos de prestadores** | `https://saludata.saludcapital.gov.co/osb/indicadores/tipo-de-prestadores-de-servicios-de-salud-en-bogota-d-c/` | SDS (SaluData) | CSV / Tabla | ⚠ Pendiente de validar con datos[cite: 2, 6] |
