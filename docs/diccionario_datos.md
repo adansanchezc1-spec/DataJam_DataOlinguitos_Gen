@@ -34,3 +34,23 @@
   - `sect_loc` (object): Código oficial de la localidad en que se ubica.
   - `activo` (object): Estado operativo de la estación (`01` = activa).
   - `lat`, `lon` (float): Coordenadas geográficas de la estación.
+
+
+## Dominio: Seguridad
+
+### Dataset: `Cuadrante de Policía. Bogotá D.C.csv`
+- **Fuente / Entidad:** Policía Metropolitana de Bogotá (MEBOG) / Secretaría Distrital de Seguridad, Convivencia y Justicia.
+- **Ubicación:** `data/raw/SEGURIDAD/Cuadrante de Policía. Bogotá D.C.csv`
+- **Formato crudo:** CSV tabular exportado desde capa espacial (delimitador `;`, codificación `latin1`).
+- **Registros:** 599 cuadrantes de vigilancia comunitaria por cuadrantes.
+- **Llave territorial:** `properties/PCUIULOCAL` (código de localidad 1 a 19) y `properties/PCUIUUPLAN` (código UPZ).
+- **Variables principales:**
+  - `properties/PCUNCUADRA` (object): Identificador único del cuadrante policial (ej. `MEBOGMNVCCC02E19C08000033`).
+  - `properties/PCUNOMEST` (object): Nombre de la estación de policía / localidad asociada (ej. `CIUDAD BOLIVAR`, `KENNEDY`).
+  - `properties/PCUNOMCAI` (object): CAI al que está adscrito el cuadrante.
+  - `properties/PCUDESCRIP` (object): Descripción del cuadrante (ej. `Cuadrante 033`).
+  - `properties/PCUIULOCAL` (object): Código oficial de la localidad.
+  - `properties/PCUIUUPLAN` (object): Código oficial de la UPZ.
+  - `properties/PCUTELEFON` (object): Teléfono de contacto del cuadrante.
+- **⚠ Pendiente de validar con datos:**
+  - La localidad 20 (Sumapaz) no cuenta con cuadrantes de patrullaje urbano bajo esta estructura; se documentará su particularidad operativa en `docs/manual_tecnico.md`.
