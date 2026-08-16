@@ -1,0 +1,24 @@
+id,nombre,archivo,existe,lectura,conteo,detalle,indicadores,estado
+POB-LOC,Poblacion por localidad (SDP-DANE 2005-2035),Poblacion/osb_demografia-poblacion-localidad.csv,True,True,True,100 filas muestra,"MOV-01, 03, 05, 06, 07, 08, 09, 15; EDU-01; FIN-01",approved
+POB-UPL,Poblacion por UPL (SDP-DANE 2005-2035),Poblacion/osb_demografia-poblacion-upl.csv,True,True,True,100 filas muestra,"MOV-01, 03, 05-09 (desagregacion UPL)",approved
+EDU-COLEGIOS,Sedes educativas de Bogota (SED),Educacion/colegios122025.gpkg,True,True,True,10 features muestra,"EDU-01, EDU-02",approved
+EDU-MATRICULA,Matricula total colegios oficiales (SED),Educacion/matricula_total_colegios_oficiales.gpkg,True,True,True,10 features muestra,"EDU-01, EDU-02",approved
+INV-EDU,Inversion educativa por localidad (SED),Inversion/inversion_educacion_por_localidad_12_2025.gpkg,True,True,True,10 features muestra,"FIN-01, FIN-02 (anexo)",approved_partial
+METRO-L1,Estaciones Linea 1 del Metro (proyectadas),Metro/estaciones_linea1.geojson,True,True,True,10 features muestra,MOV-15,approved
+METRO-L2,Estaciones Linea 2 del Metro (proyectadas),Metro/estaciones_linea2.gpkg,True,True,True,10 features muestra,MOV-15,approved
+METRO-L2-TRAZADO,Trazado Linea 2 del Metro,Metro/trazado_linea2.gpkg,True,True,True,1 features muestra,MOV-15,approved
+TM-ESTACIONES,Estaciones troncales TransMilenio,Transmilenio/estaciones_troncales.geojson,True,True,True,10 features muestra,"MOV-01, 02, 05, 07, 08, 09, 11, 14",approved
+TM-PARADEROS,Paraderos zonales SITP,Transmilenio/paraderos_zonales_sitp.gpkg,True,True,True,10 features muestra,"MOV-03, 04, 06, 07, 08, 09, 10",approved
+TM-RUTAS,Servicios de rutas troncales y zonales,Transmilenio/servicios_rutas_troncales_zonales.csv,True,True,True,100 filas muestra,"MOV-10, MOV-12",approved
+TM-GTFS,GTFS estatico SITP (2026-04-29),Transmilenio/gtfs_sitp_2026-04-29.zip,True,True,True,muestreo/metadata ok,"MOV-06, 07, 08, 10, 12 (matriz ruta-parada derivable)",approved
+TM-FLOTA,Flota vinculada SITP,Transmilenio/flota_vinculada_sitp_2024-12.csv,True,True,True,100 filas muestra,MOV-14,approved
+TM-CONEXIONES,Conexiones operacionales troncal-zonal,Transmilenio/conexion_operacional.geojson,True,True,True,10 features muestra,MOV-11,approved
+TM-RETORNOS,Retornos operacionales,Transmilenio/retorno_operacional.geojson,True,True,True,10 features muestra,MOV-11,approved
+TM-TRAZADOS,Trazados troncales TransMilenio,Transmilenio/trazados_troncales.geojson,True,True,True,10 features muestra,"MOV-05, MOV-09",approved
+TM-ZONAS,Zonas SITP / EMME / ZAT,Transmilenio/zonas_zat.geojson,True,True,True,10 features muestra,MOV-12,approved
+VAL-TRONCAL,Validaciones troncales mensuales (tullave),Transmilenio/Validaciones/*Troncal*.xlsx,True,True,True,31 archivos,"MOV-13, MOV-14",approved
+VAL-ZONAL,Validaciones zonales mensuales (tullave),Transmilenio/Validaciones/*Zonal*.xlsx,True,True,True,31 archivos,"MOV-13, MOV-14",approved
+SAL-IPS,Instituciones Prestadoras de Salud (SDS),Salud/ips_sds.gpkg,True,True,True,10 features muestra,"SAL-01, SAL-02 (anexo)",approved
+SAL-CAMAS,Tipo y razon de camas (SDS),Salud/osb_tiporazoncamas.csv,True,True,True,58 filas muestra,SAL-01 (parcial: solo resumen distrital),approved_partial
+MR,Mapa de Referencia IDECA v3.26,Infraestructura/gpkg_mr_v03.26/gpkg_mr_v03.26.gpkg,True,True,True,muestreo/metadata ok,"Todos los MOV (ETro, PSITP, MVI, Lote, Loca, UPL, AUrb)",approved
+IPS-LOCAL,IPS (copia local del catalogo DataJam),Infraestructura/ips.gpkg,True,True,True,10 features muestra,"SAL-01, SAL-02",approved
