@@ -1,47 +1,115 @@
-SIPTA — Guía sectorial: Salud
-Versión: 1.0 | Fecha: 2026-07-31
+# SIPTA — Dominio Salud
 
-1. Objetivo sectorial
-Adaptar el objetivo general de SIPTA al sector Salud: medir capacidad y cobertura sanitaria por localidad para identificar dónde la inversión y la capacidad son insuficientes frente a la necesidad. ⚠ Pendiente de validar con datos.
+## 1. Fuente de datos
 
-2. Pregunta que responde este sector
-¿En qué localidades la capacidad sanitaria (camas y servicios) y la cobertura son insuficientes en relación con la necesidad poblacional y la inversión ejecutada?
+**Dataset:** Instituciones de Salud con servicios de urgencias en Bogotá D.C.  
+**Entidad:** Secretaría Distrital de Salud — Bogotá D.C.  
+**Fuente:** Portal de Datos Abiertos de Bogotá  
+**Archivo utilizado:** `osb_ofertasrv-ips-urgencias.csv`  
+**Ubicación local:** `data/raw/SALUD/osb_ofertasrv-ips-urgencias.csv`
 
-3. Datos requeridos (tabla)
-Dataset | Fuente esperada | Estado
-Camas por establecimiento (detalle) | Portal de Datos Abiertos del Distrito / Secretaría de Salud | por confirmar
-Hospitales y CAPS (ubicación y servicios) | Portal de Datos Abiertos del Distrito | por confirmar
-Consultas y atención (serie histórica si existe) | Secretaría de Salud / bases distritales | por confirmar ⚠ Pendiente de validar con datos
-Población por localidad | DANE o registro distrital | disponible / por confirmar
-Inversión en salud por localidad / contrato | Secretaría de Hacienda / Presupuesto distrital | por confirmar ⚠ Pendiente de validar con datos
-Geometría de localidades (polígonos) | Datos abiertos distritales (GeoJSON/shapefile) | por confirmar
+Fuente oficial:
 
-4. Indicadores del sector (fichas técnicas — tabla)
-Código | Indicador | Fórmula | Unidad | Nivel territorial | Fuente esperada
-SAL-C1 | Camas por 10.000 hab | (n_camas / población) * 10000 | camas / 10000 hab | Localidad | Portal de Salud
-SAL-C2 | Servicios de urgencias por localidad | conteo de centros con servicio de urgencias | conteo | Localidad | Portal de Salud
-SAL-C3 | Cobertura de atención primaria | consultas_atencion_primaria / población | % | Localidad | Portal de Salud
-SAL-C4 | Inversión en salud per cápita | presupuesto_ejecutado_salud / población | moneda / hab | Localidad | Secretaría de Hacienda
+https://datosabiertos.bogota.gov.co/dataset/instituciones-de-salud-con-servicios-de-urgencias-en-bogota-d-c
 
-5. Validaciones pendientes
-- Verificar existencia y granularidad de datos de inversión por localidad. ⚠ Pendiente de validar con datos.
-- Confirmar si las camas se reportan por establecimiento y si incluyen tipo de servicio (UCI, cirugía, hospitalización). ⚠ Pendiente de validar con datos.
-- Confirmar series históricas para construir tendencias o alertas. Si no existen, usar reglas.
+---
 
-6. Entregable particular del sector
-- Estructura de salida: tabla de indicadores por localidad (CSV + Parquet), fichas técnicas en formato markdown y un notebook reproducible con EDA y scripts de cálculo.
-- Relación con entregables generales: contribuye a E01 (inventario), E02 (diccionario), E05 (indicadores), E06 (índices), E07 (alertas si aplica), E08 (dashboard).
+## 2. Propósito dentro de SIPTA
 
-7. Rama Git y documentación asociada
-- Rama sugerida: feature/salud-indicadores
-- Documentos requeridos: README_SALUD.md (este documento), fichas SAL-*.md, pruebas unitarias para funciones de cálculo en tests/test_salud.py
+Este dataset permite identificar las sedes de Instituciones Prestadoras de Servicios de Salud (IPS) que ofrecen servicios de urgencias en Bogotá D.C.
 
-8. Checklist de cierre del sector (5–8 ítems)
-- [ ] Inventario de datasets de salud validado (E01).
-- [ ] Diccionario SAL completado (E02).
-- [ ] Indicadores SAL-C1..C4 implementados y probados con datos de muestra (E05).
-- [ ] Tabla de output por localidad disponible (CSV/Parquet) (E05/E06).
-- [ ] Validación de capacidad (camas/cupos) y documento de limitaciones si faltan datos.
-- [ ] Notebook EDA y script reproducible en CI.
+Su utilidad dentro del proyecto consiste en disponer de información sobre la localización de la oferta de servicios de urgencias y preparar posteriormente su asociación con la unidad territorial primaria definida por SIPTA: `Localidad`.
 
--- Fin README Salud --
+---
+
+## 3. Características del archivo
+
+- Formato: CSV.
+- Codificación utilizada para lectura: `cp1252`.
+- Registros: **84**.
+- Variables: **11**.
+- IPS diferentes: **44**.
+- Sedes identificadas: **84**.
+- Granularidad observada: una fila representa una sede de una IPS con servicio de urgencias.
+
+La combinación:
+
+`Código IPS + Número sede`
+
+identifica de forma única los 84 registros.
+
+---
+
+## 4. Variables principales
+
+Entre las variables disponibles se encuentran:
+
+- `OBJECTID`
+- `Código IPS`
+- `Nombre IPS`
+- `Nombre sede`
+- `Número sede`
+- `Dirección`
+- `Telefono contacto`
+- `Correo electrónico`
+- `Tipo de naturaleza`
+- `Latitud`
+- `Longitud`
+
+El dataset no contiene una variable `Localidad` de forma explícita.
+
+---
+
+## 5. Resultados de validación
+
+La validación reproducible se encuentra en:
+
+`notebooks/02_validation_salud.ipynb`
+
+Principales resultados:
+
+- Duplicados exactos: **0**.
+- Duplicados según `Código IPS + Número sede`: **0**.
+- Valores nulos:
+  - `Telefono contacto`: **1 registro (1,19 %)**.
+  - Variables restantes: **0**.
+- Valores nulos en `Latitud`: **0**.
+- Valores nulos en `Longitud`: **0**.
+- Coordenadas no convertibles a formato numérico: **0**.
+- Pares de coordenadas distintos: **84**.
+- Pares de coordenadas repetidos: **0**.
+- Coordenadas fuera de los rangos geográficos universales válidos: **0**.
+
+Rangos observados:
+
+- Latitud aproximada: **4.029 a 4.761**.
+- Longitud aproximada: **-74.315 a -74.023**.
+
+---
+
+## 6. Consideraciones territoriales
+
+El dataset no dispone directamente de la variable `Localidad`.
+
+Sin embargo, sus 84 registros contienen coordenadas completas y convertibles, por lo que el dataset se considera técnicamente apto para una futura asociación territorial con las localidades de Bogotá.
+
+La asignación efectiva de cada sede a una localidad no se realiza durante esta etapa de validación. Esta operación corresponde a una fase posterior de integración territorial.
+
+---
+
+## 7. Estado
+
+**Estado de validación: APTO PARA CONTINUAR EL PIPELINE.**
+
+El único valor nulo identificado corresponde a `Telefono contacto` y no afecta la identificación de las sedes ni la futura territorialización.
+
+El archivo almacenado en `data/raw/SALUD` debe conservarse sin modificaciones manuales.
+
+---
+
+## 8. Notebooks asociados
+
+- Ingesta: `notebooks/01_ingestion_salud.ipynb`
+- Validación: `notebooks/02_validation_salud.ipynb`
+
+Las etapas de limpieza, estandarización, integración territorial y cálculo de indicadores se realizarán posteriormente.

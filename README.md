@@ -4,14 +4,14 @@ Este repositorio contiene el Plan Maestro corregido de SIPTA y la infraestructur
 
 Documentos principales
 - Plan general: [README_SIPTA_Plan_General.md](README_SIPTA_Plan_General.md)
-- Salud: [SALUD/README.md](SALUD/README.md)
-- Educación: [EDUCACION/README.md](EDUCACION/README.md)
-- Movilidad: [MOVILIDAD/README.md](MOVILIDAD/README.md)
-- Ambiente: [AMBIENTE/README.md](AMBIENTE/README.md)
-- Infraestructura y Espacio Público: [INFRAESTRUCTURA_ESPACIO_PUBLICO/README.md](INFRAESTRUCTURA_ESPACIO_PUBLICO/README.md)
-- Finanzas e Inversión Pública: [FINANZAS_INVERSION_PUBLICA/README.md](FINANZAS_INVERSION_PUBLICA/README.md)
-- Seguridad: [SEGURIDAD/README.md](SEGURIDAD/README.md)
-- Participación Ciudadana: [PARTICIPACION_CIUDADANA/README.md](PARTICIPACION_CIUDADANA/README.md)
+- Salud: [SALUD/README.md](data/raw/SALUD/README.md)
+- Educación: [EDUCACION/README.md](data/raw/EDUCACION/README.md)
+- Movilidad: [MOVILIDAD/README.md](data/raw/MOVILIDAD/README.md)
+- Ambiente: [AMBIENTE/README.md](data/raw/AMBIENTE/README.md)
+- Infraestructura y Espacio Público: [INFRAESTRUCTURA_ESPACIO_PUBLICO/README.md](data/raw/INFRAESTRUCTURA_ESPACIO_PUBLICO/README.md)
+- Finanzas e Inversión Pública: [FINANZAS_INVERSION_PUBLICA/README.md](data/raw/FINANZAS_INVERSION_PUBLICA/README.md)
+- Seguridad: [SEGURIDAD/README.md](data/raw/SEGURIDAD/README.md)
+- Participación Ciudadana: [PARTICIPACION_CIUDADANA/README.md](data/raw/PARTICIPACION_CIUDADANA/README.md)
 
 Estructura de carpetas creada
 - data/raw
