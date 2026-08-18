@@ -165,6 +165,26 @@ El segundo notebook documenta las validaciones estructurales, lógicas y territo
 
 ---
 
+## Salida procesada para visualización geográfica
+
+El archivo original declara coordenadas proyectadas en **EPSG:3857**. Para que
+GitHub y otras herramientas web lo representen sobre Bogotá, se genera una
+copia en **EPSG:4326 (WGS84)**:
+
+`data/processed/EDUCACION/ofertacupos_032025_wgs84.geojson`
+
+La transformación es reproducible y no modifica el archivo ubicado en `raw`:
+
+```bash
+python scripts/prepare_education_geojson.py
+```
+
+La salida conserva los **747 registros**, las **14 variables**, los atributos
+de oferta y las geometrías de tipo `Point`; únicamente cambia el sistema de
+referencia de coordenadas.
+
+---
+
 ## Estado del dominio
 
 **Ingesta:** completada.  

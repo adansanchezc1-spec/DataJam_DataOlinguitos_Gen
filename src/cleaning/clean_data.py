@@ -3,7 +3,8 @@
 from pathlib import Path
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
+RAW_DIR = ROOT / 'data' / 'raw'
 PROCESSED_DIR = ROOT / 'data' / 'processed'
 PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -34,6 +35,27 @@ def save_processed(df: pd.DataFrame, filename: str) -> Path:
     path = PROCESSED_DIR / filename
     df.to_csv(path, index=False)
     return path
+
+
+def reproject_geojson_to_wgs84(source: str | Path, destination: str | Path) -> Path:
+    """Create an EPSG:4326 GeoJSON copy without modifying the raw source."""
+    import geopandas as gpd
+
+    source_path = Path(source)
+    destination_path = Path(destination)
+
+    if source_path.resolve() == destination_path.resolve():
+        raise ValueError("La salida procesada no puede sobrescribir el archivo raw.")
+    if not source_path.is_file():
+        raise FileNotFoundError(source_path)
+
+    geodata = gpd.read_file(source_path)
+    if geodata.crs is None:
+        raise ValueError(f"El archivo no declara un CRS: {source_path}")
+
+    destination_path.parent.mkdir(parents=True, exist_ok=True)
+    geodata.to_crs(epsg=4326).to_file(destination_path, driver="GeoJSON")
+    return destination_path
 
 
 if __name__ == '__main__':
