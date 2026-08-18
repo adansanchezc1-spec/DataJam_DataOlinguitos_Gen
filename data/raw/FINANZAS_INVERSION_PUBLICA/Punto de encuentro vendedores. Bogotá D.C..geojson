@@ -1,0 +1,11 @@
+{
+"type": "FeatureCollection",
+"name": "PEnc",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::4686" } },
+"features": [
+{ "type": "Feature", "properties": { "CPUNNOM": "Punto de encuentro  Alcala", "CPUNDIR": "Autopista Norte con 138", "CPUNLOC": "Usaquen", "CPUNBARRIO": "AGRUPACION  MULTIFAMILIAR EL ROSARIO", "CPUNHORACP": "Lunes a Viernes 6:00 am - 8:00 pm, sábados 7:00 am - 5:00 pm. Los días feriados no hay servicio.", "CPUNHORAPV": "Lunes a Sábado 8:00 am - 8:00 pm", "CPUNNUMLOC": "18", "CPUNSITWEB": "http:\/\/www.ipes.gov.co" }, "geometry": { "type": "Point", "coordinates": [ -74.050835305276962, 4.721849124313154 ] } },
+{ "type": "Feature", "properties": { "CPUNNOM": "Punto de encuentro Aguas", "CPUNDIR": "Eje Ambiental con Calle 18", "CPUNLOC": "Santa Fé", "CPUNBARRIO": "LA CAPUCHINA", "CPUNHORACP": "Lunes a Viernes 6:00 am - 8:00 pm, sábados 7:00 am - 5:00 pm. Los días feriados no hay servicio.", "CPUNHORAPV": "Lunes a Sábado 8:00 am - 8:00 pm y domingo de 8:00 am a 5:00 pm", "CPUNNUMLOC": "12", "CPUNSITWEB": "http:\/\/www.ipes.gov.co" }, "geometry": { "type": "Point", "coordinates": [ -74.068068898301249, 4.601775508473898 ] } },
+{ "type": "Feature", "properties": { "CPUNNOM": "Punto de encuentro Mundo Aventura", "CPUNDIR": "Avenida AMÉRICAS con BOYACA costado oriental", "CPUNLOC": "Kennedy", "CPUNBARRIO": "HIPOTECHO OCCIDENTAL", "CPUNHORACP": "Lunes a Viernes 6:00 am - 8:00 pm, sábados 7:00 am - 5:00 pm. Los días feriados no hay servicio.", "CPUNHORAPV": "Lunes a Sábado 8:00 am - 8:00 pm", "CPUNNUMLOC": "18", "CPUNSITWEB": "http:\/\/www.ipes.gov.co" }, "geometry": { "type": "Point", "coordinates": [ -74.135644339460697, 4.629796191202156 ] } },
+{ "type": "Feature", "properties": { "CPUNNOM": "Punto de encuentro Tintal", "CPUNDIR": "Avenida CIUDAD DE CALI con Avenida AMERICAS", "CPUNLOC": "Kennedy", "CPUNBARRIO": "TAYRONA", "CPUNHORACP": "Lunes a Viernes 6:00 am - 8:00 pm, sábados 7:00 am - 5:00 pm. Los días feriados no hay servicio.", "CPUNHORAPV": "Lunes a Sábado 8:00 am - 8:00 pm", "CPUNNUMLOC": "18", "CPUNSITWEB": "http:\/\/www.ipes.gov.co" }, "geometry": { "type": "Point", "coordinates": [ -74.158568476840557, 4.638937004675707 ] } }
+]
+}

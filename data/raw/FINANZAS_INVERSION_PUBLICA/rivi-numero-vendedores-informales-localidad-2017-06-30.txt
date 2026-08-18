@@ -1,0 +1,22 @@
+Id_	IndiceRespuesta	NumeroLocalidad	Numero	Porcentaje
+1	1	Usaquén	605	0.011970
+2	2	Chapinero	2499	0.049445
+3	3	Santa fé	9867	0.195228
+4	4	San Cristóbal	3500	0.069251
+5	5	Usme	1947	0.038523
+6	6	Tunjuelito	1058	0.020933
+7	7	Bosa	1935	0.038286
+8	8	Kennedy	4325	0.085574
+9	9	Fontibón	1203	0.023802
+10	10	Engativá	2546	0.050375
+11	11	Suba	2552	0.050494
+12	12	Barrios Unidos	747	0.014780
+13	13	Teusaquillo	1765	0.034922
+14	14	Los Mártires	3435	0.067965
+15	15	Antonio Nariño	1305	0.025821
+16	16	Puente Aranda	2739	0.054194
+17	17	Candelaria	1619	0.032033
+18	18	Rafael Uribe	1076	0.021290
+19	19	Ciudad Bolívar	2494	0.049346
+20	20	Sumapáz	19	0.000376
+21	160	metropolitana o no definida	3305	0.065392
