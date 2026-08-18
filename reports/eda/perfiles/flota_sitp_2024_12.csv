@@ -1,0 +1,15 @@
+﻿columna,n,n_nulos,n_categorias,dominante,pct_dominante,top_5,pct_nulos,n_unicos,media,mediana,moda,desv_est,min,max,rango,Q1,Q3,IQR,asimetria_skew,curtosis,CV_pct,n_outliers_iqr,pct_outliers,sin_valores_numericos
+zona,10518,0,37.0,Usaquén,10.63,Usaquén=1118 | Bosa=1115 | Kennedy=759 | Engativá=676 | Ciudad Bolívar=578,,,,,,,,,,,,,,,,,,
+fase,10518,0,5.0,Fase III,52.66,Fase III=5539 | Fase V=1829 | FASE III=1457 | FASE IV=1440 | FASE V=253,,,,,,,,,,,,,,,,,,
+componente,10518,0,3.0,Zonal,70.05,Zonal=7368 | TRONCAL=2202 | ALIMENTACIÓN=948,,,,,,,,,,,,,,,,,,
+estatus_vinculacion,10518,0,2.0,Referente,94.53,Referente=9943 | Reserva=575,,,,,,,,,,,,,,,,,,
+combustible,10518,0,6.0,DIESEL,62.3,DIESEL=6553 | GNV=2143 | ELECTRICO=1129 | ELÉCTRICO=357 | HIBRIDO (DIESEL - ELÉCTRICO)=280,,,,,,,,,,,,,,,,,,
+modelo,10518,0,,,,,0.0,16.0,2017.278,2016.0,2014.0,3.6988,2007.0,2023.0,16.0,2014.0,2021.0,7.0,-0.0621,-1.4307,0.1834,0.0,0.0,False
+codigo_bus,10518,0,10518.0,E001,0.01,E001=1 | E002=1 | E003=1 | E004=1 | E041=1,,,,,,,,,,,,,,,,,,
+fecha_vinculacion,10518,0,1052.0,5/06/2019,3.18,5/06/2019=334 | 9/08/2022=229 | 8/09/2022=186 | 14/09/2019=185 | 29/12/2020=158,,,,,,,,,,,,,,,,,,
+accesible,10518,0,4.0,CON ELEVADOR,42.41,CON ELEVADOR=4461 | NO ACCESIBLE=3108 | PLATAFORMA ALTA=1929 | ENTRADA BAJA=1020,,,,,,,,,,,,,,,,,,
+edad,10202,316,,,,,3.0,13.0,6.2439,5.0,10.0,3.4607,0.0,12.0,12.0,3.0,10.0,7.0,0.1645,-1.5844,55.4254,0.0,0.0,False
+matricula,10518,0,10518.0,TGW242,0.01,TGW242=1 | TGW243=1 | TGW244=1 | TGW246=1 | TGW247=1,,,,,,,,,,,,,,,,,,
+descripcion_estado_vinculacion,10518,0,1.0,Vinculado,100.0,Vinculado=10518,,,,,,,,,,,,,,,,,,
+descripcion_nivel_emision,10518,0,8.0,EURO V,39.67,EURO V=4173 | EURO VI=2381 | CERO EMISIONES=1486 | EURO IV=1071 | EURO V-CON FILTRO=700,,,,,,,,,,,,,,,,,,
+descripcion_tipo,10518,0,8.0,BUS (50),33.0,BUS (50)=3471 | BUS (80)=3291 | BIARTICULADO=1319 | ALIMENTADOR (80)=862 | ARTICULADO=610,,,,,,,,,,,,,,,,,,

@@ -1,0 +1,5 @@
+﻿columna,n,n_nulos,n_categorias,dominante,pct_dominante,top_5,pct_nulos,n_unicos,media,mediana,moda,desv_est,min,max,rango,Q1,Q3,IQR,asimetria_skew,curtosis,CV_pct,n_outliers_iqr,pct_outliers,sin_valores_numericos
+trip_id,14,0,14.0,cable_habil_2,7.14,cable_habil_2=1 | cable_habil_4=1 | cable_habil_6=1 | cable_sabado_2=1 | cable_sabado_4=1,,,,,,,,,,,,,,,,,,
+start_time,14,0,11.0,22:00:00,14.29,22:00:00=2 | 05:30:00=2 | 04:30:00=2 | 05:15:00=1 | 18:00:00=1,,,,,,,,,,,,,,,,,,
+end_time,14,0,12.0,22:15:00,14.29,22:15:00=2 | 22:00:00=2 | 07:15:00=1 | 20:00:00=1 | 07:30:00=1,,,,,,,,,,,,,,,,,,
+headway_secs,14,0,,,,,0.0,2.0,13.0,13.0,10.0,3.1132,10.0,16.0,6.0,10.0,16.0,6.0,0.0,-2.3636,23.9481,0.0,0.0,False

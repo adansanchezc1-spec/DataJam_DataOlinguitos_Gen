@@ -1,0 +1,5 @@
+﻿columna,n,n_nulos,n_categorias,dominante,pct_dominante,top_5,pct_nulos,n_unicos,media,mediana,moda,desv_est,min,max,rango,Q1,Q3,IQR,asimetria_skew,curtosis,CV_pct,n_outliers_iqr,pct_outliers,sin_valores_numericos
+Conceptos,49,9,26.0,(nulo),15.52,(nulo)=9 | Adultos=2 | Atención del Parto=2 | Cuna Básico Neonatal=2 | Cuna Intensiva Neonatal=2,,,,,,,,,,,,,,,,,,
+Naturaleza,48,10,3.0,Privada,41.38,Privada=24 | Pública=24 | (nulo)=10,,,,,,,,,,,,,,,,,,
+Cantidad,44,14,,,,,24.14,41.0,694.0909,87.5,10.0,2422.45,3.0,15270.0,15267.0,24.0,280.0,256.0,5.5019,32.2896,349.0105,6.0,13.64,False
+%,49,9,11.0,"0,00%",44.83,"0,00%=26 | 1,00%=10 | (nulo)=9 | 2,00%=4 | 3,00%=3",,,,,,,,,,,,,,,,,,

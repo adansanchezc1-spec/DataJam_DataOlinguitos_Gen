@@ -1,0 +1,11 @@
+{
+  "id": "trazados_troncales",
+  "titulo": "Trazados troncales",
+  "origen": "TransMilenio S.A.",
+  "corte": "Vigente",
+  "valor_publico": "Longitud y trazado de la red troncal",
+  "indicadores": "MOV-04",
+  "path": "data/raw/MOVILIDAD/trazados_troncales.geojson",
+  "capa": "",
+  "tipo": ""
+}

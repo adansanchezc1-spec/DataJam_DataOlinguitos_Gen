@@ -1,0 +1,102 @@
+archivo,sector,formato,tam_mb
+.gitkeep,.gitkeep,SIN EXT,0.0
+AMBIENTE\estacion_calidad_aire.geojson,AMBIENTE,GEOJSON,0.01
+AMBIENTE\situacion_ambiental_conflictiva.csv,AMBIENTE,CSV,0.29
+AMBIENTE\situacion_ambiental_conflictiva.geojson,AMBIENTE,GEOJSON,0.63
+DEMOGRAFIA\osb_demografia-poblacion-localidad.csv,DEMOGRAFIA,CSV,6.82
+DEMOGRAFIA_POBLACION\osb_demografia-poblacion-localidad.csv,DEMOGRAFIA_POBLACION,CSV,6.82
+DEMOGRAFIA_POBLACION\osb_demografia-poblacion-upl.csv,DEMOGRAFIA_POBLACION,CSV,9.8
+EDUCACION\colegios122025.gpkg,EDUCACION,GPKG,1.12
+EDUCACION\matricula_total_colegios_oficiales.gpkg,EDUCACION,GPKG,0.47
+EDUCACION\ofertacupos_032025.geojson,EDUCACION,GEOJSON,0.31
+FINANZAS_INVERSION_PUBLICA\inversion_educacion_por_localidad_12_2025.gpkg,FINANZAS_INVERSION_PUBLICA,GPKG,1.08
+FINANZAS_INVERSION_PUBLICA\Punto de encuentro vendedores. Bogotá D.C..geojson,FINANZAS_INVERSION_PUBLICA,GEOJSON,0.0
+FINANZAS_INVERSION_PUBLICA\Punto de encuentro vendedores. Bogotá D.C..xlsx,FINANZAS_INVERSION_PUBLICA,XLSX,0.01
+FINANZAS_INVERSION_PUBLICA\rivi-numero-vendedores-informales-localidad-2017-06-30.txt,FINANZAS_INVERSION_PUBLICA,TXT,0.0
+FINANZAS_INVERSION_PUBLICA\rivi-numero-vendedores-informales-localidad-2017-12-31.txt,FINANZAS_INVERSION_PUBLICA,TXT,0.0
+FINANZAS_INVERSION_PUBLICA\rivi-numero-vendedores-informales-localidad-2018-06-30.txt,FINANZAS_INVERSION_PUBLICA,TXT,0.0
+FINANZAS_INVERSION_PUBLICA\rivi-numero-vendedores-informales-localidad-2018-12-31.txt,FINANZAS_INVERSION_PUBLICA,TXT,0.0
+FINANZAS_INVERSION_PUBLICA\rivi-numero-vendedores-informales-localidad-2019-06-30.txt,FINANZAS_INVERSION_PUBLICA,TXT,0.0
+FINANZAS_INVERSION_PUBLICA\rivi-numero-vendedores-informales-localidad-2019-12-30.txt,FINANZAS_INVERSION_PUBLICA,TXT,0.0
+INFRAESTRUCTURA_ESPACIO_PUBLICO\5.-parques-idrd.csv,INFRAESTRUCTURA_ESPACIO_PUBLICO,CSV,0.01
+INFRAESTRUCTURA_ESPACIO_PUBLICO\estado\Estado.csv,INFRAESTRUCTURA_ESPACIO_PUBLICO,CSV,4.43
+INFRAESTRUCTURA_ESPACIO_PUBLICO\gpkg_mr_v03.26\gpkg_mr_v03.26.gpkg,INFRAESTRUCTURA_ESPACIO_PUBLICO,GPKG,4585.48
+INFRAESTRUCTURA_ESPACIO_PUBLICO\ips.gpkg,INFRAESTRUCTURA_ESPACIO_PUBLICO,GPKG,1.38
+MOVILIDAD\conexion_operacional.geojson,MOVILIDAD,GEOJSON,0.01
+MOVILIDAD\estaciones_linea1.geojson,MOVILIDAD,GEOJSON,0.01
+MOVILIDAD\estaciones_linea2.gpkg,MOVILIDAD,GPKG,0.11
+MOVILIDAD\estaciones_troncales.geojson,MOVILIDAD,GEOJSON,0.14
+MOVILIDAD\flota_vinculada_sitp_2024-12.csv,MOVILIDAD,CSV,1.27
+MOVILIDAD\gtfs_sitp_2026-04-29.zip,MOVILIDAD,ZIP,120.35
+MOVILIDAD\paraderos_zonales_sitp.gpkg,MOVILIDAD,GPKG,2.51
+MOVILIDAD\retorno_operacional.geojson,MOVILIDAD,GEOJSON,0.02
+MOVILIDAD\servicios_rutas_troncales_zonales.csv,MOVILIDAD,CSV,0.23
+MOVILIDAD\trazado_linea2.gpkg,MOVILIDAD,GPKG,0.12
+MOVILIDAD\trazados_troncales.geojson,MOVILIDAD,GEOJSON,0.12
+MOVILIDAD\Validaciones\2024-Troncal-01 TM Resumen de Validaciones Troncales al 31 Ene 2024 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,13.09
+MOVILIDAD\Validaciones\2024-Troncal-02 TM Resumen de Validaciones Troncales al 29 Feb 2024 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,12.72
+MOVILIDAD\Validaciones\2024-Troncal-03 TM Resumen de Validaciones Troncales al 31 Mar 2024 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,12.72
+MOVILIDAD\Validaciones\2024-Troncal-04 TM Resumen de Validaciones Troncales al 30 Abr 2024 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,13.02
+MOVILIDAD\Validaciones\2024-Troncal-05 TM Resumen de Validaciones Troncales al 31 May 2024 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,13.0
+MOVILIDAD\Validaciones\2024-Troncal-06 TM Resumen de Validaciones Troncales al 30 Jun 2024 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,13.6
+MOVILIDAD\Validaciones\2024-Troncal-07 TM Resumen de Validaciones Troncales al 31 Jul 2024 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,13.51
+MOVILIDAD\Validaciones\2024-Troncal-08 TM Resumen de Validaciones Troncales al 31 Ago 2024 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.08
+MOVILIDAD\Validaciones\2024-Troncal-09 TM Resumen de Validaciones Troncales al 30 Sep 2024 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,13.61
+MOVILIDAD\Validaciones\2024-Troncal-10 TM Resumen de Validaciones Troncales al 31 Oct 2024 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,13.69
+MOVILIDAD\Validaciones\2024-Troncal-11 TM Resumen de Validaciones Troncales al 30 Nov 2024 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,13.74
+MOVILIDAD\Validaciones\2024-Troncal-12 TM Resumen de Validaciones Troncales al 31 de Dic 2024 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,13.9
+MOVILIDAD\Validaciones\2024-Zonal-01 TM Reporte de Validaciones Zonales Intervalo al 31 Ene 2024.xlsx,MOVILIDAD,XLSX,11.43
+MOVILIDAD\Validaciones\2024-Zonal-02 TM Reporte de Validaciones Zonales Intervalo al 29 Feb 2024.xlsx,MOVILIDAD,XLSX,11.58
+MOVILIDAD\Validaciones\2024-Zonal-03 TM Reporte de Validaciones Zonales Intervalo al 31 Mar 2024.xlsx,MOVILIDAD,XLSX,11.48
+MOVILIDAD\Validaciones\2024-Zonal-04 TM Reporte de Validaciones Zonales Intervalo al 30 Abril 2024.xlsx,MOVILIDAD,XLSX,11.45
+MOVILIDAD\Validaciones\2024-Zonal-05 TM Reporte de Validaciones Zonales Intervalo al 31 Mayo 2024.xlsx,MOVILIDAD,XLSX,11.48
+MOVILIDAD\Validaciones\2024-Zonal-06 TM Reporte de Validaciones Zonales Intervalo al 30 Junio 2024.xlsx,MOVILIDAD,XLSX,11.43
+MOVILIDAD\Validaciones\2024-Zonal-07 TM Reporte de Validaciones Zonales Intervalo al 31 Julio 2024.xlsx,MOVILIDAD,XLSX,11.47
+MOVILIDAD\Validaciones\2024-Zonal-08 TM Reporte de Validaciones Zonales Intervalo al 31 Agosto 2024.xlsx,MOVILIDAD,XLSX,11.76
+MOVILIDAD\Validaciones\2024-Zonal-09 TM Reporte de Validaciones Zonales Intervalo al 30 Septiembre 2024.xlsx,MOVILIDAD,XLSX,11.52
+MOVILIDAD\Validaciones\2024-Zonal-10 TM Reporte de Validaciones Zonales Intervalo al 31 Octubre 2024.xlsx,MOVILIDAD,XLSX,11.55
+MOVILIDAD\Validaciones\2024-Zonal-11 TM Reporte de Validaciones Zonales Intervalo al 30 Noviembre 2024.xlsx,MOVILIDAD,XLSX,11.56
+MOVILIDAD\Validaciones\2024-Zonal-12 TM Reporte de Validaciones Zonales Intervalo al 31 de Diciembre 2024.xlsx,MOVILIDAD,XLSX,11.56
+MOVILIDAD\Validaciones\2025-Troncal-01 TM Resumen de Validaciones Troncales al 31 de Enero 2025 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,13.63
+MOVILIDAD\Validaciones\2025-Troncal-02 TM Resumen de Validaciones Troncales al 28 de Febrero 2025 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.4
+MOVILIDAD\Validaciones\2025-Troncal-03 TM Resumen de Validaciones Troncales al 31 de Marzo 2025 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.36
+MOVILIDAD\Validaciones\2025-Troncal-04 TM Resumen de Validaciones Troncales al 30 de Abril 2025 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.31
+MOVILIDAD\Validaciones\2025-Troncal-05 TM Resumen de Validaciones Troncales al 31 de Mayo 2025 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.35
+MOVILIDAD\Validaciones\2025-Troncal-06 TM Resumen de Validaciones Troncales al 30 de Junio 2025 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.05
+MOVILIDAD\Validaciones\2025-Troncal-07 TM Resumen de Validaciones Troncales al 31 de Julio 2025 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.51
+MOVILIDAD\Validaciones\2025-Troncal-08 TM Resumen de Validaciones Troncales al 31 de Agosto del 2025 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.13
+MOVILIDAD\Validaciones\2025-Troncal-09 TM Resumen de Validaciones Troncales al 30 de Septiembre del 2025 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.4
+MOVILIDAD\Validaciones\2025-Troncal-10 TM Resumen de Validaciones Troncales al 31 de Octubre del 2025 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.33
+MOVILIDAD\Validaciones\2025-Troncal-11 TM Resumen de Validaciones Troncales al 30 de Noveimbre del 2025 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.39
+MOVILIDAD\Validaciones\2025-Troncal-12 TM Resumen de Validaciones Troncales al 31 de Diciembre del 2025 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.51
+MOVILIDAD\Validaciones\2025-Zonal-01 TM Reporte de Validaciones Zonales Intervalo al 31 de Enero 2025.xlsx,MOVILIDAD,XLSX,11.5
+MOVILIDAD\Validaciones\2025-Zonal-02 TM Reporte de Validaciones Zonales Intervalo al 28 de Febrero 2025.xlsx,MOVILIDAD,XLSX,11.46
+MOVILIDAD\Validaciones\2025-Zonal-03 TM Reporte de Validaciones Zonales Intervalo al 31 de Marzo 2025.xlsx,MOVILIDAD,XLSX,11.56
+MOVILIDAD\Validaciones\2025-Zonal-04 TM Reporte de Validaciones Zonales Intervalo al 30 de Abril 2025.xlsx,MOVILIDAD,XLSX,11.54
+MOVILIDAD\Validaciones\2025-Zonal-05 TM Reporte de Validaciones Zonales Intervalo al 31 de Mayo 2025.xlsx,MOVILIDAD,XLSX,11.56
+MOVILIDAD\Validaciones\2025-Zonal-06 TM Reporte de Validaciones Zonales Intervalo al 30 de Junio 2025.xlsx,MOVILIDAD,XLSX,11.49
+MOVILIDAD\Validaciones\2025-Zonal-07 TM Reporte de Validaciones Zonales Intervalo al 31 de Julio 2025.xlsx,MOVILIDAD,XLSX,11.53
+MOVILIDAD\Validaciones\2025-Zonal-08 TM Reporte de Validaciones Zonales Intervalo al 31 de Agosto del 2025.xlsx,MOVILIDAD,XLSX,11.56
+MOVILIDAD\Validaciones\2025-Zonal-09 TM Reporte de Validaciones Zonales Intervalo al 30 de Septiembre del 2025.xlsx,MOVILIDAD,XLSX,11.53
+MOVILIDAD\Validaciones\2025-Zonal-10 TM Reporte de Validaciones Zonales Intervalo al 31 de Octubre del 2025.xlsx,MOVILIDAD,XLSX,11.57
+MOVILIDAD\Validaciones\2025-Zonal-11 TM Reporte de Validaciones Zonales Intervalo al 30 de Noviembre del 2025.xlsx,MOVILIDAD,XLSX,12.43
+MOVILIDAD\Validaciones\2025-Zonal-12 TM Reporte de Validaciones Zonales Intervalo al 31 de Diciembre del 2025.xlsx,MOVILIDAD,XLSX,12.14
+MOVILIDAD\Validaciones\2026-Troncal-01 TM Resumen de Validaciones Troncales al 31 de Enero del 2026 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.19
+MOVILIDAD\Validaciones\2026-Troncal-02 TM Resumen de Validaciones Troncales al 28 de Febrero del 2026 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.27
+MOVILIDAD\Validaciones\2026-Troncal-03 TM Resumen de Validaciones Troncales al 31 de Marzo del 2026 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.36
+MOVILIDAD\Validaciones\2026-Troncal-04 TM Resumen de Validaciones Troncales al 30 de Abril del 2026 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.65
+MOVILIDAD\Validaciones\2026-Troncal-05 TM Resumen de Validaciones Troncales al 31 de Mayo del 2026 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.44
+MOVILIDAD\Validaciones\2026-Troncal-06 TM Resumen de Validaciones Troncales al 30 de Junio del 2026 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.25
+MOVILIDAD\Validaciones\2026-Troncal-07 TM Resumen de Validaciones Troncales al 31 de Julio del 2026 Intervalo 15 Mint.xlsx,MOVILIDAD,XLSX,14.45
+MOVILIDAD\Validaciones\2026-Zonal-01 TM Reporte de Validaciones Zonales Intervalo al 31 de Enero del 2026.xlsx,MOVILIDAD,XLSX,11.78
+MOVILIDAD\Validaciones\2026-Zonal-02 TM Reporte de Validaciones Zonales Intervalo al 28 de Febrero del 2026.xlsx,MOVILIDAD,XLSX,11.72
+MOVILIDAD\Validaciones\2026-Zonal-03 TM Reporte de Validaciones Zonales Intervalo al 31 de Marzo del 2026.xlsx,MOVILIDAD,XLSX,11.81
+MOVILIDAD\Validaciones\2026-Zonal-04 TM Reporte de Validaciones Zonales Intervalo al 30 de Abril del 2026.xlsx,MOVILIDAD,XLSX,11.79
+MOVILIDAD\Validaciones\2026-Zonal-05 TM Reporte de Validaciones Zonales Intervalo al 31 de Mayo del 2026.xlsx,MOVILIDAD,XLSX,11.81
+MOVILIDAD\Validaciones\2026-Zonal-06 TM Reporte de Validaciones Zonales Intervalo al 30 de Junio del 2026.xlsx,MOVILIDAD,XLSX,11.75
+MOVILIDAD\Validaciones\2026-Zonal-07 TM Reporte de Validaciones Zonales Intervalo al 31 de Julio del 2026.xlsx,MOVILIDAD,XLSX,11.8
+MOVILIDAD\zonas_zat.geojson,MOVILIDAD,GEOJSON,27.34
+SALUD\ips_sds.gpkg,SALUD,GPKG,1.38
+SALUD\osb_ofertasrv-ips-urgencias.csv,SALUD,CSV,0.02
+SALUD\osb_tiporazoncamas.csv,SALUD,CSV,0.0
+SEGURIDAD\Cuadrante de Policía. Bogotá D.C.csv,SEGURIDAD,CSV,1.37

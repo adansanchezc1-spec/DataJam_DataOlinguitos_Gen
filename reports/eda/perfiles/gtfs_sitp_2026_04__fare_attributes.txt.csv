@@ -1,0 +1,8 @@
+﻿columna,n,n_nulos,pct_nulos,n_unicos,media,mediana,moda,desv_est,min,max,rango,Q1,Q3,IQR,asimetria_skew,curtosis,CV_pct,n_outliers_iqr,pct_outliers,sin_valores_numericos,n_categorias,dominante,pct_dominante,top_5
+fare_id,1,0,0.0,1.0,7.0,7.0,7.0,,7.0,7.0,0.0,7.0,7.0,0.0,,,,0.0,0.0,False,,,,
+price,1,0,0.0,1.0,3550.0,3550.0,3550.0,,3550.0,3550.0,0.0,3550.0,3550.0,0.0,,,,0.0,0.0,False,,,,
+currency_type,1,0,,,,,,,,,,,,,,,,,,,1.0,COP,100.0,COP=1
+payment_method,1,0,0.0,1.0,0.0,0.0,0.0,,0.0,0.0,0.0,0.0,0.0,0.0,,,,0.0,0.0,False,,,,
+transfers,0,1,,,,,,,,,,,,,,,,,,,1.0,(nulo),100.0,(nulo)=1
+agency_id,1,0,0.0,1.0,7.0,7.0,7.0,,7.0,7.0,0.0,7.0,7.0,0.0,,,,0.0,0.0,False,,,,
+transfer_duration,1,0,0.0,1.0,7500.0,7500.0,7500.0,,7500.0,7500.0,0.0,7500.0,7500.0,0.0,,,,0.0,0.0,False,,,,

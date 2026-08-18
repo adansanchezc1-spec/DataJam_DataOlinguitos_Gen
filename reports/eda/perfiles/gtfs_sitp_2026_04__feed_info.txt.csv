@@ -1,0 +1,8 @@
+﻿columna,n,n_nulos,n_categorias,dominante,pct_dominante,top_5,pct_nulos,n_unicos,media,mediana,moda,desv_est,min,max,rango,Q1,Q3,IQR,asimetria_skew,curtosis,CV_pct,n_outliers_iqr,pct_outliers,sin_valores_numericos
+feed_publisher_name,1,0,1.0,Transmilenio S.A.,100.0,Transmilenio S.A.=1,,,,,,,,,,,,,,,,,,
+feed_start_date,1,0,,,,,0.0,1.0,20260101.0,20260101.0,20260101.0,,20260101.0,20260101.0,0.0,20260101.0,20260101.0,0.0,,,,0.0,0.0,False
+feed_version,1,0,,,,,0.0,1.0,1.0,1.0,1.0,,1.0,1.0,0.0,1.0,1.0,0.0,,,,0.0,0.0,False
+feed_end_date,1,0,,,,,0.0,1.0,20261231.0,20261231.0,20261231.0,,20261231.0,20261231.0,0.0,20261231.0,20261231.0,0.0,,,,0.0,0.0,False
+feed_lang,1,0,1.0,es,100.0,es=1,,,,,,,,,,,,,,,,,,
+feed_publisher_url,1,0,1.0,https://www.transmilenio.gov.co/,100.0,https://www.transmilenio.gov.co/=1,,,,,,,,,,,,,,,,,,
+feed_contact_email,1,0,1.0,radicacion@transmilenio.gov.co,100.0,radicacion@transmilenio.gov.co=1,,,,,,,,,,,,,,,,,,

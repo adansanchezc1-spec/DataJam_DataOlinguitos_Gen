@@ -1,0 +1,4 @@
+﻿columna,n,n_nulos,pct_nulos,n_unicos,media,mediana,moda,desv_est,min,max,rango,Q1,Q3,IQR,asimetria_skew,curtosis,CV_pct,n_outliers_iqr,pct_outliers,sin_valores_numericos
+service_id,126,0,0.0,7,4.0,4.0,1.0,2.008,1.0,7.0,6.0,2.0,6.0,4.0,0.0,-1.2519,50.1996,0,0.0,False
+date,126,0,0.0,18,20260678.8333,20260622.0,20260101.0,342.9538,20260101.0,20261225.0,1124.0,20260403.0,20261012.0,609.0,0.0556,-0.9793,0.0017,0,0.0,False
+exception_type,126,0,0.0,2,1.8571,2.0,2.0,0.3513,1.0,2.0,1.0,2.0,2.0,0.0,-2.0659,2.3043,18.9174,18,14.29,False

@@ -1,0 +1,14 @@
+﻿columna,n,n_nulos,pct_nulos,n_unicos,media,mediana,moda,desv_est,min,max,rango,Q1,Q3,IQR,asimetria_skew,curtosis,CV_pct,n_outliers_iqr,pct_outliers,sin_valores_numericos,n_categorias,dominante,pct_dominante,top_5
+latitud,13,0,0.0,13.0,4.6204,4.6121,4.5691,0.0334,4.5691,4.6803,0.1112,4.6022,4.6318,0.0297,0.7382,-0.2545,0.7219,1.0,7.69,False,,,,
+longitud,13,0,0.0,13.0,-74.0807,-74.0798,-74.1255,0.0175,-74.1255,-74.0583,0.0672,-74.0847,-74.0708,0.0139,-1.3721,2.8322,-0.0236,1.0,7.69,False,,,,
+objectid,13,0,0.0,13.0,7.0,7.0,1.0,3.8944,1.0,13.0,12.0,4.0,10.0,6.0,0.0,-1.2,55.6349,0.0,0.0,False,,,,
+id_conexio,13,0,,,,,,,,,,,,,,,,,,,13.0,CN001,7.69,CN001=1 | CN002=1 | CN003=1 | CN004=1 | CN005=1
+conexion,13,0,,,,,,,,,,,,,,,,,,,13.0,Carrera 10 - Eje Ambiental,7.69,Carrera 10 - Eje Ambiental=1 | Caracas Centro - Americas=1 | Tunal - Caracas Sur=1 | Calle 26 - NQS Central=1 | Calle 80 - NQS Central - Suba=1
+esta_oper,13,0,0.0,1.0,1.0,1.0,1.0,0.0,1.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,False,,,,
+tip_conex,13,0,0.0,4.0,1.8462,1.0,1.0,1.1435,1.0,4.0,3.0,1.0,2.0,1.0,1.1387,-0.0245,61.942,2.0,15.38,False,,,,
+eta_oper,13,0,0.0,1.0,1.0,1.0,1.0,0.0,1.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,False,,,,
+globalid,13,0,,,,,,,,,,,,,,,,,,,13.0,{2357067B-5E7D-452A-B5C6-1BDAE137FD93},7.69,{2357067B-5E7D-452A-B5C6-1BDAE137FD93}=1 | {DEBE4BF8-6EAA-4E5F-B6A8-C3E57085363A}=1 | {61C06661-2820-4F73-B965-EF9744267869}=1 | {78FFE5E6-2F9A-4BDA-A936-FF261010A6F0}=1 | {430B72F8-81F2-476B-AA4D-F74987C4181D}=1
+created_user,0,13,,,,,,,,,,,,,,,,,,,1.0,(nulo),100.0,(nulo)=13
+created_date,0,13,,,,,,,,,,,,,,,,,,,1.0,(nulo),100.0,(nulo)=13
+last_edited_user,0,13,,,,,,,,,,,,,,,,,,,1.0,(nulo),100.0,(nulo)=13
+last_edited_date,0,13,,,,,,,,,,,,,,,,,,,1.0,(nulo),100.0,(nulo)=13

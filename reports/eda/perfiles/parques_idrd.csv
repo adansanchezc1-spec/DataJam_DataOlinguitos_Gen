@@ -1,0 +1,6 @@
+﻿columna,n,n_nulos,n_categorias,dominante,pct_dominante,top_5
+Codigo Parque,139,0,135,04-127,1.44,04-127=2 | 06-063=2 | 11-368=2 | 11-204=2 | 01-012=1
+Nombre Parque,139,0,138,Arborizadora Alta,1.44,Arborizadora Alta=2 | La Vida=1 | Servita=1 | Nueva Autopista=1 | Alta Blanca=1
+Nombre Localidad,139,0,19,CIUDAD BOLIVAR,10.07,CIUDAD BOLIVAR=14 | KENNEDY=13 | ENGATIVÁ=13 | SUBA=12 | BOSA=11
+Tipologia,139,0,1,ESTRUCTURANTE,100.0,ESTRUCTURANTE=139
+Administracion,139,0,1,IDRD,100.0,IDRD=139

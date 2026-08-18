@@ -1,0 +1,22 @@
+id,indicador,dimension,formula,inputs_necesarios,estado,que_falta
+POB-01,Población total por localidad,Demografía,suma de POBLACION por localidad (año de corte),osb_demografia-poblacion-localidad.csv,construible_ahora,Nada: fuente por localidad 2005-2035.
+POB-02,Población 0-17 años por localidad,Demografía,suma de POBLACION con EDAD 0-17 por localidad,osb_demografia-poblacion-localidad.csv,construible_ahora,Nada: EDAD viene desagregada.
+POB-03,Población 60+ por localidad,Demografía,suma de POBLACION con EDAD >= 60 por localidad,osb_demografia-poblacion-localidad.csv,construible_ahora,Nada.
+POB-04,Índice de dependencia y envejecimiento por localidad,Demografía,(pob <15 + pob 60+) / pob 15-59; pob 60+ / pob <15,osb_demografia-poblacion-localidad.csv,construible_ahora,Nada.
+SAL-01,IPS por localidad (acceso a salud),Salud,conteo espacial de IPS dentro de cada localidad (cruce con capa Loca),ips_sds.gpkg; gpkg_mr_v03.26.gpkg (capa Loca),construible_con_cruce_espacial,IPS no trae localidad explícita; requiere sjoin con Loca del MR.
+SAL-02,Camas hospitalarias por 10.000 habitantes,Salud,camas / población * 10000,osb_tiporazoncamas.csv; población,faltante_territorial,Fuente distrital sin desagregación por localidad; falta REPS territorializado.
+EDU-01,Sedes educativas por localidad,Educación,conteo de colegios por COD_LOCA,colegios122025.gpkg,construible_ahora,Nada: COD_LOCA presente.
+EDU-02,Matrícula oficial por localidad y por 1.000 niños 0-17,Educación,suma TMATRIC_GE por COD_LOCA; / población 0-17 * 1000,matricula_total_colegios_oficiales.gpkg; población 0-17,construible_ahora,Nada: COD_LOCA y TMATRIC_GE presentes.
+MOV-01,Paraderos SITP por 10.000 habitantes,Movilidad,conteo de paraderos por localidad_ / población * 10000,paraderos_zonales_sitp.gpkg; población,construible_ahora,Nada: campo localidad_ con 20 localidades.
+MOV-02,Estaciones troncales por localidad,Movilidad,conteo espacial de estaciones dentro de cada localidad,estaciones_troncales.geojson; gpkg_mr_v03.26.gpkg (capa Loca),construible_con_cruce_espacial,Estaciones sin localidad explícita; requiere sjoin con Loca.
+MOV-03,Demanda mensual por estación/paradero (validaciones tullave),Movilidad,parseo de XLSX mensuales: transacciones por estación y día,Validaciones/*.xlsx (62 archivos 2024-2026),construible_parcial,Formato de hoja irregular por archivo; requiere parser dedicado por layout.
+MOV-04,Flota vinculada y accesibilidad por zona,Movilidad,conteo de buses por zona y componente,flota_vinculada_sitp_2024-12.csv,construible_ahora,Nada.
+FIN-01,Inversión educativa per cápita por localidad,Finanzas,R_EJECUTADOS / población total,inversion_educacion_por_localidad_12_2025.gpkg; población,construible_ahora,"Solo inversión educativa (SED), no inversión multisectorial."
+FIN-02,% de ejecución y giro de inversión por localidad,Finanzas,R_EJECUTADOS/R_ASIGNADOS*100; R_GIRADOS/R_ASIGNADOS*100,inversion_educacion_por_localidad_12_2025.gpkg,construible_ahora,Nada.
+INF-01,Parques por localidad,Infraestructura,conteo por Nombre Localidad,5.-parques-idrd.csv,construible_ahora,Nada.
+INF-02,m² de parque por habitante,Infraestructura,área total de parques / población,5.-parques-idrd.csv; área de parques; población,faltante,El CSV IDRD no incluye área; requiere geometría de parques (fuente externa o MR).
+INF-03,Estado superficial de vías,Infraestructura,distribución de ESTADO_SUPERFICIAL por vía (CalCodigo),estado/Estado.csv; malla vial (MR capa MVI),construible_parcial,Estado por CalCodigo; para territorializar se necesita cruce con malla vial del MR.
+AMB-01,Indicadores ambientales por localidad,Ambiente,por definir,,faltante,Sector sin datos analíticos en data/raw (solo README).
+PAR-01,Indicadores de participación ciudadana,Participación,por definir,,faltante,Sector sin datos analíticos (solo README).
+SEG-01,Indicadores de seguridad por localidad,Seguridad,por definir,,faltante,Sector sin datos analíticos (solo README).
+SER-01,Indicadores de servicios públicos,Servicios Públicos,por definir,,faltante,Sector sin datos analíticos (carpeta vacía).

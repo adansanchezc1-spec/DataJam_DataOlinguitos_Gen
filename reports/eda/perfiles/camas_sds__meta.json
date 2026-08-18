@@ -1,0 +1,11 @@
+{
+  "id": "camas_sds",
+  "titulo": "Camas hospitalarias por concepto y naturaleza — OSB",
+  "origen": "Observatorio SISBEN Bogotá (OSB)",
+  "corte": "Corte vigente del OSB",
+  "valor_publico": "Dotación de camas (públicas/privadas) para el ratio camas por habitante",
+  "indicadores": "SAL-02 (camas por 1.000 habitantes)",
+  "path": "data/raw/SALUD/osb_tiporazoncamas.csv",
+  "capa": "",
+  "tipo": ""
+}

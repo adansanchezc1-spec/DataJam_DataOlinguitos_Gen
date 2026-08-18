@@ -1,0 +1,11 @@
+{
+  "id": "zonas_zat",
+  "titulo": "Zonas ZAT (zonas de transporte)",
+  "origen": "TransMilenio S.A.",
+  "corte": "Vigente",
+  "valor_publico": "División zonal de operación y demanda",
+  "indicadores": "MOV-01, MOV-03",
+  "path": "data/raw/MOVILIDAD/zonas_zat.geojson",
+  "capa": "",
+  "tipo": ""
+}

@@ -1,0 +1,11 @@
+{
+  "id": "parques_idrd",
+  "titulo": "Parques IDRD",
+  "origen": "Instituto Distrital de Recreación y Deporte (IDRD) — datos abiertos",
+  "corte": "Vigente",
+  "valor_publico": "Cobertura y déficit de espacio público de recreación por localidad",
+  "indicadores": "INF-01 (parques por localidad), INF-02 (espacio público efectivo)",
+  "path": "data/raw/INFRAESTRUCTURA_ESPACIO_PUBLICO/5.-parques-idrd.csv",
+  "capa": "",
+  "tipo": ""
+}

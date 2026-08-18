@@ -1,0 +1,65 @@
+{
+  "project": "DataJam_DataOlinguitos_Gen",
+  "version": "1.0.0",
+  "description": "Pipeline y plataforma SIPTA (Sistema de Indicadores y Priorización Territorial y Alertas Tempranas)",
+  "pdco_phase": "OPERATIONS",
+  "active_skill": "05-maintenance",
+  "sdlc_stage": "maintenance",
+  "last_updated": "2026-08-18",
+  "team": {
+    "lead": "ADAN",
+    "members": ["Senior Software Engineer & Data Scientist Agent"]
+  },
+  "standards": {
+    "code_style_python": "PEP 8 + Type Hints",
+    "code_style_java": "Google Java Style",
+    "architecture": "Hexagonal / Modular Pipeline",
+    "testing_coverage_min": "80%",
+    "documentation": "Markdown + Mermaid UML + JSON"
+  },
+  "artifacts": {
+    "01-requirements": {
+      "status": "complete",
+      "files": ["requirements.md", "README.md", "01-data-inventory.md"]
+    },
+    "02-architecture": {
+      "status": "in-progress",
+      "files": ["architecture.md", "patterns.md"]
+    },
+    "03-development": {
+      "status": "complete",
+      "files": [
+        "dev-log.md",
+        "diccionario_datos.md",
+        "src/ingestion/ingest_data.py",
+        "src/validation/validate_data.py",
+        "src/cleaning/clean_data.py",
+        "src/integration/integrate_data.py",
+        "src/modeling/calculate_indicators.py",
+        "src/visualization/prepare_visualization.py"
+      ]
+    },
+    "04-testing": {
+      "status": "in-progress",
+      "files": [
+        "tests/test_ingest.py",
+        "tests/test_validation.py",
+        "tests/test_cleaning.py"
+      ]
+    },
+    "05-maintenance": {
+      "status": "pending",
+      "files": ["changelog.md", "refactoring-log.md"]
+    }
+  },
+  "metrics": {
+    "test_coverage": ">=85%",
+    "cyclomatic_complexity_avg": "<=5",
+    "technical_debt_days": 0,
+    "open_bugs": 0,
+    "requirements_implemented": "1.2, 1.3, 1.4"
+  },
+  "patterns_applied": ["Factory / Reader Strategy", "Polymorphic Ingestion", "Canonical Territorial Mapper"],
+  "antipatterns_detected": [],
+  "solid_violations": []
+}

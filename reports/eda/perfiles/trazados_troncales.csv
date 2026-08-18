@@ -1,0 +1,15 @@
+﻿columna,n,n_nulos,pct_nulos,n_unicos,media,mediana,moda,desv_est,min,max,rango,Q1,Q3,IQR,asimetria_skew,curtosis,CV_pct,n_outliers_iqr,pct_outliers,sin_valores_numericos,n_categorias,dominante,pct_dominante,top_5
+objectid,20,0,0.0,20.0,136.45,135.5,126.0,8.4882,126.0,164.0,38.0,130.75,140.25,9.5,1.7569,5.0054,6.2208,1.0,5.0,False,,,,
+id_trazado,20,0,,,,,,,,,,,,,,,,,,,20.0,TZ002,5.0,TZ002=1 | TZ008=1 | TZ009=1 | TZ015=1 | TZ018=1
+long_traz,20,0,0.0,20.0,6.4142,6.9342,0.641,4.4141,0.641,13.0926,12.4516,2.2167,10.4968,8.2801,0.1524,-1.7118,68.8171,0.0,0.0,False,,,,
+ori_traz,20,0,,,,,,,,,,,,,,,,,,,14.0,Avenida Calle 80,15.0,Avenida Calle 80=3 | Autopista Norte=2 | Avenida Caracas=2 | Carrera 3=2 | Avenida Calle 6=2
+fin_traz,20,0,,,,,,,,,,,,,,,,,,,18.0,Avenida Calle 6,10.0,Avenida Calle 6=2 | Limite del Distrito=2 | Terminal=1 | Portal Americas=1 | Avenida Caracas=1
+nom_traz,20,0,,,,,,,,,,,,,,,,,,,19.0,Carrera 7,10.0,Carrera 7=2 | Autopista Norte=1 | NQS Central=1 | Americas=1 | Eje Ambiental=1
+le_troncal,20,0,,,,,,,,,,,,,,,,,,,12.0,H,15.0,H=3 | E=2 | C=2 | G=2 | M=2
+nom_tronc,20,0,,,,,,,,,,,,,,,,,,,12.0,Caracas Sur,15.0,Caracas Sur=3 | NQS Central=2 | Suba=2 | NQS Sur=2 | Carrera 7=2
+fase_tronc,20,0,,,,,,,,,,,,,,,,,,,3.0,FASE I,40.0,FASE I=8 | FASE II=6 | FASE III=6
+eta_oper,20,0,0.0,1.0,1.0,1.0,1.0,0.0,1.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,False,,,,
+esta_oper,20,0,0.0,1.0,1.0,1.0,1.0,0.0,1.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,False,,,,
+tipo_tra,20,0,0.0,2.0,1.2,1.0,1.0,0.4104,1.0,2.0,1.0,1.0,1.0,0.0,1.6245,0.6985,34.1993,4.0,20.0,False,,,,
+Shape__Length,20,0,0.0,20.0,6445.7255,6931.9317,641.0452,4370.0686,641.0452,13008.3203,12367.2751,2216.3315,10487.2359,8270.9044,0.1424,-1.6952,67.7979,0.0,0.0,False,,,,
+globalid,20,0,,,,,,,,,,,,,,,,,,,20.0,{389107A2-D1E1-491D-A369-B896E8CC112F},5.0,{389107A2-D1E1-491D-A369-B896E8CC112F}=1 | {1967B834-BD1E-4148-B185-373D9B648750}=1 | {2526622E-0F8F-4018-8146-84FF6DE5FC65}=1 | {6C1B642D-F281-4915-A52A-2CBC873FAFDD}=1 | {FEE4E75E-9F33-496D-881E-45DBA0EE46BF}=1

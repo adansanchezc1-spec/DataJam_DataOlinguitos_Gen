@@ -1,0 +1,8 @@
+﻿columna,n,n_nulos,pct_nulos,n_unicos,media,mediana,moda,desv_est,min,max,rango,Q1,Q3,IQR,asimetria_skew,curtosis,CV_pct,n_outliers_iqr,pct_outliers,sin_valores_numericos,n_categorias,dominante,pct_dominante,top_5
+agency_id,7,0,0.0,7.0,4.0,4.0,1.0,2.1602,1.0,7.0,6.0,2.5,5.5,3.0,0.0,-1.2,54.0062,0.0,0.0,False,,,,
+agency_name,7,0,,,,,,,,,,,,,,,,,,,7.0,Transmilenio-Troncal,14.29,Transmilenio-Troncal=1 | Transmilenio-Alimentadores=1 | Transmilenio-Dual=1 | Zonal-Urbano=1 | Zonal-Complementario=1
+agency_url,7,0,,,,,,,,,,,,,,,,,,,5.0,http://www.sitp.gov.co,42.86,http://www.sitp.gov.co=3 | https://www.sitp.gov.co/publicaciones/40083/urbano/=1 | https://www.sitp.gov.co/publicaciones/40085/complementario/=1 | https://www.sitp.gov.co/publicaciones/40087/especial/=1 | https://www.transmilenio.gov.co/TransMiCable/=1
+agency_timezone,7,0,,,,,,,,,,,,,,,,,,,1.0,America/Bogota,100.0,America/Bogota=7
+agency_lang,7,0,,,,,,,,,,,,,,,,,,,1.0,es,100.0,es=7
+agency_phone,7,0,0.0,1.0,18000115510.0,18000115510.0,18000115510.0,0.0,18000115510.0,18000115510.0,0.0,18000115510.0,18000115510.0,0.0,0.0,0.0,0.0,0.0,0.0,False,,,,
+agency_fare_url,7,0,,,,,,,,,,,,,,,,,,,1.0,https://www.sitp.gov.co/publicaciones/40710/tarifas/,100.0,https://www.sitp.gov.co/publicaciones/40710/tarifas/=7

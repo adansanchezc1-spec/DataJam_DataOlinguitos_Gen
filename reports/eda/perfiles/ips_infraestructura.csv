@@ -1,0 +1,28 @@
+﻿columna,n,n_nulos,pct_nulos,n_unicos,media,mediana,moda,desv_est,min,max,rango,Q1,Q3,IQR,asimetria_skew,curtosis,CV_pct,n_outliers_iqr,pct_outliers,sin_valores_numericos,n_categorias,dominante,pct_dominante,top_5
+OBJECTID,2900,0,0.0,2900.0,1450.5,1450.5,1.0,837.3022,1.0,2900.0,2899.0,725.75,2175.25,1449.5,0.0,-1.2,57.7251,0.0,0.0,False,,,,
+Id,2900,0,0.0,2900.0,1450.5,1450.5,1.0,837.3022,1.0,2900.0,2899.0,725.75,2175.25,1449.5,0.0,-1.2,57.7251,0.0,0.0,False,,,,
+departamen,2900,0,,,,,,,,,,,,,,,,,,,1.0,Bogotá D.C,100.0,Bogotá D.C=2900
+municipio,2900,0,,,,,,,,,,,,,,,,,,,1.0,BOGOTÁ,100.0,BOGOTÁ=2900
+codigo_pre,2900,0,,,,,,,,,,,,,,,,,,,1527.0,1100107335,1.69,1100107335=49 | 1100130296=44 | 1100123845=43 | 1100108171=41 | 1100109186=40
+nombre_pre,2900,0,,,,,,,,,,,,,,,,,,,1527.0,CAJA DE COMPENSACION FAMILIAR COMPENSAR,1.69,CAJA DE COMPENSACION FAMILIAR COMPENSAR=49 | Subred Integrada de Servicios de Salud Sur Occidente E.S.E=44 | LAFAM SAS=43 | CAJA COLOMBIANA DE SUBSIDIO FAMILIAR COLSUBSIDIO=41 | CLINICA COLSANITAS S.A.=40
+nombre,2900,0,,,,,,,,,,,,,,,,,,,2676.0,LAFAM OPTICAS,1.1,LAFAM OPTICAS=32 | OPTICAS GMO COLOMBIA S.A.S.=28 | ANALIZAR LABORATORIO CLINICO AUTOMATIZADO S.A.S.=17 | OPTICAS SBC LIMITADA CONSULTORIO=14 | CITY DENT CLINICAS DENTALES DE COLOMBIA=11
+tipo_zona,2900,0,,,,,,,,,,,,,,,,,,,3.0,URBANA,99.21,URBANA=2877 | RURAL=20 |  =3
+direccion,2900,0,,,,,,,,,,,,,,,,,,,2896.0,CALLE 186 Nº 7a-57,0.07,CALLE 186 Nº 7a-57=2 | CARRERA 16 No. 82 - 57 PISO 2=2 | AV DE LAS AMERICAS # 71 C 29=2 | CL 47 B SUR NO. 24B-33 L 1108 CC CIUDAD TUNAL=2 | KR 64 # 100 55=1
+barrio,2900,0,,,,,,,,,,,,,,,,,,,828.0,SANTA BARBARA,3.41,SANTA BARBARA=99 | CHICO=86 | CHAPINERO=85 |  =83 | ANTIGUO COUNTRY=78
+telefono,2900,0,,,,,,,,,,,,,,,,,,,2388.0, ,3.41, =99 | 57 1 4285088=48 | (57-1)5938860 EXT. 7041=28 | 4431790=26 | 6466060=20
+fax,2900,0,0.0,743.0,63493520.3455,0.0,0.0,459352175.2086,0.0,5716130245.0,5716130245.0,0.0,2830372.0,2830372.0,7.7534,63.4725,723.4631,211.0,7.28,False,,,,
+email,2900,0,,,,,,,,,,,,,,,,,,,1775.0, ,4.9, =142 | abarragan@compensar.com=48 | sfiguero@colsanitas.com=42 | subredsur@saludcapital.gov.co=37 | yohana.chacon@co.luxottica.com=35
+clase_pers,2900,0,,,,,,,,,,,,,,,,,,,1.0,JURIDICO,100.0,JURIDICO=2900
+naturaleza,2900,0,,,,,,,,,,,,,,,,,,,3.0,Privada,95.31,Privada=2764 | Pública=135 | Mixta=1
+clase_pres,2900,0,,,,,,,,,,,,,,,,,,,1.0,Instituciones - IPS,100.0,Instituciones - IPS=2900
+ese,2900,0,,,,,,,,,,,,,,,,,,,3.0,NO,52.17,NO=1513 |  =1255 | SI=132
+nivel,2900,0,,,,,,,,,,,,,,,,,,,2.0, ,95.34, =2765 | 3=135
+sede_princ,2900,0,,,,,,,,,,,,,,,,,,,2.0,SI,52.62,SI=1526 | NO=1374
+horario_lu,2900,0,,,,,,,,,,,,,,,,,,,383.0, ,10.69, =310 | 07 a 19=273 | 00 a 24=271 | 07 a 17=212 | 08 a 17=162
+horario_ma,2900,0,,,,,,,,,,,,,,,,,,,363.0, ,11.55, =335 | 07 a 19=272 | 00 a 24=270 | 07 a 17=208 | 08 a 17=162
+horario_mi,2900,0,,,,,,,,,,,,,,,,,,,359.0, ,11.41, =331 | 07 a 19=276 | 00 a 24=270 | 07 a 17=206 | 08 a 17=161
+horario_ju,2900,0,,,,,,,,,,,,,,,,,,,367.0, ,11.52, =334 | 07 a 19=270 | 00 a 24=268 | 07 a 17=210 | 08 a 17=162
+horario_vi,2900,0,,,,,,,,,,,,,,,,,,,362.0, ,11.48, =333 | 07 a 19=274 | 00 a 24=270 | 07 a 17=199 | 08 a 17=162
+horario_sa,2900,0,,,,,,,,,,,,,,,,,,,328.0, ,13.0, =377 | 00 a 00=289 | 00 a 24=267 | 07 a 13=199 | 08 a 12=150
+horario_do,2900,0,,,,,,,,,,,,,,,,,,,120.0,00 a 00,55.41,00 a 00=1607 |  =611 | 00 a 24=239 | 07 a 19=36 | 10 a 19=26
+fecha_cort,2900,0,,,,,,,,,,,,,,,,,,,1.0,Fecha corte REPS: Jul 23 2020 11:22AM,100.0,Fecha corte REPS: Jul 23 2020 11:22AM=2900

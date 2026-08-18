@@ -1,0 +1,19 @@
+﻿columna,n,n_nulos,n_categorias,dominante,pct_dominante,top_5,pct_nulos,n_unicos,media,mediana,moda,desv_est,min,max,rango,Q1,Q3,IQR,asimetria_skew,curtosis,CV_pct,n_outliers_iqr,pct_outliers,sin_valores_numericos
+ub_ret,47,0,33.0,Costado Occidental,19.15,Costado Occidental=9 | Costado Oriental=4 | Costado Sur=3 | Costado Norte=2 | Costado Sur - Oriental=1,,,,,,,,,,,,,,,,,,
+longitud,47,0,,,,,0.0,47.0,-74.0939,-74.0829,-74.2071,0.0386,-74.2071,-74.0434,0.1636,-74.1185,-74.0685,0.05,-1.09,1.0592,-0.0521,2.0,4.26,False
+latitud,47,0,,,,,0.0,47.0,4.6475,4.6299,4.5687,0.0562,4.5687,4.7697,0.201,4.6025,4.6804,0.0779,0.7811,-0.509,1.2083,0.0,0.0,False
+objectid,47,0,,,,,0.0,47.0,219.766,219.0,196.0,15.3852,196.0,260.0,64.0,207.5,230.5,23.0,0.5304,0.0809,7.0007,0.0,0.0,False
+id_retorno,47,0,47.0,RT042,2.13,RT042=1 | RT016=1 | RT026=1 | RT008=1 | RT014=1,,,,,,,,,,,,,,,,,,
+nombre,47,0,47.0,Terreros,2.13,Terreros=1 | Avenida Rojas=1 | Flores=1 | Puente Calle 183=1 | Recinto Ferial=1,,,,,,,,,,,,,,,,,,
+observ,47,0,4.0,Sin observacion,93.62,Sin observacion=44 | Mixto giro a la izquierda=1 | Retorno semaforico=1 | Retorno  externo=1,,,,,,,,,,,,,,,,,,
+id_trazado,47,0,17.0,TZ016,14.89,TZ016=7 | TZ002=7 | TZ009=6 | TZ008=4 | TZ005=3,,,,,,,,,,,,,,,,,,
+esta_oper,47,0,,,,,0.0,1.0,1.0,1.0,1.0,0.0,1.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,False
+tip_ret,47,0,,,,,0.0,4.0,1.6809,1.0,1.0,0.9114,1.0,4.0,3.0,1.0,2.0,1.0,1.4129,1.3634,54.2246,4.0,8.51,False
+eta_oper,47,0,,,,,0.0,1.0,1.0,1.0,1.0,0.0,1.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,False
+buses_hora,47,0,,,,,0.0,8.0,7.8723,0.0,0.0,21.8449,0.0,113.0,113.0,0.0,0.0,0.0,3.2956,11.9796,277.4896,7.0,14.89,False
+sentido,47,0,,,,,0.0,7.0,5.8298,4.0,4.0,4.9709,1.0,17.0,16.0,2.0,8.0,6.0,1.2205,0.3915,85.2667,0.0,0.0,False
+globalid,47,0,47.0,{71ADA934-D94C-4C44-8DF1-CE7985A20B1A},2.13,{71ADA934-D94C-4C44-8DF1-CE7985A20B1A}=1 | {E38E09C8-2305-4BE8-8F86-C0C47B722C96}=1 | {50F8323C-3F81-4002-B260-ECDFC4EE5DCC}=1 | {D1E8A424-5BA8-423D-8A15-BA28CE32EA37}=1 | {FA6BE61F-551A-4F8D-B095-C41D66670A26}=1,,,,,,,,,,,,,,,,,,
+created_user,0,47,1.0,(nulo),100.0,(nulo)=47,,,,,,,,,,,,,,,,,,
+created_date,0,47,1.0,(nulo),100.0,(nulo)=47,,,,,,,,,,,,,,,,,,
+last_edited_user,0,47,1.0,(nulo),100.0,(nulo)=47,,,,,,,,,,,,,,,,,,
+last_edited_date,0,47,1.0,(nulo),100.0,(nulo)=47,,,,,,,,,,,,,,,,,,

@@ -1,0 +1,11 @@
+{
+  "id": "estaciones_troncales",
+  "titulo": "Estaciones troncales",
+  "origen": "TransMilenio S.A. — datos abiertos",
+  "corte": "Vigente",
+  "valor_publico": "Cobertura de la red troncal por localidad (cruce espacial)",
+  "indicadores": "MOV-02 (estaciones por localidad)",
+  "path": "data/raw/MOVILIDAD/estaciones_troncales.geojson",
+  "capa": "",
+  "tipo": ""
+}

@@ -14,24 +14,13 @@ from typing import Any
 
 import pandas as pd
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 ROOT = Path(__file__).resolve().parents[2]
-RAW_DIR = ROOT / 'data' / 'raw'
-PROCESSED_DIR = ROOT / 'data' / 'processed'
-=======
-=======
->>>>>>> Stashed changes
+RAW_DIR = ROOT / "data" / "raw"
+PROCESSED_DIR = ROOT / "data" / "processed"
+
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
-# Resolución de la raíz del proyecto
-ROOT = Path(__file__).resolve().parents[2]
-PROCESSED_DIR = ROOT / "data" / "processed"
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
 # Tabla oficial de homologación de las 20 localidades del Distrito Capital

@@ -1,0 +1,11 @@
+{
+  "id": "estado_malla_vial",
+  "titulo": "Estado superficial de vías",
+  "origen": "IDU / datos abiertos",
+  "corte": "31 dic 2025 (columna FECHA_ESTADO)",
+  "valor_publico": "Estado de la malla vial por tramo (CalCodigo)",
+  "indicadores": "INF-03 (estado de malla vial)",
+  "path": "data/raw/INFRAESTRUCTURA_ESPACIO_PUBLICO/estado/Estado.csv",
+  "capa": "",
+  "tipo": ""
+}

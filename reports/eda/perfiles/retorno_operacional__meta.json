@@ -1,0 +1,11 @@
+{
+  "id": "retorno_operacional",
+  "titulo": "Retornos operacionales",
+  "origen": "TransMilenio S.A.",
+  "corte": "Vigente",
+  "valor_publico": "Operación de giro de la red troncal",
+  "indicadores": "MOV-04",
+  "path": "data/raw/MOVILIDAD/retorno_operacional.geojson",
+  "capa": "",
+  "tipo": ""
+}

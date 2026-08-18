@@ -1,0 +1,9 @@
+﻿columna,n,n_nulos,pct_nulos,n_unicos,media,mediana,moda,desv_est,min,max,rango,Q1,Q3,IQR,asimetria_skew,curtosis,CV_pct,n_outliers_iqr,pct_outliers,sin_valores_numericos,n_categorias,dominante,pct_dominante,top_5
+ANO,131502,0,0.0,31.0,2020.0,2020.0,2005.0,8.9443,2005.0,2035.0,30.0,2012.0,2028.0,16.0,0.0,-1.2025,0.4428,0.0,0.0,False,,,,
+CODIGO_LOCALIDAD,131502,0,0.0,21.0,10.0,10.0,0.0,6.0553,0.0,20.0,20.0,5.0,15.0,10.0,0.0,-1.2055,60.5532,0.0,0.0,False,,,,
+NOMBRE_LOCALIDAD,131502,0,,,,,,,,,,,,,,,,,,,21.0,Bogotá,4.76,Bogotá=6262 | Usaquén=6262 | Chapinero=6262 | Santa Fe=6262 | San Cristóbal=6262
+SEXO,131502,0,,,,,,,,,,,,,,,,,,,2.0,Hombres,50.0,Hombres=65751 | Mujeres=65751
+EDAD,131502,0,0.0,101.0,50.0,50.0,0.0,29.1549,0.0,100.0,100.0,25.0,75.0,50.0,0.0,-1.2002,58.3097,0.0,0.0,False,,,,
+CURSODEVIDA,131502,0,,,,,,,,,,,,,,,,,,,6.0,Vejez,40.59,Vejez=53382 | Adultez=40362 | Juventud=14322 | Infancia=7812 | Primera Infancia=7812
+GRUPOEDAD,131502,0,,,,,,,,,,,,,,,,,,,5.0,60 o más,40.59,60 o más=53382 | 29 a 59=40362 | 00 a 11=15624 | 18 a 28=14322 | 12 a 17=7812
+POBLACION,131502,0,0.0,14682.0,3547.4036,967.0,1.0,9380.3046,0.0,79199.0,79199.0,248.0,3079.0,2831.0,5.2121,28.3948,264.4273,10327.0,7.85,False,,,,

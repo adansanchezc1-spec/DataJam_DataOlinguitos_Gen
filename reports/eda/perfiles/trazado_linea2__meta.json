@@ -1,0 +1,11 @@
+{
+  "id": "trazado_linea2",
+  "titulo": "Trazado Línea 2 (metro)",
+  "origen": "Metro de Bogotá",
+  "corte": "Vigente (proyecto)",
+  "valor_publico": "Trazado del proyecto L2",
+  "indicadores": "MOV-04",
+  "path": "data/raw/MOVILIDAD/trazado_linea2.gpkg",
+  "capa": "trazadosegundalinea",
+  "tipo": ""
+}

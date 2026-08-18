@@ -1,0 +1,11 @@
+{
+  "id": "conexion_operacional",
+  "titulo": "Conexiones operacionales",
+  "origen": "TransMilenio S.A.",
+  "corte": "Vigente",
+  "valor_publico": "Puntos de integración de la red",
+  "indicadores": "MOV-04 (integración modal)",
+  "path": "data/raw/MOVILIDAD/conexion_operacional.geojson",
+  "capa": "",
+  "tipo": ""
+}

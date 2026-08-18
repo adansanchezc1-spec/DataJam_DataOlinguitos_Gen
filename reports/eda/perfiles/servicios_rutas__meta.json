@@ -1,0 +1,11 @@
+{
+  "id": "servicios_rutas",
+  "titulo": "Servicios y rutas troncales-zonales",
+  "origen": "TransMilenio S.A.",
+  "corte": "Vigente (fecha edición 2026-07)",
+  "valor_publico": "Oferta de rutas: tipo de servicio, localidades de origen/destino y longitud",
+  "indicadores": "MOV-03 (rutas por localidad)",
+  "path": "data/raw/MOVILIDAD/servicios_rutas_troncales_zonales.csv",
+  "capa": "",
+  "tipo": ""
+}

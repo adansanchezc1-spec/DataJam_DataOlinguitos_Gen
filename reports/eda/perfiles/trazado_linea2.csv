@@ -1,0 +1,5 @@
+﻿columna,n,n_nulos,pct_nulos,n_unicos,media,mediana,moda,desv_est,min,max,rango,Q1,Q3,IQR,asimetria_skew,curtosis,CV_pct,n_outliers_iqr,pct_outliers,sin_valores_numericos,n_categorias,dominante,pct_dominante,top_5
+OBJECTID,1,0,0.0,1.0,1.0,1.0,1.0,,1.0,1.0,0.0,1.0,1.0,0.0,,,,0.0,0.0,False,,,,
+NOMBRE,1,0,,,,,,,,,,,,,,,,,,,1.0,EJE PRINCIPAL SEGUNDA LINEA DEL METRO DE BOGOTÁ,100.0,EJE PRINCIPAL SEGUNDA LINEA DEL METRO DE BOGOTÁ=1
+Shape_Leng,1,0,0.0,1.0,15367.8652,15367.8652,15367.8652,,15367.8652,15367.8652,0.0,15367.8652,15367.8652,0.0,,,,0.0,0.0,False,,,,
+SHAPE_Length,1,0,0.0,1.0,0.1387,0.1387,0.1387,,0.1387,0.1387,0.0,0.1387,0.1387,0.0,,,,0.0,0.0,False,,,,

@@ -1,0 +1,8 @@
+﻿columna,n,n_nulos,pct_nulos,n_unicos,media,mediana,moda,desv_est,min,max,rango,Q1,Q3,IQR,asimetria_skew,curtosis,CV_pct,n_outliers_iqr,pct_outliers,sin_valores_numericos,n_categorias,dominante,pct_dominante,top_5
+agency_id,1024,0,0.0,7.0,2.7295,3.0,3.0,0.881,1.0,7.0,6.0,2.0,3.0,1.0,0.6326,4.271,32.2782,31.0,3.03,False,,,,
+route_color,1024,0,,,,,,,,,,,,,,,,,,,4.0,0000ff,71.29,0000ff=730 | 00ff00=184 | ff0000=109 | e30613=1
+route_id,1023,1,0.1,1023.0,11825.0645,12121.0,10004.0,913.7849,10004.0,13025.0,3021.0,10925.0,12664.5,1739.5,-0.3631,-1.3619,7.7275,0.0,0.0,False,,,,
+route_long_name,1024,0,,,,,,,,,,,,,,,,,,,749.0,Portal Américas,1.46,Portal Américas=15 | Portal Sur=14 | Portal Usme=12 | Portal Eldorado=10 | Metrovivienda=10
+route_short_name,1024,0,,,,,,,,,,,,,,,,,,,649.0,7,0.78,7=8 | 9-3=6 | T163=6 | C201=6 | 6-5=5
+route_text_color,1024,0,,,,,,,,,,,,,,,,,,,1.0,ffffff,100.0,ffffff=1024
+route_type,1024,0,0.0,2.0,3.0029,3.0,3.0,0.0938,3.0,6.0,3.0,3.0,3.0,0.0,32.0,1024.0,3.122,1.0,0.1,False,,,,
