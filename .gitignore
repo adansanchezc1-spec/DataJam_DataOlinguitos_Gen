@@ -37,6 +37,7 @@ build/
 
 # Ignore heavy / intermediate files
 *.zip
+data/raw/INFRAESTRUCTURA_ESPACIO_PUBLICO/gpkg_mr_v03.26/
 *.tar.gz
 *.7z
 *.rar
