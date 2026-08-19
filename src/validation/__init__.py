@@ -1,7 +1,7 @@
 """Paquete de Validación Territorial SIPTA."""
 
 from src.validation.validate_data import (
-    DOMAIN_VALIDATORS,
+    LOCALIDADES_BOGOTA_CANONICAS,
     detect_territorial_columns,
     inspect_schema,
     run_full_validation_suite,
@@ -10,7 +10,7 @@ from src.validation.validate_data import (
 )
 
 __all__ = [
-    "DOMAIN_VALIDATORS",
+    "LOCALIDADES_BOGOTA_CANONICAS",
     "detect_territorial_columns",
     "inspect_schema",
     "run_full_validation_suite",
