@@ -1,8 +1,8 @@
-"""Módulo de Integración Territorial y Construcción del Tablón Maestro SIPTA.
+"""Módulo de Integración Territorial y Construcción del Tablón Maestro Multidominio SIPTA.
 
-Fase PDCO: DEVELOPMENT
-Estándares: Clean Code, PEP 8, SWEBOK Cap. 2, DAMA-BOK, ISO/IEC 25010
-Requerimientos Funcionales: RF-003, RF-005, RF-007
+Fase PDCO: DEVELOPMENT → CONTROL
+Estándares: Clean Code, PEP 8, SWEBOK Cap. 2 y 5, DAMA-BOK, ISO/IEC 25010
+Requerimientos Funcionales: RF-003, RF-005, RF-007, RF-009
 """
 
 from __future__ import annotations
@@ -34,6 +34,7 @@ from src.evaluation.evaluate_results import (
 # Resolución de rutas canónicas
 ROOT = Path(__file__).resolve().parents[2]
 PROCESSED_DIR = ROOT / "data" / "processed"
+REPORTS_DIR = ROOT / "reports" / "eda"
 PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
 logger = logging.getLogger(__name__)
@@ -104,7 +105,6 @@ def merge_by_locality(
             break
 
     if not match_col:
-        # Intento de normalización de nombres
         other_clean = other.copy()
         if "localidad" in other_clean.columns and "nombre_localidad" in base.columns:
             other_clean["nombre_localidad"] = other_clean["localidad"].astype(str).str.upper()
@@ -128,7 +128,6 @@ def load_demografia_localidades(processed_dir: Path) -> pd.DataFrame:
     """Carga y procesa la población proyectada por localidad desde el dataset OSB."""
     demo_path = processed_dir / "DEMOGRAFIA" / "osb_demografia-poblacion-localidad.csv"
     if not demo_path.exists():
-        # Retornar estimación si el archivo no está
         return pd.DataFrame(
             {
                 "codigo_localidad": list(range(1, 21)),
@@ -137,20 +136,17 @@ def load_demografia_localidades(processed_dir: Path) -> pd.DataFrame:
         )
 
     try:
-        # El archivo puede tener separador ';' o ','
         df = pd.read_csv(demo_path, sep=None, engine="python")
     except Exception:
         df = pd.read_csv(demo_path, sep=";")
 
     df = standardize_column_names(df)
 
-    # Identificar columnas
     cod_col = "codigo_localidad" if "codigo_localidad" in df.columns else "cod_loc"
     pob_col = "poblacion" if "poblacion" in df.columns else "total_poblacion"
     ano_col = "ano" if "ano" in df.columns else "anio"
 
     if cod_col in df.columns and pob_col in df.columns:
-        # Filtrar localidad 0 (Bogotá Total) y tomar año más reciente disponible
         df = df[df[cod_col] != 0]
         if ano_col in df.columns:
             latest_year = df[ano_col].max()
@@ -167,8 +163,44 @@ def load_demografia_localidades(processed_dir: Path) -> pd.DataFrame:
     return pd.DataFrame({"codigo_localidad": list(range(1, 21)), "poblacion": [500000.0] * 20})
 
 
-def build_master_table(processed_dir: Path | None = None) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Construye el Tablón Maestro Territorial integrando todos los sectores de SIPTA.
+def load_movilidad_infraestructura_coverage(reports_dir: Path | None = None) -> pd.DataFrame | None:
+    """Carga paraderos SITP, estaciones troncales y parques desde la matriz territorial."""
+    rep_dir = reports_dir or REPORTS_DIR
+    cov_file = rep_dir / "matriz_cobertura_localidad.csv"
+    if not cov_file.exists():
+        return None
+
+    try:
+        cov_df = pd.read_csv(cov_file)
+        first_col = cov_df.columns[0]
+        homo = homologate_localidad(cov_df[first_col])
+        cov_df["codigo_localidad"] = homo["codigo_localidad"]
+        
+        cols_to_keep = ["codigo_localidad"]
+        rename_map: dict[str, str] = {}
+        
+        if "parques_idrd" in cov_df.columns:
+            cols_to_keep.append("parques_idrd")
+            rename_map["parques_idrd"] = "total_parques_idrd"
+        if "paraderos_sitp" in cov_df.columns:
+            cols_to_keep.append("paraderos_sitp")
+            rename_map["paraderos_sitp"] = "total_paraderos_sitp"
+        if "estaciones_troncales" in cov_df.columns:
+            cols_to_keep.append("estaciones_troncales")
+            rename_map["estaciones_troncales"] = "total_estaciones_troncales_tm"
+            
+        res = cov_df[cols_to_keep].dropna(subset=["codigo_localidad"]).rename(columns=rename_map)
+        res["codigo_localidad"] = res["codigo_localidad"].astype(int)
+        return res
+    except Exception as e:
+        logger.warning(f"No se pudo cargar matriz de cobertura de movilidad/infraestructura: {e}")
+        return None
+
+
+def build_master_table(
+    processed_dir: Path | None = None, reports_dir: Path | None = None
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Construye el Tablón Maestro Territorial integrando todos los dominios de SIPTA.
     
     Aplica limpieza canónica (src.cleaning), feature engineering de ratios y densidades
     (src.features), integración multidominio y reporte de calidad (src.evaluation).
@@ -177,24 +209,33 @@ def build_master_table(processed_dir: Path | None = None) -> tuple[pd.DataFrame,
         tuple[pd.DataFrame, pd.DataFrame]: (master_df, quality_report_df)
     """
     proc_dir = processed_dir or PROCESSED_DIR
+    rep_dir = reports_dir or REPORTS_DIR
 
-    logger.info("Iniciando construcción del Tablón Maestro Territorial SIPTA...")
+    logger.info("Iniciando construcción del Tablón Maestro Territorial SIPTA (Todos los Dominios)...")
 
     # 1. Base Canónica (20 Localidades)
     master = get_canonical_localities_base()
 
-    # 2. Inclusión de Demografía
+    # 2. Dominio Demografía (OSB / DANE)
     demo_df = load_demografia_localidades(proc_dir)
     master = merge_by_locality(master, demo_df, locality_col="codigo_localidad")
 
-    # 3. Integración de Sectores Procesados
+    # 3. Dominio Movilidad e Infraestructura (Matriz Cobertura)
+    mov_infra_df = load_movilidad_infraestructura_coverage(rep_dir)
+    if mov_infra_df is not None:
+        master = merge_by_locality(master, mov_infra_df, locality_col="codigo_localidad")
+        logger.info("Datos de Movilidad e Infraestructura (Parques, Paraderos, Estaciones) integrados.")
+
+    # 4. Integración de Sectores Procesados
     sector_datasets = [
         ("SALUD", "capacidad_camas_asistencial_localidad.csv"),
         ("EDUCACION", "calidad_educativa_saber11_retencion_localidad.csv"),
         ("FINANZAS_INVERSION_PUBLICA", "inversion_fondos_desarrollo_local_fdl.csv"),
+        ("FINANZAS_INVERSION_PUBLICA", "metas_inversion_social_sdis_localidad.csv"),
         ("SERVICIOS_PUBLICOS", "eaab_cobertura_acueducto_localidad.csv"),
         ("SERVICIOS_PUBLICOS", "eaab_calidad_agua_irca_localidad.csv"),
         ("SERVICIOS_PUBLICOS", "uaesp_alumbrado_publico_localidad.csv"),
+        ("SERVICIOS_PUBLICOS", "cobertura_conectividad_tic_localidad.csv"),
         ("PARTICIPACION_CIUDADANA", "pqr_bogota_te_escucha_por_localidad.csv"),
         ("SEGURIDAD", "delitos_alto_impacto_localidad_2024_2026.csv"),
         ("EMPLEO_ECONOMIA", "conmutacion_laboral_residencia_trabajo_localidad.csv"),
@@ -212,32 +253,48 @@ def build_master_table(processed_dir: Path | None = None) -> tuple[pd.DataFrame,
             except Exception as e:
                 logger.warning(f"Error al integrar {sector}/{filename}: {e}")
 
-    # 4. Feature Engineering (src.features)
-    # 4.1. Densidad Poblacional
+    # 5. Feature Engineering Multidominio (src.features)
+    # 5.1. Densidad Poblacional (hab/km2)
     master = add_density(master, population_col="poblacion", area_col="area_km2")
 
-    # 4.2. Ratios per cápita
+    # 5.2. Ratios per cápita - Salud
     if "total_camas_hospitalarias" in master.columns:
         master = add_ratio(master, "total_camas_hospitalarias", "poblacion", "camas_por_10k_hab_calc")
         master["camas_por_10k_hab_calc"] = master["camas_por_10k_hab_calc"] * 10000
 
+    # 5.3. Ratios per cápita - Movilidad e Infraestructura
+    if "total_paraderos_sitp" in master.columns:
+        master = add_ratio(master, "total_paraderos_sitp", "poblacion", "paraderos_por_10k_hab")
+        master["paraderos_por_10k_hab"] = master["paraderos_por_10k_hab"] * 10000
+
+    if "total_parques_idrd" in master.columns:
+        master = add_ratio(master, "total_parques_idrd", "poblacion", "parques_por_10k_hab")
+        master["parques_por_10k_hab"] = master["parques_por_10k_hab"] * 10000
+
+    # 5.4. Ratios per cápita - Finanzas
     if "presupuesto_ejecutado_millones" in master.columns:
         master = add_ratio(master, "presupuesto_ejecutado_millones", "poblacion", "inversion_fdl_per_capita_millones")
 
+    # 5.5. Ratios per cápita - Seguridad
+    if "homicidios_anual" in master.columns:
+        master = add_ratio(master, "homicidios_anual", "poblacion", "tasa_homicidios_por_100k_hab_calc")
+        master["tasa_homicidios_por_100k_hab_calc"] = master["tasa_homicidios_por_100k_hab_calc"] * 100000
+
+    # 5.6. Ratios per cápita - Participación
     if "total_pqr_recibidas" in master.columns:
         master = add_ratio(master, "total_pqr_recibidas", "poblacion", "pqr_por_10k_hab")
         master["pqr_por_10k_hab"] = master["pqr_por_10k_hab"] * 10000
 
-    # Rellenar valores nulos residuales con medianas para columnas numéricas
+    # Imputación residual para columnas numéricas con mediana
     num_cols = master.select_dtypes(include=[np.number]).columns
     for col in num_cols:
         if master[col].isna().any():
             master[col] = master[col].fillna(master[col].median())
 
-    # 5. Evaluación de Calidad (src.evaluation)
+    # 6. Evaluación de Calidad (src.evaluation)
     report_df = quality_report(master)
 
-    # 6. Persistencia
+    # 7. Persistencia
     save_master_table(master, "master_localidades.csv")
     save_feature_table(master, "master_localidades_features.csv")
     save_quality_report(report_df, "calidad_master_localidades.csv")
@@ -256,7 +313,7 @@ def save_master_table(df: pd.DataFrame, filename: str = "master_localidades.csv"
 
 if __name__ == "__main__":
     master_df, q_report = build_master_table()
-    print("=== TABLÓN MAESTRO SIPTA GENERADO ===")
+    print("=== TABLÓN MAESTRO SIPTA GENERADO (TODOS LOS DOMINIOS) ===")
     print(f"Dimensiones: {master_df.shape}")
     print("\nPrimeras 5 localidades:")
     print(master_df[["codigo_localidad", "nombre_localidad", "poblacion", "densidad_poblacional"]].head())

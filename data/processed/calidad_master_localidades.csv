@@ -4,6 +4,9 @@ nombre_localidad,str,0,0.0,20
 codigo_divipola,str,0,0.0,20
 area_km2,float64,0,0.0,19
 poblacion,int64,0,0.0,20
+total_parques_idrd,int64,0,0.0,14
+total_paraderos_sitp,int64,0,0.0,20
+total_estaciones_troncales_tm,int64,0,0.0,13
 total_camas_hospitalarias,int64,0,0.0,20
 camas_por_10000_habitantes,float64,0,0.0,20
 camas_uci_adultos,int64,0,0.0,20
@@ -18,6 +21,10 @@ presupuesto_aprobado_millones,int64,0,0.0,20
 presupuesto_ejecutado_millones,int64,0,0.0,20
 porcentaje_ejecucion_fdl,float64,0,0.0,20
 proyectos_inversion_activos,int64,0,0.0,19
+presupuesto_social_sdis_millones,float64,0,0.0,3
+beneficiarios_transferencias_monetarias,int64,0,0.0,3
+comedores_comunitarios_activos,int64,0,0.0,2
+centros_cuidado_primera_infancia,int64,0,0.0,2
 cobertura_acueducto_pct,float64,0,0.0,9
 cobertura_alcantarillado_pct,float64,0,0.0,11
 consumo_promedio_m3_suscriptor,float64,0,0.0,20
@@ -30,6 +37,9 @@ total_luminarias,int64,0,0.0,20
 tecnologia_led_pct,float64,0,0.0,19
 fallas_reportadas_mes,int64,0,0.0,20
 tiempo_medio_reparacion_horas,float64,0,0.0,2
+penetracion_internet_fijo_pct,float64,0,0.0,20
+velocidad_promedio_bajada_mbps,float64,0,0.0,3
+zonas_wifi_publicas,int64,0,0.0,3
 total_pqr_recibidas,int64,0,0.0,20
 pqr_resueltas_a_tiempo_pct,float64,0,0.0,20
 tema_frecuente_1,str,0,0.0,2
@@ -51,5 +61,8 @@ tasa_desempleo_pct,float64,0,0.0,19
 poblacion_en_edad_trabajar_estimada,int64,0,0.0,20
 densidad_poblacional,float64,0,0.0,20
 camas_por_10k_hab_calc,float64,0,0.0,20
+paraderos_por_10k_hab,float64,0,0.0,20
+parques_por_10k_hab,float64,0,0.0,20
 inversion_fdl_per_capita_millones,float64,0,0.0,20
+tasa_homicidios_por_100k_hab_calc,float64,0,0.0,20
 pqr_por_10k_hab,float64,0,0.0,20
