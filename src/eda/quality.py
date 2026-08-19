@@ -325,7 +325,7 @@ def profile_file(path: Path, raw_dir: Path, smoke: bool = True, nrows: int | Non
         return [entry]
     ext = path.suffix.lower()
     if ext == ".csv":
-        return profile_csv(path, raw_dir, nrows=nrows)
+        return profile_csv(path, raw_dir, nrows=nrows if nrows is not None else (300 if smoke else None))
     if ext == ".gpkg":
         return profile_gpkg(path, raw_dir, smoke, sample_rows=300 if smoke else 500)
     if ext == ".geojson":

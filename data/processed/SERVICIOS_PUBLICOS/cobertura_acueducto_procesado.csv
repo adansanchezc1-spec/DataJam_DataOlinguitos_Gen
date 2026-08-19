@@ -1,0 +1,21 @@
+codigo_localidad,nombre_localidad,codigo_divipola,cobertura_acueducto_pct,cobertura_alcantarillado_pct,consumo_promedio_m3_suscriptor,horas_interrupcion_promedio_mes,prestador_principal,vigencia,fuente
+1,Usaquén,1100101,99.9,99.7,14.2,0.2,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+2,Chapinero,1100102,99.9,99.8,13.8,0.1,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+3,Santa Fe,1100103,99.8,99.6,12.5,0.3,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+4,San Cristóbal,1100104,99.4,98.9,11.2,0.8,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+5,Usme,1100105,97.5,94.2,10.5,2.1,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+6,Tunjuelito,1100106,99.8,99.5,12.0,0.4,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+7,Bosa,1100107,99.6,99.1,11.8,0.6,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+8,Kennedy,1100108,99.7,99.4,12.4,0.5,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+9,Fontibón,1100109,99.9,99.7,13.5,0.2,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+10,Engativá,1100110,99.9,99.7,13.1,0.3,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+11,Suba,1100111,99.8,99.6,13.9,0.4,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+12,Barrios Unidos,1100112,99.9,99.8,13.4,0.2,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+13,Teusaquillo,1100113,99.9,99.8,13.6,0.1,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+14,Los Mártires,1100114,99.8,99.5,12.8,0.3,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+15,Antonio Nariño,1100115,99.9,99.7,12.6,0.2,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+16,Puente Aranda,1100116,99.9,99.8,13.2,0.2,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+17,La Candelaria,1100117,99.9,99.7,12.1,0.2,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+18,Rafael Uribe Uribe,1100118,99.3,98.7,11.4,0.9,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+19,Ciudad Bolívar,1100119,97.8,95.1,10.8,1.8,EAAB - ESP,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios
+20,Sumapaz,1100120,82.4,68.5,9.2,4.5,Acueductos Comunitarios / Veredales,2024-2025,EAAB / Superintendencia de Servicios Públicos Domiciliarios

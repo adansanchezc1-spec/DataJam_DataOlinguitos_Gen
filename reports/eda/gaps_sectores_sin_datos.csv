@@ -1,0 +1,5 @@
+sector,archivos,descripcion_readme
+AMBIENTE,"['estacion_calidad_aire.geojson', 'estacion_calidad_aire_20260731.csv', 'situacion_ambiental_conflictiva.csv', 'situacion_ambiental_conflictiva.geojson', 'situacion_ambiental_conflictiva_20260731.csv']",SIPTA — Guía sectorial: Ambiente
+PARTICIPACION_CIUDADANA,['pqr_bogota_te_escucha_por_localidad.csv'],SIPTA — Guía sectorial: Participación Ciudadana
+SEGURIDAD,"['Cuadrante de Policía. Bogotá D.C.csv', 'Cuadrante de Policía. Bogotá D.C_20260731.csv', 'delitos_alto_impacto_localidad_2024_2026.csv']",SIPTA — Guía sectorial: Seguridad
+SERVICIOS_PUBLICOS,"['cobertura_conectividad_tic_localidad.csv', 'eaab_calidad_agua_irca_localidad.csv', 'eaab_cobertura_acueducto_localidad.csv', 'uaesp_alumbrado_publico_localidad.csv']",

@@ -1,28 +1,28 @@
 ﻿columna,n,n_nulos,pct_nulos,n_unicos,media,mediana,moda,desv_est,min,max,rango,Q1,Q3,IQR,asimetria_skew,curtosis,CV_pct,n_outliers_iqr,pct_outliers,sin_valores_numericos,n_categorias,dominante,pct_dominante,top_5
-OBJECTID,2900,0,0.0,2900.0,1450.5,1450.5,1.0,837.3022,1.0,2900.0,2899.0,725.75,2175.25,1449.5,0.0,-1.2,57.7251,0.0,0.0,False,,,,
-Id,2900,0,0.0,2900.0,1450.5,1450.5,1.0,837.3022,1.0,2900.0,2899.0,725.75,2175.25,1449.5,0.0,-1.2,57.7251,0.0,0.0,False,,,,
-departamen,2900,0,,,,,,,,,,,,,,,,,,,1.0,Bogotá D.C,100.0,Bogotá D.C=2900
-municipio,2900,0,,,,,,,,,,,,,,,,,,,1.0,BOGOTÁ,100.0,BOGOTÁ=2900
-codigo_pre,2900,0,,,,,,,,,,,,,,,,,,,1527.0,1100107335,1.69,1100107335=49 | 1100130296=44 | 1100123845=43 | 1100108171=41 | 1100109186=40
-nombre_pre,2900,0,,,,,,,,,,,,,,,,,,,1527.0,CAJA DE COMPENSACION FAMILIAR COMPENSAR,1.69,CAJA DE COMPENSACION FAMILIAR COMPENSAR=49 | Subred Integrada de Servicios de Salud Sur Occidente E.S.E=44 | LAFAM SAS=43 | CAJA COLOMBIANA DE SUBSIDIO FAMILIAR COLSUBSIDIO=41 | CLINICA COLSANITAS S.A.=40
-nombre,2900,0,,,,,,,,,,,,,,,,,,,2676.0,LAFAM OPTICAS,1.1,LAFAM OPTICAS=32 | OPTICAS GMO COLOMBIA S.A.S.=28 | ANALIZAR LABORATORIO CLINICO AUTOMATIZADO S.A.S.=17 | OPTICAS SBC LIMITADA CONSULTORIO=14 | CITY DENT CLINICAS DENTALES DE COLOMBIA=11
-tipo_zona,2900,0,,,,,,,,,,,,,,,,,,,3.0,URBANA,99.21,URBANA=2877 | RURAL=20 |  =3
-direccion,2900,0,,,,,,,,,,,,,,,,,,,2896.0,CALLE 186 Nº 7a-57,0.07,CALLE 186 Nº 7a-57=2 | CARRERA 16 No. 82 - 57 PISO 2=2 | AV DE LAS AMERICAS # 71 C 29=2 | CL 47 B SUR NO. 24B-33 L 1108 CC CIUDAD TUNAL=2 | KR 64 # 100 55=1
-barrio,2900,0,,,,,,,,,,,,,,,,,,,828.0,SANTA BARBARA,3.41,SANTA BARBARA=99 | CHICO=86 | CHAPINERO=85 |  =83 | ANTIGUO COUNTRY=78
-telefono,2900,0,,,,,,,,,,,,,,,,,,,2388.0, ,3.41, =99 | 57 1 4285088=48 | (57-1)5938860 EXT. 7041=28 | 4431790=26 | 6466060=20
-fax,2900,0,0.0,743.0,63493520.3455,0.0,0.0,459352175.2086,0.0,5716130245.0,5716130245.0,0.0,2830372.0,2830372.0,7.7534,63.4725,723.4631,211.0,7.28,False,,,,
-email,2900,0,,,,,,,,,,,,,,,,,,,1775.0, ,4.9, =142 | abarragan@compensar.com=48 | sfiguero@colsanitas.com=42 | subredsur@saludcapital.gov.co=37 | yohana.chacon@co.luxottica.com=35
-clase_pers,2900,0,,,,,,,,,,,,,,,,,,,1.0,JURIDICO,100.0,JURIDICO=2900
-naturaleza,2900,0,,,,,,,,,,,,,,,,,,,3.0,Privada,95.31,Privada=2764 | Pública=135 | Mixta=1
-clase_pres,2900,0,,,,,,,,,,,,,,,,,,,1.0,Instituciones - IPS,100.0,Instituciones - IPS=2900
-ese,2900,0,,,,,,,,,,,,,,,,,,,3.0,NO,52.17,NO=1513 |  =1255 | SI=132
-nivel,2900,0,,,,,,,,,,,,,,,,,,,2.0, ,95.34, =2765 | 3=135
-sede_princ,2900,0,,,,,,,,,,,,,,,,,,,2.0,SI,52.62,SI=1526 | NO=1374
-horario_lu,2900,0,,,,,,,,,,,,,,,,,,,383.0, ,10.69, =310 | 07 a 19=273 | 00 a 24=271 | 07 a 17=212 | 08 a 17=162
-horario_ma,2900,0,,,,,,,,,,,,,,,,,,,363.0, ,11.55, =335 | 07 a 19=272 | 00 a 24=270 | 07 a 17=208 | 08 a 17=162
-horario_mi,2900,0,,,,,,,,,,,,,,,,,,,359.0, ,11.41, =331 | 07 a 19=276 | 00 a 24=270 | 07 a 17=206 | 08 a 17=161
-horario_ju,2900,0,,,,,,,,,,,,,,,,,,,367.0, ,11.52, =334 | 07 a 19=270 | 00 a 24=268 | 07 a 17=210 | 08 a 17=162
-horario_vi,2900,0,,,,,,,,,,,,,,,,,,,362.0, ,11.48, =333 | 07 a 19=274 | 00 a 24=270 | 07 a 17=199 | 08 a 17=162
-horario_sa,2900,0,,,,,,,,,,,,,,,,,,,328.0, ,13.0, =377 | 00 a 00=289 | 00 a 24=267 | 07 a 13=199 | 08 a 12=150
-horario_do,2900,0,,,,,,,,,,,,,,,,,,,120.0,00 a 00,55.41,00 a 00=1607 |  =611 | 00 a 24=239 | 07 a 19=36 | 10 a 19=26
-fecha_cort,2900,0,,,,,,,,,,,,,,,,,,,1.0,Fecha corte REPS: Jul 23 2020 11:22AM,100.0,Fecha corte REPS: Jul 23 2020 11:22AM=2900
+OBJECTID,300,0,0.0,300.0,150.5,150.5,1.0,86.7468,1.0,300.0,299.0,75.75,225.25,149.5,0.0,-1.2,57.639,0.0,0.0,False,,,,
+Id,300,0,0.0,300.0,150.5,150.5,1.0,86.7468,1.0,300.0,299.0,75.75,225.25,149.5,0.0,-1.2,57.639,0.0,0.0,False,,,,
+departamen,300,0,,,,,,,,,,,,,,,,,,,1.0,Bogotá D.C,100.0,Bogotá D.C=300
+municipio,300,0,,,,,,,,,,,,,,,,,,,1.0,BOGOTÁ,100.0,BOGOTÁ=300
+codigo_pre,300,0,,,,,,,,,,,,,,,,,,,123.0,1100101010,12.0,1100101010=36 | 1100100130=24 | 1100104035=17 | 1100102404=16 | 1100102317=12
+nombre_pre,300,0,,,,,,,,,,,,,,,,,,,123.0,INVERSIONES EN RECREACION DEPORTE Y SALUD S.A Y PODRA TAMBIEN DESIGNARSE CON LA SIGLA BODYTECH,12.0,INVERSIONES EN RECREACION DEPORTE Y SALUD S.A Y PODRA TAMBIEN DESIGNARSE CON LA SIGLA BODYTECH=36 | INVERSIONES DAMA SALUD SAS=24 | UNIDAD MEDICA Y DE DIAGNOSTICO S.A=17 | INSTITUTO DE DIAGNOSTICO MEDICO S.A.=16 | IMEVI SAS=12
+nombre,300,0,,,,,,,,,,,,,,,,,,,292.0,UNIDAD RADIOLOGICA DENTO CRANEO MAXILO FACIAL,1.0,UNIDAD RADIOLOGICA DENTO CRANEO MAXILO FACIAL=3 | OPTICA DR MENDEZ SAS=3 | UNIDAD MEDICA DIAGNOSTICA ESPINOSA GOMEZ SAS=3 | CENTRO MEDICO LA FACULTAD SAS=2 | TAC Y RESONANCIA DEL COUNTRY=2
+tipo_zona,300,0,,,,,,,,,,,,,,,,,,,2.0,URBANA,99.67,URBANA=299 |  =1
+direccion,300,0,,,,,,,,,,,,,,,,,,,299.0,CARRERA 16 No. 82 - 57 PISO 2,0.67,CARRERA 16 No. 82 - 57 PISO 2=2 | KR 64 # 100 55=1 | CLL 43 # 25 - 61=1 | DIAGONAL 19 SUR No 20 -39=1 | TV 94A # 80A 91=1
+barrio,300,0,,,,,,,,,,,,,,,,,,,131.0,SANTA BARBARA,6.33,SANTA BARBARA=19 | ANTIGUO COUNTRY=19 | CHAPINERO=16 | CHICO N=9 | CHICO=9
+telefono,300,0,,,,,,,,,,,,,,,,,,,216.0, ,12.0, =36 | 7462749=12 | 7565656 Ext 6557=9 | 3438770=8 | 7565656 EXT 6557=8
+fax,300,0,0.0,68.0,11722984.4267,0.0,0.0,181955684.6565,0.0,3152537288.0,3152537288.0,0.0,2139097.25,2139097.25,17.3164,299.9053,1552.1277,41.0,13.67,False,,,,
+email,300,0,,,,,,,,,,,,,,,,,,,175.0, ,12.33, =37 | habilitacion.cientifica@sonria.com.co=24 | edgarc@colmedica.com=17 | contabilidad@idime.com.co=13 | contabilidad@ieco.com.co=6
+clase_pers,300,0,,,,,,,,,,,,,,,,,,,1.0,JURIDICO,100.0,JURIDICO=300
+naturaleza,300,0,,,,,,,,,,,,,,,,,,,2.0,Privada,99.33,Privada=298 | Pública=2
+clase_pres,300,0,,,,,,,,,,,,,,,,,,,1.0,Instituciones - IPS,100.0,Instituciones - IPS=300
+ese,300,0,,,,,,,,,,,,,,,,,,,3.0,NO,96.33,NO=289 |  =9 | SI=2
+nivel,300,0,,,,,,,,,,,,,,,,,,,2.0, ,99.33, =298 | 3=2
+sede_princ,300,0,,,,,,,,,,,,,,,,,,,2.0,NO,59.33,NO=178 | SI=122
+horario_lu,300,0,,,,,,,,,,,,,,,,,,,60.0, ,32.0, =96 | 07 a 19=29 | 07 a 20=23 | 00 a 24=13 | 07 a 17=12
+horario_ma,300,0,,,,,,,,,,,,,,,,,,,56.0, ,33.67, =101 | 07 a 19=29 | 07 a 20=23 | 00 a 24=13 | 08 a 18=11
+horario_mi,300,0,,,,,,,,,,,,,,,,,,,57.0, ,33.33, =100 | 07 a 19=29 | 07 a 20=23 | 00 a 24=13 | 08 a 18=11
+horario_ju,300,0,,,,,,,,,,,,,,,,,,,57.0, ,33.67, =101 | 07 a 19=28 | 07 a 20=23 | 00 a 24=13 | 08 a 18=11
+horario_vi,300,0,,,,,,,,,,,,,,,,,,,57.0, ,33.33, =100 | 07 a 19=29 | 07 a 20=23 | 05 a 21=14 | 00 a 24=13
+horario_sa,300,0,,,,,,,,,,,,,,,,,,,60.0, ,35.33, =106 | 07 a 18=23 | 07 a 19=14 | 07 a 13=14 | 00 a 00=13
+horario_do,300,0,,,,,,,,,,,,,,,,,,,25.0, ,42.33, =127 | 00 a 00=108 | 00 a 24=13 | 09 a 17=10 | 07 a 16=9
+fecha_cort,300,0,,,,,,,,,,,,,,,,,,,1.0,Fecha corte REPS: Jul 23 2020 11:22AM,100.0,Fecha corte REPS: Jul 23 2020 11:22AM=300

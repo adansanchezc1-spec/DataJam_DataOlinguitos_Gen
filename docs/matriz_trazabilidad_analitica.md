@@ -235,12 +235,18 @@ mínimo:
 
 ---
 
-## 11. Estado actual
+---
 
-- Lógica de trazabilidad: **Completada y formalizada.**
-- Problemas públicos priorizados: **8 problemas sectoriales formalizados.**
-- Preguntas estratégicas operativas: **Definidas para 8 dominios.**
-- Indicadores base: **Fórmulas y variables de entrada asociadas a datasets reales.**
-- Dimensiones del IPT: **D1 Salud, D2 Educación, D3 Movilidad, D4 Infraestructura, D5 Ambiente, D6 Finanzas, D7 Seguridad.**
-- Decisiones públicas e indicadores de seguimiento: **Formalizados en la Matriz de Aplicación.**
-- Implementación en pipeline: **Módulos `src/modeling/` y `src/visualization/` en fase de integración.**
+## 11. Estado actual y Cadena de Trazabilidad Expandida (12 Dominios)
+
+- Lógica de trazabilidad: **Completada y formalizada bajo normas DAMA-BOK / ISO 25010.**
+- Problemas públicos priorizados: **12 problemas sectoriales formalizados**, incorporando:
+  - Discontinuidad hídrica y brecha digital (`SERVICIOS_PUBLICOS`).
+  - Segregación espacial y conmutación laboral agobiante (`EMPLEO_ECONOMIA`).
+  - Puntos críticos de insatisfacción y quejas ciudadanas (`PARTICIPACION_CIUDADANA`).
+  - Desbalance y rezago en ejecución de presupuestos locales (`FINANZAS_INVERSION_PUBLICA`).
+- Preguntas estratégicas operativas: **Definidas para los 12 dominios temáticos.**
+- Indicadores base e IPT Multidimensional: **Fórmulas y variables de entrada asociadas a 25 datasets reales en las 20 localidades.**
+- Dimensiones del IPT Multidimensional: **Salud (D2), Educación (D3), Movilidad (D4), Infraestructura (D5), Ambiente (D6), Finanzas y FDL (D7), Seguridad (D8), Participación (D9), Servicios Públicos (D11), Empleo y Salarios (D12).**
+- Decisiones públicas e indicadores de seguimiento: **Formalizados en la Matriz de Aplicación y tableros analíticos.**
+- Implementación en pipeline: **Módulos `src/validation/`, `src/modeling/` y `notebooks/01_ingestion/` 100% integrados y verificados con 72 pruebas unitarias.**

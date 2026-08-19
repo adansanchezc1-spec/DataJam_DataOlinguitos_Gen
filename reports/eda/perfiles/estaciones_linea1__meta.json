@@ -1,0 +1,11 @@
+{
+  "id": "estaciones_linea1",
+  "titulo": "Estaciones Línea 1 (metro)",
+  "origen": "Metro de Bogotá — datos abiertos",
+  "corte": "Vigente (proyecto)",
+  "valor_publico": "Localización del proyecto PLMB por localidad",
+  "indicadores": "MOV-02 (estaciones por localidad)",
+  "path": "data/raw/MOVILIDAD/estaciones_linea1.geojson",
+  "capa": "",
+  "tipo": ""
+}

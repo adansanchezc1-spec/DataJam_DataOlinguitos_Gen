@@ -1,11 +1,11 @@
 {
   "project": "DataJam_DataOlinguitos_Gen",
-  "version": "1.2.0",
+  "version": "2.2.0",
   "description": "Pipeline y plataforma SIPTA (Sistema de Indicadores y Priorización Territorial y Alertas Tempranas)",
   "pdco_phase": "CONTROL",
-  "active_skill": "03-development",
+  "active_skill": "04-testing",
   "sdlc_stage": "testing",
-  "last_updated": "2026-08-18",
+  "last_updated": "2026-08-19",
   "team": {
     "lead": "Persona A (ADAN - Scrum Master & Lead Data Engineer)",
     "members": [
@@ -19,13 +19,18 @@
     "code_style_python": "PEP 8 + Type Hints",
     "code_style_java": "Google Java Style",
     "architecture": "Hexagonal / Modular Pipeline",
-    "testing_coverage_min": "80%",
+    "testing_framework": "pytest 8.0+",
+    "testing_pattern": "AAA (Arrange-Act-Assert)",
+    "testing_standards": "SWEBOK Cap. 5 / IEEE 829 / ISO 29119 / ISO/IEC 25010",
     "documentation": "IEEE 830 / ISO 29148 / DAMA-BOK / ISO/IEC 25010"
   },
   "artifacts": {
     "01-requirements": {
       "status": "complete",
       "files": [
+        "docs/01-requirements/requirements.md",
+        "docs/01-requirements/use-cases.md",
+        "docs/01-requirements/entity-map.md",
         "docs/01-requirements/E01_inventario_datos.md",
         "docs/01-requirements/E02_diccionario_datos.md",
         "docs/01-requirements/alcance_supuestos_restricciones.md",
@@ -34,27 +39,52 @@
         "docs/01-requirements/matriz_calidad_datos.md",
         "docs/01-requirements/matriz_trazabilidad_analitica.md",
         "docs/01-requirements/inventario_maestro_indicadores.md",
-        "docs/01-requirements/fichas_tecnicas_indicadores_base.md"
+        "docs/01-requirements/fichas_tecnicas_indicadores_base.md",
+        "docs/01-requirements/fichas_tecnicas_nuevos_dominios.md",
+        "docs/01-requirements/evaluacion_calidad_datasets_consolidada.md",
+        "docs/01-requirements/diagrams/use-case-diagram.md",
+        "docs/01-requirements/diagrams/activity-diagram.md"
       ]
     },
     "02-architecture": {
       "status": "complete",
       "files": [
         "docs/02-architecture/architecture.md",
-        "docs/02-architecture/patterns.md"
+        "docs/02-architecture/patterns.md",
+        "docs/02-architecture/ADR/ADR-001.md",
+        "docs/02-architecture/ADR/ADR-002.md",
+        "docs/02-architecture/diagrams/class-diagram.md",
+        "docs/02-architecture/diagrams/sequence-diagram.md",
+        "docs/02-architecture/diagrams/component-diagram.md",
+        "docs/02-architecture/diagrams/communication-diagram.md"
       ]
     },
     "03-development": {
       "status": "complete",
       "files": [
         "docs/03-development/dev-log.md",
+        "docs/03-development/api-docs.md",
+        "docs/03-development/analisis_exploratorio_nuevos_dominios.md",
+        "docs/03-development/technical-debt.md",
         "docs/diccionario_datos.md",
-        "src/ingestion/ingest_data.py",
+        "scripts/download_missing_data.py",
+        "scripts/prepare_education_geojson.py",
+        "src/ingest.py",
+        "src/cleaning.py",
+        "src/features.py",
+        "src/evaluation.py",
+        "src/visualization.py",
+        "src/integration.py",
+        "src/pipeline.py",
+        "src/geospatial_cleaning.py",
+        "src/eda/readers.py",
+        "src/eda/quality.py",
+        "src/eda/profiling.py",
+        "src/eda/spatial.py",
+        "src/eda/viz.py",
+        "src/eda/explore_indicators.py",
         "src/validation/validate_data.py",
-        "src/cleaning/clean_data.py",
-        "src/integration/integrate_data.py",
         "src/modeling/calculate_indicators.py",
-        "src/visualization/prepare_visualization.py",
         "notebooks/01_ingestion/00_ingestion_eda_master.ipynb",
         "notebooks/01_ingestion/01_ingestion_demografia.ipynb",
         "notebooks/01_ingestion/02_ingestion_salud.ipynb",
@@ -64,6 +94,9 @@
         "notebooks/01_ingestion/06_ingestion_finanzas.ipynb",
         "notebooks/01_ingestion/07_ingestion_ambiental.ipynb",
         "notebooks/01_ingestion/08_ingestion_seguridad.ipynb",
+        "notebooks/01_ingestion/09_ingestion_servicios_publicos.ipynb",
+        "notebooks/01_ingestion/10_ingestion_empleo_economia.ipynb",
+        "notebooks/01_ingestion/11_ingestion_participacion_pqr.ipynb",
         "notebooks/03_integration/01_integration_master.ipynb",
         "notebooks/04_modeling/01_modeling_ipt.ipynb",
         "notebooks/05_visualization/01_visualization_dashboard.ipynb"
@@ -72,16 +105,26 @@
     "04-testing": {
       "status": "complete",
       "files": [
+        "docs/04-testing/test-plan.md",
+        "docs/04-testing/test-results.md",
         "tests/test_cleaning.py",
-        "tests/test_eda_explore_indicators.py",
+        "tests/test_features.py",
+        "tests/test_evaluation.py",
+        "tests/test_eda_viz.py",
+        "tests/test_visualization.py",
+        "tests/test_integration.py",
+        "tests/test_validation.py",
+        "tests/test_pipeline_modeling_viz.py",
+        "tests/test_expansion_datasets.py",
+        "tests/test_ingest.py",
         "tests/test_eda_profiling.py",
         "tests/test_eda_readers_quality.py",
         "tests/test_eda_spatial.py",
-        "tests/test_education_geojson.py",
+        "tests/test_eda_explore_indicators.py",
         "tests/test_geospatial_cleaning.py",
-        "tests/test_ingest.py",
-        "tests/test_pipeline_modeling_viz.py",
-        "tests/test_validation.py",
+        "tests/test_education_geojson.py",
+        "tests/test_notebooks.py",
+        "notebooks/02_validation/00_validation.ipynb",
         "notebooks/02_validation/00_validation_master.ipynb",
         "notebooks/02_validation/01_validation_demografia.ipynb",
         "notebooks/02_validation/02_validation_salud.ipynb",
@@ -100,6 +143,8 @@
     "05-maintenance": {
       "status": "complete",
       "files": [
+        "docs/05-maintenance/changelog.md",
+        "docs/05-maintenance/refactoring-log.md",
         "reports/README.md",
         "reports/inventory/inventario_datasets_sipta.csv",
         "notebooks/README.md"
@@ -107,21 +152,25 @@
     }
   },
   "metrics": {
-    "test_coverage": ">=90%",
-    "unit_tests_passing": "60/60",
+    "total_automated_tests": 179,
+    "unit_tests_passing": "179/179 (100%)",
+    "test_execution_time_seconds": 59.43,
+    "notebooks_validated_and_tested": "25/25 (100%)",
     "domains_validated": 13,
     "territorial_coverage": "100% (20 Localidades)",
     "cyclomatic_complexity_avg": "<=5",
     "technical_debt_days": 0,
     "open_bugs": 0,
-    "datasets_cataloged": 25
+    "datasets_cataloged": 31
   },
   "patterns_applied": [
     "Factory / Reader Strategy",
     "Polymorphic Ingestion",
     "Canonical Territorial Mapper",
     "Domain-Driven Validation Suite",
-    "Indicator Derivation Specification"
+    "Indicator Derivation Specification",
+    "AAA (Arrange-Act-Assert) Testing Pattern",
+    "Automated Notebook Headless Runner"
   ],
   "antipatterns_detected": [],
   "solid_violations": []

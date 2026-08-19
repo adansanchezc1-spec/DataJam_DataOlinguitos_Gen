@@ -1,0 +1,11 @@
+{
+  "id": "inversion_educacion_2025",
+  "titulo": "Territorialización de inversión en educación (2025)",
+  "origen": "Secretaría de Educación del Distrito (SED)",
+  "corte": "Dic 2025 (nombre del archivo)",
+  "valor_publico": "Asignación y ejecución de inversión en educación por localidad",
+  "indicadores": "FIN-01 (ejecución presupuestal), FIN-02 (girado)",
+  "path": "data/raw/FINANZAS_INVERSION_PUBLICA/inversion_educacion_por_localidad_12_2025.gpkg",
+  "capa": "sed_2026__territorializacioninversion2025",
+  "tipo": ""
+}

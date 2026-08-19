@@ -1,0 +1,8 @@
+﻿columna,n,n_nulos,pct_nulos,n_unicos,media,mediana,moda,desv_est,min,max,rango,Q1,Q3,IQR,asimetria_skew,curtosis,CV_pct,n_outliers_iqr,pct_outliers,sin_valores_numericos,n_categorias,dominante,pct_dominante,top_5
+OBJECTID,16,0,0.0,16.0,8.5,8.5,1.0,4.761,1.0,16.0,15.0,4.75,12.25,7.5,0.0,-1.2,56.0112,0.0,0.0,False,,,,
+RefName,16,0,,,,,,,,,,,,,,,,,,,16.0,Portal de las Américas-02,6.25,Portal de las Américas-02=1 | Carrera 80-03=1 | Calle 42 Sur-04=1 | Kennedy-05=1 | Av Boyaca-06=1
+NUMERO,16,0,,,,,,,,,,,,,,,,,,,16.0,02,6.25,02=1 | 03=1 | 04=1 | 05=1 | 06=1
+NOMBRE,16,0,,,,,,,,,,,,,,,,,,,16.0,E02,6.25,E02=1 | E03=1 | E04=1 | E05=1 | E06=1
+Shape_Leng,16,0,0.0,16.0,334.0874,334.4,320.3998,11.5275,320.3998,356.2003,35.8005,323.3999,344.1986,20.7988,0.2809,-0.9702,3.4504,0.0,0.0,False,,,,
+Shape_Area,16,0,0.0,16.0,2808.0636,2580.0043,2203.9891,601.8685,2203.9891,4215.0112,2011.0221,2421.501,3314.9833,893.4823,1.0296,0.3365,21.4336,0.0,0.0,False,,,,
+TIPO,16,0,,,,,,,,,,,,,,,,,,,1.0,No Definida,100.0,No Definida=16

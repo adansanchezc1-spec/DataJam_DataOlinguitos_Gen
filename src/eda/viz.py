@@ -282,29 +282,36 @@ def mapa(gdf, title, column=None, markersize=4, cmap="viridis", ax=None):
         fig, ax = plt.subplots(figsize=(8, 8))
     geom_types = set(gdf.geometry.geom_type.dropna())
     
-    if any(t in geom_types for t in ("Point", "MultiPoint")):
-        # Dibujar puntos geográficos
-        gdf.plot(ax=ax, markersize=markersize, linewidth=0.5, color="#2E86AB", alpha=0.7)
-    elif column is not None:
-        # Dibujar mapas coropléticos
-        gdf.plot(
-            ax=ax,
-            column=column,
-            cmap=cmap,
-            legend=True,
-            legend_kwds={"shrink": 0.6, "label": column},
-            linewidth=0.4,
-            edgecolor="#ffffff",
-        )
-    else:
-        # Dibujar polígonos con color neutro
-        gdf.plot(
-            ax=ax,
-            linewidth=0.5,
-            edgecolor="#ffffff",
-            color="#D1D5DB",
-            alpha=0.8,
-        )
+    try:
+        if any(t in geom_types for t in ("Point", "MultiPoint")):
+            # Dibujar puntos geográficos
+            gdf.plot(ax=ax, markersize=markersize, linewidth=0.5, color="#2E86AB", alpha=0.7)
+        elif column is not None:
+            # Dibujar mapas coropléticos
+            gdf.plot(
+                ax=ax,
+                column=column,
+                cmap=cmap,
+                legend=True,
+                legend_kwds={"shrink": 0.6, "label": column},
+                linewidth=0.4,
+                edgecolor="#ffffff",
+            )
+        else:
+            # Dibujar polígonos con color neutro
+            gdf.plot(
+                ax=ax,
+                linewidth=0.5,
+                edgecolor="#ffffff",
+                color="#D1D5DB",
+                alpha=0.8,
+            )
+    except Exception:
+        # Fallback para proyecciones no convencionales o coordenadas 3D
+        try:
+            gdf.plot(ax=ax, aspect="auto", alpha=0.7)
+        except Exception:
+            pass
         
     ax.set_title(title, pad=12, fontweight="bold")
     ax.set_axis_off()

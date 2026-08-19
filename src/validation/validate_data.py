@@ -852,6 +852,7 @@ def run_full_validation_suite() -> dict[str, Any]:
         "total_domains_validated": len(domain_reports),
         "all_domains_valid": all_valid,
         "domains": domain_reports,
+        "reports": domain_reports,
     }
 
     export_validation_report(summary, "reporte_validacion_completo.json")

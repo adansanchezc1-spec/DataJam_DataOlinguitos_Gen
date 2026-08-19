@@ -1,0 +1,7 @@
+id,indicador,dimension,formula,inputs_necesarios,estado,que_falta
+SAL-02,Camas hospitalarias por 10.000 habitantes,Salud,camas / población * 10000,osb_tiporazoncamas.csv; población,faltante_territorial,Fuente distrital sin desagregación por localidad; falta REPS territorializado.
+INF-02,m² de parque por habitante,Infraestructura,área total de parques / población,5.-parques-idrd.csv; área de parques; población,faltante,El CSV IDRD no incluye área; requiere geometría de parques (fuente externa o MR).
+AMB-01,Indicadores ambientales por localidad,Ambiente,por definir,,faltante,Sector sin datos analíticos en data/raw (solo README).
+PAR-01,Indicadores de participación ciudadana,Participación,por definir,,faltante,Sector sin datos analíticos (solo README).
+SEG-01,Indicadores de seguridad por localidad,Seguridad,por definir,,faltante,Sector sin datos analíticos (solo README).
+SER-01,Indicadores de servicios públicos,Servicios Públicos,por definir,,faltante,Sector sin datos analíticos (carpeta vacía).

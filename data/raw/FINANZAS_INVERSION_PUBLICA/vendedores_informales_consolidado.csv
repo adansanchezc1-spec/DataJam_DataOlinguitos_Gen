@@ -1,0 +1,127 @@
+codigo_localidad,nombre_localidad,numero_vendedores,porcentaje,fecha_corte,archivo_origen
+1,Usaquén,605,0.01197,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+2,Chapinero,2499,0.049445,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+3,Santa fé,9867,0.195228,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+4,San Cristóbal,3500,0.069251,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+5,Usme,1947,0.038523,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+6,Tunjuelito,1058,0.020933,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+7,Bosa,1935,0.038286,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+8,Kennedy,4325,0.085574,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+9,Fontibón,1203,0.023802,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+10,Engativá,2546,0.050375,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+11,Suba,2552,0.050494,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+12,Barrios Unidos,747,0.01478,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+13,Teusaquillo,1765,0.034922,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+14,Los Mártires,3435,0.067965,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+15,Antonio Nariño,1305,0.025821,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+16,Puente Aranda,2739,0.054194,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+17,Candelaria,1619,0.032033,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+18,Rafael Uribe,1076,0.02129,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+19,Ciudad Bolívar,2494,0.049346,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+20,Sumapáz,19,0.000376,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+160,metropolitana o no definida,3305,0.065392,2017-06-30,rivi-numero-vendedores-informales-localidad-2017-06-30.txt
+1,Usaquén,605,0.011742,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+2,Chapinero,2755,0.053469,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+3,Santa fé,10129,0.196584,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+4,San Cristóbal,3554,0.068976,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+5,Usme,1961,0.038059,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+6,Tunjuelito,1059,0.020553,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+7,Bosa,1935,0.037555,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+8,Kennedy,4338,0.084192,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+9,Fontibón,1204,0.023367,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+10,Engativá,2581,0.050092,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+11,Suba,2563,0.049743,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+12,Barrios Unidos,748,0.014517,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+13,Teusaquillo,1794,0.034818,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+14,Los Mártires,3447,0.0669,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+15,Antonio Nariño,1365,0.026492,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+16,Puente Aranda,2829,0.054905,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+17,Candelaria,1710,0.033188,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+18,Rafael Uribe,1130,0.021931,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+19,Ciudad Bolívar,2494,0.048404,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+20,Sumapáz,19,0.000369,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+160,metropolitana o no definida,3305,0.064144,2017-12-31,rivi-numero-vendedores-informales-localidad-2017-12-31.txt
+1,Usaquén,605,0.011674,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+2,Chapinero,2804,0.054107,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+3,Santa fé,10131,0.195492,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+4,San Cristóbal,3564,0.068773,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+5,Usme,1992,0.038439,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+6,Tunjuelito,1067,0.020589,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+7,Bosa,1935,0.037339,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+8,Kennedy,4412,0.085136,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+9,Fontibón,1204,0.023233,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+10,Engativá,2624,0.050634,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+11,Suba,2588,0.049939,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+12,Barrios Unidos,777,0.014993,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+13,Teusaquillo,1799,0.034714,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+14,Los Mártires,3449,0.066553,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+15,Antonio Nariño,1368,0.026398,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+16,Puente Aranda,2831,0.054628,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+17,Candelaria,1724,0.033267,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+18,Rafael Uribe,1131,0.021824,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+19,Ciudad Bolívar,2494,0.048125,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+20,Sumapáz,19,0.000367,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+160,metropolitana o no definida,3305,0.063775,2018-06-30,rivi-numero-vendedores-informales-localidad-2018-06-30.txt
+1,Usaquén,605,0.011435,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+2,Chapinero,2998,0.056664,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+3,Santa fé,10201,0.192806,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+4,San Cristóbal,3570,0.067476,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+5,Usme,1994,0.037688,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+6,Tunjuelito,1070,0.020224,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+7,Bosa,1935,0.036573,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+8,Kennedy,4701,0.088852,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+9,Fontibón,1205,0.022775,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+10,Engativá,2707,0.051164,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+11,Suba,2880,0.054434,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+12,Barrios Unidos,808,0.015272,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+13,Teusaquillo,1820,0.034399,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+14,Los Mártires,3454,0.065283,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+15,Antonio Nariño,1385,0.026178,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+16,Puente Aranda,2856,0.05398,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+17,Candelaria,1738,0.032849,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+18,Rafael Uribe,1163,0.021982,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+19,Ciudad Bolívar,2494,0.047138,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+20,Sumapáz,19,0.000359,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+160,metropolitana o no definida,3305,0.062467,2018-12-31,rivi-numero-vendedores-informales-localidad-2018-12-31.txt
+1,Usaquén,596,0.011262,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+2,Chapinero,3040,0.057446,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+3,Santa fé,10095,0.190763,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+4,San Cristóbal,3560,0.067273,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+5,Usme,1979,0.037397,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+6,Tunjuelito,1063,0.020087,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+7,Bosa,1923,0.036339,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+8,Kennedy,4668,0.08821,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+9,Fontibón,1212,0.022903,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+10,Engativá,2782,0.052571,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+11,Suba,2921,0.055198,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+12,Barrios Unidos,826,0.015609,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+13,Teusaquillo,1816,0.034317,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+14,Los Mártires,3442,0.065043,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+15,Antonio Nariño,1377,0.026021,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+16,Puente Aranda,2878,0.054385,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+17,Candelaria,1736,0.032805,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+18,Rafael Uribe,1205,0.022771,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+19,Ciudad Bolívar,2515,0.047525,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+20,Sumapáz,19,0.000359,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+160,metropolitana o no definida,3266,0.061717,2019-06-30,rivi-numero-vendedores-informales-localidad-2019-06-30.txt
+1,Usaquén,600,0.011204,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+2,Chapinero,3070,0.057326,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+3,Santa fé,10193,0.190335,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+4,San Cristóbal,3577,0.066794,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+5,Usme,1980,0.036973,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+6,Tunjuelito,1066,0.019906,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+7,Bosa,1940,0.036226,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+8,Kennedy,4767,0.089015,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+9,Fontibón,1215,0.022688,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+10,Engativá,2864,0.05348,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+11,Suba,2982,0.055683,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+12,Barrios Unidos,857,0.016003,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+13,Teusaquillo,1816,0.03391,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+14,Los Mártires,3500,0.065356,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+15,Antonio Nariño,1396,0.026068,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+16,Puente Aranda,2898,0.054115,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+17,Candelaria,1755,0.032771,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+18,Rafael Uribe,1265,0.023621,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+19,Ciudad Bolívar,2526,0.047168,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+20,Sumapáz,19,0.000355,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt
+160,metropolitana o no definida,3267,0.061005,2019-12-30,rivi-numero-vendedores-informales-localidad-2019-12-30.txt

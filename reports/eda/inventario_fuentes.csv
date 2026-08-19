@@ -1,27 +1,39 @@
 archivo,sector,formato,tam_mb
 .gitkeep,.gitkeep,SIN EXT,0.0
 AMBIENTE\estacion_calidad_aire.geojson,AMBIENTE,GEOJSON,0.01
+AMBIENTE\estacion_calidad_aire_20260731.csv,AMBIENTE,CSV,0.0
 AMBIENTE\situacion_ambiental_conflictiva.csv,AMBIENTE,CSV,0.29
 AMBIENTE\situacion_ambiental_conflictiva.geojson,AMBIENTE,GEOJSON,0.63
+AMBIENTE\situacion_ambiental_conflictiva_20260731.csv,AMBIENTE,CSV,0.3
 DEMOGRAFIA\osb_demografia-poblacion-localidad.csv,DEMOGRAFIA,CSV,6.82
+DEMOGRAFIA\osb_demografia-poblacion-upl.csv,DEMOGRAFIA,CSV,9.8
 DEMOGRAFIA_POBLACION\osb_demografia-poblacion-localidad.csv,DEMOGRAFIA_POBLACION,CSV,6.82
 DEMOGRAFIA_POBLACION\osb_demografia-poblacion-upl.csv,DEMOGRAFIA_POBLACION,CSV,9.8
+EDUCACION\calidad_educativa_saber11_retencion_localidad.csv,EDUCACION,CSV,0.0
 EDUCACION\colegios122025.gpkg,EDUCACION,GPKG,1.12
 EDUCACION\matricula_total_colegios_oficiales.gpkg,EDUCACION,GPKG,0.47
 EDUCACION\ofertacupos_032025.geojson,EDUCACION,GEOJSON,0.31
+EMPLEO_ECONOMIA\conmutacion_laboral_residencia_trabajo_localidad.csv,EMPLEO_ECONOMIA,CSV,0.0
+EMPLEO_ECONOMIA\ingreso_promedio_salario_ocupados_localidad.csv,EMPLEO_ECONOMIA,CSV,0.0
 FINANZAS_INVERSION_PUBLICA\inversion_educacion_por_localidad_12_2025.gpkg,FINANZAS_INVERSION_PUBLICA,GPKG,1.08
+FINANZAS_INVERSION_PUBLICA\inversion_fondos_desarrollo_local_fdl.csv,FINANZAS_INVERSION_PUBLICA,CSV,0.0
+FINANZAS_INVERSION_PUBLICA\metas_inversion_social_sdis_localidad.csv,FINANZAS_INVERSION_PUBLICA,CSV,0.0
+FINANZAS_INVERSION_PUBLICA\presupuestos_participativos_propuestas_priorizadas.csv,FINANZAS_INVERSION_PUBLICA,CSV,0.0
 FINANZAS_INVERSION_PUBLICA\Punto de encuentro vendedores. Bogotá D.C..geojson,FINANZAS_INVERSION_PUBLICA,GEOJSON,0.0
 FINANZAS_INVERSION_PUBLICA\Punto de encuentro vendedores. Bogotá D.C..xlsx,FINANZAS_INVERSION_PUBLICA,XLSX,0.01
+FINANZAS_INVERSION_PUBLICA\puntos_encuentro_vendedores.csv,FINANZAS_INVERSION_PUBLICA,CSV,0.0
 FINANZAS_INVERSION_PUBLICA\rivi-numero-vendedores-informales-localidad-2017-06-30.txt,FINANZAS_INVERSION_PUBLICA,TXT,0.0
 FINANZAS_INVERSION_PUBLICA\rivi-numero-vendedores-informales-localidad-2017-12-31.txt,FINANZAS_INVERSION_PUBLICA,TXT,0.0
 FINANZAS_INVERSION_PUBLICA\rivi-numero-vendedores-informales-localidad-2018-06-30.txt,FINANZAS_INVERSION_PUBLICA,TXT,0.0
 FINANZAS_INVERSION_PUBLICA\rivi-numero-vendedores-informales-localidad-2018-12-31.txt,FINANZAS_INVERSION_PUBLICA,TXT,0.0
 FINANZAS_INVERSION_PUBLICA\rivi-numero-vendedores-informales-localidad-2019-06-30.txt,FINANZAS_INVERSION_PUBLICA,TXT,0.0
 FINANZAS_INVERSION_PUBLICA\rivi-numero-vendedores-informales-localidad-2019-12-30.txt,FINANZAS_INVERSION_PUBLICA,TXT,0.0
+FINANZAS_INVERSION_PUBLICA\vendedores_informales_consolidado.csv,FINANZAS_INVERSION_PUBLICA,CSV,0.01
 INFRAESTRUCTURA_ESPACIO_PUBLICO\5.-parques-idrd.csv,INFRAESTRUCTURA_ESPACIO_PUBLICO,CSV,0.01
 INFRAESTRUCTURA_ESPACIO_PUBLICO\estado\Estado.csv,INFRAESTRUCTURA_ESPACIO_PUBLICO,CSV,4.43
 INFRAESTRUCTURA_ESPACIO_PUBLICO\gpkg_mr_v03.26\gpkg_mr_v03.26.gpkg,INFRAESTRUCTURA_ESPACIO_PUBLICO,GPKG,4585.48
 INFRAESTRUCTURA_ESPACIO_PUBLICO\ips.gpkg,INFRAESTRUCTURA_ESPACIO_PUBLICO,GPKG,1.38
+MODELO_TERRITORIAL\poligonos_localidades.geojson,MODELO_TERRITORIAL,GEOJSON,2.36
 MOVILIDAD\conexion_operacional.geojson,MOVILIDAD,GEOJSON,0.01
 MOVILIDAD\estaciones_linea1.geojson,MOVILIDAD,GEOJSON,0.01
 MOVILIDAD\estaciones_linea2.gpkg,MOVILIDAD,GPKG,0.11
@@ -96,7 +108,15 @@ MOVILIDAD\Validaciones\2026-Zonal-05 TM Reporte de Validaciones Zonales Interval
 MOVILIDAD\Validaciones\2026-Zonal-06 TM Reporte de Validaciones Zonales Intervalo al 30 de Junio del 2026.xlsx,MOVILIDAD,XLSX,11.75
 MOVILIDAD\Validaciones\2026-Zonal-07 TM Reporte de Validaciones Zonales Intervalo al 31 de Julio del 2026.xlsx,MOVILIDAD,XLSX,11.8
 MOVILIDAD\zonas_zat.geojson,MOVILIDAD,GEOJSON,27.34
+PARTICIPACION_CIUDADANA\pqr_bogota_te_escucha_por_localidad.csv,PARTICIPACION_CIUDADANA,CSV,0.0
+SALUD\capacidad_camas_asistencial_localidad.csv,SALUD,CSV,0.0
 SALUD\ips_sds.gpkg,SALUD,GPKG,1.38
 SALUD\osb_ofertasrv-ips-urgencias.csv,SALUD,CSV,0.02
 SALUD\osb_tiporazoncamas.csv,SALUD,CSV,0.0
 SEGURIDAD\Cuadrante de Policía. Bogotá D.C.csv,SEGURIDAD,CSV,1.37
+SEGURIDAD\Cuadrante de Policía. Bogotá D.C_20260731.csv,SEGURIDAD,CSV,1.37
+SEGURIDAD\delitos_alto_impacto_localidad_2024_2026.csv,SEGURIDAD,CSV,0.0
+SERVICIOS_PUBLICOS\cobertura_conectividad_tic_localidad.csv,SERVICIOS_PUBLICOS,CSV,0.0
+SERVICIOS_PUBLICOS\eaab_calidad_agua_irca_localidad.csv,SERVICIOS_PUBLICOS,CSV,0.0
+SERVICIOS_PUBLICOS\eaab_cobertura_acueducto_localidad.csv,SERVICIOS_PUBLICOS,CSV,0.0
+SERVICIOS_PUBLICOS\uaesp_alumbrado_publico_localidad.csv,SERVICIOS_PUBLICOS,CSV,0.0
