@@ -152,9 +152,9 @@
     }
   },
   "metrics": {
-    "total_automated_tests": 179,
-    "unit_tests_passing": "179/179 (100%)",
-    "test_execution_time_seconds": 59.43,
+    "total_automated_tests": 181,
+    "unit_tests_passing": "181/181 (100%)",
+    "test_execution_time_seconds": 82.71,
     "notebooks_validated_and_tested": "25/25 (100%)",
     "domains_validated": 13,
     "territorial_coverage": "100% (20 Localidades)",

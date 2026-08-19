@@ -2,6 +2,13 @@
 
 Todos los cambios notables de este proyecto se documentan en este archivo siguiendo [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2.2.0] - 2026-08-19
+### Añadido / Consolidado
+- **Cierre Sprint 1 (Integración Territorial)**: Implementación de `build_master_table()` en `src/integration/integrate_data.py` integrando 20 localidades canónicas x 54 variables territoriales.
+- **Tablón Maestro**: Persistencia en `data/processed/master_localidades.csv` y features derivadas con `src.features`.
+- **Articulación de Módulos**: Interoperabilidad completa entre `src.cleaning`, `src.features`, `src.integration` y `src.evaluation`.
+- **Suite de Pruebas**: 181 pruebas automatizadas en `pytest` aprobadas con 100% de éxito y validación de los 25 notebooks.
+
 ## [2.1.0] - 2026-08-19
 ### Modificado / Optimizado
 - **Limpieza de Cuadernos**: Eliminación de 11 notebooks obsoletos/sueltos en la raíz de `notebooks/` y el directorio legado `notebooks/eda/`.

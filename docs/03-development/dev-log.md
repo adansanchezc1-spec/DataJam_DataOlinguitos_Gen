@@ -74,3 +74,21 @@
 3. **Modelado e IPT Multidimensional**: Implementado `calculate_multidimensional_ipt()` en `src/modeling/calculate_indicators.py` ponderando 7 dimensiones críticas.
 4. **Notebooks de Ingesta & EDA**: Generados `09_ingestion_servicios_publicos.ipynb`, `10_ingestion_empleo_economia.ipynb`, `11_ingestion_participacion_pqr.ipynb`.
 5. **Control de Calidad**: Suite de validación ejecutada al 100% sobre los 13 dominios y 60/60 pruebas unitarias aprobadas (`pytest -v`).
+
+---
+
+## 5. Cierre del Sprint 1: Integración Territorial y Tablón Maestro
+
+**Fecha**: 2026-08-19  
+**Responsable**: Persona A (Adan Sánchez - Lead Data Engineer / Scrum Master)  
+**Fase PDCO**: DEVELOPMENT → CONTROL  
+
+### Actividades y Entregables Completados:
+1. **Motor de Integración (`src/integration/integrate_data.py`)**:
+   - Construcción de `build_master_table()` articulando `src.cleaning` (homologación canónica DIVIPOLA de 20 localidades), `src.features` (cálculo de densidades y ratios per cápita) y `src.evaluation` (diagnóstico de calidad y reporte de nulos).
+   - Consolidación del Tablón Maestro en `data/processed/master_localidades.csv` (20 localidades x 54 variables) integrando Demografía, Salud, Educación, Movilidad, Infraestructura, Finanzas, Servicios Públicos, Participación, Seguridad y Economía.
+2. **Cuaderno de Integración (`notebooks/03_integration/01_integration_master.ipynb`)**:
+   - Refactorizado para consumir la lógica modular de `src/`, ejecutar validaciones de calidad y persistir la tabla maestra.
+3. **Pruebas Unitarias de Integración (`tests/test_integration.py`)**:
+   - Suite ampliada con 5 aserciones de integración territorial, cobertura de las 20 localidades y persistencia a disco (100% passed).
+4. **Suite Global de Pruebas**: 181 pruebas automatizadas aprobadas con 0 fallos (`pytest -v`).

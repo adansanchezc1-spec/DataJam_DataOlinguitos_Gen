@@ -12,13 +12,13 @@
 
 | Métrica | Valor Obtenido | Estado / Meta |
 |---------|----------------|---------------|
-| **Total de Pruebas Ejecutadas** | **179** | Superada (Meta: $\ge 150$) |
-| **Pruebas Aprobadas (Passed)** | **179 (100.0%)** | Cumple (100%) |
+| **Total de Pruebas Ejecutadas** | **181** | Superada (Meta: $\ge 150$) |
+| **Pruebas Aprobadas (Passed)** | **181 (100.0%)** | Cumple (100%) |
 | **Pruebas Fallidas (Failed)** | **0 (0.0%)** | Cumple (0%) |
 | **Pruebas Omitidas (Skipped)** | **0** | Cumple |
-| **Tiempo Total de Ejecución** | **59.43 segundos** | Alta eficiencia (< 2 min) |
+| **Tiempo Total de Ejecución** | **82.71 segundos** | Alta eficiencia (< 2 min) |
 | **Cuadernos Jupyter Validados y Ejecutados** | **25 / 25 (100.0%)** | Cumple |
-| **Módulos de Lógica `src/` Testeados** | **16 suites (103 tests)** | Cumple |
+| **Módulos de Lógica `src/` Testeados** | **16 suites (105 tests)** | Cumple |
 
 ---
 

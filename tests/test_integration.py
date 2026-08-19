@@ -12,7 +12,9 @@ import pandas as pd
 import pytest
 
 from src.integration.integrate_data import (
+    get_canonical_localities_base,
     merge_by_locality,
+    build_master_table,
     save_master_table,
 )
 
@@ -25,10 +27,23 @@ class TestIntegrateData:
         """Fixture base con localidades oficiales y población."""
         return pd.DataFrame(
             {
+                "codigo_localidad": [1, 2, 3],
                 "localidad_canonico": ["USAQUEN", "CHAPINERO", "SANTA FE"],
                 "poblacion": [500000, 150000, 100000],
             }
         )
+
+    def test_get_canonical_localities_base_contains_20_localities(self) -> None:
+        """RF-003: Verifica que la base canónica contenga exactamente las 20 localidades oficiales."""
+        # Act
+        base = get_canonical_localities_base()
+
+        # Assert
+        assert len(base) == 20
+        assert "codigo_localidad" in base.columns
+        assert "nombre_localidad" in base.columns
+        assert "codigo_divipola" in base.columns
+        assert list(base["codigo_localidad"]) == list(range(1, 21))
 
     def test_merge_by_locality_with_fallback_column(self) -> None:
         """RF-003: Verifica que merge_by_locality use 'localidad' si no existe 'localidad_canonico'."""
@@ -52,8 +67,24 @@ class TestIntegrateData:
         df2 = pd.DataFrame({"col_y": [3, 4]})
 
         # Act & Assert
-        with pytest.raises(ValueError, match="debe existir en ambas tablas"):
-            merge_by_locality(df1, df2, locality_col="localidad_canonico")
+        with pytest.raises(ValueError, match="No se encontró una columna territorial común"):
+            merge_by_locality(df1, df2, locality_col="codigo_inexistente")
+
+    def test_build_master_table_integrates_all_sectors_and_features(self) -> None:
+        """RF-007: Verifica la integración completa del Tablón Maestro con 20 localidades y features."""
+        # Act
+        master_df, report_df = build_master_table()
+
+        # Assert
+        assert len(master_df) == 20
+        assert "codigo_localidad" in master_df.columns
+        assert "nombre_localidad" in master_df.columns
+        assert "poblacion" in master_df.columns
+        assert "densidad_poblacional" in master_df.columns
+        assert master_df["poblacion"].isna().sum() == 0
+        assert not report_df.empty
+        assert "column" in report_df.columns
+        assert "pct_null" in report_df.columns
 
     def test_save_master_table_writes_to_disk(
         self, canonical_base_df: pd.DataFrame, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
