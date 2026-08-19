@@ -10,7 +10,13 @@ if "pytest" in sys.modules or not sys.stdout.isatty():
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import seaborn as sns
+
+try:
+    import seaborn as sns
+    HAS_SEABORN = True
+except ImportError:
+    sns = None
+    HAS_SEABORN = False
 
 PALETTE = {
     "DEMOGRAFIA_POBLACION": "#2E86AB",
@@ -26,8 +32,9 @@ PALETTE = {
 
 def set_style():
     """Configura el tema visual y los rcParams de matplotlib para gráficos premium."""
-    # 1. Establecer primero el tema básico de seaborn
-    sns.set_theme(style="whitegrid", palette="muted")
+    # 1. Establecer primero el tema básico si seaborn está disponible
+    if HAS_SEABORN and sns is not None:
+        sns.set_theme(style="whitegrid", palette="muted")
     
     # 2. Configurar rcParams para lograr un look minimalista, limpio y profesional
     plt.rcParams.update(
@@ -60,6 +67,15 @@ def set_style():
     )
 
 
+def _despine(ax):
+    """Elimina las espinas superior y derecha de un eje."""
+    if HAS_SEABORN and sns is not None:
+        sns.despine(ax=ax)
+    else:
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+
+
 def histograma(series, title=None, bins="auto", color="#2E86AB", ax=None):
     """Dibuja el histograma de una serie numérica, adaptándolo automáticamente si es discreta.
 
@@ -80,32 +96,36 @@ def histograma(series, title=None, bins="auto", color="#2E86AB", ax=None):
         and (data.max() - data.min() <= 50)
     )
 
-    if is_discrete:
-        # Si es discreta, usamos discrete=True y desactivamos KDE (ya que no es continua)
-        sns.histplot(
-            data,
-            discrete=True,
-            ax=ax,
-            color=color,
-            edgecolor="white",
-            linewidth=1.2,
-            alpha=0.8,
-        )
-        # Asegurar marcas del eje X solo en números enteros
-        ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
+    if HAS_SEABORN and sns is not None:
+        if is_discrete:
+            # Si es discreta, usamos discrete=True y desactivamos KDE (ya que no es continua)
+            sns.histplot(
+                data,
+                discrete=True,
+                ax=ax,
+                color=color,
+                edgecolor="white",
+                linewidth=1.2,
+                alpha=0.8,
+            )
+            # Asegurar marcas del eje X solo en números enteros
+            ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
+        else:
+            # Si es continua, dejamos el KDE condicionado al tamaño de los datos y usamos bins auto
+            kde = len(data) >= 10
+            sns.histplot(
+                data,
+                kde=kde,
+                bins=bins,
+                ax=ax,
+                color=color,
+                edgecolor="white",
+                linewidth=0.8,
+                alpha=0.75,
+            )
     else:
-        # Si es continua, dejamos el KDE condicionado al tamaño de los datos y usamos bins auto
-        kde = len(data) >= 10
-        sns.histplot(
-            data,
-            kde=kde,
-            bins=bins,
-            ax=ax,
-            color=color,
-            edgecolor="white",
-            linewidth=0.8,
-            alpha=0.75,
-        )
+        num_bins = 20 if bins == "auto" else bins
+        ax.hist(data, bins=num_bins, color=color, edgecolor="white", linewidth=0.8, alpha=0.75)
 
     # Añadir líneas estéticas de promedio y mediana
     mean_val = data.mean()
@@ -132,7 +152,7 @@ def histograma(series, title=None, bins="auto", color="#2E86AB", ax=None):
     ax.legend(loc="upper right")
 
     # Limpiar bordes innecesarios
-    sns.despine(ax=ax)
+    _despine(ax)
     plt.tight_layout()
     return ax
 
@@ -149,11 +169,14 @@ def boxplot(series, title=None, color="#2E86AB", ax=None):
     if ax is None:
         fig, ax = plt.subplots(figsize=(8, 3.8))
     
-    sns.boxplot(x=data, ax=ax, color=color, width=0.4, linewidth=1.2, fliersize=4)
+    if HAS_SEABORN and sns is not None:
+        sns.boxplot(x=data, ax=ax, color=color, width=0.4, linewidth=1.2, fliersize=4)
+    else:
+        ax.boxplot(data, vert=False, patch_artist=True, boxprops=dict(facecolor=color, alpha=0.8))
     ax.set_title(title or f"Boxplot de {series.name} | n={len(data)} | outliers={n_out}", pad=12)
     ax.set_xlabel(series.name)
     
-    sns.despine(ax=ax)
+    _despine(ax)
     plt.tight_layout()
     return ax
 
@@ -168,25 +191,28 @@ def barras(series, title=None, top_n=15, color="#2E86AB", ax=None):
         fig, ax = plt.subplots(figsize=(10, max(4.2, len(counts) * 0.35)))
 
     # Dibujar las barras horizontales
-    sns.barplot(x=counts.values, y=counts.index, ax=ax, color=color, alpha=0.85)
+    if HAS_SEABORN and sns is not None:
+        sns.barplot(x=counts.values, y=counts.index, ax=ax, color=color, alpha=0.85)
+    else:
+        ax.barh(counts.index, counts.values, color=color, alpha=0.85)
 
     # Añadir etiquetas con el valor numérico y el porcentaje exacto al lado de cada barra
     total = series.notna().sum()
-    container = ax.containers[0]
-    
-    labels = []
-    for val in counts.values:
-        pct = (val / total * 100) if total > 0 else 0
-        labels.append(f"  {val:,} ({pct:.1f}%)")
-        
-    ax.bar_label(
-        container,
-        labels=labels,
-        padding=4,
-        fontsize=9.5,
-        color="#2C3E50",
-        fontweight="semibold",
-    )
+    if ax.containers:
+        container = ax.containers[0]
+        labels = []
+        for val in counts.values:
+            pct = (val / total * 100) if total > 0 else 0
+            labels.append(f"  {val:,} ({pct:.1f}%)")
+            
+        ax.bar_label(
+            container,
+            labels=labels,
+            padding=4,
+            fontsize=9.5,
+            color="#2C3E50",
+            fontweight="semibold",
+        )
 
     # Ajustar límite derecho del eje X para que las etiquetas no se recorten
     ax.set_xlim(right=ax.get_xlim()[1] * 1.18)
@@ -199,7 +225,7 @@ def barras(series, title=None, top_n=15, color="#2E86AB", ax=None):
     ax.grid(False, axis="x")
     ax.grid(True, axis="y", linestyle="--", alpha=0.25)
 
-    sns.despine(ax=ax)
+    _despine(ax)
     plt.tight_layout()
     return ax
 
@@ -214,19 +240,23 @@ def heatmap_nulos(df, title="Nulos por columna", ax=None):
     if ax is None:
         fig, ax = plt.subplots(figsize=(10, max(3, len(pct) * 0.38)))
 
-    sns.barplot(x=pct.values, y=pct.index, ax=ax, color="#E74C3C", alpha=0.85)
+    if HAS_SEABORN and sns is not None:
+        sns.barplot(x=pct.values, y=pct.index, ax=ax, color="#E74C3C", alpha=0.85)
+    else:
+        ax.barh(pct.index, pct.values, color="#E74C3C", alpha=0.85)
 
     # Añadir etiquetas con el porcentaje exacto de nulos
-    container = ax.containers[0]
-    labels = [f"  {val:.2f}%" for val in pct.values]
-    ax.bar_label(
-        container,
-        labels=labels,
-        padding=4,
-        fontsize=9.5,
-        color="#2C3E50",
-        fontweight="semibold",
-    )
+    if ax.containers:
+        container = ax.containers[0]
+        labels = [f"  {val:.2f}%" for val in pct.values]
+        ax.bar_label(
+            container,
+            labels=labels,
+            padding=4,
+            fontsize=9.5,
+            color="#2C3E50",
+            fontweight="semibold",
+        )
 
     # Ajustar límite del eje X sin superar el 100%
     ax.set_xlim(right=min(100.0, ax.get_xlim()[1] * 1.15))
@@ -238,7 +268,7 @@ def heatmap_nulos(df, title="Nulos por columna", ax=None):
     ax.grid(False, axis="x")
     ax.grid(True, axis="y", linestyle="--", alpha=0.25)
 
-    sns.despine(ax=ax)
+    _despine(ax)
     plt.tight_layout()
     return ax
 

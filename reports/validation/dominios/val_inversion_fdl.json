@@ -1,0 +1,74 @@
+{
+  "dataset": "finanzas_inversion_fdl",
+  "total_rows": 20,
+  "total_columns": 9,
+  "duplicated_rows": 0,
+  "pct_duplicated": 0.0,
+  "high_null_columns": [],
+  "territorial_columns_detected": [
+    "codigo_localidad",
+    "nombre_localidad"
+  ],
+  "territorial_validation": {
+    "exists": true,
+    "column": "codigo_localidad",
+    "localidades_encontradas": [
+      "ANTONIO NARINO",
+      "BARRIOS UNIDOS",
+      "BOSA",
+      "CHAPINERO",
+      "CIUDAD BOLIVAR",
+      "ENGATIVA",
+      "FONTIBON",
+      "KENNEDY",
+      "LA CANDELARIA",
+      "LOS MARTIRES",
+      "PUENTE ARANDA",
+      "RAFAEL URIBE URIBE",
+      "SAN CRISTOBAL",
+      "SANTA FE",
+      "SUBA",
+      "SUMAPAZ",
+      "TEUSAQUILLO",
+      "TUNJUELITO",
+      "USAQUEN",
+      "USME"
+    ],
+    "total_localidades_detectadas": 20,
+    "cobertura_pct": 100.0,
+    "valores_no_reconocidos": []
+  },
+  "is_valid": true,
+  "validation_status": "APROBADO",
+  "domain": "Inversión FDL y Gasto Social",
+  "author": "Persona A (Adan Sánchez) & Persona C (Sofía Hidalgo)",
+  "temporalidad": "2024-2025 (Secretaría de Gobierno / Mapa de Inversiones / SDIS)",
+  "vigencia_fuente": "Vigente",
+  "indicadores_respaldados": [
+    {
+      "codigo": "FIN-C1",
+      "nombre": "Inversión pública FDL per cápita",
+      "formula_conceptual": "Presupuesto_Ejecutado_FDL / Población_Localidad",
+      "variables_fuente": [
+        "presupuesto_ejecutado_millones",
+        "codigo_localidad"
+      ],
+      "denominador": "Población total por localidad",
+      "unidad": "COP por habitante",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Mide el presupuesto de inversión local ejecutado directamente por cada Alcaldía Local dividido entre sus habitantes."
+    },
+    {
+      "codigo": "FIN-C2",
+      "nombre": "Porcentaje de ejecución presupuestal FDL",
+      "formula_conceptual": "(Presupuesto_Ejecutado / Presupuesto_Aprobado) * 100",
+      "variables_fuente": [
+        "porcentaje_ejecucion_fdl"
+      ],
+      "denominador": "Presupuesto aprobado",
+      "unidad": "% ejecución",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Evalúa la eficiencia y capacidad de gasto de los 20 Fondos de Desarrollo Local."
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "dataset": "demografia_poblacion_localidad",
+  "total_rows": 131502,
+  "total_columns": 8,
+  "duplicated_rows": 0,
+  "pct_duplicated": 0.0,
+  "high_null_columns": [],
+  "territorial_columns_detected": [
+    "CODIGO_LOCALIDAD",
+    "NOMBRE_LOCALIDAD"
+  ],
+  "territorial_validation": {
+    "exists": true,
+    "column": "CODIGO_LOCALIDAD",
+    "localidades_encontradas": [
+      "ANTONIO NARINO",
+      "BARRIOS UNIDOS",
+      "BOSA",
+      "CHAPINERO",
+      "CIUDAD BOLIVAR",
+      "ENGATIVA",
+      "FONTIBON",
+      "KENNEDY",
+      "LA CANDELARIA",
+      "LOS MARTIRES",
+      "PUENTE ARANDA",
+      "RAFAEL URIBE URIBE",
+      "SAN CRISTOBAL",
+      "SANTA FE",
+      "SUBA",
+      "SUMAPAZ",
+      "TEUSAQUILLO",
+      "TUNJUELITO",
+      "USAQUEN",
+      "USME"
+    ],
+    "total_localidades_detectadas": 20,
+    "cobertura_pct": 100.0,
+    "valores_no_reconocidos": [
+      "0"
+    ]
+  },
+  "is_valid": true,
+  "validation_status": "APROBADO",
+  "domain": "Demografía y Población",
+  "author": "Persona A & Persona B",
+  "temporalidad": "2005-2035 (Proyección anual SDP-DANE, CNPV 2018)",
+  "years_covered": [
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026,
+    2027,
+    2028,
+    2029,
+    2030,
+    2031,
+    2032,
+    2033,
+    2034,
+    2035
+  ],
+  "vigencia_fuente": "Vigente (Proyección oficial distrital)",
+  "indicadores_respaldados": [
+    {
+      "codigo": "DEM-001",
+      "nombre": "Densidad poblacional",
+      "formula_conceptual": "Población_Localidad / Área_km2_Localidad",
+      "variables_fuente": [
+        "CODIGO_LOCALIDAD",
+        "POBLACION",
+        "ANO"
+      ],
+      "denominador": "Área oficial de cada localidad (km2) desde DIM_TERRITORIO",
+      "unidad": "hab/km²",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Se agrupa la columna POBLACION por CODIGO_LOCALIDAD para el año objetivo (ej. 2025 o 2026) y se divide por el área de la localidad.",
+      "ejemplo_calculo_distrital": "Población total proyectada 2025: 15,885,734 habitantes"
+    },
+    {
+      "codigo": "POB-002",
+      "nombre": "Población infantil y juvenil (0 a 17 años)",
+      "formula_conceptual": "Sum(Población) donde EDAD in [0..17] por Localidad",
+      "variables_fuente": [
+        "EDAD",
+        "POBLACION",
+        "CODIGO_LOCALIDAD",
+        "ANO"
+      ],
+      "denominador": "Población total de la localidad",
+      "unidad": "habitantes (% sobre total)",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Permite construir la población objetivo para los indicadores educativos (EDU-001, EDU-003)."
+    }
+  ]
+}

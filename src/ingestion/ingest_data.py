@@ -2,6 +2,7 @@
 
 Fase PDCO: DEVELOPMENT
 Estándares: Clean Code, PEP 8, DAMA-BOK
+Autoría: Persona A (Adan Sánchez), Persona B (Yesid Bello) & Persona C (Sofía Hidalgo — Ingesta Ambiente, Finanzas/RIVI, Seguridad)
 """
 
 from __future__ import annotations

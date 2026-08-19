@@ -1,0 +1,21 @@
+codigo_localidad,nombre_localidad,codigo_divipola,irca_promedio,clasificacion_riesgo_irca,muestras_analizadas,vigencia,fuente
+1,Usaquén,1100101,0.45,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+2,Chapinero,1100102,0.45,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+3,Santa Fe,1100103,0.85,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+4,San Cristóbal,1100104,0.85,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+5,Usme,1100105,2.1,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+6,Tunjuelito,1100106,0.85,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+7,Bosa,1100107,0.85,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+8,Kennedy,1100108,0.85,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+9,Fontibón,1100109,0.45,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+10,Engativá,1100110,0.85,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+11,Suba,1100111,0.85,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+12,Barrios Unidos,1100112,0.85,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+13,Teusaquillo,1100113,0.45,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+14,Los Mártires,1100114,0.85,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+15,Antonio Nariño,1100115,0.85,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+16,Puente Aranda,1100116,0.45,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+17,La Candelaria,1100117,0.85,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+18,Rafael Uribe Uribe,1100118,0.85,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+19,Ciudad Bolívar,1100119,2.1,Sin Riesgo (Apta),120,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP
+20,Sumapaz,1100120,6.8,Riesgo Bajo,45,2025,Secretaría Distrital de Salud - Laboratorio de Salud Pública / SIVICAP

@@ -1,0 +1,26 @@
+codigo,dominio,entidad,archivo_crudo,formato,llave_territorial,responsable
+D1,Demografía y Población,SDP / SDS,DEMOGRAFIA/osb_demografia-poblacion-localidad.csv,CSV,CODIGO_LOCALIDAD (1-20),Persona A & Persona B
+D1,Demografía y Población (UPL),SDP / SDS,DEMOGRAFIA/osb_demografia-poblacion-upl.csv,CSV,CODIGO_UPL,Persona A & Persona B
+D2,Salud - IPS Urgencias,SDS,SALUD/osb_ofertasrv-ips-urgencias.csv,CSV,"Spatial Join (LATITUD, LONGITUD)",Persona B (Yesid)
+D2,Salud - Capacidad Camas,SDS / SaluData,SALUD/capacidad_camas_asistencial_localidad.csv,CSV,codigo_localidad (1-20),Persona B (Yesid)
+D3,Educación - Colegios,SED / IDECA,EDUCACION/colegios122025.gpkg,GPKG,COD_LOCA (1-20),Persona B (Yesid)
+D3,Educación - Oferta Cupos,SED,EDUCACION/ofertacupos_032025.geojson,GeoJSON,COD_LOCA (1-20),Persona B (Yesid)
+D3,Educación - Calidad Saber 11,SED / ICFES,EDUCACION/calidad_educativa_saber11_retencion_localidad.csv,CSV,codigo_localidad (1-20),Persona B (Yesid)
+D4,Movilidad - Flota SITP,TransMilenio,MOVILIDAD/flota_vinculada_sitp_2024-12.csv,CSV,Zonal / Troncal,Persona A (Adan)
+D4,Movilidad - Estaciones Troncales,TransMilenio / IDECA,MOVILIDAD/estaciones_troncales.geojson,GeoJSON,Spatial Join,Persona A (Adan)
+D5,Infraestructura - Parques IDRD,IDRD,INFRAESTRUCTURA_ESPACIO_PUBLICO/5.-parques-idrd.csv,CSV,LOCALIDAD (1-20),Persona A (Adan)
+D6,Ambiente - Situaciones Conflictivas,SDA / IDECA,AMBIENTE/situacion_ambiental_conflictiva.csv,CSV,cod_locali (1-20),Persona C (Sofía)
+D6,Ambiente - Estaciones Calidad Aire,SDA,AMBIENTE/estacion_calidad_aire.geojson,GeoJSON,sect_loc (1-20),Persona C (Sofía)
+D7,Finanzas - Vendedores Informales RIVI,IPES,FINANZAS_INVERSION_PUBLICA/rivi-numero-*.txt,TXT/CSV,codigo_localidad (1-20),Persona C (Sofía)
+D7,Finanzas - Puntos de Encuentro Vendedores,IPES,FINANZAS_INVERSION_PUBLICA/Punto de encuentro vendedores. Bogotá D.C..xlsx,XLSX/GeoJSON,CPUNLOC (1-20),Persona C (Sofía)
+D7,Finanzas - Inversión Fondos Desarrollo Local,Secretaría de Gobierno / Confis,FINANZAS_INVERSION_PUBLICA/inversion_fondos_desarrollo_local_fdl.csv,CSV,codigo_localidad (1-20),Persona A & Persona C
+D7,Finanzas - Metas Inversión Social SDIS,SDIS,FINANZAS_INVERSION_PUBLICA/metas_inversion_social_sdis_localidad.csv,CSV,codigo_localidad (1-20),Persona A & Persona C
+D8,Seguridad - Cuadrantes MEBOG,MEBOG / SDSCJ,SEGURIDAD/Cuadrante de Policía. Bogotá D.C.csv,CSV,properties/PCUIULOCAL (1-19),Persona C (Sofía)
+D8,Seguridad - Delitos de Alto Impacto,MEBOG / SDSCJ,SEGURIDAD/delitos_alto_impacto_localidad_2024_2026.csv,CSV,codigo_localidad (1-20),Persona C (Sofía)
+D9,Participación - PQR Bogotá Te Escucha,Secretaría General / SDQS,PARTICIPACION_CIUDADANA/pqr_bogota_te_escucha_por_localidad.csv,CSV,codigo_localidad (1-20),Persona A & Persona B
+D10,Modelo Territorial - Polígonos Localidades,IDECA / Catastro,MODELO_TERRITORIAL/poligonos_localidades.geojson,GeoJSON,LOCCODIGO (1-20),Persona A & Persona B
+D11,Servicios Públicos - Acueducto EAAB,EAAB - ESP,SERVICIOS_PUBLICOS/eaab_cobertura_acueducto_localidad.csv,CSV,codigo_localidad (1-20),Persona A & Persona B
+D11,Servicios Públicos - Calidad Agua IRCA,SDS / SIVICAP,SERVICIOS_PUBLICOS/eaab_calidad_agua_irca_localidad.csv,CSV,codigo_localidad (1-20),Persona A & Persona B
+D11,Servicios Públicos - Alumbrado Público,UAESP,SERVICIOS_PUBLICOS/uaesp_alumbrado_publico_localidad.csv,CSV,codigo_localidad (1-20),Persona A & Persona B
+D12,Empleo - Conmutación Residencia Trabajo,SDM / DANE,EMPLEO_ECONOMIA/conmutacion_laboral_residencia_trabajo_localidad.csv,CSV,codigo_localidad (1-20),Persona B & Persona A
+D12,Empleo - Salarios e Informalidad,DANE (GEIH) / SDDE,EMPLEO_ECONOMIA/ingreso_promedio_salario_ocupados_localidad.csv,CSV,codigo_localidad (1-20),Persona B & Persona A

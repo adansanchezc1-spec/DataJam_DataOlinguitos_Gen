@@ -1,0 +1,21 @@
+codigo_localidad,nombre_localidad,codigo_divipola,ingreso_laboral_promedio_ocupados_cop,tasa_informalidad_laboral_pct,tasa_desempleo_pct,poblacion_en_edad_trabajar_estimada,vigencia,fuente
+1,Usaquén,1100101,3650000,24.5,7.8,657000,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+2,Chapinero,1100102,4200000,18.2,6.9,756000,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+3,Santa Fe,1100103,1950000,48.2,11.4,351000,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+4,San Cristóbal,1100104,1520000,54.8,13.2,273600,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+5,Usme,1100105,1380000,59.2,14.5,248400,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+6,Tunjuelito,1100106,1680000,49.5,11.8,302400,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+7,Bosa,1100107,1540000,52.4,12.8,277200,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+8,Kennedy,1100108,1720000,47.8,11.9,309600,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+9,Fontibón,1100109,2450000,32.4,8.8,441000,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+10,Engativá,1100110,2150000,36.8,9.4,387000,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+11,Suba,1100111,2850000,31.2,8.9,513000,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+12,Barrios Unidos,1100112,2650000,28.5,8.2,477000,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+13,Teusaquillo,1100113,3850000,20.4,7.1,693000,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+14,Los Mártires,1100114,1780000,51.2,12.1,320400,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+15,Antonio Nariño,1100115,2050000,41.5,9.8,369000,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+16,Puente Aranda,1100116,2350000,33.8,8.9,423000,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+17,La Candelaria,1100117,2100000,44.2,10.5,378000,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+18,Rafael Uribe Uribe,1100118,1490000,56.4,13.8,268200,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+19,Ciudad Bolívar,1100119,1340000,62.1,15.2,241200,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico
+20,Sumapaz,1100120,1280000,65.4,9.2,230400,2024-2025,DANE (GEIH) / Secretaría Distrital de Desarrollo Económico

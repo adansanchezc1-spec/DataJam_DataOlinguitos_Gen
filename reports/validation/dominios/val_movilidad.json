@@ -1,0 +1,60 @@
+{
+  "dataset": "movilidad_flota_sitp",
+  "total_rows": 10518,
+  "total_columns": 14,
+  "duplicated_rows": 0,
+  "pct_duplicated": 0.0,
+  "high_null_columns": [],
+  "territorial_columns_detected": [],
+  "territorial_validation": null,
+  "is_valid": true,
+  "validation_status": "APROBADO",
+  "domain": "Movilidad",
+  "author": "Persona A (Adan Sánchez)",
+  "temporalidad": "Corte 12.2024 (Flota) y 2024-01 a 2026-07 (Validaciones mensuales de demanda)",
+  "vigencia_fuente": "Vigente / Operación Actual",
+  "indicadores_respaldados": [
+    {
+      "codigo": "MOV-003",
+      "nombre": "Densidad de paraderos zonales SITP por 10.000 habitantes",
+      "formula_conceptual": "(Conteo_Paraderos_SITP_Localidad / Población_Localidad) * 10.000",
+      "variables_fuente": [
+        "paraderos_zonales_sitp.gpkg: localidad_",
+        "id_paradero"
+      ],
+      "denominador": "Población total por localidad",
+      "unidad": "paraderos por 10.000 hab",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Se agrupan los 7.642 paraderos zonales por localidad_ y se cruzan con la población.",
+      "ejemplo_calculo_distrital": "7.642 paraderos zonales distribuidos en las 19 localidades urbanas."
+    },
+    {
+      "codigo": "MOV-014",
+      "nombre": "Capacidad y oferta de flota vinculada SITP",
+      "formula_conceptual": "Sum(Capacidad_Bus) por tipología / Población_Distrital",
+      "variables_fuente": [
+        "descripcion_tipo",
+        "componente",
+        "combustible",
+        "estatus_vinculacion"
+      ],
+      "denominador": "Población distrital",
+      "unidad": "plazas de transporte / buses vinculados",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Cuantifica los 10.518 buses vinculados (articulados, biarticulados, padrones, busetones y eléctricos).",
+      "ejemplo_calculo_distrital": "Total flota vinculada analizada: 10,518 vehículos activos."
+    },
+    {
+      "codigo": "MOV-013",
+      "nombre": "Intensidad de demanda y viajes diarios (Validaciones tullave)",
+      "formula_conceptual": "Promedio_Validaciones_Día / Población_Localidad",
+      "variables_fuente": [
+        "Validaciones Troncal/Zonal 2024-2026: Fecha, Estación/Paradero, Validaciones"
+      ],
+      "denominador": "Población de la zona de influencia",
+      "unidad": "viajes por habitante / día",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "31 archivos mensuales de demanda troncal y 31 zonal con más de 2 años de transacciones continuas."
+    }
+  ]
+}

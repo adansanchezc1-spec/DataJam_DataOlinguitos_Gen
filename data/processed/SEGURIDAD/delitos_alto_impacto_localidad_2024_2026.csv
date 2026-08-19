@@ -1,0 +1,21 @@
+codigo_localidad,nombre_localidad,codigo_divipola,homicidios_anual,hurto_a_personas_anual,hurto_a_comercio_anual,tasa_delitos_alto_impacto_por_100k_hab,tiempo_medio_respuesta_cuadrante_min,vigencia,fuente
+1,Usaquén,1100101,18,5420,310,48.5,8.5,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+2,Chapinero,1100102,12,6890,480,72.1,8.5,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+3,Santa Fe,1100103,38,4950,390,88.4,22.0,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+4,San Cristóbal,1100104,64,4120,240,58.2,22.0,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+5,Usme,1100105,58,3210,180,52.4,22.0,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+6,Tunjuelito,1100106,34,3850,260,56.8,22.0,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+7,Bosa,1100107,92,8450,520,64.2,14.2,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+8,Kennedy,1100108,145,12800,890,78.5,14.2,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+9,Fontibón,1100109,24,4980,340,51.2,22.0,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+10,Engativá,1100110,68,9210,580,61.4,14.2,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+11,Suba,1100111,74,11400,710,59.8,14.2,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+12,Barrios Unidos,1100112,16,3820,290,49.5,22.0,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+13,Teusaquillo,1100113,9,3450,260,44.1,8.5,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+14,Los Mártires,1100114,48,4820,410,94.2,22.0,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+15,Antonio Nariño,1100115,22,2890,210,54.2,22.0,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+16,Puente Aranda,1100116,28,4780,360,52.8,22.0,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+17,La Candelaria,1100117,8,1890,190,76.4,22.0,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+18,Rafael Uribe Uribe,1100118,78,5120,310,66.5,22.0,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+19,Ciudad Bolívar,1100119,182,7950,480,82.1,22.0,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO
+20,Sumapaz,1100120,2,45,8,4.2,22.0,2024-2025,Policía Metropolitana de Bogotá (MEBOG) / SDSCJ - SIEDCO

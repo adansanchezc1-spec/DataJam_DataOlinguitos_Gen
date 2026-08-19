@@ -22,3 +22,11 @@ SAL-IPS,Instituciones Prestadoras de Salud (SDS),Salud/ips_sds.gpkg,True,True,Tr
 SAL-CAMAS,Tipo y razon de camas (SDS),Salud/osb_tiporazoncamas.csv,True,True,True,58 filas muestra,SAL-01 (parcial: solo resumen distrital),approved_partial
 MR,Mapa de Referencia IDECA v3.26,Infraestructura/gpkg_mr_v03.26/gpkg_mr_v03.26.gpkg,True,True,True,muestreo/metadata ok,"Todos los MOV (ETro, PSITP, MVI, Lote, Loca, UPL, AUrb)",approved
 IPS-LOCAL,IPS (copia local del catalogo DataJam),Infraestructura/ips.gpkg,True,True,True,10 features muestra,"SAL-01, SAL-02",approved
+SAL-URGENCIAS,IPS con servicios de urgencias en Bogota (SDS - Yesid),Salud/osb_ofertasrv-ips-urgencias.csv,True,True,True,84 filas muestra,"SAL-01, SAL-02",approved
+EDU-CUPOS,Oferta de cupos sector oficial (SED - Yesid),Educacion/ofertacupos_032025.geojson,True,True,True,747 features muestra,"EDU-01, EDU-02",approved
+INFRA-PARQUES,Inventario distrital de parques (IDRD),Infraestructura/5.-parques-idrd.csv,True,True,True,5120 filas muestra,"INF-01, INF-04",approved
+AMB-SAC,Situacion ambiental conflictiva (SDA),Ambiente/situacion_ambiental_conflictiva.csv,True,True,True,1313 filas muestra,"AMB-01, AMB-02",approved
+AMB-AIRE,Estaciones Red Calidad del Aire (SDA),Ambiente/estacion_calidad_aire.geojson,True,True,True,19 estaciones muestra,"AMB-01, AMB-03",approved
+FIN-RIVI,Vendedores informales RIVI 2017-2019 (IPES),Finanzas/rivi-numero-vendedores-informales-localidad-*.txt,True,True,True,126 filas (6 semestres),"FIN-01, FIN-02",approved
+FIN-PUNTOS,Puntos de encuentro vendedores (IPES),Finanzas/Punto de encuentro vendedores. Bogotá D.C..xlsx,True,True,True,4 registros muestra,FIN-02,approved
+SEG-CUADRANTES,Cuadrantes de Policia MEBOG (SDSCJ),Seguridad/Cuadrante de Policía. Bogotá D.C.csv,True,True,True,599 cuadrantes muestra,SEG-01,approved

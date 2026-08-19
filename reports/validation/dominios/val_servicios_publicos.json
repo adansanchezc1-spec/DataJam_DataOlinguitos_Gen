@@ -1,0 +1,89 @@
+{
+  "dataset": "servicios_publicos_cobertura_eaab",
+  "total_rows": 20,
+  "total_columns": 10,
+  "duplicated_rows": 0,
+  "pct_duplicated": 0.0,
+  "high_null_columns": [],
+  "territorial_columns_detected": [
+    "codigo_localidad",
+    "nombre_localidad"
+  ],
+  "territorial_validation": {
+    "exists": true,
+    "column": "codigo_localidad",
+    "localidades_encontradas": [
+      "ANTONIO NARINO",
+      "BARRIOS UNIDOS",
+      "BOSA",
+      "CHAPINERO",
+      "CIUDAD BOLIVAR",
+      "ENGATIVA",
+      "FONTIBON",
+      "KENNEDY",
+      "LA CANDELARIA",
+      "LOS MARTIRES",
+      "PUENTE ARANDA",
+      "RAFAEL URIBE URIBE",
+      "SAN CRISTOBAL",
+      "SANTA FE",
+      "SUBA",
+      "SUMAPAZ",
+      "TEUSAQUILLO",
+      "TUNJUELITO",
+      "USAQUEN",
+      "USME"
+    ],
+    "total_localidades_detectadas": 20,
+    "cobertura_pct": 100.0,
+    "valores_no_reconocidos": []
+  },
+  "is_valid": true,
+  "validation_status": "APROBADO",
+  "domain": "Servicios Públicos y Calidad",
+  "author": "Persona A (Adan Sánchez) & Persona B (Yesid Bello)",
+  "temporalidad": "2024-2025 (EAAB / UAESP / MinTIC / SDS)",
+  "vigencia_fuente": "Vigente",
+  "indicadores_respaldados": [
+    {
+      "codigo": "PUB-001",
+      "nombre": "Cobertura efectiva de acueducto y alcantarillado",
+      "formula_conceptual": "Cobertura_Acueducto_Pct",
+      "variables_fuente": [
+        "cobertura_acueducto_pct",
+        "cobertura_alcantarillado_pct",
+        "codigo_localidad"
+      ],
+      "denominador": "Total viviendas / suscriptores de la localidad",
+      "unidad": "% cobertura",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Porcentaje de hogares con conexión formal a la red de acueducto y saneamiento básico."
+    },
+    {
+      "codigo": "PUB-002",
+      "nombre": "Índice de Riesgo de la Calidad del Agua (IRCA)",
+      "formula_conceptual": "Promedio_IRCA_Localidad",
+      "variables_fuente": [
+        "irca_promedio",
+        "clasificacion_riesgo_irca"
+      ],
+      "denominador": "Muestras de vigilancia SIVICAP",
+      "unidad": "puntos IRCA (0-100)",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Valores < 5.0 indican agua 100% potable y sin riesgo microbiológico ni fisicoquímico."
+    },
+    {
+      "codigo": "PUB-003",
+      "nombre": "Modernización de alumbrado público y cobertura LED",
+      "formula_conceptual": "Luminarias_LED / Total_Luminarias * 100",
+      "variables_fuente": [
+        "total_luminarias",
+        "tecnologia_led_pct"
+      ],
+      "denominador": "Total luminarias instaladas",
+      "unidad": "% luminarias LED",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Mide la calidad y modernización de la iluminación pública para seguridad urbana."
+    }
+  ]
+}

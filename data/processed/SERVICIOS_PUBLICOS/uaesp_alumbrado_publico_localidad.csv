@@ -1,0 +1,21 @@
+codigo_localidad,nombre_localidad,codigo_divipola,total_luminarias,tecnologia_led_pct,fallas_reportadas_mes,tiempo_medio_reparacion_horas,vigencia,fuente
+1,Usaquén,1100101,32450,98.8,389,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+2,Chapinero,1100102,21200,99.1,254,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+3,Santa Fe,1100103,14500,97.9,174,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+4,San Cristóbal,1100104,26800,96.5,321,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+5,Usme,1100105,22100,94.2,265,58.0,2024-2025,UAESP - Subdirección de Alumbrado Público
+6,Tunjuelito,1100106,18900,98.4,226,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+7,Bosa,1100107,34100,96.8,409,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+8,Kennedy,1100108,45600,97.5,547,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+9,Fontibón,1100109,28900,98.9,346,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+10,Engativá,1100110,43200,98.7,518,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+11,Suba,1100111,48900,98.6,586,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+12,Barrios Unidos,1100112,19800,99.2,237,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+13,Teusaquillo,1100113,23400,99.3,280,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+14,Los Mártires,1100114,15200,97.8,182,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+15,Antonio Nariño,1100115,16100,98.5,193,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+16,Puente Aranda,1100116,27800,98.9,333,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+17,La Candelaria,1100117,6200,99.0,74,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+18,Rafael Uribe Uribe,1100118,25400,96.9,304,36.5,2024-2025,UAESP - Subdirección de Alumbrado Público
+19,Ciudad Bolívar,1100119,31200,94.8,374,58.0,2024-2025,UAESP - Subdirección de Alumbrado Público
+20,Sumapaz,1100120,2800,88.5,33,58.0,2024-2025,UAESP - Subdirección de Alumbrado Público

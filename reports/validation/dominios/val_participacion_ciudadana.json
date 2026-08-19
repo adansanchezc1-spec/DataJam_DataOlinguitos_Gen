@@ -1,0 +1,63 @@
+{
+  "dataset": "participacion_pqr_bogota_te_escucha",
+  "total_rows": 20,
+  "total_columns": 10,
+  "duplicated_rows": 0,
+  "pct_duplicated": 0.0,
+  "high_null_columns": [],
+  "territorial_columns_detected": [
+    "codigo_localidad",
+    "nombre_localidad"
+  ],
+  "territorial_validation": {
+    "exists": true,
+    "column": "codigo_localidad",
+    "localidades_encontradas": [
+      "ANTONIO NARINO",
+      "BARRIOS UNIDOS",
+      "BOSA",
+      "CHAPINERO",
+      "CIUDAD BOLIVAR",
+      "ENGATIVA",
+      "FONTIBON",
+      "KENNEDY",
+      "LA CANDELARIA",
+      "LOS MARTIRES",
+      "PUENTE ARANDA",
+      "RAFAEL URIBE URIBE",
+      "SAN CRISTOBAL",
+      "SANTA FE",
+      "SUBA",
+      "SUMAPAZ",
+      "TEUSAQUILLO",
+      "TUNJUELITO",
+      "USAQUEN",
+      "USME"
+    ],
+    "total_localidades_detectadas": 20,
+    "cobertura_pct": 100.0,
+    "valores_no_reconocidos": []
+  },
+  "is_valid": true,
+  "validation_status": "APROBADO",
+  "domain": "Participación y Control Social",
+  "author": "Persona A (Adan Sánchez) & Persona B (Yesid Bello)",
+  "temporalidad": "2024-2025 (Secretaría General / Sistema Bogotá Te Escucha SDQS)",
+  "vigencia_fuente": "Vigente",
+  "indicadores_respaldados": [
+    {
+      "codigo": "PAR-C1",
+      "nombre": "Intensidad de peticiones ciudadanas (PQR) por 10.000 habitantes",
+      "formula_conceptual": "(Total_PQR_Localidad / Población_Localidad) * 10.000",
+      "variables_fuente": [
+        "total_pqr_recibidas",
+        "pqr_resueltas_a_tiempo_pct",
+        "codigo_localidad"
+      ],
+      "denominador": "Población por localidad",
+      "unidad": "PQR por 10.000 hab",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Capta la voz ciudadana y alertas tempranas sobre fallas en malla vial, espacio público y aseo."
+    }
+  ]
+}

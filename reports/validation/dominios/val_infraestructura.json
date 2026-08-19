@@ -1,0 +1,63 @@
+{
+  "dataset": "infraestructura_parques_idrd",
+  "total_rows": 139,
+  "total_columns": 5,
+  "duplicated_rows": 0,
+  "pct_duplicated": 0.0,
+  "high_null_columns": [],
+  "territorial_columns_detected": [
+    "Nombre Localidad"
+  ],
+  "territorial_validation": {
+    "exists": true,
+    "column": "Nombre Localidad",
+    "localidades_encontradas": [
+      "ANTONIO NARINO",
+      "BARRIOS UNIDOS",
+      "BOSA",
+      "CHAPINERO",
+      "CIUDAD BOLIVAR",
+      "ENGATIVA",
+      "FONTIBON",
+      "KENNEDY",
+      "LA CANDELARIA",
+      "PUENTE ARANDA",
+      "RAFAEL URIBE URIBE",
+      "SAN CRISTOBAL",
+      "SANTA FE",
+      "SUBA",
+      "TEUSAQUILLO",
+      "TUNJUELITO",
+      "USAQUEN",
+      "USME"
+    ],
+    "total_localidades_detectadas": 18,
+    "cobertura_pct": 90.0,
+    "valores_no_reconocidos": [
+      "MÁRTIRES"
+    ]
+  },
+  "is_valid": true,
+  "validation_status": "APROBADO",
+  "domain": "Infraestructura y Espacio Público",
+  "author": "Persona A (Adan Sánchez)",
+  "temporalidad": "Corte 2024-2025 (Instituto Distrital de Recreación y Deporte - IDRD)",
+  "vigencia_fuente": "Vigente",
+  "indicadores_respaldados": [
+    {
+      "codigo": "INF-004",
+      "nombre": "Espacio público y parques por habitante (m² por habitante)",
+      "formula_conceptual": "Sum(Área_Parques_m2_Localidad) / Población_Localidad",
+      "variables_fuente": [
+        "Nombre Localidad",
+        "Tipologia",
+        "Codigo Parque"
+      ],
+      "denominador": "Población por localidad (DEM-001)",
+      "unidad": "m² por habitante",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Agrupa los parques IDRD (vecinales, de bolsillo, zonales, metropolitanos) por localidad y normaliza con la población.",
+      "ejemplo_calculo_distrital": "Total parques inventariados: 139 equipamientos recreativos distritales."
+    }
+  ]
+}

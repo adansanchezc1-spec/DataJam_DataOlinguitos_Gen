@@ -1,0 +1,80 @@
+{
+  "dataset": "educacion_oferta_cupos",
+  "total_rows": 747,
+  "total_columns": 13,
+  "duplicated_rows": 4,
+  "pct_duplicated": 0.54,
+  "high_null_columns": [],
+  "territorial_columns_detected": [
+    "COD_LOCA"
+  ],
+  "territorial_validation": {
+    "exists": true,
+    "column": "COD_LOCA",
+    "localidades_encontradas": [
+      "ANTONIO NARINO",
+      "BARRIOS UNIDOS",
+      "BOSA",
+      "CHAPINERO",
+      "CIUDAD BOLIVAR",
+      "ENGATIVA",
+      "FONTIBON",
+      "KENNEDY",
+      "LA CANDELARIA",
+      "LOS MARTIRES",
+      "PUENTE ARANDA",
+      "RAFAEL URIBE URIBE",
+      "SAN CRISTOBAL",
+      "SANTA FE",
+      "SUBA",
+      "SUMAPAZ",
+      "TEUSAQUILLO",
+      "TUNJUELITO",
+      "USAQUEN",
+      "USME"
+    ],
+    "total_localidades_detectadas": 20,
+    "cobertura_pct": 100.0,
+    "valores_no_reconocidos": []
+  },
+  "is_valid": true,
+  "validation_status": "APROBADO",
+  "domain": "Educación",
+  "author": "Persona B (Yesid Bello)",
+  "temporalidad": "Corte 03.2025 (Secretaría de Educación del Distrito - SED)",
+  "vigencia_fuente": "Vigente (Matrícula y Oferta 2025)",
+  "indicadores_respaldados": [
+    {
+      "codigo": "EDU-001",
+      "nombre": "Colegios / sedes oficiales por 1.000 niños y jóvenes",
+      "formula_conceptual": "(Conteo_Colegios_Oficiales / Población_5_a_17_años) * 1.000",
+      "variables_fuente": [
+        "COD_LOCA",
+        "NOMBRE_EST",
+        "DANE12_EST"
+      ],
+      "denominador": "Población 5-17 años por localidad (Demografía POB-002)",
+      "unidad": "sedes por 1.000 estudiantes potenciales",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Agrupa las 747 sedes oficiales de ofertacupos_032025 por COD_LOCA y normaliza contra el rango etario 5-17.",
+      "ejemplo_calculo_distrital": "Total sedes con oferta de cupos analizadas: 747 sedes oficiales."
+    },
+    {
+      "codigo": "EDU-003",
+      "nombre": "Cobertura y disponibilidad de cupos escolares",
+      "formula_conceptual": "Cupos_Ofertados_Grados / Población_Escolar_Edad",
+      "variables_fuente": [
+        "OPreescola",
+        "OPrimaria",
+        "OSecundari",
+        "OMedia",
+        "OTotal",
+        "COD_LOCA"
+      ],
+      "denominador": "Población escolar por cohorte de edad",
+      "unidad": "tasa de cobertura / disponibilidad",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Suma los cupos disponibles por grado (primera infancia, primaria, secundaria) y compara con la demanda poblacional local."
+    }
+  ]
+}

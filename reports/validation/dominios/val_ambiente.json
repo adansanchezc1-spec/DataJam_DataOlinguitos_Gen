@@ -1,0 +1,86 @@
+{
+  "dataset": "ambiente_situaciones_conflictivas_sac",
+  "total_rows": 1313,
+  "total_columns": 14,
+  "duplicated_rows": 24,
+  "pct_duplicated": 1.83,
+  "high_null_columns": [
+    "altitude"
+  ],
+  "territorial_columns_detected": [
+    "localidad",
+    "cod_locali"
+  ],
+  "territorial_validation": {
+    "exists": true,
+    "column": "localidad",
+    "localidades_encontradas": [
+      "ANTONIO NARINO",
+      "BARRIOS UNIDOS",
+      "BOSA",
+      "CHAPINERO",
+      "CIUDAD BOLIVAR",
+      "ENGATIVA",
+      "FONTIBON",
+      "KENNEDY",
+      "PUENTE ARANDA",
+      "RAFAEL URIBE URIBE",
+      "SAN CRISTOBAL",
+      "SANTA FE",
+      "SUBA",
+      "SUMAPAZ",
+      "TEUSAQUILLO",
+      "TUNJUELITO",
+      "USAQUEN",
+      "USME"
+    ],
+    "total_localidades_detectadas": 18,
+    "cobertura_pct": 90.0,
+    "valores_no_reconocidos": [
+      "ADRIÁN HERNÁNDEZ",
+      "Martires",
+      "HERNAN FONSECA",
+      "CANDELARIA",
+      "DEISY SUAREZ",
+      "Contaminación electromagnética",
+      "Juan Esteban Triana",
+      "CADELARIA"
+    ]
+  },
+  "is_valid": true,
+  "validation_status": "APROBADO_CON_OBSERVACIONES",
+  "domain": "Ambiente",
+  "author": "Persona C (Sofía Hidalgo) & Persona A (Adan Sánchez)",
+  "temporalidad": "2020-2025 (Secretaría Distrital de Ambiente - SDA) y 2026 (RMCAB)",
+  "vigencia_fuente": "Vigente",
+  "indicadores_respaldados": [
+    {
+      "codigo": "AMB-001",
+      "nombre": "Densidad de situaciones ambientales conflictivas (SAC)",
+      "formula_conceptual": "(Conteo_Conflictos_SAC_Localidad / Población_Localidad) * 10.000",
+      "variables_fuente": [
+        "localidad",
+        "categoria",
+        "sac",
+        "cod_locali"
+      ],
+      "denominador": "Población por localidad (DEM-001)",
+      "unidad": "conflictos SAC por 10.000 hab",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Cuantifica los conflictos ambientales activos (residuos, ruido, olores, afectación hídrica) por localidad.",
+      "ejemplo_calculo_distrital": "Total situaciones ambientales conflictivas registradas: 1,313 eventos."
+    },
+    {
+      "codigo": "AMB-002",
+      "nombre": "Cobertura de estaciones de calidad del aire RMCAB",
+      "formula_conceptual": "Conteo_Estaciones_RMCAB_Localidad",
+      "variables_fuente": [
+        "estacion_calidad_aire.geojson: nombre, codigo, tecnologia, lat, lon"
+      ],
+      "denominador": "Superficie y población local",
+      "unidad": "estaciones de monitoreo activas",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "19 estaciones de monitoreo continuo en red con sensores PM2.5, PM10, O3, NO2."
+    }
+  ]
+}

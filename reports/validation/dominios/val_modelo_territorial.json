@@ -1,0 +1,32 @@
+{
+  "dataset": "modelo_territorial_poligonos_ideca",
+  "total_rows": 20,
+  "total_columns": 7,
+  "duplicated_rows": 0,
+  "pct_duplicated": 0.0,
+  "high_null_columns": [],
+  "territorial_columns_detected": [],
+  "territorial_validation": null,
+  "is_valid": true,
+  "validation_status": "APROBADO",
+  "domain": "Modelo Territorial Oficial",
+  "author": "Persona A (Adan Sánchez) & Persona B (Yesid Bello)",
+  "temporalidad": "Vigente 2025-2026 (IDECA / Catastro Distrital)",
+  "vigencia_fuente": "Vigente",
+  "indicadores_respaldados": [
+    {
+      "codigo": "GEO-001",
+      "nombre": "Delimitación vectorial oficial y superficie de las 20 localidades",
+      "formula_conceptual": "Geometría_Polígono_Localidad (WGS84 EPSG:4326)",
+      "variables_fuente": [
+        "LOCCODIGO",
+        "LOCNOMBRE",
+        "LOCAREA"
+      ],
+      "denominador": "Límites oficiales de Bogotá D.C.",
+      "unidad": "polígono geoespacial / m2",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Capa base de referencia territorial oficial para todos los cruces espaciales (spatial joins) de SIPTA."
+    }
+  ]
+}

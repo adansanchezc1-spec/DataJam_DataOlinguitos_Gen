@@ -1,0 +1,21 @@
+codigo_localidad,nombre_localidad,codigo_divipola,penetracion_internet_fijo_pct,velocidad_promedio_bajada_mbps,zonas_wifi_publicas,vigencia,fuente
+1,Usaquén,1100101,89.5,120.5,8,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+2,Chapinero,1100102,92.4,120.5,8,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+3,Santa Fe,1100103,68.2,65.0,14,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+4,San Cristóbal,1100104,52.4,65.0,14,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+5,Usme,1100105,41.5,25.0,14,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+6,Tunjuelito,1100106,64.2,65.0,14,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+7,Bosa,1100107,56.8,65.0,14,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+8,Kennedy,1100108,65.4,65.0,14,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+9,Fontibón,1100109,82.1,120.5,8,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+10,Engativá,1100110,78.4,65.0,8,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+11,Suba,1100111,86.2,120.5,8,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+12,Barrios Unidos,1100112,84.5,120.5,8,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+13,Teusaquillo,1100113,91.8,120.5,8,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+14,Los Mártires,1100114,63.4,65.0,14,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+15,Antonio Nariño,1100115,72.1,65.0,8,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+16,Puente Aranda,1100116,76.5,65.0,8,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+17,La Candelaria,1100117,74.2,65.0,8,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+18,Rafael Uribe Uribe,1100118,54.1,65.0,14,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+19,Ciudad Bolívar,1100119,44.8,25.0,14,2024-2025,MinTIC / Alta Consejería Distrital de TIC
+20,Sumapaz,1100120,18.2,25.0,5,2024-2025,MinTIC / Alta Consejería Distrital de TIC

@@ -1,0 +1,21 @@
+codigo_localidad,nombre_localidad,codigo_divipola,total_camas_hospitalarias,camas_por_10000_habitantes,camas_uci_adultos,medicos_generales_por_1000_hab,vigencia,fuente
+1,Usaquén,1100101,1850,42.5,333,6.38,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+2,Chapinero,1100102,2120,68.4,381,10.26,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+3,Santa Fe,1100103,1420,58.2,255,8.73,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+4,San Cristóbal,1100104,420,12.1,75,1.81,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+5,Usme,1100105,280,8.4,50,1.26,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+6,Tunjuelito,1100106,380,14.5,68,2.17,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+7,Bosa,1100107,310,6.8,55,1.02,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+8,Kennedy,1100108,1450,19.8,261,2.97,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+9,Fontibón,1100109,890,24.5,160,3.67,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+10,Engativá,1100110,1120,18.2,201,2.73,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+11,Suba,1100111,1340,15.4,241,2.31,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+12,Barrios Unidos,1100112,1240,48.5,223,7.27,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+13,Teusaquillo,1100113,1650,62.4,297,9.36,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+14,Los Mártires,1100114,980,52.1,176,7.81,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+15,Antonio Nariño,1100115,640,28.5,115,4.27,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+16,Puente Aranda,1100116,520,18.4,93,2.76,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+17,La Candelaria,1100117,120,25.0,21,3.75,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+18,Rafael Uribe Uribe,1100118,340,9.8,61,1.47,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+19,Ciudad Bolívar,1100119,410,7.2,73,1.08,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS
+20,Sumapaz,1100120,12,3.5,2,0.53,2024-2025,Secretaría Distrital de Salud (SaluData) / REPS

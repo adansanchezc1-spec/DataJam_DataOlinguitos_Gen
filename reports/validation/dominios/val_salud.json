@@ -1,0 +1,48 @@
+{
+  "dataset": "salud_ips_urgencias",
+  "total_rows": 84,
+  "total_columns": 11,
+  "duplicated_rows": 0,
+  "pct_duplicated": 0.0,
+  "high_null_columns": [],
+  "territorial_columns_detected": [],
+  "territorial_validation": null,
+  "is_valid": true,
+  "validation_status": "APROBADO",
+  "domain": "Salud",
+  "author": "Persona B (Yesid Bello)",
+  "temporalidad": "2024-2026 (Registro Especial de Prestadores SDS / SaluData)",
+  "vigencia_fuente": "Vigente",
+  "pct_valid_coordinates": 97.62,
+  "indicadores_respaldados": [
+    {
+      "codigo": "SAL-001",
+      "nombre": "Hospitales e IPS de urgencias por 10.000 habitantes",
+      "formula_conceptual": "(Conteo_IPS_Urgencias_Localidad / Población_Localidad) * 10.000",
+      "variables_fuente": [
+        "Nombre IPS",
+        "Nombre sede",
+        "Latitud",
+        "Longitud"
+      ],
+      "denominador": "Población por localidad (DEM-001)",
+      "unidad": "IPS de urgencias por 10.000 hab",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Se cuenta el número de sedes con servicio de urgencias por localidad y se divide entre la población proyectada de la localidad multiplicada por 10.000.",
+      "ejemplo_calculo_distrital": "Total IPS de urgencias distritales verificadas: 84 sedes en Bogotá."
+    },
+    {
+      "codigo": "SAL-002",
+      "nombre": "Camas hospitalarias por 10.000 habitantes",
+      "formula_conceptual": "(Camas_Hospitalarias_Localidad / Población_Localidad) * 10.000",
+      "variables_fuente": [
+        "NUMERO_CAMAS",
+        "LOCALIDAD"
+      ],
+      "denominador": "Población por localidad",
+      "unidad": "camas por 10.000 hab",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Respaldo territorializado con el dataset de capacidad de camas hospitalarias por localidad de la Secretaría Distrital de Salud."
+    }
+  ]
+}

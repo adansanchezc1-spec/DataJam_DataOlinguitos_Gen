@@ -1,0 +1,21 @@
+codigo_localidad,nombre_localidad,codigo_divipola,ocupados_trabajan_en_su_localidad_pct,ocupados_conmutan_a_otras_localidades_pct,conmutacion_hacia_centro_ampliado_pct,tiempo_promedio_desplazamiento_laboral_min,modo_transporte_principal_trabajo,vigencia,fuente
+1,Usaquén,1100101,38.5,61.5,25.4,42.0,A pie / Auto / SITP,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+2,Chapinero,1100102,52.1,47.9,12.0,32.0,A pie / Auto / SITP,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+3,Santa Fe,1100103,48.0,52.0,15.0,34.0,A pie / Auto / SITP,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+4,San Cristóbal,1100104,18.5,81.5,56.2,68.0,SITP / TransMilenio,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+5,Usme,1100105,14.2,85.8,62.4,82.0,SITP / TransMilenio,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+6,Tunjuelito,1100106,22.1,77.9,48.5,58.0,A pie / Auto / SITP,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+7,Bosa,1100107,16.8,83.2,58.4,76.0,SITP / TransMilenio,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+8,Kennedy,1100108,24.5,75.5,49.2,64.0,SITP / TransMilenio,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+9,Fontibón,1100109,44.2,55.8,28.5,40.0,A pie / Auto / SITP,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+10,Engativá,1100110,31.2,68.8,42.1,54.0,A pie / Auto / SITP,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+11,Suba,1100111,36.4,63.6,38.5,58.0,A pie / Auto / SITP,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+12,Barrios Unidos,1100112,46.2,53.8,24.1,36.0,A pie / Auto / SITP,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+13,Teusaquillo,1100113,54.8,45.2,14.2,30.0,A pie / Auto / SITP,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+14,Los Mártires,1100114,42.1,57.9,22.0,38.0,A pie / Auto / SITP,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+15,Antonio Nariño,1100115,28.4,71.6,41.2,45.0,A pie / Auto / SITP,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+16,Puente Aranda,1100116,45.6,54.4,26.8,38.0,A pie / Auto / SITP,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+17,La Candelaria,1100117,49.1,50.9,16.0,32.0,A pie / Auto / SITP,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+18,Rafael Uribe Uribe,1100118,19.4,80.6,54.8,65.0,SITP / TransMilenio,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+19,Ciudad Bolívar,1100119,15.1,84.9,64.2,85.0,SITP / TransMilenio,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE
+20,Sumapaz,1100120,68.5,31.5,18.2,110.0,A pie / Auto / SITP,2024-2025,Secretaría Distrital de Movilidad / Encuesta de Movilidad / DANE

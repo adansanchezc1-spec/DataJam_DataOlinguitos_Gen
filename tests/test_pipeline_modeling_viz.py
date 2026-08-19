@@ -146,3 +146,21 @@ class TestPipelineModelingViz:
         assert ranked["localidad"].iloc[0] == "Suba"
         assert ranked["localidad"].iloc[1] == "Bosa"
         assert ranked["localidad"].iloc[2] == "Usaquén"
+
+    def test_multidimensional_ipt_and_locality_metrics(self) -> None:
+        """Verifica la construcción de la matriz consolidada de 20 localidades y cálculo del IPT."""
+        from src.modeling.calculate_indicators import build_consolidated_locality_metrics, calculate_multidimensional_ipt
+
+        metrics = build_consolidated_locality_metrics()
+        assert len(metrics) == 20
+        assert "codigo_localidad" in metrics.columns
+        assert "cobertura_acueducto_pct" in metrics.columns
+
+        ipt_df = calculate_multidimensional_ipt(metrics)
+        assert len(ipt_df) == 20
+        assert "IPT_MULTIDIMENSIONAL" in ipt_df.columns
+        assert "RANKING_PRIORIDAD" in ipt_df.columns
+        assert "NIVEL_PRIORIDAD" in ipt_df.columns
+        assert ipt_df["RANKING_PRIORIDAD"].min() == 1
+        assert ipt_df["RANKING_PRIORIDAD"].max() <= 20
+

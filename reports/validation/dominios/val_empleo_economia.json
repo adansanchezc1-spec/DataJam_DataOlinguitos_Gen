@@ -1,0 +1,77 @@
+{
+  "dataset": "empleo_conmutacion_laboral",
+  "total_rows": 20,
+  "total_columns": 10,
+  "duplicated_rows": 0,
+  "pct_duplicated": 0.0,
+  "high_null_columns": [],
+  "territorial_columns_detected": [
+    "codigo_localidad",
+    "nombre_localidad",
+    "ocupados_trabajan_en_su_localidad_pct",
+    "ocupados_conmutan_a_otras_localidades_pct"
+  ],
+  "territorial_validation": {
+    "exists": true,
+    "column": "codigo_localidad",
+    "localidades_encontradas": [
+      "ANTONIO NARINO",
+      "BARRIOS UNIDOS",
+      "BOSA",
+      "CHAPINERO",
+      "CIUDAD BOLIVAR",
+      "ENGATIVA",
+      "FONTIBON",
+      "KENNEDY",
+      "LA CANDELARIA",
+      "LOS MARTIRES",
+      "PUENTE ARANDA",
+      "RAFAEL URIBE URIBE",
+      "SAN CRISTOBAL",
+      "SANTA FE",
+      "SUBA",
+      "SUMAPAZ",
+      "TEUSAQUILLO",
+      "TUNJUELITO",
+      "USAQUEN",
+      "USME"
+    ],
+    "total_localidades_detectadas": 20,
+    "cobertura_pct": 100.0,
+    "valores_no_reconocidos": []
+  },
+  "is_valid": true,
+  "validation_status": "APROBADO",
+  "domain": "Mercado Laboral y Salarios",
+  "author": "Persona B (Yesid Bello) & Persona A (Adan Sánchez)",
+  "temporalidad": "2024-2025 (DANE GEIH / SDP Encuesta de Movilidad)",
+  "vigencia_fuente": "Vigente",
+  "indicadores_respaldados": [
+    {
+      "codigo": "EMP-001",
+      "nombre": "Autosuficiencia y conmutación laboral local",
+      "formula_conceptual": "Ocupados_Trabajan_Misma_Localidad_Pct",
+      "variables_fuente": [
+        "ocupados_trabajan_en_su_localidad_pct",
+        "tiempo_promedio_desplazamiento_laboral_min"
+      ],
+      "denominador": "Total ocupados de la localidad",
+      "unidad": "% ocupados en misma localidad",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Determina si la localidad genera empleo local o si expulsa fuerza laboral con altos tiempos de viaje."
+    },
+    {
+      "codigo": "EMP-002",
+      "nombre": "Ingreso laboral promedio y tasa de informalidad",
+      "formula_conceptual": "Ingreso_Promedio_COP por localidad",
+      "variables_fuente": [
+        "ingreso_laboral_promedio_ocupados_cop",
+        "tasa_informalidad_laboral_pct"
+      ],
+      "denominador": "Población ocupada",
+      "unidad": "COP / % informal",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Métrica fundamental de vulnerabilidad socioeconómica y capacidad adquisitiva por localidad."
+    }
+  ]
+}

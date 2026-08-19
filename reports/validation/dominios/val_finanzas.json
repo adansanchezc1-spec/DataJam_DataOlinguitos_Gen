@@ -1,0 +1,85 @@
+{
+  "dataset": "finanzas_vendedores_informales_rivi",
+  "total_rows": 126,
+  "total_columns": 7,
+  "duplicated_rows": 0,
+  "pct_duplicated": 0.0,
+  "high_null_columns": [
+    "ï»¿NumeroLocalidad"
+  ],
+  "territorial_columns_detected": [
+    "NumeroLocalidad",
+    "NombreLocalidad",
+    "ï»¿NumeroLocalidad"
+  ],
+  "territorial_validation": {
+    "exists": true,
+    "column": "NumeroLocalidad",
+    "localidades_encontradas": [
+      "ANTONIO NARINO",
+      "BARRIOS UNIDOS",
+      "BOSA",
+      "CHAPINERO",
+      "CIUDAD BOLIVAR",
+      "ENGATIVA",
+      "FONTIBON",
+      "KENNEDY",
+      "LA CANDELARIA",
+      "LOS MARTIRES",
+      "PUENTE ARANDA",
+      "RAFAEL URIBE URIBE",
+      "SAN CRISTOBAL",
+      "SANTA FE",
+      "SUBA",
+      "SUMAPAZ",
+      "TEUSAQUILLO",
+      "TUNJUELITO",
+      "USAQUEN",
+      "USME"
+    ],
+    "total_localidades_detectadas": 20,
+    "cobertura_pct": 100.0,
+    "valores_no_reconocidos": [
+      "Candelaria",
+      "Rafael Uribe",
+      "metropolitana o no definida",
+      "160"
+    ]
+  },
+  "is_valid": true,
+  "validation_status": "APROBADO_CON_OBSERVACIONES",
+  "domain": "Finanzas e Inversión Pública",
+  "author": "Persona C (Sofía Hidalgo) & Persona A (Adan Sánchez)",
+  "temporalidad": "Series Semestrales 2017-2019 (IPES RIVI) y Corte 12.2025 (Inversión SED)",
+  "vigencia_fuente": "Serie Consolidada (6 semestres RIVI) + Vigente SED",
+  "indicadores_respaldados": [
+    {
+      "codigo": "FIN-001",
+      "nombre": "Inversión pública sectorial per cápita",
+      "formula_conceptual": "Presupuesto_Ejecutado_Localidad / Población_Localidad",
+      "variables_fuente": [
+        "inversion_educacion_por_localidad_12_2025.gpkg: inversion_total, cod_localidad"
+      ],
+      "denominador": "Población por localidad",
+      "unidad": "COP por habitante",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Cruza la ejecución presupuestal territorializada de educación con la población de cada localidad.",
+      "ejemplo_calculo_distrital": "Inversión educativa desagregada en las 20 localidades del Distrito."
+    },
+    {
+      "codigo": "FIN-002",
+      "nombre": "Presión de comercio informal RIVI por 10.000 habitantes",
+      "formula_conceptual": "(Conteo_Vendedores_Informales_RIVI / Población_Localidad) * 10.000",
+      "variables_fuente": [
+        "codigo_localidad",
+        "localidad",
+        "identificacion_persona"
+      ],
+      "denominador": "Población por localidad",
+      "unidad": "vendedores informales por 10.000 hab",
+      "estado_factibilidad": "LISTO_PARA_CALCULO",
+      "explicacion_derivacion": "Consolida los registros únicos RIVI de vendedores en el espacio público por localidad.",
+      "ejemplo_calculo_distrital": "Total registros RIVI consolidados: 126 registros semestrales."
+    }
+  ]
+}

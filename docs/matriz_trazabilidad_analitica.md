@@ -111,14 +111,18 @@ siguiente estructura:
 
 ---
 
-## 6. Plantilla de aplicación
+## 6. Matriz de Aplicación Consolidada
 
 | Problema público | Pregunta estratégica | Objetivo analítico | Datasets | Variables | Indicador | Índice | Visualización | Recomendación | Decisión pública | Indicador de seguimiento |
 |---|---|---|---|---|---|---|---|---|---|---|
-| | | | | | | | | | | |
-
-Esta plantilla deberá completarse progresivamente a medida que los datasets,
-indicadores y productos analíticos sean definidos y validados.
+| Capacidad sanitaria desigual | ¿Qué localidades tienen menor dotación de camas hospitalarias por habitante? | Medir la disponibilidad de camas por cada 10.000 habitantes | `SALUD/osb_tiporazoncamas.csv`, `DEMOGRAFIA/osb_demografia-poblacion-localidad.csv` | `camas_totales`, `poblacion` | `SAL-002`: Camas por 10.000 hab. | D1 Salud | Mapa de calor + Radar | Fortalecer y expandir la red de CAPS e infraestructura hospitalaria intermedia | Asignar recursos para ampliación de capacidad hospitalaria distrital | `SAL-002` interanual |
+| Déficit de oferta educativa oficial | ¿Dónde existe menor disponibilidad de cupos escolares respecto a la población infantil y juvenil? | Calcular la tasa de cupos escolares por cada 1.000 personas en edad escolar | `EDUCACION/ofertacupos_032025.geojson`, `DEMOGRAFIA/osb_demografia-poblacion-localidad.csv` | `cupos_ofertados`, `poblacion_5_17_anos` | `EDU-001`: Cupos por 1.000 hab. en edad escolar | D2 Educación | Barras ordenadas por localidad + Mapa | Focalizar ampliación de cobertura y convenios de infraestructura educativa | Priorizar construcción o ampliación de colegios distritales | Tasa de cobertura neta (`EDU-003`) |
+| Inaccesibilidad a transporte público masivo | ¿Qué localidades presentan menor densidad de estaciones y paraderos SITP por km²? | Evaluar la cobertura física y accesibilidad al sistema troncal y zonal | `MOVILIDAD/estaciones_troncales.geojson`, `MOVILIDAD/paraderos_zonales_sitp.gpkg`, `dim_territorio.csv` | `estaciones_count`, `paraderos_count`, `area_km2` | `MOV-002`: Densidad de puntos de acceso SITP/km² | D3 Movilidad | Mapa de isócronas y puntos de acceso | Reconfigurar rutas zonales y construir nuevas paradas de integración | Reestructurar malla de rutas zonales y alimentadoras | Tiempo promedio de viaje (`MOV-001`) |
+| Déficit de espacio público y recreación | ¿Qué zonas urbanas tienen menor área verde y parques por habitante? | Determinar los m² de parques efectivos por habitante según estándar OMS/POT | `INFRAESTRUCTURA_ESPACIO_PUBLICO/5.-parques-idrd.csv`, `DEMOGRAFIA/osb_demografia-poblacion-localidad.csv` | `area_parque_m2`, `poblacion` | `INF-004`: m² de espacio público por habitante | D4 Infraestructura | Mapa coroplético por cuartiles | Priorizar intervención en parques vecinales y cesiones públicas | Ejecutar planes de adquisición y adecuación de espacio público | m² habilitados por año |
+| Conflictividad ambiental y calidad del aire | ¿Qué localidades concentran mayores situaciones ambientales conflictivas y estaciones críticas de RMCAB? | Cuantificar el número de SAC y nivel de exposición por localidad | `AMBIENTE/situacion_ambiental_conflictiva.geojson`, `AMBIENTE/estacion_calidad_aire.geojson` | `codigo_sac`, `grupo_sac`, `cod_locali` | `AMB-001`: Densidad de conflictos ambientales/km² | D5 Ambiente | Mapa de calor de eventos SAC | Implementar operativos de control de emisiones y gestión comunitaria de residuos | Planes de choque de descontaminación y control ambiental | Reducción en reporte de SACs |
+| Vulnerabilidad económica y comercio informal | ¿En qué localidades se concentra la población vendedora informal sin infraestructura de apoyo? | Medir la intensidad de vendedores informales por cada 10.000 habitantes | `FINANZAS/vendedores_informales_consolidado.csv`, `FINANZAS/Punto de encuentro vendedores.xlsx`, `DEMOGRAFIA/osb_demografia-poblacion-localidad.csv` | `numero_vendedores`, `puntos_encuentro_count`, `poblacion` | `FIN-003`: Vendedores informales por 10.000 hab. | D6 Finanzas / Equidad | Gráfico de dispersión (Vendedores vs. Puntos IPES) | Habilitar nuevos puntos de encuentro fijos y microcréditos productivos | Construir ferias institucionales y centros de formalización comercial | Tasa de formalización y uso de puntos IPES |
+| Presencia y cobertura de seguridad preventiva | ¿Qué localidades cuentan con menor cantidad de cuadrantes de vigilancia por habitante? | Evaluar la ratio de cuadrantes policiales por cada 10.000 habitantes | `SEGURIDAD/Cuadrante de Policía. Bogotá D.C.csv`, `DEMOGRAFIA/osb_demografia-poblacion-localidad.csv` | `cuadrantes_count`, `poblacion` | `SEG-001`: Cuadrantes por 10.000 habitantes | D7 Seguridad | Mapa territorial de cobertura policial | Reasignar cuadrantes y fortalecer equipamientos de vigilancia comunitaria | Redistribuir pie de fuerza y cámaras de videovigilancia | Tasa de respuesta policial a cuadrantes |
+| Desbalance entre necesidad e inversión pública | ¿En qué localidades la vulnerabilidad multidimensional no se corresponde con los recursos invertidos? | Integrar el IPT multidimensional y contrastarlo con la inversión ejecutada | `data/curated/master_localidades.csv`, `EDUCACION/inversion_educacion_por_localidad_12_2025.gpkg` | `ipt_score`, `inversion_per_capita` | `IPT-001`: Índice de Prioridad Territorial (0–100) | IPT General | Cuadrante de Priorización (Necesidad vs. Inversión) | Redireccionar partidas presupuestales a las localidades en cuadrante crítico | Rebalanceo presupuestal en el Plan de Desarrollo Distrital | Variación del IPT en el siguiente cuatrienio |
 
 ---
 
@@ -233,14 +237,10 @@ mínimo:
 
 ## 11. Estado actual
 
-- Lógica de trazabilidad: definida.
-- Problemas públicos iniciales: definidos.
-- Preguntas estratégicas iniciales: definidas.
-- Indicadores candidatos iniciales: definidos.
-- Índices o dimensiones iniciales: definidos.
-- Decisiones públicas iniciales: definidas.
-- Datasets definitivos por análisis: pendiente.
-- Variables definitivas por análisis: pendiente.
-- Objetivos analíticos específicos por fila: pendiente de formalización.
-- Visualizaciones definitivas: pendientes.
-- Indicadores de seguimiento: pendientes.
+- Lógica de trazabilidad: **Completada y formalizada.**
+- Problemas públicos priorizados: **8 problemas sectoriales formalizados.**
+- Preguntas estratégicas operativas: **Definidas para 8 dominios.**
+- Indicadores base: **Fórmulas y variables de entrada asociadas a datasets reales.**
+- Dimensiones del IPT: **D1 Salud, D2 Educación, D3 Movilidad, D4 Infraestructura, D5 Ambiente, D6 Finanzas, D7 Seguridad.**
+- Decisiones públicas e indicadores de seguimiento: **Formalizados en la Matriz de Aplicación.**
+- Implementación en pipeline: **Módulos `src/modeling/` y `src/visualization/` en fase de integración.**
