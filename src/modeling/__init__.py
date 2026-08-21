@@ -1,19 +1,21 @@
-"""Paquete de Modelado Territorial e Indicadores SIPTA."""
+"""Utilidades públicas para el cálculo de indicadores territoriales."""
 
 from src.modeling.calculate_indicators import (
-    build_ipt_composite_index,
-    calculate_camas_por_10000,
-    calculate_cupos_por_1000,
+    build_consolidated_locality_metrics,
+    build_ipt,
+    camas_por_10000,
     calculate_multidimensional_ipt,
+    cupos_por_1000,
     normalize_min_max,
-    save_curated_table,
+    save_indicator_table,
 )
 
 __all__ = [
-    "build_ipt_composite_index",
-    "calculate_camas_por_10000",
-    "calculate_cupos_por_1000",
+    "build_consolidated_locality_metrics",
+    "build_ipt",
+    "camas_por_10000",
     "calculate_multidimensional_ipt",
+    "cupos_por_1000",
     "normalize_min_max",
-    "save_curated_table",
+    "save_indicator_table",
 ]
