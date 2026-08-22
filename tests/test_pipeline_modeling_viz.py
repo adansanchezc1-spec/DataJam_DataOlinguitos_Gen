@@ -147,20 +147,136 @@ class TestPipelineModelingViz:
         assert ranked["localidad"].iloc[1] == "Bosa"
         assert ranked["localidad"].iloc[2] == "Usaquén"
 
-    def test_multidimensional_ipt_and_locality_metrics(self) -> None:
-        """Verifica la construcción de la matriz consolidada de 20 localidades y cálculo del IPT."""
-        from src.modeling.calculate_indicators import build_consolidated_locality_metrics, calculate_multidimensional_ipt
+        def test_multidimensional_ipt_and_locality_metrics(self) -> None:
+            """Verifica las 20 localidades y el cálculo reproducible del IPT."""
 
-        metrics = build_consolidated_locality_metrics()
-        assert len(metrics) == 20
-        assert "codigo_localidad" in metrics.columns
-        assert "cobertura_acueducto_pct" in metrics.columns
+            from src.modeling.calculate_indicators import (
+                build_consolidated_locality_metrics,
+                calculate_consensus_priority,
+                calculate_multidimensional_ipt,
+            )
 
-        ipt_df = calculate_multidimensional_ipt(metrics)
-        assert len(ipt_df) == 20
-        assert "IPT_MULTIDIMENSIONAL" in ipt_df.columns
-        assert "RANKING_PRIORIDAD" in ipt_df.columns
-        assert "NIVEL_PRIORIDAD" in ipt_df.columns
-        assert ipt_df["RANKING_PRIORIDAD"].min() == 1
-        assert ipt_df["RANKING_PRIORIDAD"].max() <= 20
+            metrics = build_consolidated_locality_metrics()
+
+            dimension_columns = [
+                "dim_educacion",
+                "dim_salud",
+                "dim_movilidad",
+                "dim_ambiente",
+                "dim_infraestructura",
+                "dim_vulnerabilidad",
+                "dim_seguridad",
+            ]
+
+            assert len(metrics) == 20
+            assert metrics["codigo_localidad"].is_unique
+            assert metrics["localidad"].is_unique
+
+            assert set(dimension_columns).issubset(
+                metrics.columns
+            )
+
+            assert metrics[
+                dimension_columns
+            ].notna().all().all()
+
+            assert metrics[
+                dimension_columns
+            ].ge(0).all().all()
+
+            assert metrics[
+                dimension_columns
+            ].le(1).all().all()
+
+            ipt_df = calculate_multidimensional_ipt(
+                metrics
+            )
+
+            assert len(ipt_df) == 20
+            assert "IPT_MULTIDIMENSIONAL" in ipt_df.columns
+            assert "RANKING_PRIORIDAD" in ipt_df.columns
+            assert "NIVEL_PRIORIDAD" in ipt_df.columns
+
+            assert ipt_df[
+                "IPT_MULTIDIMENSIONAL"
+            ].between(0, 100).all()
+
+            assert ipt_df[
+                "RANKING_PRIORIDAD"
+            ].is_unique
+
+            assert set(
+                ipt_df["RANKING_PRIORIDAD"]
+            ) == set(range(1, 21))
+
+            maximum_difference = (
+                ipt_df["IPT_MULTIDIMENSIONAL"]
+                - metrics["ipt_base"]
+            ).abs().max()
+
+            assert maximum_difference < 1e-6
+
+            ranking_columns = [
+                column
+                for column in metrics.columns
+                if column.startswith("ranking_ipt_")
+            ]
+
+            assert len(ranking_columns) == 5
+
+            prioritized = calculate_consensus_priority(
+                ipt_df,
+                ranking_cols=ranking_columns,
+            )
+
+            assert prioritized[
+                "ranking_consenso"
+            ].is_unique
+
+            assert set(
+                prioritized["ranking_consenso"]
+            ) == set(range(1, 21))
+
+            expected_distribution = {
+                "Alta": 5,
+                "Media-alta": 5,
+                "Media": 5,
+                "Baja": 5,
+            }
+
+            observed_distribution = (
+                prioritized[
+                    "nivel_prioridad_consenso"
+                ]
+                .value_counts()
+                .to_dict()
+            )
+
+            assert (
+                observed_distribution
+                == expected_distribution
+            )
+
+            high_priority_high_confidence = set(
+                prioritized.loc[
+                    (
+                        prioritized[
+                            "nivel_prioridad_consenso"
+                        ].eq("Alta")
+                    )
+                    & (
+                        prioritized[
+                            "confianza_priorizacion"
+                        ].eq("Alta")
+                    ),
+                    "localidad",
+                ]
+            )
+
+            assert high_priority_high_confidence == {
+                "USME",
+                "RAFAEL URIBE URIBE",
+                "SUBA",
+                "SAN CRISTOBAL",
+            }
 

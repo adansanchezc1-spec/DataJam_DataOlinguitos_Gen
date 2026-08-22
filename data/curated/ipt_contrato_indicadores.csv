@@ -1,0 +1,9 @@
+﻿dimension,indicador,score,direccion,periodo,limitacion
+educacion,oferta_regular_por_1000_pob_5_17,score_educacion,inversa,2025-03-31,"Oferta registrada, no matrícula efectiva"
+salud,sedes_ips_por_10000_hab,score_salud,inversa,Vigente 2025,"Sedes registradas, no hospitales ni camas"
+movilidad,estaciones_por_km2,score_estaciones,inversa,2025-2026,"Cobertura física, no tiempos de viaje"
+movilidad,paraderos_por_km2,score_paraderos,inversa,2025-2026,"Cobertura física, no frecuencia del servicio"
+ambiente,conflictos_ambientales_por_km2,score_ambiente,directa,2020-2025,"Registros clasificados, no severidad"
+infraestructura,parques_por_10000_hab_proxy,score_infraestructura,inversa,2024-2025,Proxy de conteo; no representa área ni calidad
+vulnerabilidad,rivi_por_10000_hab_2017_2019,score_vulnerabilidad,directa,2017-2019,Indicador histórico con desfase temporal
+seguridad,cuadrantes_por_10000_hab_2026,score_seguridad,inversa,2026-06-30,"Disponibilidad operativa, no incidencia delictiva"
