@@ -63,6 +63,7 @@
       "status": "complete",
       "files": [
         "docs/03-development/dev-log.md",
+        "docs/03-development/formulacion_matematica_ipt.md",
         "docs/03-development/api-docs.md",
         "docs/03-development/analisis_exploratorio_nuevos_dominios.md",
         "docs/03-development/technical-debt.md",

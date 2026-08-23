@@ -30,6 +30,7 @@ docs/
 │
 ├── 03-development/                         ← FASE DEVELOPMENT: Implementación y EDA
 │   ├── dev-log.md                          ← Bitácora de desarrollo y atribución Git
+│   ├── formulacion_matematica_ipt.md       ← Formulación matemática y metodológica del IPT
 │   ├── api-docs.md                         ← Documentación técnica de módulos src/
 │   ├── analisis_exploratorio_nuevos_dominios.md ← Síntesis exploratoria y brechas territoriales
 │   └── technical-debt.md                   ← Análisis de deuda técnica y buenas prácticas
