@@ -6,6 +6,7 @@
 **Estilo Arquitectónico**: Arquitectura Hexagonal / Pipeline Modular por Capas  
 **Autores**: Persona A (Adan Sánchez) & Persona B (Yesid Bello)  
 
+
 ---
 
 ## 1. Visión General del Sistema
