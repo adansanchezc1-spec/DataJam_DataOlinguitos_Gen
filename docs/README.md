@@ -30,6 +30,7 @@ docs/
 │
 ├── 03-development/                         ← FASE DEVELOPMENT: Implementación y EDA
 │   ├── dev-log.md                          ← Bitácora de desarrollo y atribución Git
+│   ├── manual_calculo_indices_territoriales.md ← Manual técnico de cálculo de índices territoriales
 │   ├── formulacion_matematica_ipt.md       ← Formulación matemática y metodológica del IPT
 │   ├── api-docs.md                         ← Documentación técnica de módulos src/
 │   ├── analisis_exploratorio_nuevos_dominios.md ← Síntesis exploratoria y brechas territoriales
