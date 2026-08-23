@@ -2,6 +2,14 @@
 
 Todos los cambios notables de este proyecto se documentan en este archivo siguiendo [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2.3.0] - 2026-08-23
+### Añadido / Optimizado
+- **Reorganización Documental Canónica**: Reubicación y consolidación de todos los documentos técnicos en las 5 carpetas PDCO (`01-requirements`, `02-architecture`, `03-development`, `04-testing`, `05-maintenance`), eliminando ficheros sueltos en `docs/`.
+- **Estandarización de READMEs**: Creación y actualización integral de los `README.md` de cada módulo (`docs/`, `01-requirements/`, `02-architecture/`, `03-development/`, `04-testing/`, `05-maintenance/`, `src/`, `tests/`, `notebooks/`, `reports/`, raíz).
+- **Motor de Tablas Maestras por Dominio (`src/modeling/domain_indicators.py`)**: Implementación modular para extraer, derivar y persistir 12 tablas temáticas curadas por dominio territorial para las 20 localidades D.C.
+- **Cuaderno de Modelado IPT (`notebooks/04_modeling/01_modeling_ipt.ipynb`)**: Integración de la generación automática de tablas por dominio y formateo de ecuaciones matemáticas en bloques LaTeX.
+- **Control de Calidad**: Suite ampliada con aserciones automatizadas para las 12 tablas temáticas en `tests/test_pipeline_modeling_viz.py`.
+
 ## [2.2.0] - 2026-08-19
 ### Añadido / Consolidado
 - **Cierre Sprint 1 (Integración Territorial)**: Implementación de `build_master_table()` en `src/integration/integrate_data.py` integrando 20 localidades canónicas x 54 variables territoriales.

@@ -1,0 +1,21 @@
+﻿codigo_localidad,nombre_localidad,codigo_divipola,poblacion,total_pqr_recibidas,pqr_por_10k_hab,pqr_resueltas_a_tiempo_pct,tema_frecuente_1,tema_frecuente_2,tema_frecuente_3
+1,USAQUEN,1100101,550679,8420,152.90214444349613,88.5,Ruido y espacio público,Aseo y basuras,Seguridad y convivencia
+2,CHAPINERO,1100102,148068,6950,469.3789340032957,91.2,Ruido y espacio público,Aseo y basuras,Seguridad y convivencia
+3,SANTA FE,1100103,111539,4820,432.1358448614386,84.1,Ruido y espacio público,Aseo y basuras,Seguridad y convivencia
+4,SAN CRISTOBAL,1100104,383234,7150,186.57008511770877,79.5,Malla vial y huecos,Aseo y basuras,Seguridad y convivencia
+5,USME,1100105,414363,8920,215.2701858032691,76.2,Malla vial y huecos,Aseo y basuras,Seguridad y convivencia
+6,TUNJUELITO,1100106,167024,5640,337.6760226075295,82.4,Ruido y espacio público,Aseo y basuras,Seguridad y convivencia
+7,BOSA,1100107,801054,14200,177.26645145021436,78.9,Malla vial y huecos,Aseo y basuras,Seguridad y convivencia
+8,KENNEDY,1100108,1091115,18900,173.21730523363715,80.2,Malla vial y huecos,Aseo y basuras,Seguridad y convivencia
+9,FONTIBON,1100109,366152,8210,224.2238196158972,89.4,Ruido y espacio público,Aseo y basuras,Seguridad y convivencia
+10,ENGATIVA,1100110,795153,14500,182.35484240139948,86.8,Malla vial y huecos,Aseo y basuras,Seguridad y convivencia
+11,SUBA,1100111,1232535,19800,160.64452530759775,87.5,Malla vial y huecos,Aseo y basuras,Seguridad y convivencia
+12,BARRIOS UNIDOS,1100112,125963,6420,509.67347554440585,92.1,Ruido y espacio público,Aseo y basuras,Seguridad y convivencia
+13,TEUSAQUILLO,1100113,145356,6120,421.0352513828119,94.2,Ruido y espacio público,Aseo y basuras,Seguridad y convivencia
+14,LOS MARTIRES,1100114,73251,4950,675.7586927140927,81.5,Ruido y espacio público,Aseo y basuras,Seguridad y convivencia
+15,ANTONIO NARINO,1100115,69825,5120,733.2617257429288,85.4,Ruido y espacio público,Aseo y basuras,Seguridad y convivencia
+16,PUENTE ARANDA,1100116,238779,7450,312.0039869502762,88.9,Ruido y espacio público,Aseo y basuras,Seguridad y convivencia
+17,LA CANDELARIA,1100117,15048,2150,1428.7612971823498,89.5,Ruido y espacio público,Aseo y basuras,Seguridad y convivencia
+18,RAFAEL URIBE URIBE,1100118,357395,9850,275.6054225716644,77.8,Malla vial y huecos,Aseo y basuras,Seguridad y convivencia
+19,CIUDAD BOLIVAR,1100119,724113,16400,226.48398799634865,74.5,Malla vial y huecos,Aseo y basuras,Seguridad y convivencia
+20,SUMAPAZ,1100120,3678,680,1848.8308863512775,82.0,Ruido y espacio público,Aseo y basuras,Seguridad y convivencia

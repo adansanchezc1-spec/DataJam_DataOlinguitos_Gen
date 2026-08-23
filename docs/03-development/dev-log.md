@@ -121,3 +121,26 @@
 6. **Validación de Calidad y Pruebas Unitarias**:
    - Pruebas en `tests/test_pipeline_modeling_viz.py` ampliadas y aprobadas al 100%. Suite global operativa con 104/104 tests pasados.
 
+---
+
+## 7. Reorganización Documental Canónica y Motor de Tablas Maestras por Dominio
+
+**Fecha**: 2026-08-23  
+**Responsable**: Persona A (Adan Sánchez - Scrum Master & Lead Data Engineer)  
+**Fase PDCO**: DEVELOPMENT → CONTROL  
+
+### Actividades y Entregables Completados:
+1. **Reorganización Documental PDCO (`docs/`)**:
+   - Reubicación de ficheros sueltos en `docs/01-requirements/` y `docs/05-maintenance/`.
+   - Eliminación de archivos redundantes en la raíz de `docs/`.
+   - Creación y estandarización integral de `README.md` para las 5 fases PDCO, `src/`, `tests/`, `notebooks/` y `reports/`.
+2. **Motor de Tablas Maestras por Dominio (`src/modeling/domain_indicators.py`)**:
+   - Implementación de extractores y constructores temáticos para los 12 dominios territoriales.
+   - Generación de 12 tablones curados (`data/curated/master_*.csv`) con cobertura del 100% de las 20 localidades D.C.
+   - Generación de `data/curated/master_indicadores_territoriales.csv` como matriz consolidada de analítica territorial.
+3. **Actualización del Notebook de Modelado (`notebooks/04_modeling/01_modeling_ipt.ipynb`)**:
+   - Incorporación de celdas ejecutables para generar los 12 tablones temáticos por dominio y renderizado de fórmulas en bloques LaTeX.
+4. **Validación y Pruebas Unitarias**:
+   - Suite ampliada con prueba automatizada para las 12 tablas temáticas en `tests/test_pipeline_modeling_viz.py`.
+   - 105/105 pruebas unitarias automatizadas aprobadas exitosamente (`pytest -v`).
+

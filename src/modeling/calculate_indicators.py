@@ -444,10 +444,21 @@ def save_indicator_table(df: pd.DataFrame, filename: str) -> Path:
 
 
 if __name__ == "__main__":
+    from src.modeling.domain_indicators import build_all_domain_tables
+
     print("Consolidando métricas e indicadores multidimensionales SIPTA...")
     metrics_df = build_consolidated_locality_metrics()
     ipt_df = calculate_multidimensional_ipt(metrics_df)
     out_file = save_indicator_table(ipt_df, "matriz_indicadores_ipt_multidimensional.csv")
     print(f"Matriz consolidada e IPT calculados exitosamente en: {out_file}")
-    print(ipt_df[["codigo_localidad", "nombre_localidad", "IPT_MULTIDIMENSIONAL", "RANKING_PRIORIDAD", "NIVEL_PRIORIDAD"]].sort_values("RANKING_PRIORIDAD").head(10))
+
+    print("\nGenerando tablas maestras por cada dominio territorial...")
+    domain_tables = build_all_domain_tables(export_curated=True)
+    print(f"Generadas exitosamente {len(domain_tables)} tablas maestras por dominio en data/curated/.")
+
+    print("\nTop 10 Localidades Priorizadas:")
+    display_cols = ["codigo_localidad", "localidad", "IPT_MULTIDIMENSIONAL", "RANKING_PRIORIDAD", "NIVEL_PRIORIDAD"]
+    existing_display_cols = [c for c in display_cols if c in ipt_df.columns]
+    print(ipt_df[existing_display_cols].sort_values("RANKING_PRIORIDAD").head(10))
+
 

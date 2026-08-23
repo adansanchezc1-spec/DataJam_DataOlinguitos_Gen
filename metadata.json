@@ -1,10 +1,10 @@
 {
   "project": "DataJam_DataOlinguitos_Gen",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Pipeline y plataforma SIPTA (Sistema de Indicadores y Priorización Territorial y Alertas Tempranas)",
   "pdco_phase": "CONTROL",
-  "active_skill": "04-testing",
-  "sdlc_stage": "testing",
+  "active_skill": "03-development",
+  "sdlc_stage": "implementation_and_testing",
   "last_updated": "2026-08-23",
   "team": {
     "lead": "Persona A (ADAN - Scrum Master & Lead Data Engineer)",
@@ -28,6 +28,7 @@
     "01-requirements": {
       "status": "complete",
       "files": [
+        "docs/01-requirements/README.md",
         "docs/01-requirements/requirements.md",
         "docs/01-requirements/use-cases.md",
         "docs/01-requirements/entity-map.md",
@@ -42,6 +43,7 @@
         "docs/01-requirements/fichas_tecnicas_indicadores_base.md",
         "docs/01-requirements/fichas_tecnicas_nuevos_dominios.md",
         "docs/01-requirements/evaluacion_calidad_datasets_consolidada.md",
+        "docs/01-requirements/plantilla_evaluacion_calidad.md",
         "docs/01-requirements/diagrams/use-case-diagram.md",
         "docs/01-requirements/diagrams/activity-diagram.md"
       ]
@@ -49,6 +51,7 @@
     "02-architecture": {
       "status": "complete",
       "files": [
+        "docs/02-architecture/README.md",
         "docs/02-architecture/architecture.md",
         "docs/02-architecture/patterns.md",
         "docs/02-architecture/ADR/ADR-001.md",
@@ -62,31 +65,22 @@
     "03-development": {
       "status": "complete",
       "files": [
+        "docs/03-development/README.md",
         "docs/03-development/dev-log.md",
         "docs/03-development/manual_calculo_indices_territoriales.md",
         "docs/03-development/formulacion_matematica_ipt.md",
         "docs/03-development/api-docs.md",
         "docs/03-development/analisis_exploratorio_nuevos_dominios.md",
         "docs/03-development/technical-debt.md",
-        "docs/diccionario_datos.md",
-        "scripts/download_missing_data.py",
-        "scripts/prepare_education_geojson.py",
-        "src/ingest.py",
-        "src/cleaning.py",
-        "src/features.py",
-        "src/evaluation.py",
-        "src/visualization.py",
-        "src/integration.py",
-        "src/pipeline.py",
-        "src/geospatial_cleaning.py",
-        "src/eda/readers.py",
-        "src/eda/quality.py",
-        "src/eda/profiling.py",
-        "src/eda/spatial.py",
-        "src/eda/viz.py",
-        "src/eda/explore_indicators.py",
+        "src/ingestion/ingest_data.py",
         "src/validation/validate_data.py",
+        "src/cleaning/clean_data.py",
+        "src/integration/integrate_data.py",
+        "src/features/feature_engineering.py",
         "src/modeling/calculate_indicators.py",
+        "src/modeling/domain_indicators.py",
+        "src/evaluation/evaluate_results.py",
+        "src/visualization/prepare_visualization.py",
         "notebooks/01_ingestion/00_ingestion_eda_master.ipynb",
         "notebooks/01_ingestion/01_ingestion_demografia.ipynb",
         "notebooks/01_ingestion/02_ingestion_salud.ipynb",
@@ -105,14 +99,29 @@
         "data/curated/ipt_contrato_indicadores.csv",
         "data/curated/ipt_indicadores_localidad.csv",
         "data/curated/ipt_modelo_localidad.csv",
-        "data/curated/ipt_priorizacion_localidades.csv"
+        "data/curated/ipt_priorizacion_localidades.csv",
+        "data/curated/master_demografia.csv",
+        "data/curated/master_salud.csv",
+        "data/curated/master_educacion.csv",
+        "data/curated/master_movilidad.csv",
+        "data/curated/master_ambiente.csv",
+        "data/curated/master_infraestructura.csv",
+        "data/curated/master_finanzas.csv",
+        "data/curated/master_vulnerabilidad_social.csv",
+        "data/curated/master_seguridad.csv",
+        "data/curated/master_servicios_publicos.csv",
+        "data/curated/master_empleo_economia.csv",
+        "data/curated/master_participacion.csv",
+        "data/curated/master_indicadores_territoriales.csv"
       ]
     },
     "04-testing": {
       "status": "complete",
       "files": [
+        "docs/04-testing/README.md",
         "docs/04-testing/test-plan.md",
         "docs/04-testing/test-results.md",
+        "tests/README.md",
         "tests/test_cleaning.py",
         "tests/test_features.py",
         "tests/test_evaluation.py",
@@ -149,11 +158,14 @@
     "05-maintenance": {
       "status": "complete",
       "files": [
+        "docs/05-maintenance/README.md",
         "docs/05-maintenance/changelog.md",
         "docs/05-maintenance/refactoring-log.md",
+        "docs/05-maintenance/migration_manifest.md",
         "reports/README.md",
         "reports/inventory/inventario_datasets_sipta.csv",
-        "notebooks/README.md"
+        "notebooks/README.md",
+        "src/README.md"
       ]
     }
   },
