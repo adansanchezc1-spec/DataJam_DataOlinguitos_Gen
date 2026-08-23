@@ -75,109 +75,363 @@ def build_ipt(
     return ipt
 
 
-def build_consolidated_locality_metrics() -> pd.DataFrame:
-    """Consolida la matriz multidimensional de indicadores para las 20 localidades de Bogotá."""
-    # 1. Base territorial
-    localidades = [
-        (1, "Usaquén", 1100101), (2, "Chapinero", 1100102), (3, "Santa Fe", 1100103),
-        (4, "San Cristóbal", 1100104), (5, "Usme", 1100105), (6, "Tunjuelito", 1100106),
-        (7, "Bosa", 1100107), (8, "Kennedy", 1100108), (9, "Fontibón", 1100109),
-        (10, "Engativá", 1100110), (11, "Suba", 1100111), (12, "Barrios Unidos", 1100112),
-        (13, "Teusaquillo", 1100113), (14, "Los Mártires", 1100114), (15, "Antonio Nariño", 1100115),
-        (16, "Puente Aranda", 1100116), (17, "La Candelaria", 1100117), (18, "Rafael Uribe Uribe", 1100118),
-        (19, "Ciudad Bolívar", 1100119), (20, "Sumapaz", 1100120)
-    ]
-    df = pd.DataFrame(localidades, columns=["codigo_localidad", "nombre_localidad", "codigo_divipola"])
+DIMENSION_COLUMNS = (
+    "dim_educacion",
+    "dim_salud",
+    "dim_movilidad",
+    "dim_ambiente",
+    "dim_infraestructura",
+    "dim_vulnerabilidad",
+    "dim_seguridad",
+)
 
-    # 2. Cruce con Servicios Públicos
-    serv_path = ROOT / "data" / "raw" / "SERVICIOS_PUBLICOS" / "eaab_cobertura_acueducto_localidad.csv"
-    if serv_path.exists():
-        df_serv = pd.read_csv(serv_path)
-        df = df.merge(df_serv[["codigo_localidad", "cobertura_acueducto_pct", "cobertura_alcantarillado_pct", "horas_interrupcion_promedio_mes"]], on="codigo_localidad", how="left")
 
-    # 3. Cruce con Inversión FDL
-    fdl_path = ROOT / "data" / "raw" / "FINANZAS_INVERSION_PUBLICA" / "inversion_fondos_desarrollo_local_fdl.csv"
-    if fdl_path.exists():
-        df_fdl = pd.read_csv(fdl_path)
-        df = df.merge(df_fdl[["codigo_localidad", "presupuesto_ejecutado_millones", "porcentaje_ejecucion_fdl"]], on="codigo_localidad", how="left")
+def build_consolidated_locality_metrics(
+    source: pd.DataFrame | str | Path | None = None,
+) -> pd.DataFrame:
+    """Carga y valida la matriz territorial consolidada del IPT.
 
-    # 4. Cruce con Empleo y Conmutación
-    emp_path = ROOT / "data" / "raw" / "EMPLEO_ECONOMIA" / "conmutacion_laboral_residencia_trabajo_localidad.csv"
-    if emp_path.exists():
-        df_emp = pd.read_csv(emp_path)
-        df = df.merge(df_emp[["codigo_localidad", "ocupados_trabajan_en_su_localidad_pct", "tiempo_promedio_desplazamiento_laboral_min"]], on="codigo_localidad", how="left")
+    Si ``source`` no se proporciona, se utiliza la tabla curada generada
+    por el notebook de modelado. La función no inventa observaciones,
+    valores faltantes ni ponderaciones.
+    """
 
-    sal_path = ROOT / "data" / "raw" / "EMPLEO_ECONOMIA" / "ingreso_promedio_salario_ocupados_localidad.csv"
-    if sal_path.exists():
-        df_sal = pd.read_csv(sal_path)
-        df = df.merge(df_sal[["codigo_localidad", "ingreso_laboral_promedio_ocupados_cop", "tasa_informalidad_laboral_pct", "tasa_desempleo_pct"]], on="codigo_localidad", how="left")
+    if source is None:
+        source = (
+            ROOT
+            / "data"
+            / "curated"
+            / "ipt_modelo_localidad.csv"
+        )
 
-    # 5. Cruce con Seguridad (Delitos)
-    seg_path = ROOT / "data" / "raw" / "SEGURIDAD" / "delitos_alto_impacto_localidad_2024_2026.csv"
-    if seg_path.exists():
-        df_seg = pd.read_csv(seg_path)
-        df = df.merge(df_seg[["codigo_localidad", "tasa_delitos_alto_impacto_por_100k_hab", "homicidios_anual"]], on="codigo_localidad", how="left")
+    if isinstance(source, pd.DataFrame):
+        df = source.copy()
+    else:
+        source_path = Path(source)
 
-    # 6. Cruce con PQR
-    pqr_path = ROOT / "data" / "raw" / "PARTICIPACION_CIUDADANA" / "pqr_bogota_te_escucha_por_localidad.csv"
-    if pqr_path.exists():
-        df_pqr = pd.read_csv(pqr_path)
-        df = df.merge(df_pqr[["codigo_localidad", "total_pqr_recibidas", "pqr_resueltas_a_tiempo_pct"]], on="codigo_localidad", how="left")
+        if not source_path.exists():
+            raise FileNotFoundError(
+                f"No existe la matriz territorial: {source_path}"
+            )
 
-    # 7. Cruce con Salud y Educación
-    salud_path = ROOT / "data" / "raw" / "SALUD" / "capacidad_camas_asistencial_localidad.csv"
-    if salud_path.exists():
-        df_salud = pd.read_csv(salud_path)
-        df = df.merge(df_salud[["codigo_localidad", "camas_por_10000_habitantes"]], on="codigo_localidad", how="left")
+        df = pd.read_csv(
+            source_path,
+            encoding="utf-8-sig",
+            dtype={"codigo_localidad": "string"},
+        )
 
-    edu_path = ROOT / "data" / "raw" / "EDUCACION" / "calidad_educativa_saber11_retencion_localidad.csv"
-    if edu_path.exists():
-        df_edu = pd.read_csv(edu_path)
-        df = df.merge(df_edu[["codigo_localidad", "puntaje_promedio_saber_11", "tasa_desercion_escolar_pct"]], on="codigo_localidad", how="left")
+    required_columns = {
+        "codigo_localidad",
+        "localidad",
+        *DIMENSION_COLUMNS,
+    }
+
+    missing_columns = sorted(
+        required_columns.difference(df.columns)
+    )
+
+    if missing_columns:
+        raise ValueError(
+            "La matriz territorial no contiene las columnas "
+            f"requeridas: {missing_columns}"
+        )
+
+    df["codigo_localidad"] = (
+        df["codigo_localidad"]
+        .astype("string")
+        .str.zfill(2)
+    )
+
+    if len(df) != 20:
+        raise ValueError(
+            "La matriz territorial debe contener exactamente "
+            f"20 localidades; se encontraron {len(df)}."
+        )
+
+    if df["codigo_localidad"].duplicated().any():
+        duplicated_codes = (
+            df.loc[
+                df["codigo_localidad"].duplicated(
+                    keep=False
+                ),
+                "codigo_localidad",
+            ]
+            .tolist()
+        )
+
+        raise ValueError(
+            "Existen códigos de localidad duplicados: "
+            f"{duplicated_codes}"
+        )
+
+    dimension_values = df[
+        list(DIMENSION_COLUMNS)
+    ].apply(
+        pd.to_numeric,
+        errors="coerce",
+    )
+
+    if dimension_values.isna().any().any():
+        columns_with_missing = (
+            dimension_values
+            .columns[
+                dimension_values.isna().any()
+            ]
+            .tolist()
+        )
+
+        raise ValueError(
+            "Las dimensiones contienen valores faltantes o "
+            f"no numéricos: {columns_with_missing}"
+        )
+
+    outside_interval = (
+        dimension_values.lt(0)
+        | dimension_values.gt(1)
+    )
+
+    if outside_interval.any().any():
+        invalid_columns = (
+            outside_interval
+            .columns[
+                outside_interval.any()
+            ]
+            .tolist()
+        )
+
+        raise ValueError(
+            "Las dimensiones deben estar normalizadas entre "
+            f"0 y 1: {invalid_columns}"
+        )
+
+    df.loc[:, list(DIMENSION_COLUMNS)] = (
+        dimension_values
+    )
 
     return df
 
 
-def calculate_multidimensional_ipt(df_metrics: pd.DataFrame) -> pd.DataFrame:
-    """Calcula el Índice de Prioridad Territorial (IPT) Multidimensional en escala 0 a 100."""
+def calculate_multidimensional_ipt(
+    df_metrics: pd.DataFrame,
+    dimension_cols: list[str] | tuple[str, ...] | None = None,
+) -> pd.DataFrame:
+    """Calcula el IPT base usando pesos iguales por dimensión.
+
+    Un valor alto representa una mayor prioridad territorial.
+    No se aplican imputaciones ni ponderaciones arbitrarias.
+    """
+
     df = df_metrics.copy()
 
-    # Dimensiones de Carencia y Vulnerabilidad (Mayor valor = Mayor prioridad de intervención)
-    carencias = {
-        "carencia_servicios": (100.0 - df["cobertura_acueducto_pct"].fillna(99.0)) + df["horas_interrupcion_promedio_mes"].fillna(0) * 5,
-        "vulnerabilidad_laboral": df["tasa_informalidad_laboral_pct"].fillna(40.0) + df["tasa_desempleo_pct"].fillna(10.0),
-        "inseguridad": df["tasa_delitos_alto_impacto_por_100k_hab"].fillna(50.0),
-        "tiempo_conmutacion": df["tiempo_promedio_desplazamiento_laboral_min"].fillna(45.0),
-        "rezago_educativo": (320.0 - df["puntaje_promedio_saber_11"].fillna(260.0)) + df["tasa_desercion_escolar_pct"].fillna(3.0) * 10,
-        "deficit_salud": 70.0 - df["camas_por_10000_habitantes"].fillna(15.0).clip(upper=70.0),
-        "alertas_ciudadanas_pqr": df["total_pqr_recibidas"].fillna(5000) / 200.0,
-    }
-
-    # Normalizar cada dimensión al rango [0, 1]
-    norm_dims = pd.DataFrame({k: normalize_min_max(v) for k, v in carencias.items()})
-
-    # Ponderaciones estratégicas
-    weights = {
-        "carencia_servicios": 0.20,
-        "vulnerabilidad_laboral": 0.20,
-        "inseguridad": 0.15,
-        "tiempo_conmutacion": 0.15,
-        "rezago_educativo": 0.10,
-        "deficit_salud": 0.10,
-        "alertas_ciudadanas_pqr": 0.10,
-    }
-    w_series = pd.Series(weights)
-    w_norm = w_series / w_series.sum()
-
-    df["IPT_MULTIDIMENSIONAL"] = (norm_dims.dot(w_norm) * 100.0).round(2)
-    df["RANKING_PRIORIDAD"] = df["IPT_MULTIDIMENSIONAL"].rank(ascending=False, method="min").astype(int)
-    
-    # Categorización del nivel de prioridad
-    df["NIVEL_PRIORIDAD"] = pd.cut(
-        df["IPT_MULTIDIMENSIONAL"],
-        bins=[-0.1, 30.0, 50.0, 70.0, 100.0],
-        labels=["Baja Prioridad", "Prioridad Moderada", "Alta Prioridad", "Prioridad Crítica"]
+    columns = list(
+        dimension_cols
+        if dimension_cols is not None
+        else DIMENSION_COLUMNS
     )
+
+    missing_columns = sorted(
+        set(columns).difference(df.columns)
+    )
+
+    if missing_columns:
+        raise ValueError(
+            "No están disponibles todas las dimensiones: "
+            f"{missing_columns}"
+        )
+
+    dimension_values = df[columns].apply(
+        pd.to_numeric,
+        errors="coerce",
+    )
+
+    if dimension_values.isna().any().any():
+        raise ValueError(
+            "No se puede calcular el IPT con dimensiones "
+            "faltantes o no numéricas."
+        )
+
+    outside_interval = (
+        dimension_values.lt(0)
+        | dimension_values.gt(1)
+    )
+
+    if outside_interval.any().any():
+        raise ValueError(
+            "Todas las dimensiones deben estar entre 0 y 1."
+        )
+
+    # Pesos iguales: 1 / número de dimensiones.
+    df["IPT_MULTIDIMENSIONAL"] = (
+        dimension_values
+        .mean(axis=1)
+        .mul(100)
+    )
+
+    order = (
+        df.sort_values(
+            [
+                "IPT_MULTIDIMENSIONAL",
+                "codigo_localidad",
+            ],
+            ascending=[False, True],
+            kind="mergesort",
+        )
+        .index
+    )
+
+    unique_ranking = pd.Series(
+        range(1, len(order) + 1),
+        index=order,
+        dtype="int64",
+    )
+
+    df["RANKING_PRIORIDAD"] = (
+        unique_ranking
+        .reindex(df.index)
+        .astype(int)
+    )
+
+    def classify_base_priority(ranking: int) -> str:
+        if ranking <= 5:
+            return "Alta"
+        if ranking <= 10:
+            return "Media-alta"
+        if ranking <= 15:
+            return "Media"
+        return "Baja"
+
+    df["NIVEL_PRIORIDAD"] = (
+        df["RANKING_PRIORIDAD"]
+        .apply(classify_base_priority)
+    )
+
+    return df
+
+
+def calculate_consensus_priority(
+    df_metrics: pd.DataFrame,
+    ranking_cols: list[str] | tuple[str, ...] | None = None,
+) -> pd.DataFrame:
+    """Calcula prioridad y confianza a partir de los escenarios.
+
+    El desempate utiliza primero el IPT base y después el código
+    de localidad, garantizando un orden único y reproducible.
+    """
+
+    df = df_metrics.copy()
+
+    if ranking_cols is None:
+        ranking_cols = [
+            column
+            for column in df.columns
+            if column.startswith("ranking_ipt_")
+        ]
+
+    ranking_cols = list(ranking_cols)
+
+    if len(ranking_cols) < 2:
+        raise ValueError(
+            "Se requieren por lo menos dos escenarios de ranking."
+        )
+
+    missing_columns = sorted(
+        set(ranking_cols).difference(df.columns)
+    )
+
+    if missing_columns:
+        raise ValueError(
+            "No se encontraron los rankings de escenarios: "
+            f"{missing_columns}"
+        )
+
+    if len(df) != 20:
+        raise ValueError(
+            "La priorización de consenso requiere "
+            "exactamente 20 localidades."
+        )
+
+    ranking_values = df[ranking_cols].apply(
+        pd.to_numeric,
+        errors="coerce",
+    )
+
+    if ranking_values.isna().any().any():
+        raise ValueError(
+            "Los rankings de escenarios contienen "
+            "valores faltantes o no numéricos."
+        )
+
+    df["ranking_promedio_escenarios"] = (
+        ranking_values.mean(axis=1)
+    )
+
+    df["apariciones_top5"] = (
+        ranking_values.le(5)
+        .sum(axis=1)
+        .astype(int)
+    )
+
+    base_ranking_column = (
+        "ranking_ipt_base"
+        if "ranking_ipt_base" in df.columns
+        else ranking_cols[0]
+    )
+
+    consensus_order = (
+        df.sort_values(
+            [
+                "ranking_promedio_escenarios",
+                base_ranking_column,
+                "codigo_localidad",
+            ],
+            ascending=[True, True, True],
+            kind="mergesort",
+        )
+        .index
+    )
+
+    consensus_ranking = pd.Series(
+        range(1, len(consensus_order) + 1),
+        index=consensus_order,
+        dtype="int64",
+    )
+
+    df["ranking_consenso"] = (
+        consensus_ranking
+        .reindex(df.index)
+        .astype(int)
+    )
+
+    def classify_consensus_priority(
+        ranking: int,
+    ) -> str:
+        if ranking <= 5:
+            return "Alta"
+        if ranking <= 10:
+            return "Media-alta"
+        if ranking <= 15:
+            return "Media"
+        return "Baja"
+
+    def classify_confidence(
+        appearances: int,
+    ) -> str:
+        if appearances >= 4:
+            return "Alta"
+        if appearances >= 2:
+            return "Media"
+        return "Baja"
+
+    df["nivel_prioridad_consenso"] = (
+        df["ranking_consenso"]
+        .apply(classify_consensus_priority)
+    )
+
+    df["confianza_priorizacion"] = (
+        df["apariciones_top5"]
+        .apply(classify_confidence)
+    )
+
     return df
 
 
