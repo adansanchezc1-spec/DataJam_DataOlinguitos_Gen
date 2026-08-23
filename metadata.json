@@ -5,7 +5,7 @@
   "pdco_phase": "CONTROL",
   "active_skill": "04-testing",
   "sdlc_stage": "testing",
-  "last_updated": "2026-08-19",
+  "last_updated": "2026-08-23",
   "team": {
     "lead": "Persona A (ADAN - Scrum Master & Lead Data Engineer)",
     "members": [
@@ -99,7 +99,11 @@
         "notebooks/01_ingestion/11_ingestion_participacion_pqr.ipynb",
         "notebooks/03_integration/01_integration_master.ipynb",
         "notebooks/04_modeling/01_modeling_ipt.ipynb",
-        "notebooks/05_visualization/01_visualization_dashboard.ipynb"
+        "notebooks/05_visualization/01_visualization_dashboard.ipynb",
+        "data/curated/ipt_contrato_indicadores.csv",
+        "data/curated/ipt_indicadores_localidad.csv",
+        "data/curated/ipt_modelo_localidad.csv",
+        "data/curated/ipt_priorizacion_localidades.csv"
       ]
     },
     "04-testing": {
