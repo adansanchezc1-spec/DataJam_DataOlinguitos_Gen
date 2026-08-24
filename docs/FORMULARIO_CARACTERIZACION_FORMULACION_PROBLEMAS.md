@@ -169,18 +169,22 @@ Se estructuró la arquitectura de la plataforma analítica **SIPTA**, concebida 
 
 **Formulación Matemática del Índice de Prioridad Territorial (IPT)**:
 
-1. *Normalización Min-Max por Indicador*:
+1. *Normalización Min-Max por Indicador*:  
    Dado el valor $x_{ij}$ de la localidad $i$ para la variable $j$, se escala al rango $[0, 1]$ mediante:
-   $$z_{ij} = \frac{x_{ij} - \min_{i} (x_{ij})}{\max_{i} (x_{ij}) - \min_{i} (x_{ij})}$$
 
-2. *Ajuste por Polaridad del Indicador*:
-   Para que un valor cercano a $1$ siempre represente mayor vulnerabilidad o necesidad de intervención pública:
-   $$\tilde{z}_{ij} = \begin{cases} 1 - z_{ij}, & \text{si } j \text{ es indicador de beneficio / oferta (ej. camas, cupos, parques)} \\ z_{ij}, & \text{si } j \text{ es indicador de déficit / riesgo (ej. informalidad RIVI, PQR)} \end{cases}$$
+$$z_{ij} = \frac{x_{ij} - \min_{i}(x_{ij})}{\max_{i}(x_{ij}) - \min_{i}(x_{ij})}$$
 
-3. *Ponderación Multidimensional Compuesta*:
+2. *Ajuste por Polaridad del Indicador*:  
+   Para que un valor cercano a $1$ represente mayor vulnerabilidad o necesidad de intervención:
+
+$$\tilde{z}_{ij} = \begin{cases} 1 - z_{ij}, & \text{si } j \text{ es indicador de beneficio / oferta (ej. camas, cupos, parques)} \\ z_{ij}, & \text{si } j \text{ es indicador de déficit / riesgo (ej. informalidad, PQR)} \end{cases}$$
+
+3. *Ponderación Multidimensional Compuesta*:  
    El índice sintético $\text{IPT}_i$ para la localidad $i$ a través de las $K = 7$ dimensiones analíticas se define como:
-   $$\text{IPT}_i = \sum_{k=1}^{7} w_k \cdot \left( \frac{1}{|J_k|} \sum_{j \in J_k} \tilde{z}_{ij} \right) \quad \text{sujeto a} \quad \sum_{k=1}^{7} w_k = 1, \quad w_k \ge 0$$
-   donde $J_k$ representa el conjunto de variables pertenecientes a la dimensión $k$, y $|J_k|$ es el número total de variables en dicha dimensión.
+
+$$\text{IPT}_i = \sum_{k=1}^{7} w_k \cdot \left( \frac{1}{|J_k|} \sum_{j \in J_k} \tilde{z}_{ij} \right) \quad \text{sujeto a} \quad \sum_{k=1}^{7} w_k = 1, \quad w_k \ge 0$$
+
+donde $J_k$ representa el conjunto de variables pertenecientes a la dimensión $k$, y $|J_k|$ es el número total de variables en dicha dimensión.
 
 ### 5.2. Hallazgos y conclusiones preliminares (Fase EDA):
 1. **Concentración Asistencial**: El 72% de las camas hospitalarias y el 81% de camas UCI se ubican en 4 localidades del centro-norte, mientras localidades como Bosa y Usme presentan menos de 5 camas por 10.000 habitantes.
