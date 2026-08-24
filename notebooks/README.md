@@ -44,8 +44,9 @@ notebooks/
 ├── 03_integration/                     ← Integración Territorial
 │   └── 01_integration_master.ipynb     ← Construcción de la Tabla Maestra (Persona A & B)
 │
-├── 04_modeling/                        ← Cálculo de Indicadores e IPT
-│   └── 01_modeling_ipt.ipynb           ← Normalización y Ponderación IPT Multidimensional (Persona B - Yesid)
+├── 04_modeling/                        ← Cálculo de Indicadores e IPT (vínculo con models/)
+│   ├── 01_modeling_ipt.ipynb           ← Normalización y Ponderación IPT Multidimensional (Persona B - Yesid)
+│   └── 02_diccionario_indicadores_ipt.ipynb ← Catálogo Formal de Indicadores y Gobernanza DAMA-BOK (Persona B & A)
 │
 └── 05_visualization/                   ← Tableros y Salidas Visuales
     └── 01_visualization_dashboard.ipynb ← Preparación de Visualizaciones (Persona C - Sofía & Persona A - Adan)
@@ -80,4 +81,6 @@ notebooks/
 | `02_validation/`| `08_validation_seguridad.ipynb` | Seguridad | CONTROL | Persona C (Sofía Hidalgo) & Persona A (Adan Sánchez) |
 | `03_integration/`| `01_integration_master.ipynb` | Integración | DEVELOPMENT | Persona A & Persona B |
 | `04_modeling/`  | `01_modeling_ipt.ipynb` | Indicadores IPT | DEVELOPMENT | Persona B (Yesid Bello) |
+| `04_modeling/`  | `02_diccionario_indicadores_ipt.ipynb` | Diccionario IPT | DEVELOPMENT | Persona B (Yesid Bello) & Persona A (Adan Sánchez) |
 | `05_visualization/`| `01_visualization_dashboard.ipynb` | Dashboard | DEVELOPMENT | Persona C (Sofía Hidalgo) & Persona A (Adan Sánchez) |
+

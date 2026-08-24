@@ -12,13 +12,14 @@
 | Archivo de Prueba | Componente Evaluado | Casos / Aserciones Clave |
 | :--- | :--- | :--- |
 | [`test_pipeline_modeling_viz.py`](test_pipeline_modeling_viz.py) | `src.modeling` & `src.visualization` | Cálculo de IPT, 7 dimensiones, tablas por dominio, ranking de consenso. |
+| [`test_statistical_rigor.py`](test_statistical_rigor.py) | `src.modeling` & `models/` | Diagnóstico VIF (<10.0), Agregación Geométrica, Remuestreo Bootstrap 95%, Marshall Bayes y Moran I. |
 | [`test_integration.py`](test_integration.py) | `src.integration` | Integración territorial, cobertura de las 20 localidades, Tablón Maestro. |
 | [`test_cleaning.py`](test_cleaning.py) | `src.cleaning` | Homologación canónica DIVIPOLA, snake_case, tipado numérico. |
 | [`test_features.py`](test_features.py) | `src.features` | Densidades poblacionales, ratios per cápita. |
 | [`test_validation.py`](test_validation.py) | `src.validation` | Esquemas de datos, nulos, duplicados, validación territorial. |
 | [`test_ingest.py`](test_ingest.py) | `src.ingestion` | Ingesta polimórfica de archivos y manifiesto JSON. |
 | [`test_evaluation.py`](test_evaluation.py) | `src.evaluation` | Reportes de calidad y detección de anomalías. |
-| [`test_visualization.py`](test_visualization.py) | `src.visualization` | Generación de matrices para dashboard. |
+| [`test_visualization.py`](test_visualization.py) | `src.visualization` | Generación de matrices para dashboard, clasificación Fisher-Jenks y compilación Web GIS. |
 | [`test_eda_*.py`](.) | `src.eda.*` | Lectores, perfilado estadístico, calidad y visualizaciones EDA. |
 
 ---

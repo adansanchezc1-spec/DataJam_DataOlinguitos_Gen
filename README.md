@@ -78,6 +78,17 @@ $$\hat{x}_{i, d} = \frac{x_{i, d} - \min(X_d)}{\max(X_d) - \min(X_d)}$$
 
 ---
 
+## 🤖 Gobernanza de Modelos y Artefactos (`models/`)
+
+El directorio [`models/`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/models/) constituye el núcleo de reproducibilidad, trazabilidad y gobernanza formal del sistema conforme a **DAMA-BOK** y los lineamientos de la **OCDE / JRC**:
+
+- **Ficha Técnica Formal del Modelo ([`models/model_card.json`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/models/model_card.json))**: Especifica el alcance territorial (20 localidades oficiales DIVIPOLA), escala de medición $[0, 100]$, las 7 dimensiones canónicas y los resultados certificados de auditoría cuantitativa (VIF $= 3.21 < 10.0$, Moran's $I = 0.412$, incertidumbre Bootstrap $\text{IC}_{95\%}$ y correlación no compensatoria de Spearman $\rho = 0.962$).
+- **Configuración de Ponderaciones y Sensibilidad ([`models/ipt_config_weights.json`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/models/ipt_config_weights.json))**: Define de manera determinista los pesos de las 7 dimensiones y los 5 escenarios metodológicos de sensibilidad (Escenario Base $w_d = 1/7$, Rangos/Percentiles, Sin Parques, Sin RIVI, Sin Proxies y Agregación Geométrica No Compensatoria).
+- **Transformadores y Polaridades ([`models/transformers/minmax_scalers_config.json`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/models/transformers/minmax_scalers_config.json))**: Documenta los parámetros de normalización Min-Max $[0, 1]$, fórmulas de asignación y la polaridad analítica (directa vs. inversa) por variable.
+- **Guía de Gobernanza ([`models/README.md`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/models/README.md))**: Documentación técnica para auditores, desarrolladores e instituciones distritales.
+
+---
+
 ## 📊 Los 13 Dominios Analíticos Integrados y sus Reportes
 
 | # | Dominio Sectorial | Informe Analítico Formal | Indicador Clave | Visualización 300 DPI |
