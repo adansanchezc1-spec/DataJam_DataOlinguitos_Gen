@@ -19,6 +19,7 @@ from src.modeling.calculate_indicators import (
     cupos_por_1000,
     normalize_min_max,
 )
+from src.modeling.domain_indicators import build_all_domain_tables
 from src.visualization.prepare_visualization import (
     build_ranking,
     export_for_dashboard,
@@ -279,4 +280,37 @@ class TestPipelineModelingViz:
                 "SUBA",
                 "SAN CRISTOBAL",
             }
+
+    def test_build_all_domain_tables_creates_12_master_curated_tables(self) -> None:
+        """Verifica la generación correcta y consistente de las 12 tablas maestras por dominio."""
+        # Arrange & Act
+        tables = build_all_domain_tables(export_curated=True)
+
+        # Assert
+        expected_domains = [
+            "master_demografia",
+            "master_salud",
+            "master_educacion",
+            "master_movilidad",
+            "master_ambiente",
+            "master_infraestructura",
+            "master_finanzas",
+            "master_vulnerabilidad_social",
+            "master_seguridad",
+            "master_servicios_publicos",
+            "master_empleo_economia",
+            "master_participacion",
+        ]
+
+        assert len(tables) == 12
+        for domain in expected_domains:
+            assert domain in tables
+            df_domain = tables[domain]
+            assert len(df_domain) == 20
+            assert "codigo_localidad" in df_domain.columns
+            assert "nombre_localidad" in df_domain.columns
+            # Verificar persistencia a disco
+            curated_file = Path("data/curated") / f"{domain}.csv"
+            assert curated_file.exists()
+
 

@@ -1,7 +1,7 @@
 {
   "id": "paraderos_zonales_sitp",
   "titulo": "Paraderos zonales SITP",
-  "origen": "TransMilenio S.A. — datos abiertos",
+  "origen": "TransMilenio S.A. -- datos abiertos",
   "corte": "Vigente (corte 2024-2026)",
   "valor_publico": "Cobertura zonal del SITP: paraderos por localidad y distancia a la red",
   "indicadores": "MOV-01 (paraderos por localidad)",

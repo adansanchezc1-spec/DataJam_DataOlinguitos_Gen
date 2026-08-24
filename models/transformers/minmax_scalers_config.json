@@ -1,0 +1,63 @@
+{
+  "version": "1.0.0",
+  "scaling_type": "Min-Max Standard Normalizer",
+  "target_interval": [0.0, 1.0],
+  "indicators": {
+    "oferta_regular_por_1000_pob_5_17": {
+      "dimension": "dim_educacion",
+      "polaridad": "inversa",
+      "formula_score": "1.0 - ((x - min) / (max - min))",
+      "descripcion": "Cupos escolares regulares por cada 1.000 personas de 5 a 17 años",
+      "unidad": "cupos / 1k hab escolar"
+    },
+    "sedes_ips_por_10000_hab": {
+      "dimension": "dim_salud",
+      "polaridad": "inversa",
+      "formula_score": "1.0 - ((x - min) / (max - min))",
+      "descripcion": "Sedes IPS registradas por cada 10.000 habitantes",
+      "unidad": "sedes / 10k hab"
+    },
+    "densidad_estaciones_tm": {
+      "dimension": "dim_movilidad",
+      "polaridad": "inversa",
+      "formula_score": "1.0 - ((x - min) / (max - min))",
+      "descripcion": "Estaciones troncales de TransMilenio por km2 de superficie",
+      "unidad": "estaciones / km2"
+    },
+    "densidad_paraderos_sitp": {
+      "dimension": "dim_movilidad",
+      "polaridad": "inversa",
+      "formula_score": "1.0 - ((x - min) / (max - min))",
+      "descripcion": "Paraderos zonales SITP por km2 de superficie",
+      "unidad": "paraderos / km2"
+    },
+    "conflictos_ambientales_por_km2": {
+      "dimension": "dim_ambiente",
+      "polaridad": "directa",
+      "formula_score": "(x - min) / (max - min)",
+      "descripcion": "Conflictos socio-ambientales registrados (SAC) por km2",
+      "unidad": "conflictos / km2"
+    },
+    "parques_por_10000_hab": {
+      "dimension": "dim_infraestructura",
+      "polaridad": "inversa",
+      "formula_score": "1.0 - ((x - min) / (max - min))",
+      "descripcion": "Parques IDRD registrados por cada 10.000 habitantes",
+      "unidad": "parques / 10k hab"
+    },
+    "rivi_por_10000_hab_promedio": {
+      "dimension": "dim_vulnerabilidad",
+      "polaridad": "directa",
+      "formula_score": "(x - min) / (max - min)",
+      "descripcion": "Vendedores informales registrados (RIVI) por cada 10.000 habitantes",
+      "unidad": "vendedores / 10k hab"
+    },
+    "cuadrantes_por_10000_hab_2026": {
+      "dimension": "dim_seguridad",
+      "polaridad": "inversa",
+      "formula_score": "1.0 - ((x - min) / (max - min))",
+      "descripcion": "Cuadrantes policiales asignados por cada 10.000 habitantes",
+      "unidad": "cuadrantes / 10k hab"
+    }
+  }
+}

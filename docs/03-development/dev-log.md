@@ -92,3 +92,79 @@
 3. **Pruebas Unitarias de Integración (`tests/test_integration.py`)**:
    - Suite ampliada con 5 aserciones de integración territorial, cobertura de las 20 localidades y persistencia a disco (100% passed).
 4. **Suite Global de Pruebas**: 181 pruebas automatizadas aprobadas con 0 fallos (`pytest -v`).
+
+---
+
+## 6. Integración de Modelado Territorial e Índice IPT (`feature-territorial-index`)
+
+**Fecha**: 2026-08-23  
+**Participantes**: Persona B (Yesid Bello - Data Scientist), Persona A (Adan Sánchez - Lead Data Engineer)  
+**Fase PDCO**: DEVELOPMENT → CONTROL  
+**Rama Integrada**: `origin/feature-territorial-index` $\rightarrow$ `etl-validation_integration`  
+
+### Actividades y Entregables Integrados:
+1. **Modelado Estadístico e IPT Territorial (`src/modeling/calculate_indicators.py`)**:
+   - Definición canónica de las 7 dimensiones analíticas (`DIMENSION_COLUMNS`).
+   - Implementación de `calculate_multidimensional_ipt()` con ponderación equilibrada, desempate determinístico y clasificación categórica de prioridad base.
+   - Implementación de `calculate_consensus_priority()` para agregación de escenarios de ranking, conteo de apariciones top 5, ranking de consenso y nivel de confianza analítica.
+2. **Interfaz Pública y Compatibilidad (`src/modeling/__init__.py`)**:
+   - Resolución de merge y unificación de funciones exportadas junto con aliases retrocompatibles.
+3. **Persistencia de Tablas Curadas (`data/curated/`)**:
+   - `ipt_contrato_indicadores.csv`: Ficha contractual y definiciones de variables.
+   - `ipt_indicadores_localidad.csv`: Matriz consolidada de indicadores por localidad.
+   - `ipt_modelo_localidad.csv`: Dimensiones normalizadas y puntuaciones IPT.
+   - `ipt_priorizacion_localidades.csv`: Priorización final por consenso para las 20 localidades.
+4. **Notebook de Modelado (`notebooks/04_modeling/01_modeling_ipt.ipynb`)**:
+   - Pipeline reproducible de modelado, escenarios de ponderación y análisis de sensibilidad.
+5. **Diccionario de Datos (`docs/01-requirements/E02_diccionario_datos.md`)**:
+   - Sincronización y completitud de definiciones en los 13 dominios territoriales.
+6. **Validación de Calidad y Pruebas Unitarias**:
+   - Pruebas en `tests/test_pipeline_modeling_viz.py` ampliadas y aprobadas al 100%. Suite global operativa con 104/104 tests pasados.
+
+---
+
+## 7. Reorganización Documental Canónica y Motor de Tablas Maestras por Dominio
+
+**Fecha**: 2026-08-23  
+**Responsable**: Persona A (Adan Sánchez - Scrum Master & Lead Data Engineer)  
+**Fase PDCO**: DEVELOPMENT → CONTROL  
+
+### Actividades y Entregables Completados:
+1. **Reorganización Documental PDCO (`docs/`)**:
+   - Reubicación de ficheros sueltos en `docs/01-requirements/` y `docs/05-maintenance/`.
+   - Eliminación de archivos redundantes en la raíz de `docs/`.
+   - Creación y estandarización integral de `README.md` para las 5 fases PDCO, `src/`, `tests/`, `notebooks/` y `reports/`.
+2. **Motor de Tablas Maestras por Dominio (`src/modeling/domain_indicators.py`)**:
+   - Implementación de extractores y constructores temáticos para los 12 dominios territoriales.
+   - Generación de 12 tablones curados (`data/curated/master_*.csv`) con cobertura del 100% de las 20 localidades D.C.
+   - Generación de `data/curated/master_indicadores_territoriales.csv` como matriz consolidada de analítica territorial.
+3. **Actualización del Notebook de Modelado (`notebooks/04_modeling/01_modeling_ipt.ipynb`)**:
+   - Incorporación de celdas ejecutables para generar los 12 tablones temáticos por dominio y renderizado de fórmulas en bloques LaTeX.
+4. **Validación y Pruebas Unitarias**:
+   - Suite ampliada con prueba automatizada para las 12 tablas temáticas en `tests/test_pipeline_modeling_viz.py`.
+   - 105/105 pruebas unitarias automatizadas aprobadas exitosamente (`pytest -v`).
+
+---
+
+## 8. Implementación del Subsistema de Visualización Geoespacial Web GIS (v1.0.0)
+
+**Fecha**: 2026-08-24  
+**Participantes**: Persona A (Adan Sánchez), Persona B (Yesid Bello), Persona C (Sofía Hidalgo)  
+**Fase PDCO**: DEVELOPMENT → OPERATIONS  
+
+### Actividades y Entregables Completados:
+1. **Motor Geoespacial Multidominio (`src/visualization/geo_dashboard.py`)**:
+   - Cruce vectorial determinista entre polígonos oficiales WGS84 (`poligonos_localidades.geojson`) y los indicadores consolidados de los 13 dominios.
+   - Algoritmo en Python puro de *Fisher-Jenks Natural Breaks* y *Cuantiles* para clasificación cartográfica no arbitraria de coropletas.
+   - Carga de capas vectoriales de puntos overlay (TransMilenio, Metro Línea 1, Estaciones de Calidad del Aire, Puntos de Venta Informales IPES, Oferta de Cupos Escolares).
+2. **Dashboard Web GIS Autónomo (`reports/dashboard_geografico_sipta.html`)**:
+   - Compilación en un archivo HTML interactivo autónomo basado en Leaflet.js, Chart.js, Tailwind CSS y Lucide Icons.
+   - Selector dinámico de 13 dominios, semaforización de alertas tempranas, visualización de intervalos de confianza Bootstrap 95% y gráficos comparativos de radar.
+3. **Capa GeoJSON Curada (`data/curated/sipta_localidades_multidominio.geojson`)**:
+   - Exportación de la capa espacial completa estandarizada RFC 7946 para uso en QGIS, ArcGIS o Mapbox.
+4. **Documentación Técnica del Subsistema**:
+   - Creación de `docs/03-development/sistema_visualizacion.md`.
+5. **Control de Calidad y Pruebas**:
+   - 193 de 193 pruebas automatizadas aprobadas al 100% en `tests/`.
+
+

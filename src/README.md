@@ -1,57 +1,51 @@
-SIPTA — Guía de la carpeta src
+# Módulos y Paquetes del Sistema — `src/`
 
-Propósito
-Esta carpeta contiene todo el código fuente del pipeline de datos de SIPTA. Cada subcarpeta cumple una función específica en la cadena de procesamiento, desde la ingesta hasta la generación de indicadores y la evaluación.
+**Proyecto**: Sistema de Indicadores y Priorización Territorial y Alertas Tempranas (SIPTA)  
+**Marco de Trabajo**: Hexagonal / Pipeline Modular (PDCO: DEVELOPMENT)  
+**Estándares**: SWEBOK Cap. 2 y 3, Clean Code, PEP 8, Type Hints  
 
-Estructura y responsabilidades
-- src/ingestion
-  - Código para descargar, leer y guardar datasets en data/raw.
-  - Registrar metadatos básicos: fuente, fecha, formato y versión.
+---
 
-- src/validation
-  - Validaciones de esquema y calidad: columnas esperadas, tipos, nulos, duplicados.
-  - Reglas territoriales: localización por localidad y consistencia de identificadores.
+## 🏛️ Estructura del Código Fuente
 
-- src/cleaning
-  - Limpieza de valores, normalización de formatos y corrección de nombres.
-  - Conversión de fechas, codificación y limpieza de textos.
+```
+src/
+├── README.md               ← Guía y catálogo del código fuente (este documento)
+│
+├── ingestion/              ← Ingesta de datos polimórfica (CSV, XLSX, GPKG, GeoJSON, ZIP)
+│   └── ingest_data.py      ← Motor de ingesta y generación de ingestion_manifest.json
+│
+├── validation/             ← Validación de esquemas, calidad multivariada y reglas territoriales
+│   └── validate_data.py    ← Suite de validación ISO 25010 contra 20 localidades D.C.
+│
+├── cleaning/               ← Limpieza, normalización y homologación geográfica
+│   └── clean_data.py       ← Mapeo canónico DIVIPOLA (1100101 a 1100120) y tipado estricto
+│
+├── integration/            ← Motor de integración territorial y agregaciones
+│   └── integrate_data.py   ← Construcción del Tablón Maestro (data/processed/master_localidades.csv)
+│
+├── features/               ← Feature Engineering territorial
+│   └── feature_engineering.py ← Cálculo de densidades, ratios y variables per cápita
+│
+├── modeling/               ← Motor de indicadores sectoriales y modelado IPT
+│   ├── calculate_indicators.py ← Normalización Min-Max e IPT compuesto (7 dimensiones)
+│   └── domain_indicators.py   ← Generador modular de 12 tablas maestras curadas por dominio
+│
+├── evaluation/             ← Diagnóstico de calidad y reporte de nulos
+│   └── evaluate_results.py ← Detección de outliers y quality_report
+│
+└── visualization/          ← Sistema de visualización geoespacial y tableros interactivos
+    ├── prepare_visualization.py ← Serialización curada para visualizaciones y dashboards
+    └── geo_dashboard.py    ← Compilador Web GIS (Leaflet.js + Chart.js), Fisher-Jenks y GeoJSON RFC 7946
+```
 
-- src/integration
-  - Unificación de datasets por localidad y creación del modelo territorial maestro.
-  - Homologación de identificadores territoriales y carga de geometría.
+---
 
-- src/features
-  - Construcción de variables derivadas necesarias para indicadores e índices.
-  - Agregaciones por localidad, tasas y razones.
+## ⚙️ Principios de Arquitectura y Buenas Prácticas
 
-- src/modeling
-  - Cálculo de indicadores, índices compuestos e IPM (Índice de Prioridad Territorial).
-  - Motor de alertas y reglas de recomendación simplificadas.
-
-- src/evaluation
-  - Reglas de evaluación de calidad de datos y resultados.
-  - Métricas de validación del pipeline y del modelo de priorización.
-
-- src/visualization
-  - Scripts de soporte para exportar resultados y generar gráficos básicos.
-  - Preparación de datos para el dashboard.
-
-Convenciones
-- Cada script o módulo debe ser reutilizable y no depender de rutas absolutas.
-- El código debe guardar salidas en data/processed o data/curated según su etapa.
-- Las funciones críticas deben contar con pruebas en tests/.
-- No usar notebooks como única versión productiva: los notebooks van en notebooks/ y pueden prototipar, pero el código definitivo debe vivir en src/.
-
-Cómo avanzar
-1. Empieza en src/ingestion con funciones que lean y versionen cada dataset.
-2. Valida cada dataset en src/validation antes de limpiar.
-3. Usa src/integration para crear la tabla maestra de localidades.
-4. Construye indicadores en src/modeling y prueba su salida en src/evaluation.
-5. Usa src/visualization para preparar los resultados mínimos para el dashboard.
-
-Notas
-- Marca claramente las dependencias entre módulos.
-- Mantén el pipeline legible y comentado.
-- No implementes recomendaciones complejas si no hay datos suficientes; deja reglas simples y trazables.
-
--- Fin del README de src --
+1. **Resolución Agnóstica de Rutas**: Ningún módulo usa rutas absolutas `C:/...`; todos resuelven `ROOT = Path(__file__).resolve().parents[2]`.
+2. **SOLID & Alta Cohesión**: Cada paquete tiene una responsabilidad única (SRP) y expone contratos tipados.
+3. **Persistencia Estructurada**:
+   - `data/raw/`: Fuentes crudas inmutables.
+   - `data/processed/`: Tablones intermedios y maestro consolidado.
+   - `data/curated/`: Tablas temáticas por dominio y salidas de modelado listas para consumo.

@@ -48,12 +48,13 @@ Toda actividad se encuadra dentro de una de las cuatro fases:
 ## Skills del Agente y Detección Automática
 
 | # | Skill | Fase PDCO | Activador | Archivo |
-|---|-------|-----------|-----------|---------|
-| 1 | `requirements-analysis` | PLAN | Problema, necesidad, entidades, casos de uso, RF/RNF | `.agents/skills/01-requirements/SKILL.md` |
-| 2 | `architecture-patterns` | PLAN → DEVELOPMENT | Arquitectura, patrones GoF/GRASP, capas, diagramas, ADR | `.agents/skills/02-architecture/SKILL.md` |
-| 3 | `software-development` | DEVELOPMENT | Implementar, codificar, clases, APIs, servicios, pipelines | `.agents/skills/03-development/SKILL.md` |
-| 4 | `unit-testing` | CONTROL | Probar, test, cobertura, mocks, fixtures, bugs | `.agents/skills/04-testing/SKILL.md` |
-| 5 | `maintenance-refactoring` | OPERATIONS | Optimizar, refactorizar, code smells, deuda técnica | `.agents/skills/05-maintenance/SKILL.md` |
+|---|---|---|---|---|
+| 1 | `requirements-analysis` | PLAN | Problema, necesidad, entidades, casos de uso, RF/RNF | `.agents/skills/requirements-analysis/SKILL.md` |
+| 2 | `architecture-patterns` | PLAN → DEVELOPMENT | Arquitectura, patrones GoF/GRASP, capas, diagramas, ADR | `.agents/skills/architecture-patterns/SKILL.md` |
+| 3 | `software-development` | DEVELOPMENT | Implementar, codificar, clases, APIs, servicios, pipelines | `.agents/skills/software-development/SKILL.md` |
+| 4 | `unit-testing` | CONTROL | Probar, test, cobertura, mocks, fixtures, bugs | `.agents/skills/unit-testing/SKILL.md` |
+| 5 | `maintenance-refactoring` | OPERATIONS | Optimizar, refactorizar, code smells, deuda técnica | `.agents/skills/maintenance-refactoring/SKILL.md` |
+| 6 | `statistical-reviewer` | CONTROL → OPERATIONS | Auditoría cuantitativa, revisión estadística, supuestos, índices OCDE, sensibilidad, LaTeX | `.agents/skills/statistical-reviewer/SKILL.md` |
 
 ---
 

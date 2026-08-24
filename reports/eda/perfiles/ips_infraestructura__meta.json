@@ -1,7 +1,7 @@
 {
   "id": "ips_infraestructura",
   "titulo": "IPS georreferenciadas (infraestructura)",
-  "origen": "REPS — Secretaría Distrital de Salud",
+  "origen": "REPS -- Secretaría Distrital de Salud",
   "corte": "Corte REPS",
   "valor_publico": "Equipamientos de salud como parte del inventario de infraestructura",
   "indicadores": "INF-03, SAL-01",

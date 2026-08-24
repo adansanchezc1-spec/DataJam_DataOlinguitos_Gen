@@ -38,5 +38,20 @@ def export_for_dashboard(df: pd.DataFrame, filename: str) -> Path:
     return path
 
 
+def load_curated_geodataframe() -> Any:
+    """Carga el GeoDataFrame multidominio curado con geometrías de las 20 localidades."""
+    from src.visualization.geo_dashboard import build_multidomain_geodataframe
+
+    return build_multidomain_geodataframe()
+
+
+def render_gis_dashboard(output_path: Path | None = None) -> Path:
+    """Compila y genera el dashboard interactivo Web GIS en reports/."""
+    from src.visualization.geo_dashboard import generate_interactive_gis_dashboard
+
+    return generate_interactive_gis_dashboard(output_path)
+
+
 if __name__ == "__main__":
     print("Módulo de visualización SIPTA inicializado correctamente.")
+

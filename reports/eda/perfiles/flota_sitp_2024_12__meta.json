@@ -1,7 +1,7 @@
 {
   "id": "flota_sitp_2024_12",
   "titulo": "Flota vinculada SITP (dic 2024)",
-  "origen": "TransMilenio S.A. — datos abiertos",
+  "origen": "TransMilenio S.A. -- datos abiertos",
   "corte": "Dic 2024",
   "valor_publico": "Composición de la flota: tipo de bus, combustible, emisiones, accesibilidad y edad",
   "indicadores": "MOV-03 (oferta de buses por localidad de operación)",

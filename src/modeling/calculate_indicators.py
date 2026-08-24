@@ -435,6 +435,244 @@ def calculate_consensus_priority(
     return df
 
 
+# ==============================================================================
+# MÉTODOS AVANZADOS DE AUDITORÍA Y RIGOR ESTADÍSTICO (OCDE / JRC STANDARD)
+# ==============================================================================
+
+def calculate_vif_scores(
+    df: pd.DataFrame,
+    dimension_cols: list[str] | tuple[str, ...] | None = None,
+) -> pd.DataFrame:
+    """Calcula el Factor de Inflación de la Varianza (VIF) para diagnosticar multicolinealidad.
+
+    Fórmula: VIF_j = 1 / (1 - R_j^2), donde R_j^2 es el coeficiente de determinación
+    de la regresión lineal de la dimensión j sobre las restantes dimensiones.
+    Criterio OCDE/JRC: VIF < 5.0 (Aceptable), VIF >= 10.0 (Multicolinealidad severa).
+    """
+    import numpy as np
+
+    cols = list(dimension_cols if dimension_cols is not None else DIMENSION_COLUMNS)
+    missing = [c for c in cols if c not in df.columns]
+    if missing:
+        raise ValueError(f"Faltan columnas de dimensión para VIF: {missing}")
+
+    X = df[cols].apply(pd.to_numeric, errors="coerce").values
+    n_vars = X.shape[1]
+    vif_records = []
+
+    for i in range(n_vars):
+        y_i = X[:, i]
+        X_other = np.delete(X, i, axis=1)
+        # Añadir vector constante de intercepción
+        X_design = np.column_stack([np.ones(X_other.shape[0]), X_other])
+        
+        # OLS cerrado via pseudoinversa
+        beta, _, _, _ = np.linalg.lstsq(X_design, y_i, rcond=None)
+        y_pred = X_design @ beta
+        ss_tot = np.sum((y_i - np.mean(y_i)) ** 2)
+        ss_res = np.sum((y_i - y_pred) ** 2)
+        
+        r2 = 1.0 - (ss_res / ss_tot) if ss_tot > 0 else 0.0
+        r2 = max(0.0, min(r2, 0.9999))
+        vif_val = 1.0 / (1.0 - r2)
+        
+        vif_records.append({
+            "dimension": cols[i],
+            "R2_auxiliar": round(float(r2), 4),
+            "VIF": round(float(vif_val), 4),
+            "diagnostico_colinealidad": "Aceptable (<5.0)" if vif_val < 5.0 else ("Moderada (5-10)" if vif_val < 10.0 else "Severa (>=10)"),
+        })
+
+    return pd.DataFrame(vif_records)
+
+
+def calculate_geometric_ipt(
+    df_metrics: pd.DataFrame,
+    dimension_cols: list[str] | tuple[str, ...] | None = None,
+    weights: list[float] | None = None,
+    epsilon: float = 0.01,
+) -> pd.Series:
+    """Calcula el IPT mediante Agregación Geométrica Ponderada (Modelo No Compensatorio).
+
+    Fórmula: IPT_Geom = 100 * [ prod_{d=1}^D (s_{i, d} + eps)^{w_d} - eps ]
+    A diferencia de la agregación aditiva lineal, la agregación geométrica penaliza
+    severamente a las localidades con déficits extremos en derechos fundamentales.
+    """
+    import numpy as np
+
+    cols = list(dimension_cols if dimension_cols is not None else DIMENSION_COLUMNS)
+    X = df_metrics[cols].apply(pd.to_numeric, errors="coerce").values
+
+    if weights is None:
+        w = np.ones(len(cols)) / len(cols)
+    else:
+        w = np.array(weights, dtype=float)
+        w = w / w.sum()
+
+    # Cálculo geométrico acotado
+    X_shifted = np.clip(X + epsilon, epsilon, 1.0 + epsilon)
+    geom_prod = np.exp(np.sum(w * np.log(X_shifted), axis=1))
+    ipt_geom = np.clip((geom_prod - epsilon) * 100.0, 0.0, 100.0)
+
+    return pd.Series(ipt_geom, index=df_metrics.index, name="IPT_GEOMETRICO")
+
+
+def calculate_bootstrap_confidence_intervals(
+    df_metrics: pd.DataFrame,
+    dimension_cols: list[str] | tuple[str, ...] | None = None,
+    n_bootstraps: int = 1000,
+    alpha: float = 0.05,
+    random_state: int = 42,
+) -> pd.DataFrame:
+    """Calcula Intervalos de Confianza al (1-alpha)% para el IPT mediante Remuestreo Bootstrap Dirichlet.
+
+    Genera n_bootstraps vectores de ponderación estocásticos a partir de una distribución
+    Dirichlet simétrica Dir(1, ..., 1) para cuantificar la incertidumbre del ranking.
+    """
+    import numpy as np
+
+    cols = list(dimension_cols if dimension_cols is not None else DIMENSION_COLUMNS)
+    X = df_metrics[cols].apply(pd.to_numeric, errors="coerce").values
+    n_locs, n_dims = X.shape
+
+    rng = np.random.default_rng(random_state)
+    # Ponderaciones estocásticas Dirichlet (n_bootstraps, n_dims)
+    weights_boot = rng.dirichlet(np.ones(n_dims), size=n_bootstraps)
+
+    # Simulación de puntajes (n_locs, n_bootstraps)
+    ipt_sims = (X @ weights_boot.T) * 100.0
+
+    lower_pct = (alpha / 2.0) * 100.0
+    upper_pct = (1.0 - alpha / 2.0) * 100.0
+
+    ci_lower = np.percentile(ipt_sims, lower_pct, axis=1)
+    ci_upper = np.percentile(ipt_sims, upper_pct, axis=1)
+    ci_median = np.median(ipt_sims, axis=1)
+    std_boot = np.std(ipt_sims, axis=1)
+
+    ci_df = pd.DataFrame({
+        "codigo_localidad": df_metrics["codigo_localidad"].values if "codigo_localidad" in df_metrics.columns else range(n_locs),
+        "localidad": df_metrics["localidad"].values if "localidad" in df_metrics.columns else [f"Loc_{i}" for i in range(n_locs)],
+        "ipt_bootstrap_mediana": np.round(ci_median, 2),
+        "ipt_bootstrap_std": np.round(std_boot, 2),
+        "ci_lower_95": np.round(ci_lower, 2),
+        "ci_upper_95": np.round(ci_upper, 2),
+        "ancho_intervalo_ci95": np.round(ci_upper - ci_lower, 2),
+    })
+
+    return ci_df
+
+
+def calculate_empirical_bayes_smoothing(
+    events: pd.Series,
+    population: pd.Series,
+    scale_factor: float = 10000.0,
+) -> pd.Series:
+    """Aplica el Estimador de Marshall (Empirical Bayes Rate Smoother) para estabilizar tasas en denominadores pequeños.
+
+    Evita que localidades de muy baja población (como Sumapaz o La Candelaria) registren tasas
+    extremadamente volátiles por variaciones aleatorias de conteos pequeños.
+    """
+    import numpy as np
+
+    e = pd.to_numeric(events, errors="coerce").fillna(0).values
+    n = pd.to_numeric(population, errors="coerce").fillna(1).values
+
+    raw_rates = e / n
+    mu = np.sum(e) / np.sum(n)  # Media ponderada distrital
+    n_bar = np.mean(n)
+
+    # Varianza entre áreas
+    s2 = np.sum(n * (raw_rates - mu) ** 2) / np.sum(n)
+    var_param = max(s2 - (mu / n_bar), 1e-8)
+
+    # Ponderadores de credibilidad bayesiana
+    w_i = var_param / (var_param + (mu / np.maximum(n, 1)))
+    smoothed_rates = (w_i * raw_rates + (1.0 - w_i) * mu) * scale_factor
+
+    return pd.Series(smoothed_rates, index=events.index, name="tasa_suavizada_bayes")
+
+
+# Matriz de vecindad Reina (Queen Contiguity) oficial para las 20 localidades de Bogotá D.C.
+BOGOTA_LOCALITY_NEIGHBORS: dict[str, list[str]] = {
+    "01": ["02", "11"],
+    "02": ["01", "03", "11", "12", "13"],
+    "03": ["02", "04", "13", "14", "17"],
+    "04": ["03", "05", "17", "18"],
+    "05": ["04", "06", "18", "19", "20"],
+    "06": ["05", "07", "08", "15", "18", "19"],
+    "07": ["06", "08", "19"],
+    "08": ["06", "07", "09", "10", "15", "16"],
+    "09": ["08", "10", "16"],
+    "10": ["08", "09", "11", "12", "16"],
+    "11": ["01", "02", "10", "12"],
+    "12": ["02", "10", "11", "13", "16"],
+    "13": ["02", "03", "12", "14", "16"],
+    "14": ["03", "13", "15", "16", "17"],
+    "15": ["06", "08", "14", "16", "18"],
+    "16": ["08", "09", "10", "12", "13", "14", "15"],
+    "17": ["03", "04", "14"],
+    "18": ["04", "05", "06", "15"],
+    "19": ["05", "06", "07", "20"],
+    "20": ["05", "19"],
+}
+
+
+def calculate_spatial_moran(
+    values: pd.Series,
+    locality_codes: pd.Series | None = None,
+    adjacency_matrix: np.ndarray | None = None,
+    n_permutations: int = 999,
+    random_state: int = 42,
+) -> tuple[float, float]:
+    """Calcula el Índice de Moran Global (I) y su p-valor por permutaciones Monte Carlo.
+
+    Verifica si existe dependencia espacial (clustering territorial significativo) en Bogotá D.C.
+    """
+    import numpy as np
+
+    x = pd.to_numeric(values, errors="coerce").fillna(0).values
+    n = len(x)
+
+    if adjacency_matrix is not None:
+        W = np.array(adjacency_matrix, dtype=float)
+    else:
+        # Construir matriz normalizada a partir de los códigos DIVIPOLA
+        codes = [str(c).zfill(2) for c in (locality_codes if locality_codes is not None else range(1, n + 1))]
+        W = np.zeros((n, n), dtype=float)
+        for i, ci in enumerate(codes):
+            neighbors = BOGOTA_LOCALITY_NEIGHBORS.get(ci, [])
+            for j, cj in enumerate(codes):
+                if cj in neighbors:
+                    W[i, j] = 1.0
+
+    # Estandarización por filas
+    row_sums = W.sum(axis=1, keepdims=True)
+    W_norm = np.divide(W, row_sums, out=np.zeros_like(W), where=row_sums > 0)
+    S0 = np.sum(W_norm)
+
+    z = x - np.mean(x)
+    s2 = np.sum(z ** 2)
+    if s2 == 0:
+        return 0.0, 1.0
+
+    # Estadístico I de Moran observado
+    numerator = np.sum(W_norm * np.outer(z, z))
+    moran_i = (n / S0) * (numerator / s2)
+
+    # Permutaciones Monte Carlo
+    rng = np.random.default_rng(random_state)
+    sim_morans = np.zeros(n_permutations)
+    for k in range(n_permutations):
+        z_perm = rng.permutation(z)
+        sim_num = np.sum(W_norm * np.outer(z_perm, z_perm))
+        sim_morans[k] = (n / S0) * (sim_num / s2)
+
+    p_value = (np.sum(sim_morans >= moran_i) + 1.0) / (n_permutations + 1.0)
+
+    return float(np.round(moran_i, 4)), float(np.round(p_value, 4))
+
+
 def save_indicator_table(df: pd.DataFrame, filename: str) -> Path:
     """Guarda la tabla de indicadores en data/processed."""
     path = PROCESSED_DIR / filename
@@ -444,10 +682,21 @@ def save_indicator_table(df: pd.DataFrame, filename: str) -> Path:
 
 
 if __name__ == "__main__":
+    from src.modeling.domain_indicators import build_all_domain_tables
+
     print("Consolidando métricas e indicadores multidimensionales SIPTA...")
     metrics_df = build_consolidated_locality_metrics()
     ipt_df = calculate_multidimensional_ipt(metrics_df)
     out_file = save_indicator_table(ipt_df, "matriz_indicadores_ipt_multidimensional.csv")
     print(f"Matriz consolidada e IPT calculados exitosamente en: {out_file}")
-    print(ipt_df[["codigo_localidad", "nombre_localidad", "IPT_MULTIDIMENSIONAL", "RANKING_PRIORIDAD", "NIVEL_PRIORIDAD"]].sort_values("RANKING_PRIORIDAD").head(10))
+
+    print("\nGenerando tablas maestras por cada dominio territorial...")
+    domain_tables = build_all_domain_tables(export_curated=True)
+    print(f"Generadas exitosamente {len(domain_tables)} tablas maestras por dominio en data/curated/.")
+
+    print("\nTop 10 Localidades Priorizadas:")
+    display_cols = ["codigo_localidad", "localidad", "IPT_MULTIDIMENSIONAL", "RANKING_PRIORIDAD", "NIVEL_PRIORIDAD"]
+    existing_display_cols = [c for c in display_cols if c in ipt_df.columns]
+    print(ipt_df[existing_display_cols].sort_values("RANKING_PRIORIDAD").head(10))
+
 

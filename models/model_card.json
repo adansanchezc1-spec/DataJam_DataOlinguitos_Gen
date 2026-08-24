@@ -1,0 +1,143 @@
+{
+  "model_name": "Indice de Priorizacion Territorial (IPT) Multidimensional",
+  "version": "1.0.0",
+  "project": "SIPTA (Sistema de Indicadores y Priorizacion Territorial y Alertas Tempranas)",
+  "framework": "DataJam Bogota 2026",
+  "created_at": "2026-08-23",
+  "authors": [
+    "Persona A (Adan Sanchez - Scrum Master & Lead Data Engineer)",
+    "Persona B (Yesid Bello - Data Scientist & Territorial Analyst)",
+    "Persona C (Sofia Hidalgo - Tech Lead & BI Developer)"
+  ],
+  "model_type": "Composite Multicriteria Index / Multi-attribute Decision Matrix (OECD/JRC Compliant)",
+  "territorial_scope": {
+    "jurisdiction": "Bogota D.C., Colombia",
+    "territorial_unit": "Localidad (Codigo DIVIPOLA SDP)",
+    "total_units": 20,
+    "coverage_percentage": 100.0
+  },
+  "scale": {
+    "interval": [0, 100],
+    "interpretation": "Mayor puntaje IPT representa mayor deficit, vulnerabilidad socio-espacial y prioridad de intervencion publica"
+  },
+  "dimensions": [
+    {
+      "id": "dim_educacion",
+      "name": "Educacion y Logro Academico",
+      "indicator_code": "EDU-001",
+      "raw_variable": "oferta_regular_por_1000_pob_5_17",
+      "polarity": "inversa",
+      "weight_base": 0.142857,
+      "source": "SED / DANE"
+    },
+    {
+      "id": "dim_salud",
+      "name": "Salud y Capacidad Asistencial",
+      "indicator_code": "SAL-001",
+      "raw_variable": "sedes_ips_por_10000_hab",
+      "polarity": "inversa",
+      "weight_base": 0.142857,
+      "source": "SDS / REPS"
+    },
+    {
+      "id": "dim_movilidad",
+      "name": "Movilidad y Conectividad Masiva",
+      "indicator_code": "MOV-001_002",
+      "raw_variable": "densidad_estaciones_y_paraderos",
+      "polarity": "inversa",
+      "weight_base": 0.142857,
+      "source": "TransMilenio S.A."
+    },
+    {
+      "id": "dim_ambiente",
+      "name": "Ambiente y Sostenibilidad",
+      "indicator_code": "AMB-001",
+      "raw_variable": "conflictos_ambientales_por_km2",
+      "polarity": "directa",
+      "weight_base": 0.142857,
+      "source": "SDA / SAC"
+    },
+    {
+      "id": "dim_infraestructura",
+      "name": "Infraestructura y Espacio Publico",
+      "indicator_code": "INF-001",
+      "raw_variable": "parques_por_10000_hab",
+      "polarity": "inversa",
+      "weight_base": 0.142857,
+      "source": "IDRD"
+    },
+    {
+      "id": "dim_vulnerabilidad",
+      "name": "Vulnerabilidad Social y Economia Informal",
+      "indicator_code": "VUL-001",
+      "raw_variable": "rivi_por_10000_hab_promedio",
+      "polarity": "directa",
+      "weight_base": 0.142857,
+      "source": "IPES / RIVI"
+    },
+    {
+      "id": "dim_seguridad",
+      "name": "Seguridad y Convivencia Ciudadana",
+      "indicator_code": "SEG-001",
+      "raw_variable": "cuadrantes_por_10000_hab_2026",
+      "polarity": "inversa",
+      "weight_base": 0.142857,
+      "source": "MEBOG / SCJ"
+    }
+  ],
+  "normalization_method": "Min-Max Unit Scaling [0, 1] with Polar Inversion and Robust Non-parametric Percentiles",
+  "aggregation_method": "Weighted Arithmetic Mean (Primary) and Weighted Geometric Aggregation (Non-compensatory)",
+  "statistical_audit_certification": {
+    "status": "APPROVED_AND_CERTIFIED",
+    "standards": ["OECD/JRC Handbook on Composite Indicators", "ASA Ethical Guidelines", "DAMA-BOK"],
+    "multicollinearity_vif": {
+      "vif_mean": 3.21,
+      "vif_max": 6.24,
+      "assessment": "No severe collinearity detected (VIF < 10.0 in all 7 dimensions)"
+    },
+    "spatial_autocorrelation": {
+      "moran_global_i": 0.412,
+      "p_value_monte_carlo": 0.008,
+      "assessment": "Statistically significant positive spatial clustering (Southern Border Cluster)"
+    },
+    "bootstrap_uncertainty": {
+      "iterations": 1000,
+      "distribution": "Dirichlet(1, ..., 1)",
+      "confidence_level": 0.95,
+      "mean_ci_width": 12.4
+    },
+    "compensability_assessment": {
+      "spearman_rho_linear_vs_geometric": 0.962,
+      "p_value": 0.00001
+    }
+  },
+  "sensitivity_scenarios": [
+    "IPT_Base (7 dimensiones equilibradas)",
+    "IPT_Rangos (Normalizacion no parametrica por percentiles)",
+    "IPT_Sin_Parques (6 dimensiones, excluye proxy infraestructura)",
+    "IPT_Sin_RIVI (6 dimensiones, excluye proxy vulnerabilidad)",
+    "IPT_Sin_Proxies (5 dimensiones duras)",
+    "IPT_Geometrico (7 dimensiones, agregacion no compensatoria)"
+  ],
+  "tie_breaking_rule": "Deterministic hierarchy: (Ranking_Promedio ASC, IPT_Base DESC, Codigo_DIVIPOLA ASC)",
+  "classification_tiers": {
+    "Alta": "Ranking 1 a 5",
+    "Media-alta": "Ranking 6 a 10",
+    "Media": "Ranking 11 a 15",
+    "Baja": "Ranking 16 a 20"
+  },
+  "confidence_levels": {
+    "Alta": "Aparicion en Top 5 en >= 4 escenarios",
+    "Media": "Aparicion en Top 5 en 2 o 3 escenarios",
+    "Baja": "Aparicion en Top 5 en <= 1 escenario"
+  },
+  "data_inputs": {
+    "master_table": "data/processed/master_localidades.csv",
+    "domain_curated": "data/curated/master_*.csv"
+  },
+  "outputs": {
+    "prioritization": "data/curated/ipt_priorizacion_localidades.csv",
+    "model_metrics": "data/curated/ipt_modelo_localidad.csv",
+    "contract": "data/curated/ipt_contrato_indicadores.csv"
+  }
+}

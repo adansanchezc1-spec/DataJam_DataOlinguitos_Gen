@@ -1,7 +1,7 @@
 {
   "id": "ips_sds",
-  "titulo": "IPS georreferenciadas — REPS/SDS",
-  "origen": "Registro Especial de Prestadores de Servicios de Salud (REPS) — Secretaría Distrital de Salud",
+  "titulo": "IPS georreferenciadas -- REPS/SDS",
+  "origen": "Registro Especial de Prestadores de Servicios de Salud (REPS) -- Secretaría Distrital de Salud",
   "corte": "Corte REPS de julio 2020 (columna fecha_cort)",
   "valor_publico": "Cobertura de servicios de salud por localidad (mediante cruce espacial)",
   "indicadores": "SAL-01 (IPS por localidad), SAL-02 (camas por habitante)",

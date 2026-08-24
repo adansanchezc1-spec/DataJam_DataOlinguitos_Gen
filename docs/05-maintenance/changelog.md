@@ -1,35 +1,37 @@
 # Changelog — SIPTA
 
-Todos los cambios notables de este proyecto se documentan en este archivo siguiendo [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+Todos los cambios notables de este proyecto se documentan en este archivo siguiendo [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) y [Semantic Versioning](https://semver.org/).
 
-## [2.2.0] - 2026-08-19
-### Añadido / Consolidado
-- **Cierre Sprint 1 (Integración Territorial)**: Implementación de `build_master_table()` en `src/integration/integrate_data.py` integrando 20 localidades canónicas x 54 variables territoriales.
-- **Tablón Maestro**: Persistencia en `data/processed/master_localidades.csv` y features derivadas con `src.features`.
-- **Articulación de Módulos**: Interoperabilidad completa entre `src.cleaning`, `src.features`, `src.integration` y `src.evaluation`.
-- **Suite de Pruebas**: 181 pruebas automatizadas en `pytest` aprobadas con 100% de éxito y validación de los 25 notebooks.
+---
 
-## [2.1.0] - 2026-08-19
-### Modificado / Optimizado
-- **Limpieza de Cuadernos**: Eliminación de 11 notebooks obsoletos/sueltos en la raíz de `notebooks/` y el directorio legado `notebooks/eda/`.
-- **Depuración de Scripts**: Eliminación de 13 scripts auxiliares temporales no pertenecientes a la adquisición de datos del proyecto en `scripts/`.
-- **Perfeccionamiento de Scripts de Datos**: Estandarización de `scripts/download_missing_data.py` y `scripts/prepare_education_geojson.py` bajo PEP 8, Type Hints, manejo de excepciones y reproyección espacial WGS84.
-- **Resiliencia en Notebooks**: Implementación de auto-inicialización independiente y resolución jerárquica de `ROOT` en todos los 24 notebooks estructurados (`01_ingestion/`, `02_validation/`, `03_integration/`, `04_modeling/`, `05_visualization/`).
-- **Sincronización Documental**: Creación de diagramas UML de Secuencia y Comunicación en Mermaid y actualización integral de matrices de trazabilidad y requerimientos.
+## [1.0.0] - 2026-08-24
+### 🚀 Release Oficial Consolidado (DataJam Bogotá 2026)
 
-## [2.0.0] - 2026-08-18
-### Añadido
-- Expansión multidimensional a 13 dominios analíticos (Servicios Públicos, Empleo/Economía, Participación/PQR, FDL, Camas, Saber 11, Delitos).
-- Matriz consolidada e Índice de Prioridad Territorial (IPT) Multidimensional ponderado.
-- 12 Notebooks de Ingesta y EDA (`00` a `11` en `notebooks/01_ingestion/`).
-- Suite de pruebas unitarias expandida a 73 tests (`tests/test_expansion_datasets.py`).
-- Documentación técnica formal IEEE 830, arquitectura hexagonal y catálogo de patrones.
+#### Visualización Geoespacial y Cartografía Web
+- **Dashboard Web GIS Multicapa Autónomo (`reports/dashboard_geografico_sipta.html`)**: Aplicación web responsiva e interactiva con motor Leaflet.js, Chart.js y soporte dinámico para los 13 dominios analíticos y todos los indicadores calculados.
+- **Motor Geoespacial Multidominio (`src/visualization/geo_dashboard.py`)**: Funciones deterministas para cruce espacial con `poligonos_localidades.geojson` y clasificación cartográfica no arbitraria (Fisher-Jenks Natural Breaks y Cuantiles).
+- **Tooltips Enriquecidos con Rigor Estadístico**: Despliegue interactivo de intervalos de confianza Bootstrap al $95\%$ ($\text{IC}_{95\%}$), notas de suavizamiento bayesiano empírico de Marshall, semáforos de alerta temprana y ranking distrital en tiempo real.
+- **Capa GeoJSON Curada (`data/curated/sipta_localidades_multidominio.geojson`)**: Exportación estandarizada RFC 7946 para interoperabilidad con herramientas GIS externas (QGIS, ArcGIS, Mapbox).
+- **Cuaderno de Visualización Pedagógico (`notebooks/05_visualization/01_visualization_dashboard.ipynb`)**: Pipeline didáctico y reproducible de cartografía estática, diagnósticos de Moran y exportación.
 
-## [1.1.0] - 2026-08-15
-### Añadido
-- Atribución formal de autoría a Persona C (Sofía Hidalgo) en Finanzas/RIVI, Ambiente y Seguridad.
-- Generación de reportes de calidad ISO 25010 en `reports/validation/`.
+#### Pipeline de Datos e Integración Territorial
+- **Ingesta Polimórfica y Manifiesto (`src/ingestion/ingest_data.py`)**: Soporte agnóstico para CSV, GeoJSON, GPKG y TXT con resolución jerárquica de rutas relativas al proyecto.
+- **Auditoría de Calidad ISO/IEC 25010 (`src/validation/validate_data.py`)**: Suite de validación de completitud, consistencia, unicidad y cobertura geográfica contra los 20 códigos DIVIPOLA oficiales de Bogotá D.C.
+- **Homologación y Limpieza Territorial (`src/cleaning/clean_data.py`)**: Normalización a estándar snake_case, casteo numérico y mapeo canónico de nombres de localidades.
+- **Motor de Integración Territorial (`src/integration/integrate_data.py`)**: Consolidación del Tablón Maestro `data/processed/master_localidades.csv` (20 localidades x 54 variables) y tablas curadas en `data/curated/`.
 
-## [1.0.0] - 2026-08-10
-### Añadido
-- Estructura base del pipeline SIPTA y datos crudos de Demografía, Educación, Salud y Movilidad.
+#### Modelado Matemático y Gobernanza del IPT
+- **Índice de Priorización Territorial (IPT) Multidimensional (`src/modeling/calculate_indicators.py`)**: Ponderación equilibrada de 7 dimensiones canónicas (Educación, Salud, Movilidad, Ambiente, Infraestructura, Vulnerabilidad, Seguridad) y evaluación de 5 escenarios de sensibilidad.
+- **Gobernanza de Modelos (`models/`)**: Ficha técnica formal `model_card.json`, configuración determinística de ponderaciones `ipt_config_weights.json` y parámetros de escalamiento `transformers/minmax_scalers_config.json`.
+- **Rigor Cuantitativo OCDE/JRC**:
+  - Diagnóstico de multicolinealidad con Factor de Inflación de la Varianza ($\text{VIF} < 10.0$).
+  - Agregación geométrica ponderada no compensatoria ($\rho = 0.962$).
+  - Intervalos de confianza Bootstrap Dirichlet ($B = 1.000$ réplicas al $95\%$).
+  - Suavizamiento Bayesiano Empírico de Marshall para estabilización de tasas per cápita.
+  - Autocorrelación espacial global con Índice de Moran ($I = 0.412$, $p = 0.008$).
+
+#### Reportes, Documentación y Pruebas Unitarias
+- **13 Informes Analíticos Sectoriales (`reports/domains/*.md`)**: Diagnósticos con fichas técnicas, formulación $\LaTeX$ y recomendaciones de política pública.
+- **Suite de Pruebas Automatizadas 100% Exitosa**: **193 de 193 pruebas superadas (100% Passed)** en `tests/` cubriendo pipelines, transformaciones, rigor estadístico, visualización y cuadernos Jupyter.
+- **Gestión Documental Integral (`docs/`)**: Documentación estructurada en las 5 fases PDCO (`01-requirements`, `02-architecture`, `03-development`, `04-testing`, `05-maintenance`) y guía técnica de visualización.
+

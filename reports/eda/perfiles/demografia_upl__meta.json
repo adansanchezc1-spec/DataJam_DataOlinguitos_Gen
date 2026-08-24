@@ -1,6 +1,6 @@
 {
   "id": "demografia_upl",
-  "titulo": "Población por UPL — OSB",
+  "titulo": "Población por UPL -- OSB",
   "origen": "Observatorio SISBEN Bogotá (OSB) vía datos abiertos",
   "corte": "Serie anual según columna ANO",
   "valor_publico": "Desagregación territorial más fina que la localidad (UPL): útil para movilidad y planeación local",
