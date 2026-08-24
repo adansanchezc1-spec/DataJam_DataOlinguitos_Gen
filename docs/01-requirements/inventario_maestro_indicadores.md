@@ -1,8 +1,8 @@
-# SIPTA — Inventario Maestro de Indicadores Territoriales (v2.6.0)
+# SIPTA — Inventario Maestro de Indicadores Territoriales (v1.0.0)
 
 **Fase PDCO**: PLAN → DEVELOPMENT | **SDLC Stage**: Requirements & Data Modeling  
 **Estándar**: DAMA-BOK (Metadata Management), IEEE 830 / ISO 29148, OECD/JRC  
-**Autores**: Persona A (Adan Sánchez), Persona B (Yesid Bello), Persona C (Sofía Hidalgo), Senior Software Engineer Agent, Chief Statistical Reviewer Agent  
+**Autores**: Persona A (Adan Sánchez), Persona B (Yesid Bello), Persona C (Sofía Hidalgo) — Equipo DataJam  
 
 ---
 

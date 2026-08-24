@@ -1,6 +1,6 @@
 {
   "id": "demografia_localidad",
-  "titulo": "Población por localidad — OSB",
+  "titulo": "Población por localidad -- OSB",
   "origen": "Observatorio SISBEN Bogotá (OSB) vía datos abiertos",
   "corte": "Serie anual según columna ANO",
   "valor_publico": "Tamaño y estructura de la población por localidad: insumo para indicadores per cápita de salud, educación, espacio público e inversión",

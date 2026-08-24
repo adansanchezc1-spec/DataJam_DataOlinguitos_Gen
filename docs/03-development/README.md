@@ -16,6 +16,7 @@ Esta fase agrupa la documentación de implementación del código fuente en `src
 | Documento | Descripción |
 | :--- | :--- |
 | [`dev-log.md`](dev-log.md) | Bitácora cronológica de desarrollo, autoría por miembro del equipo y commits asociados. |
+| [`sistema_visualizacion.md`](sistema_visualizacion.md) | Guía técnica del sistema de visualización geoespacial, procesamiento GeoJSON y dashboard Web GIS. |
 | [`manual_calculo_indices_territoriales.md`](manual_calculo_indices_territoriales.md) | Manual técnico completo de formulación y cálculo de indicadores territoriales por dominio. |
 | [`formulacion_matematica_ipt.md`](formulacion_matematica_ipt.md) | Formulación matemática detallada del Índice de Prioridad Territorial (IPT) y consenso. |
 | [`api-docs.md`](api-docs.md) | Documentación técnica de contratos e interfaces públicas de los módulos en `src/`. |

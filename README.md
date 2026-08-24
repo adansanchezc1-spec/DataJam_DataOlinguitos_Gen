@@ -1,13 +1,13 @@
 # SIPTA — Sistema de Indicadores y Priorización Territorial y Alertas Tempranas
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
-[![Tests Passing](https://img.shields.io/badge/tests-190%2F190%20passing-brightgreen.svg)](tests/)
-[![Coverage](https://img.shields.io/badge/coverage-%E2%89%A594%25-success.svg)](tests/)
+[![Tests Passing](https://img.shields.io/badge/tests-193%2F193%20passing-brightgreen.svg)](tests/)
+[![Coverage](https://img.shields.io/badge/coverage-%E2%89%A595%25-success.svg)](tests/)
 [![Standards](https://img.shields.io/badge/standards-SWEBOK%20%7C%20DAMA--BOK%20%7C%20ISO%2025010%20%7C%20OECD%20JRC-orange.svg)](docs/)
 [![Statistical Audit](https://img.shields.io/badge/statistical%20audit-CERTIFIED%20%26%20APPROVED-success.svg)](reports/00_auditoria_estadistica_formal.md)
 [![Architecture](https://img.shields.io/badge/architecture-Hexagonal%20%2F%20Modular-informational.svg)](docs/02-architecture/)
 
-Plataforma integral de analítica de datos territoriales, modelado multicriterio de priorización de inversión social y sistema de alertas tempranas para las **20 localidades de Bogotá D.C.** desarrollada en el marco del **DataJam Bogotá 2026**.
+Plataforma integral de analítica de datos territoriales, modelado multicriterio de priorización de inversión social, visualización geoespacial interactiva y sistema de alertas tempranas para las **20 localidades de Bogotá D.C.** desarrollada en el marco del **DataJam Bogotá 2026**.
 
 ---
 
@@ -15,9 +15,7 @@ Plataforma integral de analítica de datos territoriales, modelado multicriterio
 
 - **Persona A — Adan Sánchez**: Scrum Master & Lead Data Engineer / Arquitectura de Pipeline, Gestión Git y Control de Calidad.
 - **Persona B — Yesid Bello**: Data Scientist & Territorial Analyst / Modelado Multidimensional e Indicadores Compuestos.
-- **Persona C — Sofía Hidalgo**: Tech Lead & BI Developer / Ingesta, QA y Análisis Exploratorio de Finanzas (RIVI), Ambiente (SAC/RMCAB) y Seguridad (Cuadrantes).
-- **Senior Software Engineer & Data Scientist Agent**: Arquitectura modular, Clean Code, PEP 8 y automatización del SDLC bajo el marco PDCO.
-- **Chief Statistical Reviewer Agent**: Auditoría cuantitativa formal, validación de supuestos inferenciales, control de multicolinealidad y certificación OCDE/JRC.
+- **Persona C — Sofía Hidalgo**: Tech Lead & BI Developer / Ingesta, QA, Visualización y Análisis Exploratorio de Finanzas (RIVI), Ambiente (SAC/RMCAB) y Seguridad (Cuadrantes).
 
 ---
 
@@ -38,7 +36,7 @@ El sistema implementa de forma exhaustiva los estándares internacionales rector
 │   Y DESCARGA    │    VALIDACIÓN    │   TERRITORIAL   │   IPT COMPUESTO  │  ESTADÍSTICA  │
 ├─────────────────┼──────────────────┼─────────────────┼──────────────────┼───────────────┤
 │ 25 Datasets     │ ISO 25010 Checks │ Homologación a  │ Normalización    │ VIF < 10.0    │
-│ IDECA / EAAB    │ 12 Dominios      │ 20 Localidades  │ 7 Dimensiones    │ Moran's I     │
+│ IDECA / EAAB    │ 13 Dominios      │ 20 Localidades  │ 7 Dimensiones    │ Moran's I     │
 │ SDIS / DANE     │ Ingestion        │ Spatial Joins   │ 5 Escenarios     │ Bootstrap 95% │
 │ MEBOG / SED     │ Manifest JSON    │ Master Table    │ Consenso Ranking │ OCDE Aprobado │
 └─────────────────┴──────────────────┴─────────────────┴──────────────────┴───────────────┘
@@ -46,7 +44,19 @@ El sistema implementa de forma exhaustiva los estándares internacionales rector
 
 ---
 
-## 📐 Formulación Matemática del Índice de Priorización Territorial (IPT v2.6.0)
+## 🗺️ Visualización Geoespacial y Dashboard Web GIS
+
+SIPTA integra un subsistema de visualización interactiva y autónoma que no requiere servidores externos ni software GIS comercial:
+
+- **Dashboard Web GIS Interactivo**: [`reports/dashboard_geografico_sipta.html`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/reports/dashboard_geografico_sipta.html) (aplicación web completa basada en Leaflet.js, Chart.js, Tailwind CSS y Lucide Icons).
+- **Exploración de 13 Dominios y más de 30 Indicadores**: Selector dinámico con cambio de clasificaciones cartográficas no arbitrarias (**Fisher-Jenks Natural Breaks** y **Cuantiles**).
+- **Rigor Estadístico Integrado en Tooltips**: Despliegue en tiempo real de intervalos de confianza Bootstrap al 95% ($\text{IC}_{95\%}$), semáforos de riesgo y gráficos comparativos de radar.
+- **Capa Espacial Curada (RFC 7946)**: [`data/curated/sipta_localidades_multidominio.geojson`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/data/curated/sipta_localidades_multidominio.geojson) lista para consumir en QGIS, ArcGIS o Mapbox.
+- **Documentación Técnica del Subsistema**: [`docs/03-development/sistema_visualizacion.md`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/docs/03-development/sistema_visualizacion.md).
+
+---
+
+## 📐 Formulación Matemática del Índice de Priorización Territorial (IPT v1.0.0)
 
 El **Índice de Priorización Territorial (IPT)** sintetiza las brechas estructurales de las 20 localidades en una escala normalizada $[0, 100]$, donde un mayor puntaje refleja mayor privación y urgencia de asignación presupuestal:
 
@@ -68,7 +78,7 @@ $$\hat{x}_{i, d} = \frac{x_{i, d} - \min(X_d)}{\max(X_d) - \min(X_d)}$$
 
 ---
 
-## 📊 Los 12 Dominios Analíticos Integrados y sus Reportes
+## 📊 Los 13 Dominios Analíticos Integrados y sus Reportes
 
 | # | Dominio Sectorial | Informe Analítico Formal | Indicador Clave | Visualización 300 DPI |
 |---|---|---|---|---|
@@ -94,8 +104,13 @@ $$\hat{x}_{i, d} = \frac{x_{i, d} - \min(X_d)}{\max(X_d) - \min(X_d)}$$
 DataJam_DataOlinguitos_Gen/
 ├── data/
 │   ├── raw/                 ← Datasets originales inmutables (25 fuentes oficiales)
-│   ├── processed/           ← Tablas procesadas y tabló́n maestro territorial
-│   └── curated/             ← 12 Tablas maestras curadas por dominio e IPT oficial
+│   ├── processed/           ← Tablas procesadas y tablón maestro territorial
+│   └── curated/             ← 12 Tablas maestras curadas por dominio, IPT y GeoJSON oficial
+├── models/                  ← Gobernanza de modelos, ponderaciones deterministas y transformadores
+│   ├── model_card.json      ← Ficha técnica formal del modelo IPT (v1.0.0)
+│   ├── ipt_config_weights.json ← Ponderaciones dimensionales y 5 escenarios de sensibilidad
+│   ├── README.md            ← Guía de gobernanza del modelo
+│   └── transformers/        ← Parámetros Min-Max y polaridades por indicador
 ├── notebooks/
 │   ├── 01_ingestion/        ← 12 Notebooks de Ingesta y EDA por sector (00 al 11)
 │   ├── 02_validation/       ← 9 Notebooks de validación de calidad ISO 25010
@@ -108,19 +123,20 @@ DataJam_DataOlinguitos_Gen/
 │   ├── cleaning/            ← Homologación territorial y tipado de datos
 │   ├── integration/         ← Merge territorial y cruces espaciales
 │   ├── modeling/            ← Motor del IPT, Bootstrap, VIF, Moran y Marshall
-│   └── visualization/       ← Preparación de figuras y mapas de calor
-├── tests/                   ← 190 Pruebas unitarias automatizadas (pytest)
+│   └── visualization/       ← Web GIS Dashboard (Leaflet.js/Chart.js), Fisher-Jenks y GeoJSON
+├── tests/                   ← 193 Pruebas unitarias automatizadas (pytest)
 ├── docs/                    ← Gestión Documental Transversal (PDCO / SDLC)
 │   ├── 01-requirements/     ← IEEE 830, E01, E02, Casos de uso y Fichas técnicas
 │   ├── 02-architecture/     ← Arquitectura Hexagonal, Patrones GoF/GRASP y ADRs
-│   ├── 03-development/      ← Dev-log, APIs, Formulación matemática del IPT
+│   ├── 03-development/      ← Dev-log, APIs, Guía de visualización, Formulación IPT
 │   ├── 04-testing/          ← Plan de pruebas IEEE 829 y Resultados formales
-│   └── 05-maintenance/      ← Changelog SemVer y Registro de Refactorizaciones
-├── reports/                 ← Informes de dominio, figuras 300 DPI y Dictamen estadístico
+│   └── 05-maintenance/      ← Changelog SemVer (v1.0.0) y Registro de Refactorizaciones
+├── reports/                 ← Informes de dominio, figuras 300 DPI y Dashboard Web GIS
+│   ├── dashboard_geografico_sipta.html ← Aplicación Web GIS interactiva autónoma
 │   ├── 00_auditoria_estadistica_formal.md ← Certificación y Dictamen OCDE/JRC
 │   ├── domains/             ← 13 Informes analíticos sectoriales con recomendaciones
 │   └── figures/             ← 13 Figuras científicas multi-panel a 300 DPI
-└── metadata.json            ← Metadatos de gobernanza DAMA-BOK y trazabilidad (v2.6.0)
+└── metadata.json            ← Metadatos de gobernanza DAMA-BOK y trazabilidad (v1.0.0)
 ```
 
 ---
@@ -140,9 +156,10 @@ source .venv/bin/activate    # Linux / macOS
 # 3. Instalar dependencias
 pip install -r requirements.txt
 
-# 4. Ejecutar la suite completa de 190 pruebas automatizadas
+# 4. Ejecutar la suite completa de 193 pruebas automatizadas
 pytest -v
 
-# 5. Ejecutar la suite de rigor estadístico
-pytest tests/test_statistical_rigor.py -v
+# 5. Generar y compilar el Dashboard Web GIS y la capa GeoJSON curada
+python -c "from src.visualization.geo_dashboard import generate_interactive_gis_dashboard; generate_interactive_gis_dashboard()"
 ```
+

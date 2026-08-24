@@ -1,11 +1,11 @@
-# Especificación de Requerimientos de Software (SRS) — SIPTA (v2.6.0)
+# Especificación de Requerimientos de Software (SRS) — SIPTA (v1.0.0)
 
 **Proyecto**: Sistema de Indicadores y Priorización Territorial y Alertas Tempranas (SIPTA)  
-**Versión**: 2.6.0  
-**Fecha de Actualización**: 2026-08-23  
+**Versión**: 1.0.0  
+**Fecha de Actualización**: 2026-08-24  
 **Fase PDCO**: PLAN | **SDLC Stage**: Requirements Engineering  
 **Estándares Rectores**: IEEE 830 / ISO/IEC/IEEE 29148 / DAMA-BOK / OECD-JRC / ISO/IEC 25010  
-**Autores**: Persona A (Adan Sánchez), Persona B (Yesid Bello), Persona C (Sofía Hidalgo), Senior Software Engineer & Data Scientist Agent, Chief Statistical Reviewer Agent  
+**Autores**: Persona A (Adan Sánchez), Persona B (Yesid Bello), Persona C (Sofía Hidalgo) — Equipo DataJam  
 
 ---
 
@@ -35,6 +35,7 @@ Bogotá D.C. presenta marcadas disparidades socio-espaciales en acceso y calidad
 | **RF-014** | Aplicar el estimador de Marshall (*Empirical Bayes Rate Smoother*) en localidades con denominadores reducidos ($N < 10.000$). | Alta | Epidemiología | UC-012 |
 | **RF-015** | Calcular el Índice de Moran Global ($I$) y su significancia por permutación Monte Carlo para verificar dependencia espacial. | Alta | Econometría Espacial | UC-013 |
 | **RF-016** | Generar 13 informes analíticos sectoriales en `reports/domains/` acompañados de figuras multi-panel a 300 DPI. | Alta | Generación de Informes | UC-014 |
+| **RF-017** | Compilar la aplicación Web GIS autónoma (`reports/dashboard_geografico_sipta.html`) con selector de 13 dominios, clasificación Fisher-Jenks y exportar la capa GeoJSON curada (`data/curated/sipta_localidades_multidominio.geojson`). | Alta | Visualización Web GIS | UC-015 |
 
 ---
 

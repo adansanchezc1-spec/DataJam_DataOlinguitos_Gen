@@ -47,7 +47,10 @@ sequenceDiagram
     Modeling->>Storage: Guardar ipt_localidades_ranking.csv & ipt_localidades_ranking.parquet
     Modeling-->>Operador: Ranking IPT Final y Alertas Tempranas
 
-    Operador->>Visualization: generate_dashboard_artifacts()
-    Visualization->>Storage: Exportar dashboard_ranking.csv & mapas GeoJSON
-    Visualization-->>Operador: Artefactos listos para tableros BI / SIG
+    Operador->>Visualization: generate_interactive_gis_dashboard()
+    Visualization->>Storage: Leer polígonos GeoJSON y tablas curadas
+    Visualization->>Visualization: Calcular Fisher-Jenks Natural Breaks y Cuantiles
+    Visualization->>Storage: Exportar data/curated/sipta_localidades_multidominio.geojson
+    Visualization->>Storage: Compilar reports/dashboard_geografico_sipta.html
+    Visualization-->>Operador: Dashboard Web GIS autónomo y Capa GeoJSON listos
 ```

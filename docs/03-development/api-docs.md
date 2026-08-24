@@ -1,9 +1,9 @@
-# Documentación Técnica de APIs y Módulos — SIPTA (v2.6.0)
+# Documentación Técnica de APIs y Módulos — SIPTA (v1.0.0)
 
 **Proyecto**: Sistema de Indicadores y Priorización Territorial y Alertas Tempranas (SIPTA)  
-**Versión**: 2.6.0  
+**Versión**: 1.0.0  
 **Fase PDCO**: DEVELOPMENT | **Estándares**: Clean Code, PEP 8, Type Hints, DAMA-BOK  
-**Autores**: Senior Software Engineer & Data Scientist Agent, Chief Statistical Reviewer Agent  
+**Autores**: Adan Sánchez (Persona A), Yesid Bello (Persona B), Sofía Hidalgo (Persona C) — Equipo DataJam  
 
 ---
 
@@ -69,3 +69,25 @@ Validación de calidad de datos bajo la norma **ISO/IEC 25010**.
 - `clean_locality_names(series: pd.Series) -> pd.Series`: Homologa nombres a los 20 identificadores canónicos oficiales.
 - `perform_spatial_join(points_gdf, polygons_gdf) -> gpd.GeoDataFrame`: Ejecuta cruces *Point-in-Polygon* en WGS84 (EPSG:4326).
 - `build_master_territorial_table() -> pd.DataFrame`: Integra las variables sectoriales en `data/processed/master_localidades.csv`.
+
+---
+
+## 5. Módulo `src.visualization.geo_dashboard` & `src.visualization.prepare_visualization`
+
+Motor de generación cartográfica y aplicación Web GIS interactiva multidominio.
+
+### Funciones Principales:
+
+#### `build_multidomain_geodataframe() -> gpd.GeoDataFrame`
+- **Descripción**: Realiza el cruce determinista entre las geometrías de las 20 localidades (`poligonos_localidades.geojson`) y el tablón maestro curado (`master_indicadores_territoriales.csv`), retornando un GeoDataFrame WGS84 con los 13 dominios.
+
+#### `calculate_classification_breaks(series: pd.Series, method: str = 'jenks', k: int = 5) -> list[float]`
+- **Descripción**: Implementa el algoritmo de Fisher-Jenks Natural Breaks y Cuantiles en Python puro para garantizar clasificaciones cartográficas no arbitrarias con mínima varianza intra-clase.
+
+#### `generate_interactive_gis_dashboard(output_html_path: Path | None = None) -> Path`
+- **Descripción**: Compila la aplicación Web GIS autónoma en HTML5/Leaflet con selector para los 13 dominios analíticos, capas vectoriales overlay, tooltips enriquecidos con intervalos Bootstrap al 95%, semáforos de alerta y gráficos dinámicos en Chart.js.
+- **Salida**: `reports/dashboard_geografico_sipta.html`.
+
+#### `export_curated_multidomain_geojson(output_path: Path | None = None) -> Path`
+- **Descripción**: Exporta el GeoDataFrame multidominio bajo el estándar RFC 7946 GeoJSON a `data/curated/sipta_localidades_multidominio.geojson`.
+

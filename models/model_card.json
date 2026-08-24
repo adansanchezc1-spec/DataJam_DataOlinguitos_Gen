@@ -1,15 +1,13 @@
 {
   "model_name": "Indice de Priorizacion Territorial (IPT) Multidimensional",
-  "version": "2.6.0",
+  "version": "1.0.0",
   "project": "SIPTA (Sistema de Indicadores y Priorizacion Territorial y Alertas Tempranas)",
   "framework": "DataJam Bogota 2026",
   "created_at": "2026-08-23",
   "authors": [
     "Persona A (Adan Sanchez - Scrum Master & Lead Data Engineer)",
     "Persona B (Yesid Bello - Data Scientist & Territorial Analyst)",
-    "Persona C (Sofia Hidalgo - Tech Lead & BI Developer)",
-    "Senior Software Engineer & Data Scientist Agent",
-    "Chief Statistical Reviewer Agent (Certificacion Cuantitativa)"
+    "Persona C (Sofia Hidalgo - Tech Lead & BI Developer)"
   ],
   "model_type": "Composite Multicriteria Index / Multi-attribute Decision Matrix (OECD/JRC Compliant)",
   "territorial_scope": {

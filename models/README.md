@@ -14,7 +14,7 @@ El directorio `models/` aloja los artefactos de configuración, fichas técnicas
 
 ```
 models/
-├── model_card.json                       ← Ficha técnica formal del modelo IPT v2.0
+├── model_card.json                       ← Ficha técnica formal del modelo IPT (v1.0.0)
 ├── ipt_config_weights.json               ← Ponderaciones dimensionales y 5 escenarios de sensibilidad
 ├── README.md                             ← Documentación de gobernanza del modelo
 └── transformers/
@@ -28,7 +28,7 @@ models/
 ### A. `model_card.json`
 Define los metadatos de gobernanza del modelo:
 - **Nombre**: Índice de Priorización Territorial (IPT) Multidimensional.
-- **Versión**: 2.0.0.
+- **Versión**: 1.0.0.
 - **Escala**: $[0, 100]$ (Mayor puntaje $\implies$ Mayor necesidad / prioridad de intervención).
 - **Cobertura Territorial**: 20 Localidades oficiales de Bogotá D.C. (DIVIPOLA SDP).
 - **Dimensiones Canónicas**: 7 (Educación, Salud, Movilidad, Ambiente, Infraestructura, Vulnerabilidad, Seguridad).

@@ -144,3 +144,27 @@
    - Suite ampliada con prueba automatizada para las 12 tablas temáticas en `tests/test_pipeline_modeling_viz.py`.
    - 105/105 pruebas unitarias automatizadas aprobadas exitosamente (`pytest -v`).
 
+---
+
+## 8. Implementación del Subsistema de Visualización Geoespacial Web GIS (v1.0.0)
+
+**Fecha**: 2026-08-24  
+**Participantes**: Persona A (Adan Sánchez), Persona B (Yesid Bello), Persona C (Sofía Hidalgo)  
+**Fase PDCO**: DEVELOPMENT → OPERATIONS  
+
+### Actividades y Entregables Completados:
+1. **Motor Geoespacial Multidominio (`src/visualization/geo_dashboard.py`)**:
+   - Cruce vectorial determinista entre polígonos oficiales WGS84 (`poligonos_localidades.geojson`) y los indicadores consolidados de los 13 dominios.
+   - Algoritmo en Python puro de *Fisher-Jenks Natural Breaks* y *Cuantiles* para clasificación cartográfica no arbitraria de coropletas.
+   - Carga de capas vectoriales de puntos overlay (TransMilenio, Metro Línea 1, Estaciones de Calidad del Aire, Puntos de Venta Informales IPES, Oferta de Cupos Escolares).
+2. **Dashboard Web GIS Autónomo (`reports/dashboard_geografico_sipta.html`)**:
+   - Compilación en un archivo HTML interactivo autónomo basado en Leaflet.js, Chart.js, Tailwind CSS y Lucide Icons.
+   - Selector dinámico de 13 dominios, semaforización de alertas tempranas, visualización de intervalos de confianza Bootstrap 95% y gráficos comparativos de radar.
+3. **Capa GeoJSON Curada (`data/curated/sipta_localidades_multidominio.geojson`)**:
+   - Exportación de la capa espacial completa estandarizada RFC 7946 para uso en QGIS, ArcGIS o Mapbox.
+4. **Documentación Técnica del Subsistema**:
+   - Creación de `docs/03-development/sistema_visualizacion.md`.
+5. **Control de Calidad y Pruebas**:
+   - 193 de 193 pruebas automatizadas aprobadas al 100% en `tests/`.
+
+

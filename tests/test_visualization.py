@@ -107,3 +107,55 @@ class TestVisualization:
         # Act & Assert
         with pytest.raises(FileNotFoundError, match="No existe el archivo curado"):
             load_curated_dataset("archivo_fantasma.csv")
+
+    def test_multidomain_geodataframe_integrity(self) -> None:
+        """RF-007 / RF-010: Verifica que el GeoDataFrame multidominio contenga las 20 localidades canónicas."""
+        # Arrange & Act
+        from src.visualization.geo_dashboard import build_multidomain_geodataframe
+
+        gdf = build_multidomain_geodataframe()
+
+        # Assert
+        assert len(gdf) == 20
+        assert gdf.crs is not None and gdf.crs.to_string() == "EPSG:4326"
+        assert not gdf.geometry.is_empty.any()
+        assert not gdf.geometry.isna().any()
+        assert "IPT_MULTIDIMENSIONAL" in gdf.columns
+        assert "codigo_localidad" in gdf.columns
+
+    def test_classification_breaks_monotonicity(self) -> None:
+        """Verifica que las rupturas de Fisher-Jenks y Cuantiles sean monótonas crecientes."""
+        # Arrange
+        from src.visualization.geo_dashboard import calculate_classification_breaks
+
+        sample_series = pd.Series([10.5, 23.1, 45.0, 12.0, 89.4, 55.2, 33.1, 67.8, 92.0, 15.4])
+
+        # Act
+        breaks_jenks = calculate_classification_breaks(sample_series, method="jenks", k=5)
+        breaks_quant = calculate_classification_breaks(sample_series, method="quantiles", k=5)
+
+        # Assert
+        assert len(breaks_jenks) >= 2
+        assert len(breaks_quant) >= 2
+        assert all(x <= y for x, y in zip(breaks_jenks, breaks_jenks[1:]))
+        assert all(x <= y for x, y in zip(breaks_quant, breaks_quant[1:]))
+
+    def test_dashboard_html_generation(self, tmp_path: Path) -> None:
+        """RF-010: Verifica la compilación y contenido del Dashboard Web GIS autónomo."""
+        # Arrange
+        from src.visualization.geo_dashboard import generate_interactive_gis_dashboard
+
+        out_html = tmp_path / "test_dashboard.html"
+
+        # Act
+        res_path = generate_interactive_gis_dashboard(out_html)
+
+        # Assert
+        assert res_path.exists()
+        assert res_path.stat().st_size > 10 * 1024  # Mayor a 10 KB
+        content = res_path.read_text(encoding="utf-8")
+        assert "SIPTA" in content
+        assert "00_ipt" in content
+        assert "12_participacion_ciudadana" in content
+        assert "leaflet" in content.lower()
+

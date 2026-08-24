@@ -1,4 +1,4 @@
-# Diagrama UML de Clases y Módulos SIPTA
+# Diagrama UML de Clases y Módulos SIPTA (v1.0.0)
 
 ```mermaid
 classDiagram
@@ -21,13 +21,37 @@ classDiagram
         +cast_numeric_columns(df) DataFrame
     }
 
+    class IntegrateData {
+        +perform_spatial_join(points_gdf, poly_gdf) GeoDataFrame
+        +build_master_table() DataFrame
+    }
+
     class CalculateIndicators {
         +normalize_min_max(series) Series
-        +build_consolidated_locality_metrics() DataFrame
         +calculate_multidimensional_ipt(df) DataFrame
+        +calculate_vif_scores(df) DataFrame
+        +calculate_geometric_ipt(df) Series
+        +calculate_bootstrap_confidence_intervals(df) DataFrame
+        +calculate_spatial_moran(values, localities) tuple
+    }
+
+    class DomainIndicators {
+        +build_all_domain_tables(export_curated) dict
+        +load_unified_territorial_source() DataFrame
+    }
+
+    class GeoDashboardEngine {
+        +build_multidomain_geodataframe() GeoDataFrame
+        +calculate_classification_breaks(series, method, k) list
+        +generate_interactive_gis_dashboard(output_path) Path
+        +export_curated_multidomain_geojson(output_path) Path
     }
 
     IngestData --> ValidateData : alimenta
     ValidateData --> CleanData : audita
-    CleanData --> CalculateIndicators : provee datos limpios
+    CleanData --> IntegrateData : provee datos limpios
+    IntegrateData --> CalculateIndicators : provee matriz territorial
+    CalculateIndicators --> DomainIndicators : genera tablas maestras
+    IntegrateData --> GeoDashboardEngine : suministra polígonos e indicadores
+    CalculateIndicators --> GeoDashboardEngine : suministra IPT y métricas
 ```

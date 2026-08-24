@@ -1,12 +1,12 @@
-# Documento de Arquitectura de Software (SAD) — SIPTA (v2.6.0)
+# Documento de Arquitectura de Software (SAD) — SIPTA (v1.0.0)
 
 **Proyecto**: Sistema de Indicadores y Priorización Territorial y Alertas Tempranas (SIPTA)  
-**Versión**: 2.6.0  
-**Fecha de Actualización**: 2026-08-23  
+**Versión**: 1.0.0  
+**Fecha de Actualización**: 2026-08-24  
 **Fase PDCO**: PLAN → DEVELOPMENT | **SDLC Stage**: System Architecture & Design  
 **Estilo Arquitectónico**: Arquitectura Hexagonal / Pipeline Modular por Capas + Motor de Auditoría Estadística  
 **Estándares Rectores**: SWEBOK Cap. 2 (Software Design), DAMA-BOK, OECD/JRC, ISO/IEC 25010  
-**Autores**: Persona A (Adan Sánchez), Persona B (Yesid Bello), Persona C (Sofía Hidalgo), Senior Software Engineer & Data Scientist Agent, Chief Statistical Reviewer  
+**Autores**: Persona A (Adan Sánchez), Persona B (Yesid Bello), Persona C (Sofía Hidalgo) — Equipo DataJam  
 
 ---
 
@@ -16,8 +16,8 @@ SIPTA implementa una **Arquitectura Hexagonal (Ports & Adapters)** con un pipeli
 1. **Capa de Infraestructura y Datos Crudos** (`data/raw/`): 25 datasets abiertos oficiales inmutables.
 2. **Capa de Ingestión y Validación de Calidad** (`src/ingestion/`, `src/validation/`): Extracción y validación bajo ISO 25010.
 3. **Capa de Dominio y Procesamiento Espacial** (`src/cleaning/`, `src/integration/`): Homologación DIVIPOLA y joins espaciales.
-4. **Capa de Modelado y Auditoría Cuantitativa** (`src/modeling/`): Motor del IPT, cálculo de VIF, Agregación Geométrica, Remuestreo Bootstrap, Suavizamiento Bayesiano y Moran Espacial.
-5. **Capa de Presentación y Consumo** (`notebooks/`, `reports/domains/`, `src/visualization/`): Cuadernos interactivos, reportes sectoriales Markdown y figuras a 300 DPI.
+4. **Capa de Modelos, Ponderaciones y Auditoría** (`models/`, `src/modeling/`): Configuración determinista de ponderaciones (`ipt_config_weights.json`), ficha técnica (`model_card.json`), escaladores (`minmax_scalers_config.json`), motor del IPT, VIF, Agregación Geométrica, Remuestreo Bootstrap, Suavizamiento Bayesiano y Moran Espacial.
+5. **Capa de Visualización, Reportes y Consumo** (`src/visualization/`, `reports/`, `notebooks/`): Compilador Web GIS interactivo (`reports/dashboard_geografico_sipta.html`), exportación de capa espacial curada (`sipta_localidades_multidominio.geojson`), reportes sectoriales Markdown y figuras a 300 DPI.
 
 ---
 
@@ -26,13 +26,16 @@ SIPTA implementa una **Arquitectura Hexagonal (Ports & Adapters)** con un pipeli
 ### A. Diagrama de Componentes del Sistema
 ```mermaid
 graph TB
-    subgraph Capa de Presentación
+    subgraph Capa de Visualización y Presentación
+        DASH["Dashboard Web GIS Autónomo (reports/dashboard_geografico_sipta.html)"]
+        GEOJSON["Capa GeoJSON Curada (data/curated/sipta_localidades_multidominio.geojson)"]
         NB["Jupyter Notebooks (01_ingest a 05_viz)"]
         REP["13 Reportes Analíticos (reports/domains/*.md)"]
         FIG["Figuras Científicas 300 DPI (reports/figures/*.png)"]
     end
 
-    subgraph Capa de Modelado y Rigor Estadístico
+    subgraph Capa de Modelos y Rigor Estadístico
+        MODELS[("models/ (model_card.json, ipt_config_weights.json, scalers)")]
         IPT["Motor IPT (calculate_multidimensional_ipt)"]
         VIF["Diagnóstico VIF (calculate_vif_scores)"]
         GEOM["Agregación Geométrica (calculate_geometric_ipt)"]
@@ -55,7 +58,8 @@ graph TB
 
     RAW --> VAL --> CLEAN --> INT --> PROC
     PROC --> IPT & VIF & GEOM & BOOT & MORAN & MARSHALL --> CUR
-    CUR --> NB & REP & FIG
+    MODELS --> IPT
+    CUR --> DASH & GEOJSON & NB & REP & FIG
 ```
 
 ### B. Diagrama de Secuencia: Flujo de Ejecución del Pipeline Analítico
@@ -68,7 +72,8 @@ sequenceDiagram
     participant Clean as src.cleaning
     participant Int as src.integration
     participant Model as src.modeling
-    participant Test as pytest (190 tests)
+    participant Viz as src.visualization
+    participant Test as pytest (193 tests)
     participant Rep as scripts.generate_domain_reports
 
     CLI->>Ingest: Ingestar y parsear datasets crudos
@@ -82,8 +87,11 @@ sequenceDiagram
     Model->>Model: Min-Max, Inversión Polar, 5 Escenarios IPT, VIF, Bootstrap, Moran
     Model-->>Rep: Tablas curadas en data/curated/
     Rep->>Rep: Renderizar 13 informes Markdown + figuras 300 DPI
+    CLI->>Viz: generate_interactive_gis_dashboard()
+    Viz->>Viz: Cruce GeoJSON + Fisher-Jenks + Chart.js
+    Viz-->>CLI: reports/dashboard_geografico_sipta.html & GeoJSON Curado
     CLI->>Test: Ejecutar suite de pruebas unitarias
-    Test-->>CLI: 190 / 190 Tests Passed (100%)
+    Test-->>CLI: 193 / 193 Tests Passed (100%)
 ```
 
 ---

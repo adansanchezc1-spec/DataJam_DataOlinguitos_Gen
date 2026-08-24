@@ -280,15 +280,23 @@ def mapa(gdf, title, column=None, markersize=4, cmap="viridis", ax=None):
         return None
     if ax is None:
         fig, ax = plt.subplots(figsize=(8, 8))
-    geom_types = set(gdf.geometry.geom_type.dropna())
+    geom_types = set(gdf.geometry.dropna().geom_type)
     
     try:
+        # Forzar 2D para evitar problemas con coordenadas Z (3D)
+        g_plot = gdf.copy()
+        if hasattr(g_plot.geometry, "force_2d"):
+            try:
+                g_plot["geometry"] = g_plot.geometry.force_2d()
+            except Exception:
+                pass
+
         if any(t in geom_types for t in ("Point", "MultiPoint")):
             # Dibujar puntos geográficos
-            gdf.plot(ax=ax, markersize=markersize, linewidth=0.5, color="#2E86AB", alpha=0.7)
+            g_plot.plot(ax=ax, markersize=markersize, linewidth=0.5, color="#2E86AB", alpha=0.7)
         elif column is not None:
             # Dibujar mapas coropléticos
-            gdf.plot(
+            g_plot.plot(
                 ax=ax,
                 column=column,
                 cmap=cmap,
@@ -299,7 +307,7 @@ def mapa(gdf, title, column=None, markersize=4, cmap="viridis", ax=None):
             )
         else:
             # Dibujar polígonos con color neutro
-            gdf.plot(
+            g_plot.plot(
                 ax=ax,
                 linewidth=0.5,
                 edgecolor="#ffffff",
@@ -307,9 +315,15 @@ def mapa(gdf, title, column=None, markersize=4, cmap="viridis", ax=None):
                 alpha=0.8,
             )
     except Exception:
-        # Fallback para proyecciones no convencionales o coordenadas 3D
+        # Fallback para proyecciones no convencionales o aspectos singulares
         try:
-            gdf.plot(ax=ax, aspect="auto", alpha=0.7)
+            ax.scatter(
+                [geom.centroid.x for geom in gdf.geometry if geom is not None and not geom.is_empty],
+                [geom.centroid.y for geom in gdf.geometry if geom is not None and not geom.is_empty],
+                s=markersize * 3,
+                c="#2E86AB",
+                alpha=0.7,
+            )
         except Exception:
             pass
         

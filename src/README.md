@@ -34,8 +34,9 @@ src/
 ├── evaluation/             ← Diagnóstico de calidad y reporte de nulos
 │   └── evaluate_results.py ← Detección de outliers y quality_report
 │
-└── visualization/          ← Preparación de datos y rankings para tableros
-    └── prepare_visualization.py ← Serialización curada para visualizaciones y dashboards
+└── visualization/          ← Sistema de visualización geoespacial y tableros interactivos
+    ├── prepare_visualization.py ← Serialización curada para visualizaciones y dashboards
+    └── geo_dashboard.py    ← Compilador Web GIS (Leaflet.js + Chart.js), Fisher-Jenks y GeoJSON RFC 7946
 ```
 
 ---

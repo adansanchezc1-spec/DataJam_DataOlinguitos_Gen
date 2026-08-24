@@ -1,13 +1,15 @@
-# Diagrama UML de Componentes SIPTA
+# Diagrama UML de Componentes SIPTA (v1.0.0)
 
 ```mermaid
 graph TB
-    subgraph Capa de Datos
-        RAW[(data/raw - Inmutable)]
-        PROC[(data/processed - Estandarizado)]
+    subgraph Capa de Datos y Modelos
+        RAW[(data/raw - 25 Datasets Inmutables)]
+        PROC[(data/processed - Tablas Homologadas)]
+        CUR[(data/curated - Tablas Maestras + GeoJSON)]
+        MODELS[(models/ - Model Card, Pesos IPT, Scalers)]
     end
 
-    subgraph Capa de Pipeline
+    subgraph Capa de Pipeline en Python
         ING[src.ingestion]
         VAL[src.validation]
         CLN[src.cleaning]
@@ -16,9 +18,10 @@ graph TB
         VIZ[src.visualization]
     end
 
-    subgraph Capa de Presentación
-        NB[Jupyter Notebooks 00..11]
-        REP[Reportes Markdown / JSON]
+    subgraph Capa de Presentación y Consumo
+        DASH[Dashboard Web GIS - Leaflet/Chart.js]
+        NB[Jupyter Notebooks 01..05]
+        REP[13 Reportes Markdown y Figuras 300 DPI]
     end
 
     RAW --> ING
@@ -27,8 +30,11 @@ graph TB
     VAL --> CLN
     CLN --> INT
     INT --> MOD
-    MOD --> VIZ
-    MOD --> PROC
-    VIZ --> NB
-    VAL --> REP
+    MODELS --> MOD
+    MOD --> CUR
+    INT --> CUR
+    CUR --> VIZ
+    VIZ --> DASH
+    CUR --> NB
+    CUR --> REP
 ```

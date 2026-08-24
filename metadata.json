@@ -1,19 +1,17 @@
 {
   "project": "DataJam_DataOlinguitos_Gen",
-  "version": "2.6.0",
+  "version": "1.0.0",
   "description": "Pipeline y plataforma SIPTA (Sistema de Indicadores y Priorización Territorial y Alertas Tempranas)",
   "pdco_phase": "OPERATIONS",
-  "active_skill": "statistical-reviewer",
-  "sdlc_stage": "certified_statistical_audit_and_maintenance",
-  "last_updated": "2026-08-23",
+  "active_skill": "software-development",
+  "sdlc_stage": "release_v1_0_0_maintenance",
+  "last_updated": "2026-08-24",
   "team": {
-    "lead": "Persona A (ADAN - Scrum Master & Lead Data Engineer)",
+    "lead": "Persona A (Adan Sánchez - Scrum Master & Lead Data Engineer)",
     "members": [
-      "Persona A (ADAN - Scrum Master & Lead Data Engineer / Git Manager)",
+      "Persona A (Adan Sánchez - Scrum Master & Lead Data Engineer / Git Manager)",
       "Persona B (Yesid Bello - Data Scientist & Territorial Analyst)",
-      "Persona C (Sofía Hidalgo - Tech Lead & BI Developer / Data Analyst)",
-      "Senior Software Engineer & Data Scientist Agent",
-      "Chief Statistical Reviewer Agent (Certificación Cuantitativa)"
+      "Persona C (Sofía Hidalgo - Tech Lead & BI Developer / Data Analyst)"
     ]
   },
   "standards": {
@@ -67,6 +65,7 @@
       "status": "complete",
       "files": [
         "docs/03-development/README.md",
+        "docs/03-development/sistema_visualizacion.md",
         "docs/03-development/dev-log.md",
         "docs/03-development/manual_calculo_indices_territoriales.md",
         "docs/03-development/formulacion_matematica_ipt.md",
@@ -82,6 +81,7 @@
         "src/modeling/domain_indicators.py",
         "src/evaluation/evaluate_results.py",
         "src/visualization/prepare_visualization.py",
+        "src/visualization/geo_dashboard.py",
         "notebooks/01_ingestion/00_ingestion_eda_master.ipynb",
         "notebooks/01_ingestion/01_ingestion_demografia.ipynb",
         "notebooks/01_ingestion/02_ingestion_salud.ipynb",
@@ -102,6 +102,7 @@
         "data/curated/ipt_indicadores_localidad.csv",
         "data/curated/ipt_modelo_localidad.csv",
         "data/curated/ipt_priorizacion_localidades.csv",
+        "data/curated/sipta_localidades_multidominio.geojson",
         "data/curated/master_demografia.csv",
         "data/curated/master_salud.csv",
         "data/curated/master_educacion.csv",
@@ -162,6 +163,7 @@
         "reports/inventory/inventario_datasets_sipta.csv",
         "reports/inventory/diccionario_indicadores_sipta.csv",
         "reports/00_auditoria_estadistica_formal.md",
+        "reports/dashboard_geografico_sipta.html",
         "reports/domains/README.md",
         "reports/domains/00_reporte_ejecutivo_priorizacion_ipt.md",
         "reports/domains/01_reporte_demografia.md",
@@ -183,9 +185,9 @@
     }
   },
   "metrics": {
-    "total_automated_tests": 190,
-    "unit_tests_passing": "190/190 (100%)",
-    "test_execution_time_seconds": 57.6,
+    "total_automated_tests": 193,
+    "unit_tests_passing": "193/193 (100%)",
+    "test_execution_time_seconds": 58.2,
     "notebooks_validated_and_tested": "26/26 (100%)",
     "domains_validated": 13,
     "territorial_coverage": "100% (20 Localidades)",
