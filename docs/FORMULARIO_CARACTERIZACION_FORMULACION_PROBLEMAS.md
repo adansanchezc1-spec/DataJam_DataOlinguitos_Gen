@@ -168,15 +168,19 @@ Se estructuró la arquitectura de la plataforma analítica **SIPTA**, concebida 
 4. **Módulo Simulador de Alertas Tempranas**: Parametrización interactiva de ponderaciones ($w_k$) para proyectar escenarios de inversión pública.
 
 **Formulación Matemática del Índice de Prioridad Territorial (IPT)**:
-1. *Normalización Min-Max*: 
-   $$z_{ij} = \frac{x_{ij} - \min(x_j)}{\max(x_j) - \min(x_j)}$$
-2. *Inversión de polaridad*: 
-   - Beneficio / Oferta (ej. camas, cupos escolares, parques): $\tilde{z}_{ij} = 1 - z_{ij}$
-   - Déficit / Riesgo (ej. informalidad RIVI, PQR acumuladas): $\tilde{z}_{ij} = z_{ij}$
-3. *Ponderación Multidimensional Compuesta*: 
-   $$\text{IPT}_i = \sum_{k=1}^{7} w_k \cdot \left( \frac{1}{|J_k|} \sum_{j \in J_k} \tilde{z}_{ij} \right), \quad \text{donde } \sum_{k=1}^7 w_k = 1$$
 
-*(Espacio para adjuntar capturas de los mapas exploratorios generados en Python y el prototipo del dashboard en Power BI)* ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+1. *Normalización Min-Max por Indicador*:
+   Dado el valor $x_{ij}$ de la localidad $i$ para la variable $j$, se escala al rango $[0, 1]$ mediante:
+   $$z_{ij} = \frac{x_{ij} - \min_{i} (x_{ij})}{\max_{i} (x_{ij}) - \min_{i} (x_{ij})}$$
+
+2. *Ajuste por Polaridad del Indicador*:
+   Para que un valor cercano a $1$ siempre represente mayor vulnerabilidad o necesidad de intervención pública:
+   $$\tilde{z}_{ij} = \begin{cases} 1 - z_{ij}, & \text{si } j \text{ es indicador de beneficio / oferta (ej. camas, cupos, parques)} \\ z_{ij}, & \text{si } j \text{ es indicador de déficit / riesgo (ej. informalidad RIVI, PQR)} \end{cases}$$
+
+3. *Ponderación Multidimensional Compuesta*:
+   El índice sintético $\text{IPT}_i$ para la localidad $i$ a través de las $K = 7$ dimensiones analíticas se define como:
+   $$\text{IPT}_i = \sum_{k=1}^{7} w_k \cdot \left( \frac{1}{|J_k|} \sum_{j \in J_k} \tilde{z}_{ij} \right) \quad \text{sujeto a} \quad \sum_{k=1}^{7} w_k = 1, \quad w_k \ge 0$$
+   donde $J_k$ representa el conjunto de variables pertenecientes a la dimensión $k$, y $|J_k|$ es el número total de variables en dicha dimensión.
 
 ### 5.2. Hallazgos y conclusiones preliminares (Fase EDA):
 1. **Concentración Asistencial**: El 72% de las camas hospitalarias y el 81% de camas UCI se ubican en 4 localidades del centro-norte, mientras localidades como Bosa y Usme presentan menos de 5 camas por 10.000 habitantes.
@@ -210,7 +214,7 @@ Se estructuró la arquitectura de la plataforma analítica **SIPTA**, concebida 
 ## SECCIÓN 7 — OBSERVACIONES DEL EJERCICIO
 
 ### 7.1. Principal reto técnico y metodológico:
-El diseño y construcción de un pipeline modular desacoplado y reproducible capaz de procesar **121 archivos físicos heterogéneos** (GeoJSON, CSV, XLSX, GPKG, TXT) distribuidos en 13 dominios analíticos[cite: 3], garantizando la consistencia mediante una suite de 73 pruebas unitarias automatizadas (`pytest`) bajo estándares ISO/IEC 25010 y Clean Code sin rutas fijas (*hardcoding*).
+El diseño y construcción de un pipeline modular desacoplado y reproducible capaz de procesar **121 archivos físicos heterogéneos** (GeoJSON, CSV, XLSX, GPKG, TXT) distribuidos en 13 dominios analíticos, garantizando la consistencia mediante una suite de 73 pruebas unitarias automatizadas (`pytest`) bajo estándares ISO/IEC 25010 y Clean Code sin rutas fijas (*hardcoding*).
 
 ### 7.2. Elementos Requeridos para Desarrollar Aún Mejor el Análisis
 1. **Mayor Desagregación Espacial en Finanzas**: Disponer de la ejecución presupuestal de los FDL desagregada a nivel de UPL y proyecto de inversión georreferenciado (no solo a nivel global de localidad).
