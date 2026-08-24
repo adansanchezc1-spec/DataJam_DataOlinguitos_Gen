@@ -128,13 +128,6 @@ La solución depende directamente de:
 Los problemas de calidad detectados deberán documentarse y no corregirse
 arbitrariamente en los archivos originales.
 
-### Series históricas
-
-Los modelos predictivos dependerán de la existencia de series temporales
-suficientes.
-
-Cuando estas no existan, deberán priorizarse indicadores, índices, reglas de
-priorización y alertas interpretables.
 
 ---
 

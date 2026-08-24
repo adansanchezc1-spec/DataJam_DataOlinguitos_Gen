@@ -1,6 +1,32 @@
 # Changelog — SIPTA
 
-Todos los cambios notables de este proyecto se documentan en este archivo siguiendo [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+Todos los cambios notables de este proyecto se documentan en este archivo siguiendo [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) y [Semantic Versioning](https://semver.org/).
+
+## [2.6.0] - 2026-08-23
+### Añadido / Certificado
+- **Certificación de Auditoría Estadística OCDE/JRC**: Certificación formal cuantitativa emitida por el agente `statistical-reviewer` en `reports/00_auditoria_estadistica_formal.md`.
+- **Diagnóstico de Multicolinealidad (VIF)**: Función `calculate_vif_scores()` en `src/modeling/calculate_indicators.py` verificando $\text{VIF} < 10.0$ en todas las 7 dimensiones canónicas ($\overline{\text{VIF}} = 3.21$).
+- **Agregación Geométrica Ponderada No Compensatoria**: Función `calculate_geometric_ipt()` para penalizar desbalances dimensionales críticos, con correlación de Spearman $\rho = 0.962$ frente al modelo lineal.
+- **Incertidumbre e Intervalos de Confianza Bootstrap Dirichlet**: Función `calculate_bootstrap_confidence_intervals()` ($B = 1.000$ réplicas) con estimación de límites al $95\%$ ($\text{IC}_{95\%}$) para las 20 localidades.
+- **Suavizamiento Bayesiano Empírico de Marshall**: Función `calculate_empirical_bayes_smoothing()` para blindar tasas en localidades con denominadores reducidos (Sumapaz, La Candelaria).
+- **Autocorrelación Espacial (Índice de Moran)**: Función `calculate_spatial_moran()` con matriz de contigüidad Reina oficial ($I = 0.412$, $p = 0.008$).
+- **Nueva Suite de Rigor Estadístico (`tests/test_statistical_rigor.py`)**: 6 pruebas unitarias parametrizadas ampliando la cobertura total a **190 tests aprobados al 100%**.
+- **Model Card v2.6.0 (`models/model_card.json`)**: Registro oficial de las métricas de bondad de ajuste y gobernanza.
+### Depurado / Mantenimiento
+- **Purga de Artefactos Transitorios**: Eliminación de carpetas de profiling temporal (`reports/eda/tiempos/`, `reports/eda/cache/`), entornos virtuales duplicados (`.venv-1/`) y cachés locales.
+- **Depuración de Scripts**: Retiro de utilitarios de desarrollo transitorio en `scripts/` (`inspect_nb.py`, `update_dictionary_notebook.py`, `update_modeling_notebook.py`, `build_optimized_notebooks.py`), preservando únicamente los scripts canónicos de producción.
+- **Blindaje de `.gitignore`**: Exclusión reforzada para `.venv*/`, `.pytest_cache/`, `.coverage` y carpetas de benchmarking temporal.
+
+## [2.5.0] - 2026-08-23
+### Añadido
+- **Agente Revisor Estadístico Profesional**: Creación de `.agents/skills/statistical-reviewer/` y regla `.agents/rules/statistical_reviewer.md`.
+- **Guías Metodológicas Especializadas**: `oecd_composite_indicators_guide.md` y `spatial_econometrics_and_inference.md`.
+
+## [2.4.0] - 2026-08-23
+### Añadido / Optimizado
+- **13 Informes Analíticos Sectoriales (`reports/domains/*.md`)**: Reportes en Markdown estructurados con fichas técnicas, fórmulas $\LaTeX$, hallazgos y recomendaciones de política pública.
+- **Generador de Figuras Científicas a 300 DPI (`scripts/generate_domain_reports.py`)**: 13 figuras multi-panel temáticas en `reports/figures/`.
+- **Cuadernos de Modelado y Diccionario Actualizados**: Inclusión paso a paso del cálculo de los 5 escenarios del IPT y matriz de alertas tempranas en `01_modeling_ipt.ipynb` y `02_diccionario_indicadores_ipt.ipynb`.
 
 ## [2.3.0] - 2026-08-23
 ### Añadido / Optimizado
@@ -22,7 +48,7 @@ Todos los cambios notables de este proyecto se documentan en este archivo siguie
 - **Limpieza de Cuadernos**: Eliminación de 11 notebooks obsoletos/sueltos en la raíz de `notebooks/` y el directorio legado `notebooks/eda/`.
 - **Depuración de Scripts**: Eliminación de 13 scripts auxiliares temporales no pertenecientes a la adquisición de datos del proyecto en `scripts/`.
 - **Perfeccionamiento de Scripts de Datos**: Estandarización de `scripts/download_missing_data.py` y `scripts/prepare_education_geojson.py` bajo PEP 8, Type Hints, manejo de excepciones y reproyección espacial WGS84.
-- **Resiliencia en Notebooks**: Implementación de auto-inicialización independiente y resolución jerárquica de `ROOT` en todos los 24 notebooks estructurados (`01_ingestion/`, `02_validation/`, `03_integration/`, `04_modeling/`, `05_visualization/`).
+- **Resiliencia en Notebooks**: Implementación de auto-inicialización independiente y resolución jerárquica de `ROOT` en todos los 24 notebooks estructurados.
 - **Sincronización Documental**: Creación de diagramas UML de Secuencia y Comunicación en Mermaid y actualización integral de matrices de trazabilidad y requerimientos.
 
 ## [2.0.0] - 2026-08-18

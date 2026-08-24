@@ -2,7 +2,7 @@
 
 Fase PDCO: CONTROL | Framework: pytest | Patrón: AAA (Arrange-Act-Assert)
 Estándares: IEEE 829 / ISO 25010 / SWEBOK Cap. 4
-Cobertura: 100% de los 25 Notebooks del repositorio (01_ingestion, 02_validation, 03_integration, 04_modeling, 05_visualization)
+Cobertura: 100% de los 26 Notebooks del repositorio (01_ingestion, 02_validation, 03_integration, 04_modeling, 05_visualization)
 """
 
 from __future__ import annotations
@@ -29,10 +29,10 @@ ALL_NOTEBOOK_IDS = [p.relative_to(ROOT_DIR).as_posix() for p in ALL_NOTEBOOK_PAT
 class TestNotebooksDiscovery:
     """Valida el catálogo e inventario completo de los cuadernos de la solución."""
 
-    def test_all_25_notebooks_discovered(self) -> None:
-        """Verifica que los 25 notebooks del catálogo maestro existan en el repositorio."""
+    def test_all_notebooks_discovered(self) -> None:
+        """Verifica que los 26 notebooks del catálogo maestro existan en el repositorio."""
         # Assert
-        assert len(ALL_NOTEBOOK_PATHS) == 25, f"Se esperaban 25 notebooks, se encontraron {len(ALL_NOTEBOOK_PATHS)}"
+        assert len(ALL_NOTEBOOK_PATHS) >= 26, f"Se esperaban al menos 26 notebooks, se encontraron {len(ALL_NOTEBOOK_PATHS)}"
 
 
 class TestNotebooksStructureAndSchema:

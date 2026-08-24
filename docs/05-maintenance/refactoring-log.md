@@ -24,3 +24,8 @@
 ### Refactorización 5: Estandarización de Esquemas y Reproyección Geoespacial
 - **Problema**: GeoJSON de oferta educativa con sistemas de coordenadas proyectadas locales incompatibles con capas WGS84.
 - **Solución**: Pipeline de reproyección automática en `src/cleaning/clean_data.py` y script determinista `scripts/prepare_education_geojson.py` a `EPSG:4326`.
+
+### Refactorización 6: Higiene, Purga de Artefactos y Depuración Pre-Entrega
+- **Problema**: Presencia de carpetas de profiling transitorio (`reports/eda/tiempos/`, `reports/eda/cache/`), entornos virtuales duplicados (`.venv-1/`), cachés de pruebas (`.pytest_cache/`) y scripts utilitarios de desarrollo puntual en `scripts/` que agregaban ruido y sobrepeso al repositorio final.
+- **Solución**: Depuración exhaustiva de carpetas temporales, blindaje de exclusiones en `.gitignore` y consolidación exclusiva de los scripts productivos reproducibles (`download_missing_data.py`, `generate_domain_reports.py`, `prepare_education_geojson.py`).
+

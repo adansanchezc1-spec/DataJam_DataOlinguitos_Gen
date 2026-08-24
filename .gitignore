@@ -5,15 +5,23 @@ __pycache__/
 *.pyd
 *.env
 .venv/
+.venv*/
 venv/
 ENV/
 .env
+.pytest_cache/
+.coverage
+htmlcov/
 
 # Jupyter
 .ipynb_checkpoints/
 
 # VS Code
 .vscode/
+
+# EDA Benchmarking & Cache
+reports/eda/tiempos/
+reports/eda/cache/
 
 # Data / outputs
 data/raw/**/.*

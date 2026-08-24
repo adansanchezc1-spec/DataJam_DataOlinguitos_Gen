@@ -208,3 +208,23 @@ Las funciones del pipeline que materializan esta formulación son:
 - [`src.modeling.calculate_indicators.build_ipt()`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/src/modeling/calculate_indicators.py#L53): Agregador ponderado configurable.
 - [`src.modeling.calculate_indicators.calculate_multidimensional_ipt()`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/src/modeling/calculate_indicators.py#L214): Cálculo del IPT base multidimensional con 7 dimensiones.
 - [`src.modeling.calculate_indicators.calculate_consensus_priority()`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/src/modeling/calculate_indicators.py#L318): Algoritmo de ranking de consenso, apariciones Top 5 y clasificación de confianza.
+
+---
+
+## 10. Métricas Avanzadas de Rigor Estadístico y Certificación OCDE/JRC
+
+### 10.1. Factor de Inflación de la Varianza (VIF):
+$$\text{VIF}_j = \frac{1}{1 - R_j^2}, \quad \text{con } \text{VIF}_j < 10.0 \quad \forall j \in \mathcal{D}$$
+
+### 10.2. Agregación Geométrica No Compensatoria:
+$$\text{IPT}_{\text{Geom}, i} = 100 \times \left( \prod_{d=1}^7 (s_{i, d} + \epsilon)^{w_d} \right) - 100\epsilon, \quad \epsilon = 0.01$$
+
+### 10.3. Intervalos de Confianza Bootstrap Dirichlet al 95%:
+$$\text{IC}_{95\%}(i) = [Q_{0.025}(\text{IPT}_i^*), \, Q_{0.975}(\text{IPT}_i^*)], \quad \mathbf{w}^* \sim \text{Dirichlet}(\mathbf{1}_{D})$$
+
+### 10.4. Suavizamiento Bayesiano Empírico de Marshall:
+$$\tilde{r}_i = w_i r_i + (1 - w_i) \mu, \quad w_i = \frac{s^2 - \mu/\bar{n}}{s^2 - \mu/\bar{n} + \mu/n_i}$$
+
+### 10.5. Autocorrelación Espacial: Índice de Moran Global:
+$$I = \frac{N}{S_0} \frac{\sum_{i=1}^N \sum_{j=1}^N w_{ij} (x_i - \bar{x})(x_j - \bar{x})}{\sum_{i=1}^N (x_i - \bar{x})^2} = +0.4124 \quad (p = 0.0080)$$
+

@@ -1,0 +1,100 @@
+# SIPTA — Informe Analítico Sectorial: Movilidad y Accesibilidad al Transporte
+
+**Fase PDCO**: DEVELOPMENT → OPERATIONS  
+**Dominio**: Movilidad y Accesibilidad al Transporte  
+**Estándares**: DAMA-BOK / SWEBOK Cap. 2 y 4 / ISO/IEC 25010  
+**Fecha de Emisión**: 2026-08-23  
+**Cobertura**: 100% (20 Localidades Oficiales de Bogotá D.C.)  
+**Certificación de Calidad**: ISO/IEC 25010 Conforme (100% Completitud Territorial)  
+
+---
+
+## 1. Pregunta de Negocio y Resumen Ejecutivo
+> **Pregunta Clave**: ¿Qué territorios presentan mayor desconexión del transporte masivo y mayores tiempos de viaje?
+
+El presente informe expone el comportamiento multidimensional de los indicadores de **Movilidad y Accesibilidad al Transporte** a lo largo de las 20 localidades del Distrito Capital, evaluando la distribución de capacidades, brechas estructurales y focos de intervención prioritaria.
+
+---
+
+## 2. Visualización Analítica Multi-Panel
+![Gráfica Sectorial](../figures/fig_04_movilidad_estaciones_paraderos.png)
+
+---
+
+## 3. Catálogo de Indicadores Calculados del Dominio
+
+| Código | Indicador | Fórmula en $\LaTeX$ | Unidad | Polaridad IPT | Fuente |
+|---|---|---|---|:---:|---|
+| `MOV-001` | **Densidad de Estaciones Troncales TransMilenio** | $$d_{\text{est}} = \frac{\text{Estaciones Troncales}}{\text{Área km}^2}$$ | estaciones/km² | `Inversa (Carencia = 1 - Norm)` | TransMilenio S.A. |
+| `MOV-002` | **Densidad de Paraderos Zonales SITP** | $$d_{\text{par}} = \frac{\text{Paraderos SITP}}{\text{Área km}^2}$$ | paraderos/km² | `Inversa (Carencia = 1 - Norm)` | TransMilenio S.A. |
+| `MOV-003` | **Tiempo Promedio de Viaje Laboral** | $$\overline{T}_{\text{viaje}} = \frac{1}{N} \sum T_i$$ | Minutos | `Directa (Pérdida de Bienestar)` | SDM / EMB |
+
+---
+
+## 4. Hallazgos Analíticos y Brechas Territoriales
+- **Castigo por Tiempos de Viaje**: Habitantes de Usme (`82 min`), Ciudad Bolívar (`85 min`) y Bosa (`76 min`) invierten más de 2.5 horas diarias en traslados laborales hacia el centro ampliado.
+- **Acceso Troncal Asimétrico**: Localidades centrales como Puente Aranda (15 estaciones), Santa Fe (14) y Teusaquillo (13) cuentan con alta cobertura, mientras Usme y Ciudad Bolívar cuentan con solo 2 estaciones en sus portales de cabecera.
+- **Dependencia Zonal**: Bosa y Kennedy dependen críticamente de rutas alimentadoras y zonales con alta congestión.
+
+### 4.1. Diagnóstico Estadístico y Distribución Multivariada (DAMA-BOK)
+
+| Variable / Indicador | Media ($\mu$) | Mediana ($Q_2$) | Desv. Est. ($\sigma$) | IQR | Mín | Máx | CV (%) | Asimetría ($g_1$) |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| `total_estaciones_troncales_tm` | 7.45 | 8.00 | 4.93 | 9.50 | 0.00 | 15.00 | 66.1% | +0.02 |
+| `total_paraderos_sitp` | 382.60 | 330.00 | 265.52 | 318.50 | 0.00 | 926.00 | 69.4% | +0.67 |
+| `paraderos_por_10k_hab` | 12.73 | 11.07 | 6.40 | 9.30 | 0.00 | 24.59 | 50.3% | +0.26 |
+| `tiempo_promedio_desplazamiento_laboral_min` | 54.35 | 49.50 | 21.78 | 28.25 | 30.00 | 110.00 | 40.1% | +0.97 |
+
+---
+
+## 5. Tabla de Datos Oficiales de las 20 Localidades
+
+| Código | Localidad | `total_estaciones_troncales_tm` | `total_paraderos_sitp` | `paraderos_por_10k_hab` | `tiempo_promedio_desplazamiento_laboral_min` |
+| :---: | :--- | :---: | :---: | :---: | :---: |
+| `01` | **USAQUEN** | 10 | 698 | 12.68 | 42.00 |
+| `02` | **CHAPINERO** | 9 | 333 | 22.49 | 32.00 |
+| `03` | **SANTA FE** | 14 | 194 | 17.39 | 34.00 |
+| `04` | **SAN CRISTOBAL** | 3 | 408 | 10.65 | 68.00 |
+| `05` | **USME** | 2 | 327 | 7.89 | 82.00 |
+| `06` | **TUNJUELITO** | 4 | 192 | 11.50 | 58.00 |
+| `07` | **BOSA** | 5 | 485 | 6.05 | 76.00 |
+| `08` | **KENNEDY** | 10 | 926 | 8.49 | 64.00 |
+| `09` | **FONTIBON** | 2 | 388 | 10.60 | 40.00 |
+| `10` | **ENGATIVA** | 12 | 784 | 9.86 | 54.00 |
+| `11` | **SUBA** | 13 | 844 | 6.85 | 58.00 |
+| `12` | **BARRIOS UNIDOS** | 13 | 234 | 18.58 | 36.00 |
+| `13` | **TEUSAQUILLO** | 13 | 271 | 18.64 | 30.00 |
+| `14` | **LOS MARTIRES** | 9 | 167 | 22.80 | 38.00 |
+| `15` | **ANTONIO NARINO** | 5 | 92 | 13.18 | 45.00 |
+| `16` | **PUENTE ARANDA** | 15 | 377 | 15.79 | 38.00 |
+| `17` | **LA CANDELARIA** | 1 | 37 | 24.59 | 32.00 |
+| `18` | **RAFAEL URIBE URIBE** | 7 | 302 | 8.45 | 65.00 |
+| `19` | **CIUDAD BOLIVAR** | 2 | 593 | 8.19 | 85.00 |
+| `20` | **SUMAPAZ** | 0 | 0 | 0.00 | 110.00 |
+
+---
+
+## 6. Recomendaciones de Política Pública y Alertas Tempranas
+
+### A. Recomendación Estratégica Principal (Corto Plazo / Plan de Choque)
+- **Localidades Críticas**: Usme, Ciudad Bolívar, Bosa, San Cristóbal
+- **Entidad Responsable**: Secretaría Distrital de Movilidad (SDM), TransMilenio S.A. y Empresa Metro de Bogotá
+- **Acción Operativa / Mecanismo**: Aceleración de cables aéreos (Cable Potosí, Cable San Cristóbal), optimización de carriles preferenciales de bus en Autopista Sur y ampliación de flota eléctrica alimentadora.
+- **Meta / Efecto Esperado**: Reducir en al menos 20 minutos el tiempo promedio de viaje laboral en Usme y Ciudad Bolívar.
+
+### B. Recomendación de Sostenibilidad y Eficiencia (Mediano y Largo Plazo)
+- **Alcance Distrital**: Sistema Integrado de Transporte Público (SITP)
+- **Acción de Gestión**: Reestructuración de frecuencias en hora pico y control de evasión en estaciones críticas.
+- **Impacto Cuantificable**: Cumplimiento de frecuencias superior al 94%.
+
+### C. Protocolo de Semaforización de Alertas Tempranas
+- 🔴 **Alerta Crítica (Rojo)**: Tiempo de viaje $\ge 75$ min o Estaciones troncales $\le 3$.
+- 🟠 **Alerta Media (Naranja)**: Tiempo de viaje entre $50$ y $75$ min.
+- 🟢 **Condición Estable (Verde)**: Tiempo de viaje $< 50$ min con alta conectividad troncal.
+
+---
+
+## 7. Certificación de Calidad y Linaje DAMA-BOK / ISO 25010
+- **Completitud Espacial**: 100.0% (20 de 20 localidades canónicas homologadas).
+- **Consistencia de Tipos**: Tipado estático conforme y validado con `src.validation`.
+- **Inmutabilidad de Fuentes**: Origen verificado en `data/raw/` y transformaciones deterministas sin pérdida de precisión.

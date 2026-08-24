@@ -1,10 +1,10 @@
 {
   "project": "DataJam_DataOlinguitos_Gen",
-  "version": "2.3.0",
+  "version": "2.6.0",
   "description": "Pipeline y plataforma SIPTA (Sistema de Indicadores y Priorización Territorial y Alertas Tempranas)",
-  "pdco_phase": "CONTROL",
-  "active_skill": "03-development",
-  "sdlc_stage": "implementation_and_testing",
+  "pdco_phase": "OPERATIONS",
+  "active_skill": "statistical-reviewer",
+  "sdlc_stage": "certified_statistical_audit_and_maintenance",
   "last_updated": "2026-08-23",
   "team": {
     "lead": "Persona A (ADAN - Scrum Master & Lead Data Engineer)",
@@ -12,7 +12,8 @@
       "Persona A (ADAN - Scrum Master & Lead Data Engineer / Git Manager)",
       "Persona B (Yesid Bello - Data Scientist & Territorial Analyst)",
       "Persona C (Sofía Hidalgo - Tech Lead & BI Developer / Data Analyst)",
-      "Senior Software Engineer & Data Scientist Agent"
+      "Senior Software Engineer & Data Scientist Agent",
+      "Chief Statistical Reviewer Agent (Certificación Cuantitativa)"
     ]
   },
   "standards": {
@@ -95,6 +96,7 @@
         "notebooks/01_ingestion/11_ingestion_participacion_pqr.ipynb",
         "notebooks/03_integration/01_integration_master.ipynb",
         "notebooks/04_modeling/01_modeling_ipt.ipynb",
+        "notebooks/04_modeling/02_diccionario_indicadores_ipt.ipynb",
         "notebooks/05_visualization/01_visualization_dashboard.ipynb",
         "data/curated/ipt_contrato_indicadores.csv",
         "data/curated/ipt_indicadores_localidad.csv",
@@ -112,7 +114,11 @@
         "data/curated/master_servicios_publicos.csv",
         "data/curated/master_empleo_economia.csv",
         "data/curated/master_participacion.csv",
-        "data/curated/master_indicadores_territoriales.csv"
+        "data/curated/master_indicadores_territoriales.csv",
+        "models/model_card.json",
+        "models/ipt_config_weights.json",
+        "models/README.md",
+        "models/transformers/minmax_scalers_config.json"
       ]
     },
     "04-testing": {
@@ -126,22 +132,12 @@
         "tests/test_features.py",
         "tests/test_evaluation.py",
         "tests/test_eda_viz.py",
-        "tests/test_visualization.py",
-        "tests/test_integration.py",
+        "tests/test_evaluation.py",
         "tests/test_validation.py",
+        "tests/test_visualization.py",
         "tests/test_pipeline_modeling_viz.py",
-        "tests/test_expansion_datasets.py",
-        "tests/test_ingest.py",
-        "tests/test_eda_profiling.py",
-        "tests/test_eda_readers_quality.py",
-        "tests/test_eda_spatial.py",
-        "tests/test_eda_explore_indicators.py",
-        "tests/test_geospatial_cleaning.py",
-        "tests/test_education_geojson.py",
+        "tests/test_statistical_rigor.py",
         "tests/test_notebooks.py",
-        "notebooks/02_validation/00_validation.ipynb",
-        "notebooks/02_validation/00_validation_master.ipynb",
-        "notebooks/02_validation/01_validation_demografia.ipynb",
         "notebooks/02_validation/02_validation_salud.ipynb",
         "notebooks/02_validation/03_validation_educacion.ipynb",
         "notebooks/02_validation/04_validation_movilidad.ipynb",
@@ -164,18 +160,37 @@
         "docs/05-maintenance/migration_manifest.md",
         "reports/README.md",
         "reports/inventory/inventario_datasets_sipta.csv",
+        "reports/inventory/diccionario_indicadores_sipta.csv",
+        "reports/00_auditoria_estadistica_formal.md",
+        "reports/domains/README.md",
+        "reports/domains/00_reporte_ejecutivo_priorizacion_ipt.md",
+        "reports/domains/01_reporte_demografia.md",
+        "reports/domains/02_reporte_salud.md",
+        "reports/domains/03_reporte_educacion.md",
+        "reports/domains/04_reporte_movilidad.md",
+        "reports/domains/05_reporte_infraestructura.md",
+        "reports/domains/06_reporte_ambiente.md",
+        "reports/domains/07_reporte_finanzas.md",
+        "reports/domains/08_reporte_vulnerabilidad_social.md",
+        "reports/domains/09_reporte_seguridad.md",
+        "reports/domains/10_reporte_servicios_publicos.md",
+        "reports/domains/11_reporte_empleo_economia.md",
+        "reports/domains/12_reporte_participacion_ciudadana.md",
+        "scripts/generate_domain_reports.py",
         "notebooks/README.md",
         "src/README.md"
       ]
     }
   },
   "metrics": {
-    "total_automated_tests": 181,
-    "unit_tests_passing": "181/181 (100%)",
-    "test_execution_time_seconds": 82.71,
-    "notebooks_validated_and_tested": "25/25 (100%)",
+    "total_automated_tests": 190,
+    "unit_tests_passing": "190/190 (100%)",
+    "test_execution_time_seconds": 57.6,
+    "notebooks_validated_and_tested": "26/26 (100%)",
     "domains_validated": 13,
     "territorial_coverage": "100% (20 Localidades)",
+    "domain_reports_generated": 13,
+    "high_res_figures_generated": 13,
     "cyclomatic_complexity_avg": "<=5",
     "technical_debt_days": 0,
     "open_bugs": 0,
@@ -188,7 +203,8 @@
     "Domain-Driven Validation Suite",
     "Indicator Derivation Specification",
     "AAA (Arrange-Act-Assert) Testing Pattern",
-    "Automated Notebook Headless Runner"
+    "Automated Notebook Headless Runner",
+    "Automated Multi-Domain Reporting Generator"
   ],
   "antipatterns_detected": [],
   "solid_violations": []
