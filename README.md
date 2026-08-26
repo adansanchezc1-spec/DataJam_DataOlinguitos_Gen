@@ -50,7 +50,7 @@ SIPTA integra un subsistema de visualización interactiva y autónoma que no req
 
 - **Dashboard Web GIS Interactivo**: [`reports/dashboard_geografico_sipta.html`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/reports/dashboard_geografico_sipta.html) (aplicación web completa basada en Leaflet.js, Chart.js, Tailwind CSS y Lucide Icons).
 - **Exploración de 13 Dominios y más de 30 Indicadores**: Selector dinámico con cambio de clasificaciones cartográficas no arbitrarias (**Fisher-Jenks Natural Breaks** y **Cuantiles**).
-- **Rigor Estadístico Integrado en Tooltips**: Despliegue en tiempo real de intervalos de confianza Bootstrap al 95% ($\text{IC}_{95\%}$), semáforos de riesgo y gráficos comparativos de radar.
+- **Rigor Estadístico Integrado en Tooltips**: Despliegue en tiempo real de intervalos de confianza Bootstrap al 95% ($\text{IC}_{95\text{\%}}$), semáforos de riesgo y gráficos comparativos de radar.
 - **Capa Espacial Curada (RFC 7946)**: [`data/curated/sipta_localidades_multidominio.geojson`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/data/curated/sipta_localidades_multidominio.geojson) lista para consumir en QGIS, ArcGIS o Mapbox.
 - **Documentación Técnica del Subsistema**: [`docs/03-development/sistema_visualizacion.md`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/docs/03-development/sistema_visualizacion.md).
 
