@@ -44,6 +44,51 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "desc": "Índice compuesto lineal ponderado (1/7 por dimensión). Mayor puntaje = mayor privación.",
                 "polaridad": "alta_es_privacion",
             },
+
+            {
+                "col": "ipt_rangos",
+                "nombre": "IPT por Rangos (7D)",
+                "unidad": "pts",
+                "formato": "{:.2f}",
+                "desc": (
+                    "Escenario no paramétrico basado en rangos percentiles "
+                    "para reducir la influencia de valores atípicos."
+                ),
+                "polaridad": "alta_es_privacion",
+            },
+            {
+                "col": "ipt_sin_proxy",
+                "nombre": "IPT sin Parques IDRD (6D)",
+                "unidad": "pts",
+                "formato": "{:.2f}",
+                "desc": (
+                    "Escenario de sensibilidad que excluye el proxy de "
+                    "infraestructura asociado con parques IDRD."
+                ),
+                "polaridad": "alta_es_privacion",
+            },
+            {
+                "col": "ipt_sin_rivi",
+                "nombre": "IPT sin RIVI (6D)",
+                "unidad": "pts",
+                "formato": "{:.2f}",
+                "desc": (
+                    "Escenario de sensibilidad que excluye el indicador "
+                    "histórico de vendedores informales RIVI."
+                ),
+                "polaridad": "alta_es_privacion",
+            },
+            {
+                "col": "ipt_sin_proxy_ni_rivi",
+                "nombre": "IPT sin Proxies (5D)",
+                "unidad": "pts",
+                "formato": "{:.2f}",
+                "desc": (
+                    "Escenario conservador con cinco dimensiones sustentadas "
+                    "en registros administrativos directos."
+                ),
+                "polaridad": "alta_es_privacion",
+            },
             {
                 "col": "IPT_GEOMETRICO",
                 "nombre": "IPT Geométrico No Compensatorio",
@@ -53,11 +98,12 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "polaridad": "alta_es_privacion",
             },
             {
-                "col": "RANKING_PRIORIDAD",
+
+                "col": "ranking_consenso",
                 "nombre": "Ranking de Prioridad Consenso",
                 "unidad": "puesto",
                 "formato": "{:.0f}",
-                "desc": "Puesto distrital de vulnerabilidad (1 = máxima urgencia).",
+                "desc": "Puesto distrital de priorización por consenso (1 = máxima urgencia).",
                 "polaridad": "baja_es_privacion",
             },
             {
@@ -605,8 +651,8 @@ def build_multidomain_geodataframe() -> gpd.GeoDataFrame:
         gdf_merged = gdf_merged.to_crs(epsg=4326)
 
     # Ordenar por ranking de prioridad consensuada
-    if "RANKING_PRIORIDAD" in gdf_merged.columns:
-        gdf_merged = gdf_merged.sort_values(by="RANKING_PRIORIDAD").reset_index(drop=True)
+    if "ranking_consenso" in gdf_merged.columns:
+        gdf_merged = gdf_merged.sort_values(by="ranking_consenso").reset_index(drop=True)
 
     return gdf_merged
 
@@ -733,20 +779,20 @@ def generate_interactive_gis_dashboard(
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SIPTA — Dashboard Geográfico Multicapa (13 Dominios)</title>
-  
+
   <!-- Tailwind CSS & Google Fonts -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  
+
   <!-- Leaflet CSS & JS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  
+
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  
+
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -887,7 +933,7 @@ def generate_interactive_gis_dashboard(
 
     <!-- Left Controls Panel (Collapsible) -->
     <aside id="panel-left" class="w-80 bg-slate-900/95 border-r border-slate-800 flex flex-col z-20 shrink-0 overflow-y-auto sidebar-transition" aria-label="Panel de Controles y Selección de Capas">
-      
+
       <!-- Panel Header with Collapse Button -->
       <div class="p-3.5 border-b border-slate-800 flex items-center justify-between bg-slate-950/40">
         <span class="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
@@ -1002,7 +1048,7 @@ def generate_interactive_gis_dashboard(
 
     <!-- Right Analytical Inspector Panel (Collapsible) -->
     <aside id="panel-right" class="w-96 bg-slate-900/95 border-l border-slate-800 flex flex-col z-20 shrink-0 overflow-y-auto sidebar-transition" aria-label="Ficha Analítica Territorial">
-      
+
       <!-- Panel Header with Collapse Button -->
       <div class="p-3.5 border-b border-slate-800 flex items-center justify-between bg-slate-950/40">
         <span class="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
@@ -1068,26 +1114,58 @@ def generate_interactive_gis_dashboard(
         </div>
       </div>
 
-      <!-- Tabbed Analytical Visualizations (Bar Ranking vs Multidimensional Radar) -->
+      <!-- Tabbed Analytical Visualizations -->
       <div class="p-4 border-b border-slate-800 flex-1 flex flex-col min-h-[360px]">
         <!-- Tabs Header -->
-        <div class="flex items-center gap-2 border-b border-slate-800 pb-2 mb-3" role="tablist">
-          <button id="tab-btn-bars" class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-blue-600 text-white flex items-center gap-1.5 transition" role="tab" aria-selected="true">
-            <i data-lucide="bar-chart-2" class="h-3.5 w-3.5" aria-hidden="true"></i> Ranking Distrital
+        <div
+          class="flex items-center gap-2 border-b border-slate-800 pb-2 mb-3"
+          role="tablist"
+          aria-label="Visualizaciones analíticas"
+        >
+          <button
+            id="tab-btn-bars"
+            class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-blue-600 text-white flex items-center gap-1.5 transition"
+            role="tab"
+            aria-selected="true"
+          >
+            <i data-lucide="bar-chart-2" class="h-3.5 w-3.5" aria-hidden="true"></i>
+            Ranking Distrital
           </button>
-          <button id="tab-btn-radar" class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center gap-1.5 transition" role="tab" aria-selected="false">
-            <i data-lucide="radar" class="h-3.5 w-3.5" aria-hidden="true"></i> Perfil 7D (Radar)
+
+          <button
+            id="tab-btn-radar"
+            class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center gap-1.5 transition"
+            role="tab"
+            aria-selected="false"
+          >
+            <i data-lucide="radar" class="h-3.5 w-3.5" aria-hidden="true"></i>
+            Perfil 7D
+          </button>
+
+          <button
+            id="tab-btn-investment"
+            class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center gap-1.5 transition"
+            role="tab"
+            aria-selected="false"
+          >
+            <i data-lucide="chart-scatter" class="h-3.5 w-3.5" aria-hidden="true"></i>
+            IPT / Inversión
           </button>
         </div>
 
-        <!-- Tab 1: Ranking Chart Canvas -->
+        <!-- Tab 1: Ranking -->
         <div id="tab-content-bars" class="flex-1 relative">
           <canvas id="chart-ranking"></canvas>
         </div>
 
-        <!-- Tab 2: Multidimensional Radar Canvas -->
+        <!-- Tab 2: Perfil multidimensional -->
         <div id="tab-content-radar" class="hidden flex-1 relative">
           <canvas id="chart-radar"></canvas>
+        </div>
+
+        <!-- Tab 3: Relación transversal IPT e inversión -->
+        <div id="tab-content-investment" class="hidden flex-1 relative">
+          <canvas id="chart-investment"></canvas>
         </div>
       </div>
 
@@ -1221,13 +1299,15 @@ def generate_interactive_gis_dashboard(
     let currentIndicator = "IPT_MULTIDIMENSIONAL";
     let currentMethod = "jenks"; // 'jenks' | 'quantiles'
     let isColorblindMode = false;
-    let activeTab = "bars"; // 'bars' | 'radar'
+    let activeTab = "bars"; // 'bars' | 'radar' | 'investment'
     let selectedLocalityCode = null;
     let map, geojsonLayer, overlaysLayers = {{}};
-    let rankingChart = null, radarChart = null;
+    let rankingChart = null, radarChart = null, investmentChart = null;
 
     // Color Palettes (Standard & Accessible Colorblind Viridis/Cividis)
     const COLOR_PALETTES = {{
+      Priority: ['#ffffcc', '#fed976', '#fd8d3c', '#e31a1c', '#800026'],
+      Neutral: ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'],
       RdYlGn_r: ['#1a9641', '#a6d96a', '#ffffbf', '#fdae61', '#d7191c'],
       Purples: ['#f2f0f7', '#cbc9e2', '#9e9ac8', '#756bb1', '#54278f'],
       Blues: ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'],
@@ -1242,13 +1322,76 @@ def generate_interactive_gis_dashboard(
       PuRd: ['#f1eef6', '#d7b5d8', '#df65b0', '#dd1c77', '#980043']
     }};
 
+    function getIndicatorContext() {{
+      const domainMeta = domainCatalog[currentDomain] || {{}};
+      const indicatorMeta = (domainMeta.indicadores || [])
+        .find(indicator => indicator.col === currentIndicator) || {{}};
+
+      const polarity =
+        indicatorMeta.polaridad ||
+        domainMeta.polaridad ||
+        'neutro';
+
+      return {{ domainMeta, indicatorMeta, polarity }};
+    }}
+
+    function getActivePalette() {{
+      const {{ polarity }} = getIndicatorContext();
+
+      const basePalette = isColorblindMode
+        ? COLOR_PALETTES.Viridis
+        : polarity === 'neutro'
+          ? COLOR_PALETTES.Neutral
+          : COLOR_PALETTES.Priority;
+
+      const colors = [...basePalette];
+
+      if (polarity === 'baja_es_privacion') {{
+        colors.reverse();
+      }}
+
+      return colors;
+    }}
+
+    function getLegendClassLabel(index, totalClasses, polarity) {{
+      const neutralLabels = [
+        'Muy bajo valor',
+        'Bajo valor',
+        'Valor medio',
+        'Alto valor',
+        'Muy alto valor'
+      ];
+
+      const priorityLabels = [
+        'Muy baja prioridad relativa',
+        'Baja prioridad relativa',
+        'Prioridad relativa media',
+        'Alta prioridad relativa',
+        'Muy alta prioridad relativa'
+      ];
+
+      const labelIndex = totalClasses <= 1
+        ? 2
+        : Math.round((index * 4) / (totalClasses - 1));
+
+      if (polarity === 'neutro') {{
+        return neutralLabels[labelIndex];
+      }}
+
+      if (polarity === 'baja_es_privacion') {{
+        return priorityLabels[4 - labelIndex];
+      }}
+
+      return priorityLabels[labelIndex];
+    }}
+
     // HCI Toast Notification Feedback
     function showToast(msg, type = 'info') {{
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
       const icon = type === 'success' ? 'check-circle' : (type === 'warn' ? 'alert-triangle' : 'info');
       const colorClass = type === 'success' ? 'border-emerald-500/40 text-emerald-200 bg-emerald-950/90' : (type === 'warn' ? 'border-amber-500/40 text-amber-200 bg-amber-950/90' : 'border-sky-500/40 text-sky-200 bg-slate-900/90');
-      
+
       toast.className = `p-3 rounded-xl border ${{colorClass}} text-xs shadow-2xl backdrop-blur-md flex items-center gap-2.5 transition-all duration-300 transform translate-y-2 opacity-0 pointer-events-auto`;
       toast.innerHTML = `<i data-lucide="${{icon}}" class="h-4 w-4 shrink-0"></i><span>${{msg}}</span>`;
       container.appendChild(toast);
@@ -1289,21 +1432,34 @@ def generate_interactive_gis_dashboard(
 
     // Get Active Color for a Value based on Classification Breaks
     function getColor(val) {{
-      if (val === null || val === undefined || isNaN(val)) return '#475569';
-      
-      const breaksInfo = classificationBreaks[currentDomain]?.[currentIndicator];
-      if (!breaksInfo) return '#3b82f6';
-      
-      const breaks = breaksInfo[currentMethod] || [breaksInfo.min, breaksInfo.max];
-      const domMeta = domainCatalog[currentDomain];
-      const paletteKey = isColorblindMode ? 'Viridis' : (domMeta.paleta || 'Blues');
-      const colors = COLOR_PALETTES[paletteKey] || COLOR_PALETTES.Blues;
+      const numericValue = Number(val);
+
+      if (!Number.isFinite(numericValue)) {{
+        return '#475569';
+      }}
+
+      const breaksInfo =
+        classificationBreaks[currentDomain]?.[currentIndicator];
+
+      if (!breaksInfo) {{
+        return '#3b82f6';
+      }}
+
+      const breaks =
+        breaksInfo[currentMethod] ||
+        [breaksInfo.min, breaksInfo.max];
+
+      const colors = getActivePalette();
 
       for (let i = 0; i < breaks.length - 1; i++) {{
-        if (val <= breaks[i + 1] || i === breaks.length - 2) {{
-          return colors[i % colors.length];
+        if (
+          numericValue <= breaks[i + 1] ||
+          i === breaks.length - 2
+        ) {{
+          return colors[Math.min(i, colors.length - 1)];
         }}
       }}
+
       return colors[colors.length - 1];
     }}
 
@@ -1333,13 +1489,14 @@ def generate_interactive_gis_dashboard(
           const props = feature.properties;
           const val = props[currentIndicator];
           const indMeta = domainCatalog[currentDomain].indicadores.find(i => i.col === currentIndicator);
+          const indicatorRank = getDynamicIndicatorRank(props);
           const formattedVal = (val !== null && val !== undefined) ? Number(val).toLocaleString(undefined, {{maximumFractionDigits: 2}}) : 'N/D';
 
           layer.bindTooltip(`
             <div class="sipta-tooltip font-sans">
               <div class="font-bold text-sm text-sky-400 mb-0.5">${{props.nombre_localidad || props.LOCNOMBRE}}</div>
               <div class="text-[11px] text-slate-300">${{indMeta ? indMeta.nombre : currentIndicator}}: <b class="text-white font-mono">${{formattedVal}} ${{indMeta?.unidad || ''}}</b></div>
-              <div <div class="text-[10px] text-slate-400 mt-1">Ranking activo: <b class="text-amber-400 font-mono">#${{indicatorRank.rank ?? '--'}}</b> | Prioridad consenso: <b class="text-rose-400">${{props.nivel_prioridad_consenso || '--'}}</b></div>
+              <div class="text-[10px] text-slate-400 mt-1">Ranking activo: <b class="text-amber-400 font-mono">#${{indicatorRank.rank ?? '--'}}</b> | Prioridad consenso: <b class="text-rose-400">${{props.nivel_prioridad_consenso || '--'}}</b></div>
             </div>
           `, {{ sticky: true, opacity: 1, className: 'custom-leaflet-tooltip' }});
 
@@ -1384,36 +1541,92 @@ def generate_interactive_gis_dashboard(
 
     // Update Floating Legend
     function updateLegend() {{
-      const breaksInfo = classificationBreaks[currentDomain]?.[currentIndicator];
-      if (!breaksInfo) return;
+        const breaksInfo =
+            classificationBreaks[currentDomain]?.[currentIndicator];
 
-      const breaks = breaksInfo[currentMethod] || [breaksInfo.min, breaksInfo.max];
-      const domMeta = domainCatalog[currentDomain];
-      const indMeta = domMeta.indicadores.find(i => i.col === currentIndicator);
-      const paletteKey = isColorblindMode ? 'Viridis' : (domMeta.paleta || 'Blues');
-      const colors = COLOR_PALETTES[paletteKey] || COLOR_PALETTES.Blues;
+        if (!breaksInfo) {{
+            return;
+        }}
 
-      document.getElementById('legend-title').innerText = indMeta?.nombre || currentIndicator;
-      document.getElementById('legend-unit').innerText = indMeta?.unidad || '';
-      document.getElementById('legend-min').innerText = Number(breaksInfo.min).toLocaleString(undefined, {{maximumFractionDigits: 1}});
-      document.getElementById('legend-mean').innerText = Number(breaksInfo.mean).toLocaleString(undefined, {{maximumFractionDigits: 1}});
-      document.getElementById('legend-max').innerText = Number(breaksInfo.max).toLocaleString(undefined, {{maximumFractionDigits: 1}});
+        const breaks =
+            breaksInfo[currentMethod] ||
+            [breaksInfo.min, breaksInfo.max];
 
-      const container = document.getElementById('legend-items');
-      container.innerHTML = '';
+        const {{ indicatorMeta, polarity }} =
+            getIndicatorContext();
 
-      for (let i = 0; i < breaks.length - 1; i++) {{
-        const b1 = Number(breaks[i]).toLocaleString(undefined, {{maximumFractionDigits: 1}});
-        const b2 = Number(breaks[i+1]).toLocaleString(undefined, {{maximumFractionDigits: 1}});
-        const col = colors[i % colors.length];
-        
-        container.innerHTML += `
-          <div class="flex items-center gap-2">
-            <span class="h-3 w-6 rounded shrink-0 border border-slate-600/40" style="background-color: ${{col}}"></span>
-            <span class="text-slate-300 font-mono text-[11px]">${{b1}} &ndash; ${{b2}}</span>
-          </div>
-        `;
-      }}
+        const colors = getActivePalette();
+        const totalClasses = breaks.length - 1;
+
+        document.getElementById('legend-title').innerText =
+            indicatorMeta?.nombre || currentIndicator;
+
+        document.getElementById('legend-unit').innerText =
+            indicatorMeta?.unidad || '';
+
+        document.getElementById('legend-min').innerText =
+            Number(breaksInfo.min).toLocaleString(
+                undefined,
+                {{ maximumFractionDigits: 1 }}
+            );
+
+        document.getElementById('legend-mean').innerText =
+            Number(breaksInfo.mean).toLocaleString(
+                undefined,
+                {{ maximumFractionDigits: 1 }}
+            );
+
+        document.getElementById('legend-max').innerText =
+            Number(breaksInfo.max).toLocaleString(
+                undefined,
+                {{ maximumFractionDigits: 1 }}
+            );
+
+        const container =
+            document.getElementById('legend-items');
+
+        container.innerHTML = '';
+
+        for (let i = 0; i < totalClasses; i++) {{
+            const lowerValue =
+                Number(breaks[i]).toLocaleString(
+                    undefined,
+                    {{ maximumFractionDigits: 1 }}
+                );
+
+            const upperValue =
+                Number(breaks[i + 1]).toLocaleString(
+                    undefined,
+                    {{ maximumFractionDigits: 1 }}
+                );
+
+            const color =
+                colors[Math.min(i, colors.length - 1)];
+
+            const classLabel =
+                getLegendClassLabel(
+                    i,
+                    totalClasses,
+                    polarity
+                );
+
+            container.innerHTML += `
+                <div class="flex items-start gap-2">
+                    <span
+                        class="h-3 w-6 mt-0.5 rounded shrink-0 border border-slate-600/40"
+                        style="background-color: ${{color}}"
+                    ></span>
+                    <div>
+                        <div class="text-slate-200 font-semibold text-[11px]">
+                            ${{classLabel}}
+                        </div>
+                        <div class="text-slate-400 font-mono text-[10px]">
+                            ${{lowerValue}} &ndash; ${{upperValue}}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }}
     }}
 
     // Calcula el puesto distrital según el indicador activo y su polaridad.
@@ -1464,9 +1677,8 @@ def generate_interactive_gis_dashboard(
       const indMeta = domainCatalog[currentDomain].indicadores.find(i => i.col === currentIndicator);
       const indicatorRank = getDynamicIndicatorRank(props);
       const val = props[currentIndicator];
-      const indicatorRank = getDynamicIndicatorRank(props);
       const formattedVal = (val !== null && val !== undefined) ? Number(val).toLocaleString(undefined, {{maximumFractionDigits: 2}}) : '--';
-      
+
       document.getElementById('loc-metric-val').innerText = formattedVal;
       document.getElementById('loc-metric-unit').innerText = indMeta?.unidad || '';
       document.getElementById('loc-metric-rank').innerText =
@@ -1510,12 +1722,31 @@ def generate_interactive_gis_dashboard(
       }}
     }}
 
+    function refreshSelectedInspector() {{
+        if (
+            selectedLocalityCode === null ||
+            selectedLocalityCode === undefined
+        ) {{
+            return;
+        }}
+
+        const selectedFeature =
+            (geojsonData.features || []).find(feature =>
+                String(feature.properties.codigo_localidad) ===
+                String(selectedLocalityCode)
+            );
+
+        if (selectedFeature) {{
+            updateInspector(selectedFeature.properties);
+        }}
+    }}
+
     // Update Domain & Indicator Selection Details
     function updateSidebarDomainInfo() {{
       const domMeta = domainCatalog[currentDomain];
       document.getElementById('domain-long-desc').innerText = domMeta.descripcion;
       document.getElementById('breadcrumb-domain').innerText = domMeta.nombre;
-      
+
       const indMeta = domMeta.indicadores.find(i => i.col === currentIndicator);
       document.getElementById('indicator-desc').innerText = indMeta?.desc || '';
       document.getElementById('breadcrumb-indicator').innerText = indMeta?.nombre || currentIndicator;
@@ -1531,82 +1762,286 @@ def generate_interactive_gis_dashboard(
       }}
     }}
 
-    // Update Both Charts (Ranking Bar Chart & Multidimensional Radar)
+    // Update Chart.js Scatter Plot (IPT vs Inversión FDL)
+          function updateInvestmentChart() {{
+            const canvas = document.getElementById('chart-investment');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const features = geojsonData.features || [];
+
+            const points = features
+              .map(f => {{
+                const p = f.properties || {{}};
+                const x = Number(p.inversion_fdl_per_capita_millones);
+                const y = Number(p.IPT_MULTIDIMENSIONAL);
+                const ejecucion = Number(p.porcentaje_ejecucion_fdl);
+
+                return {{
+                  x: x,
+                  y: y,
+                  localidad: p.nombre_localidad || p.LOCNOMBRE,
+                  codigo: p.codigo_localidad,
+                  ejecucion: ejecucion
+                }};
+              }})
+              .filter(d => Number.isFinite(d.x) && Number.isFinite(d.y));
+
+            if (investmentChart) {{
+              investmentChart.destroy();
+            }}
+
+            investmentChart = new Chart(ctx, {{
+              type: 'scatter',
+              data: {{
+                datasets: [{{
+                  label: 'Localidades',
+                  data: points,
+                  parsing: false,
+                  pointRadius: points.map(d =>
+                    String(d.codigo) === String(selectedLocalityCode) ? 8 : 5
+                  ),
+                  pointHoverRadius: 9,
+                  backgroundColor: points.map(d =>
+                    String(d.codigo) === String(selectedLocalityCode)
+                      ? '#38bdf8'
+                      : '#f59e0b'
+                  ),
+                  borderColor: points.map(d =>
+                    String(d.codigo) === String(selectedLocalityCode)
+                      ? '#e0f2fe'
+                      : '#fef3c7'
+                  ),
+                  borderWidth: 1.5
+                }}]
+              }},
+              options: {{
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {{
+                  legend: {{
+                    display: false
+                  }},
+                  tooltip: {{
+                    callbacks: {{
+                      label: function(context) {{
+                        const d = context.raw;
+                        const ejecucionTxt = Number.isFinite(d.ejecucion)
+                          ? `${{d.ejecucion.toLocaleString(
+                              undefined,
+                              {{ maximumFractionDigits: 1 }}
+                            )}}%`
+                          : 'N/D';
+
+                          return [
+                            `${{d.localidad}}`,
+                            `Inversión per cápita: ${{d.x.toLocaleString(
+                              undefined,
+                              {{ maximumFractionDigits: 2 }}
+                            )}} COP M/hab`,
+                            `IPT: ${{d.y.toLocaleString(
+                              undefined,
+                              {{ maximumFractionDigits: 2 }}
+                            )}} puntos`,
+                            `Ejecución FDL: ${{ejecucionTxt}}`
+                          ];
+                        }}
+                      }}
+                    }}
+                  }},
+                  scales: {{
+                    x: {{
+                      beginAtZero: true,
+                      title: {{
+                        display: true,
+                        text: 'Inversión FDL per cápita (COP M/hab)',
+                        color: '#cbd5e1'
+                      }},
+                      ticks: {{
+                        color: '#94a3b8'
+                      }},
+                      grid: {{
+                        color: 'rgba(255, 255, 255, 0.05)'
+                      }}
+                    }},
+                    y: {{
+                      min: 0,
+                      max: 100,
+                      title: {{
+                        display: true,
+                        text: 'IPT multidimensional (0–100)',
+                        color: '#cbd5e1'
+                      }},
+                      ticks: {{
+                        color: '#94a3b8'
+                      }},
+                      grid: {{
+                        color: 'rgba(255, 255, 255, 0.05)'
+                      }}
+                    }}
+                  }},
+                  onClick: function(e, elements) {{
+                    if (elements.length > 0) {{
+                      const idx = elements[0].index;
+                      const target = points[idx];
+                      selectLocality(target.codigo);
+                    }}
+                  }}
+                }}
+              }});
+            }}
+
+                // Tabs Logic
+                const analyticalTabNames = ['bars', 'radar', 'investment'];
+
+    // Update Active Analytical Chart (Ranking, Radar or IPT / Investment)
     function updateCharts() {{
-      updateBarChart();
-      updateRadarChart();
+        if (activeTab === 'radar') {{
+            updateRadarChart();
+        }} else if (activeTab === 'investment') {{
+            updateInvestmentChart();
+        }} else {{
+            updateBarChart();
+        }}
     }}
 
     // Update Chart.js Ranking Chart (Horizontal Bars)
     function updateBarChart() {{
-      const features = geojsonData.features || [];
-      const {{ polarity }} = getIndicatorContext();
+        const features = geojsonData.features || [];
+        const {{ indicatorMeta, polarity }} =
+            getIndicatorContext();
 
-      const dataItems = features.map(f => ({{
-        name: f.properties.nombre_localidad || f.properties.LOCNOMBRE,
-        val: f.properties[currentIndicator] !== null &&
-          f.properties[currentIndicator] !== undefined
-            ? Number(f.properties[currentIndicator])
-            : 0,
-        code: f.properties.codigo_localidad
-      }})).sort((a, b) =>
-        polarity === 'baja_es_privacion'
-          ? a.val - b.val
-          : b.val - a.val
-      );
+        const dataItems = features
+            .map(f => {{
+                const rawValue =
+                    f.properties[currentIndicator];
 
-      const labels = dataItems.map(d => d.name);
-      const values = dataItems.map(d => d.val);
-      const bgColors = dataItems.map(d => d.code === selectedLocalityCode ? '#38bdf8' : getColor(d.val));
+                return {{
+                    name:
+                        f.properties.nombre_localidad ||
+                        f.properties.LOCNOMBRE ||
+                        'Sin nombre',
+                    val: Number(rawValue),
+                    code: f.properties.codigo_localidad
+                }};
+            }})
+            .filter(item => Number.isFinite(item.val))
+            .sort((a, b) =>
+                polarity === 'baja_es_privacion'
+                    ? a.val - b.val
+                    : b.val - a.val
+            );
 
-      const ctx = document.getElementById('chart-ranking').getContext('2d');
-      if (rankingChart) {{
-        rankingChart.destroy();
-      }}
+        const labels = dataItems.map(item => item.name);
+        const values = dataItems.map(item => item.val);
 
-      rankingChart = new Chart(ctx, {{
-        type: 'bar',
-        data: {{
-          labels: labels,
-          datasets: [{{
-            label: currentIndicator,
-            data: values,
-            backgroundColor: bgColors,
-            borderRadius: 4,
-            borderWidth: 0
-          }}]
-        }},
-        options: {{
-          indexAxis: 'y',
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {{
-            legend: {{ display: false }},
-            tooltip: {{
-              callbacks: {{
-                label: function(c) {{ return `${{c.raw.toLocaleString()}}`; }}
-              }}
-            }}
-          }},
-          scales: {{
-            x: {{
-              grid: {{ color: 'rgba(255, 255, 255, 0.05)' }},
-              ticks: {{ color: '#94a3b8', font: {{ family: 'JetBrains Mono', size: 9 }} }}
-            }},
-            y: {{
-              grid: {{ display: false }},
-              ticks: {{ color: '#e2e8f0', font: {{ family: 'Plus Jakarta Sans', size: 9, weight: '500' }} }}
-            }}
-          }},
-          onClick: function(e, elements) {{
-            if (elements.length > 0) {{
-              const idx = elements[0].index;
-              const targetItem = dataItems[idx];
-              selectLocality(targetItem.code);
-            }}
-          }}
+        const bgColors = dataItems.map(item =>
+            String(item.code) === String(selectedLocalityCode)
+                ? '#38bdf8'
+                : getColor(item.val)
+        );
+
+        const ctx =
+            document
+                .getElementById('chart-ranking')
+                .getContext('2d');
+
+        if (rankingChart) {{
+            rankingChart.destroy();
         }}
-      }});
+
+        rankingChart = new Chart(ctx, {{
+            type: 'bar',
+
+            data: {{
+                labels: labels,
+
+                datasets: [{{
+                    label:
+                        indicatorMeta?.nombre ||
+                        currentIndicator,
+                    data: values,
+                    backgroundColor: bgColors,
+                    borderRadius: 4,
+                    borderWidth: 0
+                }}]
+            }},
+
+            options: {{
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+
+                plugins: {{
+                    legend: {{
+                        display: false
+                    }},
+
+                    tooltip: {{
+                        callbacks: {{
+                            label: function(context) {{
+                                const formattedValue =
+                                    Number(context.raw)
+                                        .toLocaleString(
+                                            undefined,
+                                            {{
+                                                maximumFractionDigits: 2
+                                            }}
+                                        );
+
+                                return indicatorMeta?.unidad
+                                    ? formattedValue +
+                                      ' ' +
+                                      indicatorMeta.unidad
+                                    : formattedValue;
+                            }}
+                        }}
+                    }}
+                }},
+
+                scales: {{
+                    x: {{
+                        grid: {{
+                            color:
+                                'rgba(255, 255, 255, 0.05)'
+                        }},
+
+                        ticks: {{
+                            color: '#94a3b8',
+
+                            font: {{
+                                family: 'JetBrains Mono',
+                                size: 9
+                            }}
+                        }}
+                    }},
+
+                    y: {{
+                        grid: {{
+                            display: false
+                        }},
+
+                        ticks: {{
+                            color: '#e2e8f0',
+
+                            font: {{
+                                family: 'Plus Jakarta Sans',
+                                size: 9,
+                                weight: '500'
+                            }}
+                        }}
+                    }}
+                }},
+
+                onClick: function(event, elements) {{
+                    if (elements.length > 0) {{
+                        const index = elements[0].index;
+                        const targetItem = dataItems[index];
+                        selectLocality(targetItem.code);
+                    }}
+                }}
+            }}
+        }});
     }}
 
     // Update Chart.js Radar Chart (7 Canonical Dimensions Profile)
@@ -1749,6 +2184,7 @@ def generate_interactive_gis_dashboard(
         updateSidebarDomainInfo();
         renderChoropleth();
         updateCharts();
+        refreshSelectedInspector();
         showToast(`Sector cambiado a: ${{domainCatalog[currentDomain].nombre}}`, 'info');
       }});
 
@@ -1759,6 +2195,7 @@ def generate_interactive_gis_dashboard(
         updateSidebarDomainInfo();
         renderChoropleth();
         updateCharts();
+        refreshSelectedInspector();
         showToast(`Indicador activo actualizado`, 'info');
       }});
 
@@ -1810,7 +2247,7 @@ def generate_interactive_gis_dashboard(
         const feat = geojsonData.features.find(f => f.properties.codigo_localidad === selectedLocalityCode);
         if (feat) {{
           const p = feat.properties;
-          const text = `SIPTA - Ficha Territorial\\nLocalidad: ${{p.nombre_localidad}} (DIVIPOLA: ${{p.codigo_divipola}})\\nRanking Prioridad: #${{p.RANKING_PRIORIDAD}} (${{p.NIVEL_PRIORIDAD}})\\nIndicador (${{currentIndicator}}): ${{p[currentIndicator]}}\\nIC 95% Bootstrap: [${{p.ci_lower_95}}, ${{p.ci_upper_95}}]`;
+          const text = `SIPTA - Ficha Territorial\\nLocalidad: ${{p.nombre_localidad}} (DIVIPOLA: ${{p.codigo_divipola}})\\nRanking Prioridad: #${{p.ranking_consenso}} (${{p.nivel_prioridad_consenso}})\\nIndicador (${{currentIndicator}}): ${{p[currentIndicator]}}\\nIC 95% Bootstrap: [${{p.ci_lower_95}}, ${{p.ci_upper_95}}]`;
           navigator.clipboard.writeText(text).then(() => {{
             showToast('Ficha copiada al portapapeles', 'success');
           }});
@@ -1831,11 +2268,11 @@ def generate_interactive_gis_dashboard(
       // Export CSV
       document.getElementById('btn-export-csv').addEventListener('click', function() {{
         const rows = [
-          ['codigo_localidad', 'nombre_localidad', 'codigo_divipola', currentIndicator, 'RANKING_PRIORIDAD', 'NIVEL_PRIORIDAD']
+          ['codigo_localidad', 'nombre_localidad', 'codigo_divipola', currentIndicator, 'ranking_consenso', 'nivel_prioridad_consenso']
         ];
         geojsonData.features.forEach(f => {{
           const p = f.properties;
-          rows.push([p.codigo_localidad, p.nombre_localidad, p.codigo_divipola, p[currentIndicator], p.RANKING_PRIORIDAD, p.NIVEL_PRIORIDAD]);
+          rows.push([p.codigo_localidad, p.nombre_localidad, p.codigo_divipola, p[currentIndicator], p.ranking_consenso, p.nivel_prioridad_consenso]);
         }});
         const csvContent = 'data:text/csv;charset=utf-8,' + rows.map(e => e.join(',')).join('\\n');
         const encodedUri = encodeURI(csvContent);
@@ -1846,23 +2283,37 @@ def generate_interactive_gis_dashboard(
         showToast('Exportación CSV completada', 'success');
       }});
 
-      // Tabs Logic
-      document.getElementById('tab-btn-bars').addEventListener('click', function() {{
-        activeTab = 'bars';
-        this.className = 'px-2.5 py-1 text-xs font-semibold rounded-lg bg-blue-600 text-white flex items-center gap-1.5 transition';
-        document.getElementById('tab-btn-radar').className = 'px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center gap-1.5 transition';
-        document.getElementById('tab-content-bars').classList.remove('hidden');
-        document.getElementById('tab-content-radar').classList.add('hidden');
-      }});
+            function activateAnalyticalTab(tabName) {{
+              activeTab = tabName;
 
-      document.getElementById('tab-btn-radar').addEventListener('click', function() {{
-        activeTab = 'radar';
-        this.className = 'px-2.5 py-1 text-xs font-semibold rounded-lg bg-blue-600 text-white flex items-center gap-1.5 transition';
-        document.getElementById('tab-btn-bars').className = 'px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center gap-1.5 transition';
-        document.getElementById('tab-content-radar').classList.remove('hidden');
-        document.getElementById('tab-content-bars').classList.add('hidden');
-        updateRadarChart();
-      }});
+              analyticalTabNames.forEach(function(name) {{
+                const button = document.getElementById('tab-btn-' + name);
+                const content = document.getElementById('tab-content-' + name);
+                const isActive = name === tabName;
+
+                button.className = isActive
+                  ? 'px-2.5 py-1 text-xs font-semibold rounded-lg bg-blue-600 text-white flex items-center gap-1.5 transition'
+                  : 'px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center gap-1.5 transition';
+
+                button.setAttribute(
+                  'aria-selected',
+                  isActive ? 'true' : 'false'
+                );
+
+                content.classList.toggle('hidden', !isActive);
+              }});
+
+              updateCharts();
+            }}
+
+            analyticalTabNames.forEach(function(tabName) {{
+              document
+                .getElementById('tab-btn-' + tabName)
+                .addEventListener('click', function() {{
+                  activateAnalyticalTab(tabName);
+                }});
+            }});
+
 
       // Collapsible Panels (HCI User Freedom)
       const pLeft = document.getElementById('panel-left');
@@ -1937,7 +2388,7 @@ def generate_interactive_gis_dashboard(
                 <b class="text-white">${{m.properties.nombre_localidad}}</b>
                 <span class="text-[10px] text-slate-400 ml-1">DIVIPOLA: ${{m.properties.codigo_divipola}}</span>
               </div>
-              <span class="px-1.5 py-0.5 rounded bg-blue-500/20 text-sky-400 font-mono text-[10px]">#${{m.properties.RANKING_PRIORIDAD}}</span>
+              <span class="px-1.5 py-0.5 rounded bg-blue-500/20 text-sky-400 font-mono text-[10px]">#${{m.properties.ranking_consenso}}</span>
             </div>
           `).join('');
         }}
