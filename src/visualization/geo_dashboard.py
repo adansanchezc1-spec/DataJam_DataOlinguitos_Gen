@@ -1339,7 +1339,7 @@ def generate_interactive_gis_dashboard(
             <div class="sipta-tooltip font-sans">
               <div class="font-bold text-sm text-sky-400 mb-0.5">${{props.nombre_localidad || props.LOCNOMBRE}}</div>
               <div class="text-[11px] text-slate-300">${{indMeta ? indMeta.nombre : currentIndicator}}: <b class="text-white font-mono">${{formattedVal}} ${{indMeta?.unidad || ''}}</b></div>
-              <div class="text-[10px] text-slate-400 mt-1">Ranking: <b class="text-amber-400 font-mono">#${{props.RANKING_PRIORIDAD || '--'}}</b> | Prioridad: <b class="text-rose-400">${{props.NIVEL_PRIORIDAD || '--'}}</b></div>
+              <div <div class="text-[10px] text-slate-400 mt-1">Ranking activo: <b class="text-amber-400 font-mono">#${{indicatorRank.rank ?? '--'}}</b> | Prioridad consenso: <b class="text-rose-400">${{props.nivel_prioridad_consenso || '--'}}</b></div>
             </div>
           `, {{ sticky: true, opacity: 1, className: 'custom-leaflet-tooltip' }});
 
@@ -1416,6 +1416,44 @@ def generate_interactive_gis_dashboard(
       }}
     }}
 
+    // Calcula el puesto distrital según el indicador activo y su polaridad.
+    // Los empates reciben el mismo puesto.
+    function getDynamicIndicatorRank(props) {{
+      const {{ polarity }} = getIndicatorContext();
+
+      const validValues = (geojsonData.features || [])
+        .map(feature => feature.properties[currentIndicator])
+        .filter(value => value !== null && value !== undefined && value !== '')
+        .map(Number)
+        .filter(Number.isFinite);
+
+      const rawSelectedValue = props[currentIndicator];
+
+      if (
+        rawSelectedValue === null ||
+        rawSelectedValue === undefined ||
+        rawSelectedValue === ''
+      ) {{
+        return {{ rank: null, total: validValues.length }};
+      }}
+
+      const selectedValue = Number(rawSelectedValue);
+
+      if (!Number.isFinite(selectedValue)) {{
+        return {{ rank: null, total: validValues.length }};
+      }}
+
+      const valuesWithGreaterPriority = validValues.filter(value =>
+        polarity === 'baja_es_privacion'
+          ? value < selectedValue
+          : value > selectedValue
+      ).length;
+
+      return {{
+        rank: valuesWithGreaterPriority + 1,
+        total: validValues.length
+      }};
+    }}
     // Update Inspector Sidebar with Locality Details
     function updateInspector(props) {{
       if (!props) return;
@@ -1424,22 +1462,25 @@ def generate_interactive_gis_dashboard(
       document.getElementById('loc-area-pop').innerText = `Área: ${{Number(props.area_km2 || 0).toFixed(1)}} km² | Población: ${{Number(props.poblacion_2025 || props.poblacion || 0).toLocaleString()}} hab`;
 
       const indMeta = domainCatalog[currentDomain].indicadores.find(i => i.col === currentIndicator);
+      const indicatorRank = getDynamicIndicatorRank(props);
       const val = props[currentIndicator];
+      const indicatorRank = getDynamicIndicatorRank(props);
       const formattedVal = (val !== null && val !== undefined) ? Number(val).toLocaleString(undefined, {{maximumFractionDigits: 2}}) : '--';
       
       document.getElementById('loc-metric-val').innerText = formattedVal;
       document.getElementById('loc-metric-unit').innerText = indMeta?.unidad || '';
-      document.getElementById('loc-metric-rank').innerText = `#${{props.RANKING_PRIORIDAD || '--'}} / 20`;
+      document.getElementById('loc-metric-rank').innerText =
+        `#${{indicatorRank.rank ?? '--'}} / ${{indicatorRank.total || '--'}}`;
 
       // Semaphore update (Accessible Icon + Text)
-      const prio = props.NIVEL_PRIORIDAD || 'No Definido';
+      const prio = props.nivel_prioridad_consenso || 'No Definido';
       const semBox = document.getElementById('loc-semaphore');
       const semIcon = document.getElementById('loc-sem-icon');
       const semText = document.getElementById('loc-sem-text');
       const semBadge = document.getElementById('loc-sem-badge');
 
       semText.innerText = `Prioridad: ${{prio}}`;
-      semBadge.innerText = `Consenso #${{props.RANKING_PRIORIDAD || '--'}}`;
+      semBadge.innerText = `Consenso #${{props.ranking_consenso || '--'}}`;
 
       if (prio.includes('Muy Alta') || prio.includes('Crítica')) {{
         semBox.className = 'mt-3 p-2.5 rounded-lg border border-rose-500/40 bg-rose-950/40 text-xs font-medium text-rose-200 flex items-center justify-between';
@@ -1499,11 +1540,20 @@ def generate_interactive_gis_dashboard(
     // Update Chart.js Ranking Chart (Horizontal Bars)
     function updateBarChart() {{
       const features = geojsonData.features || [];
+      const {{ polarity }} = getIndicatorContext();
+
       const dataItems = features.map(f => ({{
         name: f.properties.nombre_localidad || f.properties.LOCNOMBRE,
-        val: f.properties[currentIndicator] !== null && f.properties[currentIndicator] !== undefined ? Number(f.properties[currentIndicator]) : 0,
+        val: f.properties[currentIndicator] !== null &&
+          f.properties[currentIndicator] !== undefined
+            ? Number(f.properties[currentIndicator])
+            : 0,
         code: f.properties.codigo_localidad
-      }})).sort((a, b) => b.val - a.val);
+      }})).sort((a, b) =>
+        polarity === 'baja_es_privacion'
+          ? a.val - b.val
+          : b.val - a.val
+      );
 
       const labels = dataItems.map(d => d.name);
       const values = dataItems.map(d => d.val);
