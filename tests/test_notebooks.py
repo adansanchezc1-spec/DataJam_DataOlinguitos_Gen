@@ -14,8 +14,9 @@ import sys
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import nbformat
 import pytest
+
+nbformat = pytest.importorskip("nbformat")
 
 # Directorio raíz del repositorio
 ROOT_DIR = Path(__file__).resolve().parents[1]

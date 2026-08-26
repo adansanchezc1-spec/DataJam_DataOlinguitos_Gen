@@ -1,11 +1,11 @@
 {
   "project": "DataJam_DataOlinguitos_Gen",
-  "version": "1.0.0",
-  "description": "Pipeline y plataforma SIPTA (Sistema de Indicadores y Priorización Territorial y Alertas Tempranas)",
+  "version": "1.1.0",
+  "description": "Pipeline y plataforma SIPTA (Sistema de Indicadores y Priorización Territorial y Alertas Tempranas) - Integración de Inversión Distrital y Dashboard IHC v1.1.0",
   "pdco_phase": "OPERATIONS",
   "active_skill": "software-development",
-  "sdlc_stage": "release_v1_0_0_maintenance",
-  "last_updated": "2026-08-24",
+  "sdlc_stage": "release_v1_1_0_evaluator_feedback",
+  "last_updated": "2026-08-26",
   "team": {
     "lead": "Persona A (Adan Sánchez - Scrum Master & Lead Data Engineer)",
     "members": [
@@ -196,6 +196,7 @@
     "cyclomatic_complexity_avg": "<=5",
     "technical_debt_days": 0,
     "open_bugs": 0,
+    "github_issues_resolved": "50/50 (100% closed with formal traceability)",
     "datasets_cataloged": 31
   },
   "patterns_applied": [

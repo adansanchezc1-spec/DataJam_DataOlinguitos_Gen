@@ -1,14 +1,14 @@
 """Módulo de Visualización Geoespacial y Dashboard Interactivo SIPTA.
 
 Fase PDCO: DEVELOPMENT / CONTROL
-Estándares: Clean Code, PEP 8, ISO/IEC 25010, DAMA-BOK, OECD/JRC.
+Estándares: Clean Code, PEP 8, ISO/IEC 25010, DAMA-BOK, OECD/JRC, ISO 9241-110 (IHC).
 """
 
 from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 
 import geopandas as gpd
 import numpy as np
@@ -24,7 +24,7 @@ REPORTS_DIR = ROOT / "reports"
 CURATED_DIR.mkdir(parents=True, exist_ok=True)
 REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
-# Definición de Metadatos de los 13 Dominios y sus Indicadores
+# Definición de Metadatos de los 13 Dominios, Indicadores y Mapeo de Inversión Pública
 DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
     "00_ipt": {
         "id": "00_ipt",
@@ -35,13 +35,16 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
         "polaridad": "alta_es_privacion",
         "descripcion": "Índice de Priorización Territorial multidimensional compuesto (7 dimensiones, OCDE/JRC).",
         "indicador_principal": "IPT_MULTIDIMENSIONAL",
+        "investment_key": "inversion_total_consolidada_per_capita_cop",
+        "investment_label": "Inversión Distrital Consolidada per Cápita",
+        "investment_unit": "COP/hab",
         "indicadores": [
             {
                 "col": "IPT_MULTIDIMENSIONAL",
                 "nombre": "IPT Base Lineal (0-100)",
                 "unidad": "pts",
                 "formato": "{:.2f}",
-                "desc": "Índice compuesto lineal ponderado (1/7 por dimensión). Mayor puntaje = mayor privación.",
+                "desc": "Índice compuesto lineal ponderado (1/7 por dimensión). Mayor puntaje = mayor privación y urgencia.",
                 "polaridad": "alta_es_privacion",
             },
             {
@@ -57,7 +60,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Ranking de Prioridad Consenso",
                 "unidad": "puesto",
                 "formato": "{:.0f}",
-                "desc": "Puesto distrital de vulnerabilidad (1 = máxima urgencia).",
+                "desc": "Puesto distrital de vulnerabilidad (1 = máxima urgencia social).",
                 "polaridad": "baja_es_privacion",
             },
             {
@@ -79,13 +82,16 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
         "polaridad": "neutro",
         "descripcion": "Concentración demográfica, densidad urbana y población infanto-juvenil.",
         "indicador_principal": "densidad_poblacional",
+        "investment_key": "inversion_fdl_per_capita_cop",
+        "investment_label": "Inversión FDL per Cápita",
+        "investment_unit": "COP/hab",
         "indicadores": [
             {
                 "col": "densidad_poblacional",
                 "nombre": "Densidad Poblacional",
                 "unidad": "hab/km²",
                 "formato": "{:,.0f}",
-                "desc": "Habitantes proyectados por kilómetro cuadrado.",
+                "desc": "Habitantes proyectados por kilómetro cuadrado territorial.",
                 "polaridad": "neutro",
             },
             {
@@ -93,7 +99,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Población Total (2025)",
                 "unidad": "hab",
                 "formato": "{:,.0f}",
-                "desc": "Población total estimada por DANE / SDP.",
+                "desc": "Población total estimada por DANE / Secretaría Distrital de Planeación.",
                 "polaridad": "neutro",
             },
             {
@@ -101,7 +107,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Población en Edad Escolar (5 a 17 años)",
                 "unidad": "hab",
                 "formato": "{:,.0f}",
-                "desc": "Demanda potencial del sistema educativo formal.",
+                "desc": "Demanda potencial del sistema educativo formal distrital.",
                 "polaridad": "neutro",
             },
         ],
@@ -115,13 +121,16 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
         "polaridad": "baja_es_privacion",
         "descripcion": "Oferta de servicios de salud, sedes IPS y camas hospitalarias.",
         "indicador_principal": "sedes_ips_por_10000_hab",
+        "investment_key": "inversion_fdl_per_capita_cop",
+        "investment_label": "Inversión FDL per Cápita",
+        "investment_unit": "COP/hab",
         "indicadores": [
             {
                 "col": "sedes_ips_por_10000_hab",
                 "nombre": "Sedes IPS por 10.000 hab",
                 "unidad": "sedes/10k",
                 "formato": "{:.2f}",
-                "desc": "Disponibilidad de infraestructura prestadora de salud.",
+                "desc": "Disponibilidad de infraestructura prestadora de salud por escala de habitantes.",
                 "polaridad": "baja_es_privacion",
             },
             {
@@ -129,7 +138,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Camas Hospitalarias por 10.000 hab",
                 "unidad": "camas/10k",
                 "formato": "{:.2f}",
-                "desc": "Capacidad de internación hospitalaria general.",
+                "desc": "Capacidad de internación hospitalaria general instalada.",
                 "polaridad": "baja_es_privacion",
             },
             {
@@ -137,7 +146,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Camas UCI Adultos",
                 "unidad": "camas",
                 "formato": "{:.0f}",
-                "desc": "Camas de cuidados intensivos para adultos.",
+                "desc": "Camas de cuidados intensivos para adultos habilitadas.",
                 "polaridad": "baja_es_privacion",
             },
         ],
@@ -151,6 +160,9 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
         "polaridad": "baja_es_privacion",
         "descripcion": "Oferta de cupos oficiales SED, desempeño Saber 11 y deserción escolar.",
         "indicador_principal": "cupos_por_1000_pob_5_17",
+        "investment_key": "inversion_educacion_per_capita_cop",
+        "investment_label": "Inversión SED Educación per Cápita",
+        "investment_unit": "COP/hab",
         "indicadores": [
             {
                 "col": "cupos_por_1000_pob_5_17",
@@ -165,7 +177,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Puntaje Promedio Saber 11",
                 "unidad": "puntos",
                 "formato": "{:.1f}",
-                "desc": "Calidad educativa media en pruebas de Estado.",
+                "desc": "Calidad educativa media en pruebas de Estado estandarizadas.",
                 "polaridad": "baja_es_privacion",
             },
             {
@@ -173,8 +185,16 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Tasa de Deserción Escolar",
                 "unidad": "%",
                 "formato": "{:.2f}%",
-                "desc": "Porcentaje de estudiantes que abandonan el ciclo lectivo.",
+                "desc": "Porcentaje de estudiantes que abandonan el ciclo lectivo anual.",
                 "polaridad": "alta_es_privacion",
+            },
+            {
+                "col": "inversion_educacion_per_capita_cop",
+                "nombre": "Inversión SED por Habitante",
+                "unidad": "COP/hab",
+                "formato": "${:,.0f}",
+                "desc": "Recursos ejecutados por la Secretaría de Educación Distrital por habitante.",
+                "polaridad": "baja_es_privacion",
             },
         ],
     },
@@ -187,13 +207,16 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
         "polaridad": "baja_es_privacion",
         "descripcion": "Densidad de transporte masivo (TransMilenio, SITP) y tiempos de viaje.",
         "indicador_principal": "paraderos_por_km2",
+        "investment_key": "inversion_fdl_per_capita_cop",
+        "investment_label": "Inversión FDL per Cápita",
+        "investment_unit": "COP/hab",
         "indicadores": [
             {
                 "col": "paraderos_por_km2",
                 "nombre": "Paraderos SITP por km²",
                 "unidad": "par/km²",
                 "formato": "{:.1f}",
-                "desc": "Densidad territorial de puntos de acceso zonal.",
+                "desc": "Densidad territorial de puntos de acceso zonal del transporte público.",
                 "polaridad": "baja_es_privacion",
             },
             {
@@ -201,7 +224,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Estaciones Troncales por km²",
                 "unidad": "est/km²",
                 "formato": "{:.2f}",
-                "desc": "Densidad de estaciones del sistema troncal TransMilenio.",
+                "desc": "Densidad de estaciones del sistema troncal TransMilenio por km².",
                 "polaridad": "baja_es_privacion",
             },
             {
@@ -209,7 +232,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Tiempo de Viaje Laboral Promedio",
                 "unidad": "min",
                 "formato": "{:.1f} min",
-                "desc": "Minutos invertidos en traslados laborales hacia el trabajo.",
+                "desc": "Minutos promedio invertidos en traslados hacia el lugar de trabajo.",
                 "polaridad": "alta_es_privacion",
             },
         ],
@@ -221,23 +244,42 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
         "color_base": "#10b981",
         "paleta": "Greens",
         "polaridad": "baja_es_privacion",
-        "descripcion": "Espacio público, parques administrados por IDRD y alumbrado público.",
+        "descripcion": "Espacio público recreativo, parques administrados por IDRD y cobertura de alumbrado público.",
         "indicador_principal": "parques_por_10k_hab",
+        "investment_key": "inversion_fdl_per_capita_cop",
+        "investment_label": "Inversión FDL per Cápita",
+        "investment_unit": "COP/hab",
         "indicadores": [
             {
                 "col": "parques_por_10k_hab",
                 "nombre": "Parques IDRD por 10.000 hab",
                 "unidad": "parques/10k",
                 "formato": "{:.2f}",
-                "desc": "Disponibilidad de espacio público recreativo y deportivo.",
+                "desc": "Disponibilidad de parques administrados por el IDRD por cada 10.000 habitantes.",
+                "polaridad": "baja_es_privacion",
+            },
+            {
+                "col": "luminarias_por_km2",
+                "nombre": "Luminarias de Alumbrado por km²",
+                "unidad": "lum/km²",
+                "formato": "{:.1f}",
+                "desc": "Densidad de iluminación pública instalada por kilómetro cuadrado territorial.",
+                "polaridad": "baja_es_privacion",
+            },
+            {
+                "col": "luminarias_por_10k_hab",
+                "nombre": "Luminarias por 10.000 hab",
+                "unidad": "lum/10k",
+                "formato": "{:,.0f}",
+                "desc": "Dotación de alumbrado público por cada 10.000 habitantes.",
                 "polaridad": "baja_es_privacion",
             },
             {
                 "col": "total_luminarias",
-                "nombre": "Total de Luminarias de Alumbrado",
+                "nombre": "Total Luminarias Instaladas",
                 "unidad": "luminarias",
                 "formato": "{:,.0f}",
-                "desc": "Parque de iluminación pública instalada.",
+                "desc": "Parque total de iluminación pública en la localidad.",
                 "polaridad": "neutro",
             },
             {
@@ -245,7 +287,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Fallas de Alumbrado Reportadas / Mes",
                 "unidad": "fallas/mes",
                 "formato": "{:,.0f}",
-                "desc": "Incidencias mensuales en la red de iluminación.",
+                "desc": "Incidencias mensuales reportadas en la red de iluminación pública.",
                 "polaridad": "alta_es_privacion",
             },
         ],
@@ -257,15 +299,34 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
         "color_base": "#eab308",
         "paleta": "YlOrBr",
         "polaridad": "alta_es_privacion",
-        "descripcion": "Conflictos ambientales (SAC) y monitoreo de calidad del aire (RMCAB).",
+        "descripcion": "Conflictos ambientales (SAC), huella hídrica y calidad de agua para consumo.",
         "indicador_principal": "conflictos_ambientales_por_km2",
+        "investment_key": "inversion_fdl_per_capita_cop",
+        "investment_label": "Inversión FDL per Cápita",
+        "investment_unit": "COP/hab",
         "indicadores": [
             {
                 "col": "conflictos_ambientales_por_km2",
                 "nombre": "Conflictos Ambientales (SAC) por km²",
                 "unidad": "eventos/km²",
                 "formato": "{:.2f}",
-                "desc": "Densidad de pasivos y situaciones ambientales conflictivas.",
+                "desc": "Densidad de situaciones ambientales conflictivas y pasivos identificados por SDA.",
+                "polaridad": "alta_es_privacion",
+            },
+            {
+                "col": "consumo_promedio_m3_suscriptor",
+                "nombre": "Consumo Hídrico Promedio Mensual",
+                "unidad": "m³/susc",
+                "formato": "{:.1f}",
+                "desc": "Volumen medio mensual de agua consumida por suscriptor residencial (EAAB).",
+                "polaridad": "neutro",
+            },
+            {
+                "col": "irca_promedio",
+                "nombre": "Riesgo Calidad de Agua (IRCA)",
+                "unidad": "pts",
+                "formato": "{:.2f}",
+                "desc": "Índice de Riesgo de la Calidad del Agua para consumo humano (0 = Agua Apta sin riesgo).",
                 "polaridad": "alta_es_privacion",
             },
             {
@@ -273,21 +334,32 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Total Conflictos Ambientales",
                 "unidad": "eventos",
                 "formato": "{:.0f}",
-                "desc": "Conteo total de puntos críticos ambientales inventariados.",
+                "desc": "Conteo total de puntos críticos ambientales inventariados en la localidad.",
                 "polaridad": "alta_es_privacion",
             },
         ],
     },
     "07_finanzas": {
         "id": "07_finanzas",
-        "nombre": "Finanzas e Inversión FDL",
+        "nombre": "Finanzas e Inversión Pública",
         "icono": "landmark",
         "color_base": "#2563eb",
         "paleta": "Blues",
         "polaridad": "neutro",
-        "descripcion": "Presupuestos de Fondos de Desarrollo Local (FDL) y ejecución presupuestal.",
-        "indicador_principal": "inversion_fdl_per_capita_millones",
+        "descripcion": "Presupuestos de Fondos de Desarrollo Local (FDL), ejecución y gasto social distrital.",
+        "indicador_principal": "inversion_total_consolidada_per_capita_cop",
+        "investment_key": "inversion_total_consolidada_per_capita_cop",
+        "investment_label": "Inversión Total Consolidada per Cápita",
+        "investment_unit": "COP/hab",
         "indicadores": [
+            {
+                "col": "inversion_total_consolidada_per_capita_cop",
+                "nombre": "Inversión Distrital Total per Cápita",
+                "unidad": "COP/hab",
+                "formato": "${:,.0f}",
+                "desc": "Consolidación de inversión per cápita (FDL + SDIS + SED + Presupuestos Participativos).",
+                "polaridad": "baja_es_privacion",
+            },
             {
                 "col": "inversion_fdl_per_capita_millones",
                 "nombre": "Inversión FDL per Cápita (COP M)",
@@ -305,11 +377,19 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "polaridad": "baja_es_privacion",
             },
             {
-                "col": "presupuesto_aprobado_millones",
-                "nombre": "Presupuesto Aprobado (COP Millones)",
+                "col": "inversion_social_sdis_per_capita_cop",
+                "nombre": "Gasto Social SDIS per Cápita",
+                "unidad": "COP/hab",
+                "formato": "${:,.0f}",
+                "desc": "Inversión social de la Secretaría Distrital de Integración Social por habitante.",
+                "polaridad": "baja_es_privacion",
+            },
+            {
+                "col": "inversion_educacion_ejecutada_millones",
+                "nombre": "Inversión SED Educación (COP Millones)",
                 "unidad": "COP M",
                 "formato": "${:,.0f} M",
-                "desc": "Monto total del presupuesto de inversión aprobado.",
+                "desc": "Monto total ejecutado en educación por localidad por la SED.",
                 "polaridad": "neutro",
             },
         ],
@@ -321,31 +401,50 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
         "color_base": "#dc2626",
         "paleta": "Reds",
         "polaridad": "alta_es_privacion",
-        "descripcion": "Registro Individual de Vendedores Informales (RIVI) y apoyos SDIS.",
+        "descripcion": "Registro Individual de Vendedores Informales (RIVI), comedores y transferencias SDIS.",
         "indicador_principal": "rivi_por_10000_hab_2017_2019",
+        "investment_key": "inversion_social_sdis_per_capita_cop",
+        "investment_label": "Inversión Social SDIS per Cápita",
+        "investment_unit": "COP/hab",
         "indicadores": [
             {
                 "col": "rivi_por_10000_hab_2017_2019",
                 "nombre": "Vendedores RIVI por 10.000 hab",
                 "unidad": "vendedores/10k",
                 "formato": "{:.1f}",
-                "desc": "Densidad de vendedores informales caracterizados.",
+                "desc": "Densidad de vendedores informales caracterizados en el registro distrital.",
                 "polaridad": "alta_es_privacion",
+            },
+            {
+                "col": "tasa_beneficiarios_transferencias_pct",
+                "nombre": "Población con Transferencias Monetarias",
+                "unidad": "%",
+                "formato": "{:.2f}%",
+                "desc": "Porcentaje de la población de la localidad cubierta con apoyos monetarios SDIS.",
+                "polaridad": "alta_es_privacion",
+            },
+            {
+                "col": "comedores_por_10k_hab",
+                "nombre": "Comedores Comunitarios por 10.000 hab",
+                "unidad": "comedores/10k",
+                "formato": "{:.3f}",
+                "desc": "Red de comedores comunitarios activos por escala de 10.000 habitantes.",
+                "polaridad": "baja_es_privacion",
             },
             {
                 "col": "beneficiarios_transferencias_monetarias",
-                "nombre": "Beneficiarios Transferencias Monetarias",
+                "nombre": "Total Beneficiarios Transferencias SDIS",
                 "unidad": "personas",
                 "formato": "{:,.0f}",
-                "desc": "Hogares en pobreza cubiertos con transferencias SDIS.",
+                "desc": "Conteo de personas beneficiadas con transferencias en la localidad.",
                 "polaridad": "alta_es_privacion",
             },
             {
-                "col": "comedores_comunitarios_activos",
-                "nombre": "Comedores Comunitarios Activos",
-                "unidad": "comedores",
-                "formato": "{:.0f}",
-                "desc": "Red de seguridad alimentaria local.",
+                "col": "inversion_social_sdis_per_capita_cop",
+                "nombre": "Inversión Social SDIS por Habitante",
+                "unidad": "COP/hab",
+                "formato": "${:,.0f}",
+                "desc": "Presupuesto de asistencia social SDIS ejecutado por habitante.",
                 "polaridad": "baja_es_privacion",
             },
         ],
@@ -359,13 +458,16 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
         "polaridad": "alta_es_privacion",
         "descripcion": "Cuadrantes de vigilancia policial, homicidios y delitos de alto impacto.",
         "indicador_principal": "cuadrantes_por_10000_hab_2026",
+        "investment_key": "inversion_fdl_per_capita_cop",
+        "investment_label": "Inversión FDL per Cápita",
+        "investment_unit": "COP/hab",
         "indicadores": [
             {
                 "col": "cuadrantes_por_10000_hab_2026",
                 "nombre": "Cuadrantes Policiales por 10.000 hab",
                 "unidad": "cuadrantes/10k",
                 "formato": "{:.2f}",
-                "desc": "Cobertura preventiva y de vigilancia policial.",
+                "desc": "Cobertura preventiva y de patrullaje policial por escala poblacional.",
                 "polaridad": "baja_es_privacion",
             },
             {
@@ -373,7 +475,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Tasa de Homicidios por 100k hab",
                 "unidad": "hom/100k",
                 "formato": "{:.1f}",
-                "desc": "Tasa estandarizada anual de muertes violentas.",
+                "desc": "Tasa estandarizada anual de muertes violentas por 100.000 habitantes.",
                 "polaridad": "alta_es_privacion",
             },
             {
@@ -395,6 +497,9 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
         "polaridad": "alta_es_privacion",
         "descripcion": "Riesgo en calidad de agua (IRCA), cobertura de acueducto y continuidad.",
         "indicador_principal": "irca_promedio",
+        "investment_key": "inversion_fdl_per_capita_cop",
+        "investment_label": "Inversión FDL per Cápita",
+        "investment_unit": "COP/hab",
         "indicadores": [
             {
                 "col": "irca_promedio",
@@ -409,7 +514,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Cobertura de Acueducto",
                 "unidad": "%",
                 "formato": "{:.1f}%",
-                "desc": "Porcentaje de viviendas con conexión formal de acueducto.",
+                "desc": "Porcentaje de viviendas con conexión formal a la red de acueducto.",
                 "polaridad": "baja_es_privacion",
             },
             {
@@ -417,35 +522,46 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Horas Interrupción Acueducto / Mes",
                 "unidad": "horas/mes",
                 "formato": "{:.1f} h",
-                "desc": "Tiempo de corte o suspensión en la prestación del servicio.",
+                "desc": "Tiempo promedio de interrupción en la prestación del servicio de agua.",
                 "polaridad": "alta_es_privacion",
+            },
+            {
+                "col": "luminarias_por_km2",
+                "nombre": "Densidad de Alumbrado por km²",
+                "unidad": "lum/km²",
+                "formato": "{:.1f}",
+                "desc": "Luminarias de alumbrado público instaladas por kilómetro cuadrado.",
+                "polaridad": "baja_es_privacion",
             },
         ],
     },
     "11_empleo_economia": {
         "id": "11_empleo_economia",
-        "nombre": "Mercado Laboral y Conmutación",
+        "nombre": "Mercado Laboral y Salarios",
         "icono": "briefcase",
         "color_base": "#4f46e5",
         "paleta": "Cividis",
         "polaridad": "alta_es_privacion",
-        "descripcion": "Movilidad residencia-trabajo, salarios promedio e informalidad.",
+        "descripcion": "Movilidad residencia-trabajo, salarios promedio por trabajador e informalidad.",
         "indicador_principal": "ocupados_conmutan_a_otras_localidades_pct",
+        "investment_key": "inversion_fdl_per_capita_cop",
+        "investment_label": "Inversión FDL per Cápita",
+        "investment_unit": "COP/hab",
         "indicadores": [
             {
                 "col": "ocupados_conmutan_a_otras_localidades_pct",
                 "nombre": "Tasa de Conmutación Laboral Externa",
                 "unidad": "%",
                 "formato": "{:.1f}%",
-                "desc": "Ocupados que deben desplazarse fuera de su localidad para trabajar.",
+                "desc": "Porcentaje de trabajadores ocupados que deben conmutar fuera de su localidad.",
                 "polaridad": "alta_es_privacion",
             },
             {
                 "col": "ingreso_laboral_promedio_ocupados_cop",
-                "nombre": "Ingreso Laboral Promedio Mensual",
-                "unidad": "COP",
+                "nombre": "Ingreso Laboral Promedio Mensual ($ COP / ocupado)",
+                "unidad": "COP/mes",
                 "formato": "${:,.0f}",
-                "desc": "Remuneración salarial promedio de los trabajadores ocupados.",
+                "desc": "Remuneración salarial promedio de los trabajadores ocupados en la localidad (GEIH / DANE / OSB), no ponderado por 10k hab.",
                 "polaridad": "baja_es_privacion",
             },
             {
@@ -453,44 +569,63 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Tasa de Informalidad Laboral",
                 "unidad": "%",
                 "formato": "{:.1f}%",
-                "desc": "Porcentaje de trabajadores sin cobertura de seguridad social.",
+                "desc": "Porcentaje de trabajadores sin cobertura de seguridad social en salud/pensión.",
                 "polaridad": "alta_es_privacion",
             },
         ],
     },
     "12_participacion_ciudadana": {
         "id": "12_participacion_ciudadana",
-        "nombre": "Participación Ciudadana y PQR",
+        "nombre": "Participación Ciudadana y Presupuestos Participativos",
         "icono": "message-square",
         "color_base": "#9333ea",
         "paleta": "PuRd",
         "polaridad": "alta_es_privacion",
-        "descripcion": "Demanda ciudadana (PQR en SDQS) y oportunidad institucional en respuesta.",
-        "indicador_principal": "pqr_por_10k_hab",
+        "descripcion": "Votación en presupuestos participativos, propuestas ciudadanas y peticiones PQR.",
+        "indicador_principal": "tasa_votantes_pp_por_10k_hab",
+        "investment_key": "inversion_pp_per_capita_cop",
+        "investment_label": "Inversión Presupuestos Participativos per Cápita",
+        "investment_unit": "COP/hab",
         "indicadores": [
             {
-                "col": "pqr_por_10k_hab",
-                "nombre": "PQR Ciudadanas por 10.000 hab",
-                "unidad": "pqr/10k",
+                "col": "tasa_votantes_pp_por_10k_hab",
+                "nombre": "Votantes en Presupuestos Participativos / 10k hab",
+                "unidad": "votantes/10k",
                 "formato": "{:.1f}",
-                "desc": "Densidad de quejas y solicitudes radicadas en el sistema distrital.",
-                "polaridad": "alta_es_privacion",
+                "desc": "Tasa de ciudadanos que votaron en las jornadas de presupuestos participativos por 10.000 hab.",
+                "polaridad": "baja_es_privacion",
+            },
+            {
+                "col": "propuestas_ciudadanas_por_10k_hab",
+                "nombre": "Propuestas Ciudadanas Radicadas / 10k hab",
+                "unidad": "propuestas/10k",
+                "formato": "{:.1f}",
+                "desc": "Iniciativas comunitarias radicadas por cada 10.000 habitantes.",
+                "polaridad": "baja_es_privacion",
             },
             {
                 "col": "pqr_resueltas_a_tiempo_pct",
                 "nombre": "Oportunidad de Respuesta PQR",
                 "unidad": "%",
                 "formato": "{:.1f}%",
-                "desc": "Porcentaje de peticiones resueltas dentro de los plazos de ley.",
+                "desc": "Porcentaje de peticiones ciudadanas resueltas dentro de los plazos de ley (SDQS).",
                 "polaridad": "baja_es_privacion",
             },
             {
-                "col": "total_pqr_recibidas",
-                "nombre": "Total PQR Radicadas",
-                "unidad": "solicitudes",
-                "formato": "{:,.0f}",
-                "desc": "Volumen anual de requerimientos ciudadanos gestionados.",
-                "polaridad": "neutro",
+                "col": "pqr_por_10k_hab",
+                "nombre": "PQR Ciudadanas por 10.000 hab",
+                "unidad": "pqr/10k",
+                "formato": "{:.1f}",
+                "desc": "Densidad de quejas y solicitudes ciudadanas radicadas en el sistema distrital.",
+                "polaridad": "alta_es_privacion",
+            },
+            {
+                "col": "inversion_pp_per_capita_cop",
+                "nombre": "Inversión Presupuesto Participativo por Habitante",
+                "unidad": "COP/hab",
+                "formato": "${:,.0f}",
+                "desc": "Monto de inversión comunitaria priorizada por habitante.",
+                "polaridad": "baja_es_privacion",
             },
         ],
     },
@@ -687,6 +822,7 @@ def generate_interactive_gis_dashboard(
     """Genera una aplicación Web GIS autónoma, interactiva y responsiva con Leaflet y Chart.js.
 
     Incluye selector multicapa para los 13 dominios, clasificación Jenks/Cuantiles,
+    ranking dinámico por indicador activo, cruce con inversión distrital en 4 cuadrantes,
     tooltips con intervalos de confianza Bootstrap 95%, semáforos de alerta y gráficos.
     """
     if output_html_path is None:
@@ -815,7 +951,7 @@ def generate_interactive_gis_dashboard(
       <div>
         <div class="flex items-center gap-2">
           <h1 class="text-base font-bold text-white tracking-tight flex items-center gap-2">
-            SIPTA <span class="text-[11px] px-1.5 py-0.2 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30 font-mono">v1.0.0</span>
+            SIPTA <span class="text-[11px] px-1.5 py-0.2 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30 font-mono">v1.1.0</span>
           </h1>
           <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center gap-1 font-medium">
             <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true"></span> Certificado OCDE/JRC
@@ -918,8 +1054,8 @@ def generate_interactive_gis_dashboard(
         <div id="indicator-polarity" class="mt-2 text-[11px] font-mono px-2 py-1 rounded bg-slate-950 border border-slate-800 text-slate-300"></div>
       </div>
 
-      <!-- Cartographic Classification Method -->
-      <div class="p-4 border-b border-slate-800 space-y-2.5">
+      <!-- Cartographic Classification Method & Investment Cross Button -->
+      <div class="p-4 border-b border-slate-800 space-y-3">
         <div class="flex items-center justify-between">
           <label class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
             <i data-lucide="scale" class="h-4 w-4 text-emerald-400" aria-hidden="true"></i> Clasificación Cartográfica
@@ -934,6 +1070,13 @@ def generate_interactive_gis_dashboard(
             Cuantiles (Q)
           </button>
         </div>
+
+        <!-- Botón Cruce IPT / Inversión Distrital -->
+        <button id="btn-investment-cross" onclick="openInvestmentModal('ipt')" class="w-full mt-2 px-3 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white text-xs font-bold rounded-xl border border-sky-400/40 flex items-center justify-center gap-2 shadow-lg shadow-indigo-950/50 transition-all transform active:scale-95 cursor-pointer" title="Abrir análisis bivariado de IPT e Inversión Pública [Tecla I]" aria-label="Abrir análisis de cruce de IPT e inversión distrital">
+          <i data-lucide="scale" class="h-4 w-4 text-amber-300" aria-hidden="true"></i>
+          <span>Cruce IPT / Inversión (I)</span>
+        </button>
+        <p class="text-[10px] text-slate-400 text-center">Matriz 4 cuadrantes: IPT / Indicador vs Inversión</p>
       </div>
 
       <!-- Point Overlay Toggles -->
@@ -1041,7 +1184,7 @@ def generate_interactive_gis_dashboard(
             </div>
           </div>
           <div class="text-right">
-            <span class="text-[10px] uppercase font-semibold tracking-wider text-slate-400 block mb-1">Puesto Distrital</span>
+            <span class="text-[10px] uppercase font-semibold tracking-wider text-slate-400 block mb-1" title="Ranking dinámico correspondiente al indicador activo seleccionado">Puesto Indicador</span>
             <span id="loc-metric-rank" class="text-2xl font-bold text-amber-400 font-mono">#-- / 20</span>
           </div>
         </div>
@@ -1073,7 +1216,7 @@ def generate_interactive_gis_dashboard(
         <!-- Tabs Header -->
         <div class="flex items-center gap-2 border-b border-slate-800 pb-2 mb-3" role="tablist">
           <button id="tab-btn-bars" class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-blue-600 text-white flex items-center gap-1.5 transition" role="tab" aria-selected="true">
-            <i data-lucide="bar-chart-2" class="h-3.5 w-3.5" aria-hidden="true"></i> Ranking Distrital
+            <i data-lucide="bar-chart-2" class="h-3.5 w-3.5" aria-hidden="true"></i> Ranking Indicador
           </button>
           <button id="tab-btn-radar" class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center gap-1.5 transition" role="tab" aria-selected="false">
             <i data-lucide="radar" class="h-3.5 w-3.5" aria-hidden="true"></i> Perfil 7D (Radar)
@@ -1099,6 +1242,136 @@ def generate_interactive_gis_dashboard(
 
     </aside>
 
+  </div>
+
+  <!-- MODAL: CRUCE CON INVERSIÓN DISTRITAL (ANÁLISIS BIVARIADO 4 CUADRANTES) -->
+  <div id="modal-investment" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-md" role="dialog" aria-modal="true" aria-labelledby="modal-inv-title">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl max-w-5xl w-full p-6 space-y-5 text-slate-200 max-h-[92vh] overflow-y-auto">
+      
+      <!-- Modal Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-3 gap-3">
+        <div class="flex items-center gap-3">
+          <div class="p-2.5 rounded-xl bg-gradient-to-tr from-amber-500 to-indigo-600 text-white shadow-lg shrink-0">
+            <i data-lucide="scale" class="h-6 w-6" aria-hidden="true"></i>
+          </div>
+          <div>
+            <h3 id="modal-inv-title" class="text-base sm:text-lg font-bold text-white tracking-tight">Cruce Analítico: IPT vs Inversión Distrital</h3>
+            <p id="modal-inv-subtitle" class="text-xs text-slate-400 font-medium">Contraste entre necesidad territorial y asignación presupuestal per cápita</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 self-end sm:self-center">
+          <!-- Mode Tabs: IPT vs Active Indicator -->
+          <div class="inline-flex rounded-lg bg-slate-950 p-1 border border-slate-800 text-xs">
+            <button id="btn-inv-mode-ipt" onclick="openInvestmentModal('ipt')" class="px-2.5 py-1 rounded-md text-xs font-bold transition flex items-center gap-1.5 bg-blue-600 text-white shadow cursor-pointer">
+              <i data-lucide="target" class="h-3.5 w-3.5 text-rose-300"></i>
+              <span>IPT vs Inversión</span>
+            </button>
+            <button id="btn-inv-mode-active" onclick="openInvestmentModal('active')" class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5 cursor-pointer">
+              <i data-lucide="activity" class="h-3.5 w-3.5 text-sky-400"></i>
+              <span id="btn-inv-mode-active-label">Indicador Activo</span>
+            </button>
+          </div>
+          <button id="btn-close-inv" onclick="document.getElementById('modal-investment').classList.add('hidden')" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer" aria-label="Cerrar ventana de cruce de inversión">
+            <i data-lucide="x" class="h-5 w-5" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI Summary Cards -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+        <div class="p-3 bg-slate-950/70 border border-slate-800 rounded-xl">
+          <span class="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Correlación (Pearson r)</span>
+          <div class="flex items-baseline gap-1.5">
+            <span id="inv-kpi-pearson" class="text-lg font-extrabold text-sky-400 font-mono">--</span>
+            <span id="inv-kpi-spearman" class="text-[10px] text-slate-400 font-mono">ρ: --</span>
+          </div>
+          <p id="inv-kpi-corr-desc" class="text-[10px] text-slate-400 mt-1 truncate">Evaluando progresividad...</p>
+        </div>
+
+        <div class="p-3 bg-slate-950/70 border border-slate-800 rounded-xl">
+          <span class="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Inversión Media Distrital</span>
+          <span id="inv-kpi-mean" class="text-lg font-extrabold text-white font-mono">$ --</span>
+          <p id="inv-kpi-mean-unit" class="text-[10px] text-slate-400 mt-1">COP / hab promedio</p>
+        </div>
+
+        <div class="p-3 bg-rose-950/30 border border-rose-500/30 rounded-xl">
+          <span class="text-[10px] uppercase font-bold text-rose-400 block mb-0.5">Localidades en Brecha Crítica</span>
+          <span id="inv-kpi-gaps-count" class="text-lg font-extrabold text-rose-300 font-mono">0 / 20</span>
+          <p class="text-[10px] text-rose-300/80 mt-1">Cuadrante II: Alta Necesidad + Baja Inversión</p>
+        </div>
+
+        <div class="p-3 bg-slate-950/70 border border-slate-800 rounded-xl">
+          <span class="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Diagnóstico Fiscal</span>
+          <span id="inv-kpi-diagnosis" class="text-xs font-bold text-amber-300 block">Progresivo Moderado</span>
+          <p class="text-[10px] text-slate-400 mt-1">Focalización presupuestal</p>
+        </div>
+      </div>
+
+      <!-- Main Scatter Plot Canvas (2D Quadrant Matrix) -->
+      <div class="bg-slate-950/60 border border-slate-800 rounded-xl p-4">
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+            <i data-lucide="scatter-chart" class="h-4 w-4 text-sky-400" aria-hidden="true"></i> Matriz Estratégica de Priorización (4 Cuadrantes)
+          </h4>
+          <span class="text-[10px] text-slate-400 italic">Haga clic en un punto para seleccionar la localidad en el mapa</span>
+        </div>
+        <div class="h-72 w-full relative">
+          <canvas id="chart-investment-scatter"></canvas>
+        </div>
+      </div>
+
+      <!-- Quadrant Interpretation Guide -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 text-xs">
+        <div class="p-2.5 rounded-lg bg-blue-950/30 border border-blue-500/30 text-blue-200">
+          <b class="text-sky-300 block mb-0.5">🔵 I. Prioridad Atendida</b>
+          <p class="text-[10px] text-slate-300">Alta privación acompañada de alta asignación presupuestal distrital.</p>
+        </div>
+        <div class="p-2.5 rounded-lg bg-rose-950/40 border border-rose-500/40 text-rose-200">
+          <b class="text-rose-300 block mb-0.5">🔴 II. Brecha Crítica (Déficit)</b>
+          <p class="text-[10px] text-rose-200/90">Alta privación con baja inversión per cápita. <b>Máxima urgencia de rebalanceo presupuestal.</b></p>
+        </div>
+        <div class="p-2.5 rounded-lg bg-emerald-950/30 border border-emerald-500/30 text-emerald-200">
+          <b class="text-emerald-300 block mb-0.5">🟢 III. Autosuficiencia</b>
+          <p class="text-[10px] text-slate-300">Baja privación y baja demanda de recursos extraordinarios (mantenimiento).</p>
+        </div>
+        <div class="p-2.5 rounded-lg bg-amber-950/30 border border-amber-500/30 text-amber-200">
+          <b class="text-amber-300 block mb-0.5">🟠 IV. Eficiencia a Revisar</b>
+          <p class="text-[10px] text-slate-300">Baja privación con alta inversión per cápita. Requiere auditoría de retorno social.</p>
+        </div>
+      </div>
+
+      <!-- Locality Table with Quadrant & Gap Assessment -->
+      <div class="border border-slate-800 rounded-xl overflow-hidden">
+        <div class="p-3 bg-slate-950/70 border-b border-slate-800 flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-300 uppercase tracking-wider">Tabla Comparativa Distrital por Localidad</span>
+          <button id="btn-export-inv-csv" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded border border-slate-700 flex items-center gap-1 transition">
+            <i data-lucide="download" class="h-3 w-3" aria-hidden="true"></i> Exportar Cruce CSV
+          </button>
+        </div>
+        <div class="max-h-52 overflow-y-auto text-xs">
+          <table class="w-full text-left divide-y divide-slate-800">
+            <thead class="bg-slate-950 text-slate-400 font-mono text-[10px] uppercase sticky top-0">
+              <tr>
+                <th class="p-2.5">Localidad</th>
+                <th class="p-2.5">Cuadrante</th>
+                <th class="p-2.5 text-right">Indicador Activo</th>
+                <th class="p-2.5 text-right">Inversión per Cápita</th>
+                <th class="p-2.5 text-center">Acción</th>
+              </tr>
+            </thead>
+            <tbody id="table-inv-body" class="divide-y divide-slate-800/60 font-medium">
+              <!-- Dynamically populated rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="flex justify-end pt-2">
+        <button id="btn-close-inv-footer" onclick="document.getElementById('modal-investment').classList.add('hidden')" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-lg shadow-lg transition cursor-pointer">
+          Volver al Mapa
+        </button>
+      </div>
+    </div>
   </div>
 
   <!-- HCI Help & Keyboard Shortcuts Modal (WCAG Accessible Dialog) -->
@@ -1128,6 +1401,10 @@ def generate_interactive_gis_dashboard(
           <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 flex justify-between items-center">
             <span>Buscar localidad</span>
             <kbd class="px-2 py-0.5 rounded bg-slate-800 text-blue-300 font-mono text-[10px] border border-slate-700">Ctrl + K / /</kbd>
+          </div>
+          <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 flex justify-between items-center">
+            <span>Cruce con Inversión</span>
+            <kbd class="px-2 py-0.5 rounded bg-slate-800 text-blue-300 font-mono text-[10px] border border-slate-700">I</kbd>
           </div>
           <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 flex justify-between items-center">
             <span>Centrar Bogotá</span>
@@ -1224,7 +1501,7 @@ def generate_interactive_gis_dashboard(
     let activeTab = "bars"; // 'bars' | 'radar'
     let selectedLocalityCode = null;
     let map, geojsonLayer, overlaysLayers = {{}};
-    let rankingChart = null, radarChart = null;
+    let rankingChart = null, radarChart = null, investmentScatterChart = null;
 
     // Color Palettes (Standard & Accessible Colorblind Viridis/Cividis)
     const COLOR_PALETTES = {{
@@ -1241,6 +1518,36 @@ def generate_interactive_gis_dashboard(
       Cividis: ['#00204d', '#414d6b', '#7c7b78', '#bdaf69', '#ffea46'],
       PuRd: ['#f1eef6', '#d7b5d8', '#df65b0', '#dd1c77', '#980043']
     }};
+
+    // Dynamic Ranking Engine (Solves Professor Feedback #1: Rank responds dynamically to active indicator)
+    function getDynamicRanking(indicatorCol) {{
+      const domMeta = domainCatalog[currentDomain];
+      const indMeta = domMeta.indicadores.find(i => i.col === indicatorCol);
+      const polarity = indMeta?.polaridad || domMeta.polaridad;
+      
+      const features = geojsonData.features || [];
+      const items = features.map(f => ({{
+        code: f.properties.codigo_localidad,
+        name: f.properties.nombre_localidad || f.properties.LOCNOMBRE,
+        val: (f.properties[indicatorCol] !== null && f.properties[indicatorCol] !== undefined) ? Number(f.properties[indicatorCol]) : 0,
+        rawProps: f.properties
+      }}));
+
+      // Si la polaridad es 'baja_es_privacion', menor valor significa mayor déficit/urgencia (puesto 1)
+      // Si la polaridad es 'alta_es_privacion' o neutro, mayor valor significa mayor magnitud/privación (puesto 1)
+      if (polarity === 'baja_es_privacion') {{
+        items.sort((a, b) => a.val - b.val);
+      }} else {{
+        items.sort((a, b) => b.val - a.val);
+      }}
+
+      const rankMap = {{}};
+      items.forEach((item, index) => {{
+        rankMap[item.code] = index + 1;
+      }});
+
+      return {{ sortedItems: items, rankMap: rankMap }};
+    }}
 
     // HCI Toast Notification Feedback
     function showToast(msg, type = 'info') {{
@@ -1327,6 +1634,8 @@ def generate_interactive_gis_dashboard(
         map.removeLayer(geojsonLayer);
       }}
 
+      const rankingData = getDynamicRanking(currentIndicator);
+
       geojsonLayer = L.geoJSON(geojsonData, {{
         style: styleFeature,
         onEachFeature: function(feature, layer) {{
@@ -1334,12 +1643,13 @@ def generate_interactive_gis_dashboard(
           const val = props[currentIndicator];
           const indMeta = domainCatalog[currentDomain].indicadores.find(i => i.col === currentIndicator);
           const formattedVal = (val !== null && val !== undefined) ? Number(val).toLocaleString(undefined, {{maximumFractionDigits: 2}}) : 'N/D';
+          const dynamicRank = rankingData.rankMap[props.codigo_localidad] || '--';
 
           layer.bindTooltip(`
             <div class="sipta-tooltip font-sans">
               <div class="font-bold text-sm text-sky-400 mb-0.5">${{props.nombre_localidad || props.LOCNOMBRE}}</div>
               <div class="text-[11px] text-slate-300">${{indMeta ? indMeta.nombre : currentIndicator}}: <b class="text-white font-mono">${{formattedVal}} ${{indMeta?.unidad || ''}}</b></div>
-              <div class="text-[10px] text-slate-400 mt-1">Ranking: <b class="text-amber-400 font-mono">#${{props.RANKING_PRIORIDAD || '--'}}</b> | Prioridad: <b class="text-rose-400">${{props.NIVEL_PRIORIDAD || '--'}}</b></div>
+              <div class="text-[10px] text-slate-400 mt-1">Puesto Indicador: <b class="text-amber-400 font-mono">#${{dynamicRank}} / 20</b> | Consenso IPT: <b class="text-rose-400 font-mono">#${{props.RANKING_PRIORIDAD || '--'}}</b></div>
             </div>
           `, {{ sticky: true, opacity: 1, className: 'custom-leaflet-tooltip' }});
 
@@ -1427,9 +1737,12 @@ def generate_interactive_gis_dashboard(
       const val = props[currentIndicator];
       const formattedVal = (val !== null && val !== undefined) ? Number(val).toLocaleString(undefined, {{maximumFractionDigits: 2}}) : '--';
       
+      const rankingData = getDynamicRanking(currentIndicator);
+      const dynamicRank = rankingData.rankMap[props.codigo_localidad] || '--';
+
       document.getElementById('loc-metric-val').innerText = formattedVal;
       document.getElementById('loc-metric-unit').innerText = indMeta?.unidad || '';
-      document.getElementById('loc-metric-rank').innerText = `#${{props.RANKING_PRIORIDAD || '--'}} / 20`;
+      document.getElementById('loc-metric-rank').innerText = `#${{dynamicRank}} / 20`;
 
       // Semaphore update (Accessible Icon + Text)
       const prio = props.NIVEL_PRIORIDAD || 'No Definido';
@@ -1438,8 +1751,8 @@ def generate_interactive_gis_dashboard(
       const semText = document.getElementById('loc-sem-text');
       const semBadge = document.getElementById('loc-sem-badge');
 
-      semText.innerText = `Prioridad: ${{prio}}`;
-      semBadge.innerText = `Consenso #${{props.RANKING_PRIORIDAD || '--'}}`;
+      semText.innerText = `Prioridad IPT: ${{prio}}`;
+      semBadge.innerText = `Consenso IPT #${{props.RANKING_PRIORIDAD || '--'}}`;
 
       if (prio.includes('Muy Alta') || prio.includes('Crítica')) {{
         semBox.className = 'mt-3 p-2.5 rounded-lg border border-rose-500/40 bg-rose-950/40 text-xs font-medium text-rose-200 flex items-center justify-between';
@@ -1496,14 +1809,10 @@ def generate_interactive_gis_dashboard(
       updateRadarChart();
     }}
 
-    // Update Chart.js Ranking Chart (Horizontal Bars)
+    // Update Chart.js Ranking Chart (Horizontal Bars sorted by dynamic ranking)
     function updateBarChart() {{
-      const features = geojsonData.features || [];
-      const dataItems = features.map(f => ({{
-        name: f.properties.nombre_localidad || f.properties.LOCNOMBRE,
-        val: f.properties[currentIndicator] !== null && f.properties[currentIndicator] !== undefined ? Number(f.properties[currentIndicator]) : 0,
-        code: f.properties.codigo_localidad
-      }})).sort((a, b) => b.val - a.val);
+      const rankingData = getDynamicRanking(currentIndicator);
+      const dataItems = rankingData.sortedItems;
 
       const labels = dataItems.map(d => d.name);
       const values = dataItems.map(d => d.val);
@@ -1514,12 +1823,14 @@ def generate_interactive_gis_dashboard(
         rankingChart.destroy();
       }}
 
+      const indMeta = domainCatalog[currentDomain].indicadores.find(i => i.col === currentIndicator);
+
       rankingChart = new Chart(ctx, {{
         type: 'bar',
         data: {{
           labels: labels,
           datasets: [{{
-            label: currentIndicator,
+            label: indMeta?.nombre || currentIndicator,
             data: values,
             backgroundColor: bgColors,
             borderRadius: 4,
@@ -1534,7 +1845,7 @@ def generate_interactive_gis_dashboard(
             legend: {{ display: false }},
             tooltip: {{
               callbacks: {{
-                label: function(c) {{ return `${{c.raw.toLocaleString()}}`; }}
+                label: function(c) {{ return `${{c.raw.toLocaleString()}} ${{indMeta?.unidad || ''}}`; }}
               }}
             }}
           }},
@@ -1638,6 +1949,284 @@ def generate_interactive_gis_dashboard(
       }});
     }}
 
+    // Bivariate Statistical Calculator for Investment Cross Analysis
+    function calculateBivariateStats(xVals, yVals) {{
+      const n = xVals.length;
+      if (n === 0) return {{ pearson: 0, spearman: 0, meanX: 0, meanY: 0 }};
+
+      const meanX = xVals.reduce((a, b) => a + b, 0) / n;
+      const meanY = yVals.reduce((a, b) => a + b, 0) / n;
+
+      let num = 0, denX = 0, denY = 0;
+      for (let i = 0; i < n; i++) {{
+        const dx = xVals[i] - meanX;
+        const dy = yVals[i] - meanY;
+        num += dx * dy;
+        denX += dx * dx;
+        denY += dy * dy;
+      }}
+      const pearson = denX > 0 && denY > 0 ? num / Math.sqrt(denX * denY) : 0;
+
+      // Spearman Rank Helper
+      const sortedX = xVals.map((v, i) => ({{ v, i }})).sort((a, b) => a.v - b.v);
+      const sortedY = yVals.map((v, i) => ({{ v, i }})).sort((a, b) => a.v - b.v);
+      const rankX = new Array(n);
+      const rankY = new Array(n);
+      for (let i = 0; i < n; i++) {{
+        rankX[sortedX[i].i] = i + 1;
+        rankY[sortedY[i].i] = i + 1;
+      }}
+
+      let sumD2 = 0;
+      for (let i = 0; i < n; i++) {{
+        const d = rankX[i] - rankY[i];
+        sumD2 += d * d;
+      }}
+      const spearman = n > 1 ? 1 - (6 * sumD2) / (n * (n * n - 1)) : 0;
+
+      return {{ pearson, spearman, meanX, meanY }};
+    }}
+
+    let currentInvModalMode = 'ipt';
+
+    // Investment Cross Analysis Modal Controller
+    function openInvestmentModal(mode) {{
+      if (mode === 'ipt' || mode === 'active') {{
+        currentInvModalMode = mode;
+      }}
+
+      const modalEl = document.getElementById('modal-investment');
+      if (modalEl) {{
+        modalEl.classList.remove('hidden');
+      }}
+      if (window.lucide && typeof lucide.createIcons === 'function') {{
+        lucide.createIcons();
+      }}
+
+      const domMeta = domainCatalog[currentDomain] || domainCatalog['00_ipt'];
+      const indMeta = domMeta && domMeta.indicadores ? domMeta.indicadores.find(i => i.col === currentIndicator) : null;
+
+      let xCol = 'IPT_MULTIDIMENSIONAL';
+      let xName = 'Índice de Priorización Territorial (IPT)';
+      let xUnit = 'pts (0-100)';
+      let invKey = 'inversion_total_consolidada_per_capita_cop';
+      let invLabel = 'Inversión Distrital Consolidada';
+      let invUnit = 'COP/hab';
+      let polarity = 'alta_es_privacion';
+
+      if (currentInvModalMode === 'active') {{
+        xCol = currentIndicator;
+        xName = indMeta && indMeta.nombre ? indMeta.nombre : currentIndicator;
+        xUnit = indMeta && indMeta.unidad ? indMeta.unidad : '';
+        invKey = domMeta.investment_key || 'inversion_total_consolidada_per_capita_cop';
+        invLabel = domMeta.investment_label || 'Inversión per Cápita';
+        invUnit = domMeta.investment_unit || 'COP/hab';
+        polarity = indMeta && indMeta.polaridad ? indMeta.polaridad : domMeta.polaridad;
+
+        const titleEl = document.getElementById('modal-inv-title');
+        if (titleEl) titleEl.innerText = 'Cruce Sectorial: ' + xName + ' vs ' + invLabel;
+        const subEl = document.getElementById('modal-inv-subtitle');
+        if (subEl) subEl.innerText = 'Contraste espacial de necesidad frente al flujo de inversión pública distrital (' + invLabel + ')';
+
+        const btnIpt = document.getElementById('btn-inv-mode-ipt');
+        const btnAct = document.getElementById('btn-inv-mode-active');
+        if (btnIpt && btnAct) {{
+          btnIpt.className = 'px-2.5 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5';
+          btnAct.className = 'px-2.5 py-1 rounded-md text-xs font-bold bg-blue-600 text-white shadow transition flex items-center gap-1.5';
+        }}
+      }} else {{
+        const titleEl = document.getElementById('modal-inv-title');
+        if (titleEl) titleEl.innerText = 'Cruce Macro: IPT Multidimensional vs Inversión Consolidada';
+        const subEl = document.getElementById('modal-inv-subtitle');
+        if (subEl) subEl.innerText = 'Evaluación de progresividad fiscal: Asignación consolidada per cápita vs Privación multidimensional (IPT)';
+
+        const btnIpt = document.getElementById('btn-inv-mode-ipt');
+        const btnAct = document.getElementById('btn-inv-mode-active');
+        if (btnIpt && btnAct) {{
+          btnIpt.className = 'px-2.5 py-1 rounded-md text-xs font-bold bg-blue-600 text-white shadow transition flex items-center gap-1.5';
+          btnAct.className = 'px-2.5 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5';
+        }}
+      }}
+
+      const activeLabelEl = document.getElementById('btn-inv-mode-active-label');
+      if (activeLabelEl && indMeta && indMeta.nombre) {{
+        activeLabelEl.innerText = indMeta.nombre.length > 16 ? indMeta.nombre.substring(0, 16) + '...' : indMeta.nombre;
+      }}
+
+      const features = (geojsonData && geojsonData.features) ? geojsonData.features : [];
+      const xVals = [], yVals = [], pointsData = [];
+
+      features.forEach(f => {{
+        const p = f.properties || {{}};
+        let xVal = Number(p[xCol]);
+        if ((isNaN(xVal) || xVal === undefined) && currentInvModalMode === 'ipt') {{
+          xVal = Number(p.ipt_consenso_score || p.ipt_base || p.indice_privacion_multidimensional || p.IPT_MULTIDIMENSIONAL || 0);
+        }} else if (isNaN(xVal)) {{
+          xVal = 0;
+        }}
+
+        let yVal = Number(p[invKey]);
+        if (isNaN(yVal) || yVal === undefined) {{
+          yVal = Number(p.inversion_total_consolidada_per_capita_cop || p.inversion_fdl_per_capita_cop || 0);
+        }}
+
+        xVals.push(xVal);
+        yVals.push(yVal);
+        pointsData.push({{
+          code: p.codigo_localidad,
+          name: p.nombre_localidad || p.LOCNOMBRE || 'Localidad',
+          x: xVal,
+          y: yVal,
+          raw: p
+        }});
+      }});
+
+      const stats = calculateBivariateStats(xVals, yVals);
+      const medianX = xVals.length > 0 ? xVals.slice().sort((a,b)=>a-b)[Math.floor(xVals.length/2)] : 0;
+      const medianY = yVals.length > 0 ? yVals.slice().sort((a,b)=>a-b)[Math.floor(yVals.length/2)] : 0;
+
+      const pEl = document.getElementById('inv-kpi-pearson');
+      if (pEl) pEl.innerText = stats.pearson.toFixed(2);
+      const sEl = document.getElementById('inv-kpi-spearman');
+      if (sEl) sEl.innerText = '\u03c1: ' + stats.spearman.toFixed(2);
+      const mEl = document.getElementById('inv-kpi-mean');
+      if (mEl) mEl.innerText = '$ ' + Math.round(stats.meanY).toLocaleString();
+      const muEl = document.getElementById('inv-kpi-mean-unit');
+      if (muEl) muEl.innerText = invUnit + ' promedio';
+
+      let corrText = 'Asociación débil';
+      if (stats.pearson > 0.4) corrText = 'Directa / Progresiva';
+      else if (stats.pearson < -0.4) corrText = 'Inversa / Regresiva';
+      else corrText = 'Baja focalización';
+      document.getElementById('inv-kpi-corr-desc').innerText = corrText;
+
+      // Classify Quadrants
+      let gapCount = 0;
+      const classifiedPoints = pointsData.map(pt => {{
+        let isHighPriv = polarity === 'baja_es_privacion' ? (pt.x <= medianX) : (pt.x >= medianX);
+        let isHighInv = pt.y >= medianY;
+
+        let quadName = '', quadBadge = '', quadColor = '#3b82f6';
+        if (isHighPriv && isHighInv) {{
+          quadName = 'I. Prioridad Atendida';
+          quadBadge = '<span class="px-2 py-0.5 rounded bg-blue-500/20 text-sky-300 font-semibold text-[10px]">🔵 Atendida</span>';
+          quadColor = '#38bdf8';
+        }} else if (isHighPriv && !isHighInv) {{
+          quadName = 'II. Brecha Crítica';
+          quadBadge = '<span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-bold text-[10px]">🔴 Brecha Crítica</span>';
+          quadColor = '#f43f5e';
+          gapCount++;
+        }} else if (!isHighPriv && !isHighInv) {{
+          quadName = 'III. Autosuficiencia';
+          quadBadge = '<span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-semibold text-[10px]">🟢 Autosuficiente</span>';
+          quadColor = '#10b981';
+        }} else {{
+          quadName = 'IV. Eficiencia a Revisar';
+          quadBadge = '<span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-semibold text-[10px]">🟠 Eficiencia</span>';
+          quadColor = '#f59e0b';
+        }}
+
+        return {{ ...pt, quadName, quadBadge, quadColor, isHighPriv, isHighInv }};
+      }});
+
+      document.getElementById('inv-kpi-gaps-count').innerText = gapCount + ' / 20';
+      document.getElementById('inv-kpi-diagnosis').innerText = gapCount > 5 ? 'Déficit Territorial Acentuado' : (gapCount > 0 ? 'Focalización Moderada' : 'Alta Progresividad');
+
+      // Populate Table
+      const tableBody = document.getElementById('table-inv-body');
+      tableBody.innerHTML = '';
+      classifiedPoints.sort((a, b) => (a.quadName === 'II. Brecha Crítica' ? -1 : 1)).forEach(row => {{
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-800/80 transition cursor-pointer';
+        const formattedX = isNaN(Number(row.x)) ? '0' : Number(row.x).toLocaleString();
+        const formattedY = Math.round(row.y).toLocaleString();
+        const unitSpan = xUnit ? '<span class="text-[10px] text-slate-400">' + xUnit + '</span>' : '';
+
+        tr.innerHTML = '<td class="p-2.5 font-bold text-white flex items-center gap-1.5">' +
+            '<span class="h-2 w-2 rounded-full" style="background-color: ' + row.quadColor + '"></span>' +
+            row.name +
+          '</td>' +
+          '<td class="p-2.5">' + row.quadBadge + '</td>' +
+          '<td class="p-2.5 text-right font-mono text-slate-200">' + formattedX + ' ' + unitSpan + '</td>' +
+          '<td class="p-2.5 text-right font-mono text-sky-300">$ ' + formattedY + '</td>' +
+          '<td class="p-2.5 text-center">' +
+            '<button class="px-2 py-1 bg-blue-600/30 hover:bg-blue-600 text-sky-200 hover:text-white rounded text-[10px] font-semibold transition" onclick="selectLocalityFromModal(' + row.code + ')">' +
+              'Ver' +
+            '</button>' +
+          '</td>';
+        tableBody.appendChild(tr);
+      }});
+
+      // Render Scatter Chart
+      const ctx = document.getElementById('chart-investment-scatter').getContext('2d');
+      if (investmentScatterChart) {{
+        investmentScatterChart.destroy();
+      }}
+
+      investmentScatterChart = new Chart(ctx, {{
+        type: 'scatter',
+        data: {{
+          datasets: [{{
+            label: 'Localidades',
+            data: classifiedPoints.map(p => ({{ x: p.x, y: p.y, name: p.name, code: p.code, quad: p.quadName }})),
+            backgroundColor: classifiedPoints.map(p => p.quadColor),
+            pointRadius: classifiedPoints.map(p => p.code === selectedLocalityCode ? 9 : 6),
+            pointHoverRadius: 9,
+            borderColor: '#ffffff',
+            borderWidth: classifiedPoints.map(p => p.code === selectedLocalityCode ? 2.5 : 1)
+          }}]
+        }},
+        options: {{
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {{
+            legend: {{ display: false }},
+            tooltip: {{
+              callbacks: {{
+                label: function(c) {{
+                  const raw = c.raw;
+                  const u = xUnit ? ' ' + xUnit : '';
+                  return raw.name + ' [' + raw.quad + ']: (' + raw.x.toLocaleString() + u + ', $' + Math.round(raw.y).toLocaleString() + ' COP)';
+                }}
+              }}
+            }}
+          }},
+          scales: {{
+            x: {{
+              title: {{ display: true, text: xName + (xUnit ? ' (' + xUnit + ')' : ''), color: '#94a3b8', font: {{ size: 10, weight: 'bold' }} }},
+              grid: {{ color: 'rgba(255, 255, 255, 0.06)' }},
+              ticks: {{ color: '#94a3b8', font: {{ family: 'JetBrains Mono', size: 9 }} }}
+            }},
+            y: {{
+              title: {{ display: true, text: invLabel + ' (' + invUnit + ')', color: '#94a3b8', font: {{ size: 10, weight: 'bold' }} }},
+              grid: {{ color: 'rgba(255, 255, 255, 0.06)' }},
+              ticks: {{ color: '#94a3b8', font: {{ family: 'JetBrains Mono', size: 9 }} }}
+            }}
+          }},
+          onClick: function(e, elements) {{
+            if (elements.length > 0) {{
+              const idx = elements[0].index;
+              const target = classifiedPoints[idx];
+              selectLocalityFromModal(target.code);
+            }}
+          }}
+        }}
+      }});
+
+      document.getElementById('modal-investment').classList.remove('hidden');
+      showToast('Análisis bivariado de inversión (' + (currentInvModalMode === 'ipt' ? 'IPT Consolidado' : xName) + ')', 'info');
+    }}
+
+    function selectLocalityFromModal(code) {{
+      selectLocality(code);
+      document.getElementById('modal-investment').classList.add('hidden');
+      geojsonLayer.eachLayer(layer => {{
+        if (layer.feature.properties.codigo_localidad === code) {{
+          map.flyToBounds(layer.getBounds(), {{ padding: [30, 30], duration: 0.8 }});
+        }}
+      }});
+    }}
+
     // Initialize Vector Overlays
     function initOverlays() {{
       const container = document.getElementById('overlays-container');
@@ -1729,6 +2318,33 @@ def generate_interactive_gis_dashboard(
         showToast('Clasificación: Cuantiles (Percentiles Equidistribuidos)', 'info');
       }});
 
+      // Cruce con Inversión Trigger Button & Mode Toggles
+      document.getElementById('btn-investment-cross').addEventListener('click', () => openInvestmentModal('ipt'));
+      document.getElementById('btn-inv-mode-ipt')?.addEventListener('click', () => openInvestmentModal('ipt'));
+      document.getElementById('btn-inv-mode-active')?.addEventListener('click', () => openInvestmentModal('active'));
+      document.getElementById('btn-close-inv').addEventListener('click', () => document.getElementById('modal-investment').classList.add('hidden'));
+      document.getElementById('btn-close-inv-footer').addEventListener('click', () => document.getElementById('modal-investment').classList.add('hidden'));
+
+      // Export Investment CSV
+      document.getElementById('btn-export-inv-csv').addEventListener('click', function() {{
+        const domMeta = domainCatalog[currentDomain];
+        const invKey = domMeta.investment_key || 'inversion_total_consolidada_per_capita_cop';
+        const rows = [
+          ['codigo_localidad', 'nombre_localidad', 'codigo_divipola', currentIndicator, invKey, 'inversion_total_consolidada_per_capita_cop']
+        ];
+        geojsonData.features.forEach(f => {{
+          const p = f.properties;
+          rows.push([p.codigo_localidad, p.nombre_localidad, p.codigo_divipola, p[currentIndicator], p[invKey], p.inversion_total_consolidada_per_capita_cop]);
+        }});
+        const csvContent = 'data:text/csv;charset=utf-8,' + rows.map(e => e.join(',')).join('\\n');
+        const encodedUri = encodeURI(csvContent);
+        const a = document.createElement('a');
+        a.href = encodedUri;
+        a.download = `cruce_inversion_${{currentDomain}}_${{currentIndicator}}.csv`;
+        a.click();
+        showToast('Cruce de inversión exportado a CSV', 'success');
+      }});
+
       // Colorblind Mode Toggle
       document.getElementById('btn-colorblind').addEventListener('click', function() {{
         isColorblindMode = !isColorblindMode;
@@ -1760,7 +2376,9 @@ def generate_interactive_gis_dashboard(
         const feat = geojsonData.features.find(f => f.properties.codigo_localidad === selectedLocalityCode);
         if (feat) {{
           const p = feat.properties;
-          const text = `SIPTA - Ficha Territorial\\nLocalidad: ${{p.nombre_localidad}} (DIVIPOLA: ${{p.codigo_divipola}})\\nRanking Prioridad: #${{p.RANKING_PRIORIDAD}} (${{p.NIVEL_PRIORIDAD}})\\nIndicador (${{currentIndicator}}): ${{p[currentIndicator]}}\\nIC 95% Bootstrap: [${{p.ci_lower_95}}, ${{p.ci_upper_95}}]`;
+          const rankingData = getDynamicRanking(currentIndicator);
+          const dynamicRank = rankingData.rankMap[p.codigo_localidad] || '--';
+          const text = `SIPTA - Ficha Territorial\\nLocalidad: ${{p.nombre_localidad}} (DIVIPOLA: ${{p.codigo_divipola}})\\nPuesto en Indicador (${{currentIndicator}}): #${{dynamicRank}} / 20 (Valor: ${{p[currentIndicator]}})\\nRanking IPT Consenso: #${{p.RANKING_PRIORIDAD}} (${{p.NIVEL_PRIORIDAD}})\\nIC 95% Bootstrap: [${{p.ci_lower_95}}, ${{p.ci_upper_95}}]`;
           navigator.clipboard.writeText(text).then(() => {{
             showToast('Ficha copiada al portapapeles', 'success');
           }});
@@ -1917,7 +2535,7 @@ def generate_interactive_gis_dashboard(
         }}
       }});
 
-      // Global Keyboard Shortcuts
+      // Global Keyboard Shortcuts (ISO 9241-110 HCI standards)
       window.addEventListener('keydown', function(e) {{
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') {{
           if (e.key === 'Escape') {{
@@ -1930,6 +2548,8 @@ def generate_interactive_gis_dashboard(
         if (e.key === '/' || (e.ctrlKey && e.key.toLowerCase() === 'k')) {{
           e.preventDefault();
           searchInput.focus();
+        }} else if (e.key.toLowerCase() === 'i') {{
+          openInvestmentModal();
         }} else if (e.key.toLowerCase() === 'r') {{
           map.setView([4.65, -74.12], 11);
           showToast('Vista centrada en Bogotá', 'info');
@@ -1949,6 +2569,7 @@ def generate_interactive_gis_dashboard(
           openHelp();
         }} else if (e.key === 'Escape') {{
           closeHelp();
+          document.getElementById('modal-investment').classList.add('hidden');
         }}
       }});
     }}

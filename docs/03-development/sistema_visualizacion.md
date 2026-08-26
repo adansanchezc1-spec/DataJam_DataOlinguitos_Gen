@@ -221,3 +221,43 @@ El diseño y la arquitectura interactiva del dashboard Web GIS implementan de fo
    - **Codificación Redundante (Principio de No Dependencia Exclusiva del Color)**: Los semáforos de alerta utilizan simultáneamente color, icono y etiqueta textual (🔴 Muy Alta Prioridad, 🟠 Alta Prioridad, 🟡 Media Prioridad, 🟢 Baja Prioridad).
    - **Navegabilidad Asistida**: Enlace accesible invisible para lectores de pantalla (*Skip Link*), etiquetas `aria-label`, roles semánticos WAI-ARIA (`dialog`, `region`, `status`, `tab`) y contornos de foco de alto contraste (`focus-visible`).
 
+---
+
+## 9. Módulo de Cruce Analítico con Inversión Pública y Nuevos Ratios Territoriales
+
+Atendiendo a las recomendaciones del comité evaluador y requerimientos analíticos distritales, el sistema incorpora el **Módulo de Análisis Bivariado de Inversión Pública Distrital**:
+
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│             MATRIZ DE CUADRANTES ESTRATÉGICOS: PRIVACIÓN VS. INVERSIÓN PÚBLICA          │
+├───────────────────────────────────────────┬────────────────────────────────────────────┤
+│   CUADRANTE II: 🔴 BRECHA CRÍTICA         │   CUADRANTE I: 🔵 PRIORIDAD ATENDIDA       │
+│   • Alta Privación / Déficit              │   • Alta Privación / Déficit               │
+│   • Baja Inversión per Cápita             │   • Alta Inversión per Cápita              │
+│   → Urgencia máxima de reasignación fiscal│   → Asignación focalizada y progresiva     │
+├───────────────────────────────────────────┼────────────────────────────────────────────┤
+│   CUADRANTE III: 🟢 AUTOSUFICIENCIA        │   CUADRANTE IV: 🟠 EFICIENCIA A REVISAR    │
+│   • Baja Privación (Buena cobertura)      │   • Baja Privación (Buena cobertura)       │
+│   • Baja Inversión per Cápita             │   • Alta Inversión per Cápita              │
+│   → Equilibrio socioeconómico sostenible  │   → Revisión de costo-eficiencia y retornos│
+└───────────────────────────────────────────┴────────────────────────────────────────────┘
+```
+
+### A. Funcionalidades del Módulo de Inversión
+1. **Botón de Cruce Bivariado**: Ubicado junto a la selección de clasificación cartográfica (Atajo: `I`).
+2. **Correlación Bivariada de Pearson ($r$) y Spearman ($\rho$)**: Calculada dinámicamente en tiempo real entre la variable activa y la inversión correspondiente al sector.
+3. **Scatter Plot 2D Interactivo**: Visualiza las 20 localidades en los cuatro cuadrantes estratégicos, permitiendo resaltar o hacer zoom directo a la localidad seleccionada.
+4. **Tabla de Brechas Fiscales**: Ordena automáticamente las localidades en *Brecha Crítica* con acceso directo al mapa.
+
+### B. Indicadores Normalizados Per Cápita y por 10.000 Habitantes
+- **Vulnerabilidad Social**: Comedores comunitarios por 10.000 hab. (`comedores_por_10k_hab`) y Tasa de beneficiarios de transferencias monetarias (`tasa_beneficiarios_transferencias_pct`).
+- **Infraestructura**: Densidad de luminarias por km² (`luminarias_por_km2`) y oferta por 10.000 hab. (`luminarias_por_10k_hab`).
+- **Ambiente y Servicios**: Consumo promedio residencial de agua por 10.000 hab. (`consumo_agua_por_10k_hab_m3`).
+- **Mercado Laboral**: Clarificación metodológica del ingreso laboral promedio mensual ($ COP por trabajador ocupado).
+- **Participación Ciudadana**: Votantes en presupuestos participativos por 10.000 hab. (`tasa_votantes_pp_por_10k_hab`) y Propuestas ciudadanas priorizadas por 10.000 hab. (`propuestas_ciudadanas_por_10k_hab`).
+- **Finanzas e Inversión Pública**: Inversión presupuestos participativos per cápita (`inversion_pp_per_capita_cop`), Inversión en educación SED per cápita (`inversion_educacion_per_capita_cop`) e Inversión total consolidada per cápita (`inversion_total_consolidada_per_capita_cop`).
+
+### C. Ranking Reactivo Dinámico
+El puesto del ranking en el inspector territorial y el gráfico de barras se computa dinámicamente en memoria según la polaridad de la variable seleccionada (`#X / 20`), manteniendo el puesto global IPT consenso como badge secundario de referencia.
+
+

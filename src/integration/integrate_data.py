@@ -232,6 +232,7 @@ def build_master_table(
         ("EDUCACION", "calidad_educativa_saber11_retencion_localidad.csv"),
         ("FINANZAS_INVERSION_PUBLICA", "inversion_fondos_desarrollo_local_fdl.csv"),
         ("FINANZAS_INVERSION_PUBLICA", "metas_inversion_social_sdis_localidad.csv"),
+        ("FINANZAS_INVERSION_PUBLICA", "presupuestos_participativos_propuestas_priorizadas.csv"),
         ("SERVICIOS_PUBLICOS", "eaab_cobertura_acueducto_localidad.csv"),
         ("SERVICIOS_PUBLICOS", "eaab_calidad_agua_irca_localidad.csv"),
         ("SERVICIOS_PUBLICOS", "uaesp_alumbrado_publico_localidad.csv"),
@@ -244,6 +245,9 @@ def build_master_table(
 
     for sector, filename in sector_datasets:
         file_path = proc_dir / sector / filename
+        if not file_path.exists():
+            # Fallback a data/raw si no está en processed
+            file_path = ROOT / "data" / "raw" / sector / filename
         if file_path.exists():
             try:
                 sector_df = pd.read_csv(file_path)
@@ -252,6 +256,26 @@ def build_master_table(
                 logger.info(f"Sector {sector} ({filename}) integrado exitosamente.")
             except Exception as e:
                 logger.warning(f"Error al integrar {sector}/{filename}: {e}")
+
+    # 4.1. Integración de Inversión SED Educación (GPKG)
+    sed_gpkg_path = ROOT / "data" / "raw" / "FINANZAS_INVERSION_PUBLICA" / "inversion_educacion_por_localidad_12_2025.gpkg"
+    if sed_gpkg_path.exists():
+        try:
+            import geopandas as gpd
+            sed_gdf = gpd.read_file(sed_gpkg_path)
+            sed_gdf["codigo_localidad"] = pd.to_numeric(sed_gdf["COD_LOCA"], errors="coerce").astype(int)
+            sed_cols = sed_gdf[["codigo_localidad", "R_ASIGNADOS", "R_EJECUTADOS", "R_GIRADOS"]].copy()
+            sed_cols = sed_cols.rename(
+                columns={
+                    "R_ASIGNADOS": "inversion_educacion_asignada_cop",
+                    "R_EJECUTADOS": "inversion_educacion_ejecutada_cop",
+                    "R_GIRADOS": "inversion_educacion_girada_cop",
+                }
+            )
+            master = merge_by_locality(master, sed_cols, locality_col="codigo_localidad")
+            logger.info("Inversión SED Educación (GPKG) integrada exitosamente.")
+        except Exception as e:
+            logger.warning(f"Error al integrar SED GPKG: {e}")
 
     # 5. Feature Engineering Multidominio (src.features)
     # 5.1. Densidad Poblacional (hab/km2)
@@ -271,16 +295,49 @@ def build_master_table(
         master = add_ratio(master, "total_parques_idrd", "poblacion", "parques_por_10k_hab")
         master["parques_por_10k_hab"] = master["parques_por_10k_hab"] * 10000
 
-    # 5.4. Ratios per cápita - Finanzas
+    if "total_luminarias" in master.columns and "area_km2" in master.columns:
+        master["luminarias_por_km2"] = (master["total_luminarias"] / master["area_km2"]).round(2)
+        master["luminarias_por_10k_hab"] = ((master["total_luminarias"] / master["poblacion"]) * 10000).round(2)
+
+    # 5.4. Vulnerabilidad Social normalizada
+    if "comedores_comunitarios_activos" in master.columns:
+        master["comedores_por_10k_hab"] = ((master["comedores_comunitarios_activos"] / master["poblacion"]) * 10000).round(3)
+    if "beneficiarios_transferencias_monetarias" in master.columns:
+        master["tasa_beneficiarios_transferencias_pct"] = ((master["beneficiarios_transferencias_monetarias"] / master["poblacion"]) * 100).round(2)
+
+    # 5.5. Participación Ciudadana y Presupuestos Participativos
+    if "total_votantes_pp" in master.columns:
+        master["tasa_votantes_pp_por_10k_hab"] = ((master["total_votantes_pp"] / master["poblacion"]) * 10000).round(2)
+    if "propuestas_ciudadanas_radicadas" in master.columns:
+        master["propuestas_ciudadanas_por_10k_hab"] = ((master["propuestas_ciudadanas_radicadas"] / master["poblacion"]) * 10000).round(2)
+    if "inversion_presupuesto_participativo_millones" in master.columns:
+        master["inversion_pp_per_capita_cop"] = ((master["inversion_presupuesto_participativo_millones"] * 1e6) / master["poblacion"]).round(0)
+
+    # 5.6. Inversión Pública Consolidada y Ratios per Cápita
     if "presupuesto_ejecutado_millones" in master.columns:
         master = add_ratio(master, "presupuesto_ejecutado_millones", "poblacion", "inversion_fdl_per_capita_millones")
+        master["inversion_fdl_per_capita_cop"] = ((master["presupuesto_ejecutado_millones"] * 1e6) / master["poblacion"]).round(0)
 
-    # 5.5. Ratios per cápita - Seguridad
+    if "presupuesto_social_sdis_millones" in master.columns:
+        master["inversion_social_sdis_per_capita_cop"] = ((master["presupuesto_social_sdis_millones"] * 1e6) / master["poblacion"]).round(0)
+
+    if "inversion_educacion_ejecutada_cop" in master.columns:
+        master["inversion_educacion_per_capita_cop"] = (master["inversion_educacion_ejecutada_cop"] / master["poblacion"]).round(0)
+        master["inversion_educacion_ejecutada_millones"] = (master["inversion_educacion_ejecutada_cop"] / 1e6).round(2)
+
+    # Inversión Total Distrital Consolidada per Cápita (COP)
+    inv_fdl = master.get("inversion_fdl_per_capita_cop", 0)
+    inv_sdis = master.get("inversion_social_sdis_per_capita_cop", 0)
+    inv_pp = master.get("inversion_pp_per_capita_cop", 0)
+    inv_sed = master.get("inversion_educacion_per_capita_cop", 0)
+    master["inversion_total_consolidada_per_capita_cop"] = (inv_fdl + inv_sdis + inv_pp + inv_sed).round(0)
+
+    # 5.7. Ratios per cápita - Seguridad
     if "homicidios_anual" in master.columns:
         master = add_ratio(master, "homicidios_anual", "poblacion", "tasa_homicidios_por_100k_hab_calc")
         master["tasa_homicidios_por_100k_hab_calc"] = master["tasa_homicidios_por_100k_hab_calc"] * 100000
 
-    # 5.6. Ratios per cápita - Participación
+    # 5.8. Ratios per cápita - Participación PQR
     if "total_pqr_recibidas" in master.columns:
         master = add_ratio(master, "total_pqr_recibidas", "poblacion", "pqr_por_10k_hab")
         master["pqr_por_10k_hab"] = master["pqr_por_10k_hab"] * 10000

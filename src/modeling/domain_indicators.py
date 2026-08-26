@@ -75,7 +75,7 @@ def build_demografia_master(df: pd.DataFrame) -> pd.DataFrame:
     """Construye la tabla maestra del dominio Demografía."""
     cols = [
         "codigo_localidad", "nombre_localidad", "codigo_divipola", "area_km2",
-        "poblacion", "densidad_poblacional"
+        "poblacion", "densidad_poblacional", "poblacion_2025", "poblacion_5_17_2025"
     ]
     existing = [c for c in cols if c in df.columns]
     res = df[existing].copy()
@@ -101,7 +101,8 @@ def build_educacion_master(df: pd.DataFrame) -> pd.DataFrame:
         "codigo_localidad", "nombre_localidad", "codigo_divipola", "poblacion",
         "oferta_regular_cupos", "oferta_modalidades_complementarias", "cupos_por_1000_pob_5_17",
         "puntaje_promedio_saber_11", "tasa_desercion_escolar_pct",
-        "relacion_estudiantes_por_docente", "colegios_jornada_unica_pct"
+        "relacion_estudiantes_por_docente", "colegios_jornada_unica_pct",
+        "inversion_educacion_ejecutada_millones", "inversion_educacion_per_capita_cop"
     ]
     existing = [c for c in cols if c in df.columns]
     return df[existing].copy()
@@ -112,6 +113,7 @@ def build_movilidad_master(df: pd.DataFrame) -> pd.DataFrame:
     cols = [
         "codigo_localidad", "nombre_localidad", "codigo_divipola", "area_km2", "poblacion",
         "total_estaciones_troncales_tm", "total_paraderos_sitp", "paraderos_por_10k_hab",
+        "estaciones_por_km2", "paraderos_por_km2",
         "tiempo_promedio_desplazamiento_laboral_min", "modo_transporte_principal_trabajo"
     ]
     existing = [c for c in cols if c in df.columns]
@@ -122,7 +124,8 @@ def build_ambiente_master(df: pd.DataFrame) -> pd.DataFrame:
     """Construye la tabla maestra del dominio Ambiente y Sostenibilidad."""
     cols = [
         "codigo_localidad", "nombre_localidad", "codigo_divipola", "area_km2",
-        "conflictos_ambientales_registrados", "conflictos_ambientales_por_km2"
+        "conflictos_ambientales_registrados", "conflictos_ambientales_por_km2",
+        "consumo_promedio_m3_suscriptor", "irca_promedio"
     ]
     existing = [c for c in cols if c in df.columns]
     return df[existing].copy()
@@ -131,20 +134,25 @@ def build_ambiente_master(df: pd.DataFrame) -> pd.DataFrame:
 def build_infraestructura_master(df: pd.DataFrame) -> pd.DataFrame:
     """Construye la tabla maestra del dominio Infraestructura y Espacio Público."""
     cols = [
-        "codigo_localidad", "nombre_localidad", "codigo_divipola", "poblacion",
-        "total_parques_idrd", "parques_por_10k_hab"
+        "codigo_localidad", "nombre_localidad", "codigo_divipola", "poblacion", "area_km2",
+        "total_parques_idrd", "parques_por_10k_hab", "total_luminarias",
+        "luminarias_por_km2", "luminarias_por_10k_hab", "fallas_reportadas_mes",
+        "tecnologia_led_pct", "tiempo_medio_reparacion_horas"
     ]
     existing = [c for c in cols if c in df.columns]
     return df[existing].copy()
 
 
 def build_finanzas_master(df: pd.DataFrame) -> pd.DataFrame:
-    """Construye la tabla maestra del dominio Finanzas e Inversión Pública (FDL)."""
+    """Construye la tabla maestra del dominio Finanzas e Inversión Pública (FDL y Distrital)."""
     cols = [
         "codigo_localidad", "nombre_localidad", "codigo_divipola", "poblacion",
         "presupuesto_aprobado_millones", "presupuesto_ejecutado_millones",
-        "porcentaje_ejecucion_fdl", "inversion_fdl_per_capita_millones",
-        "proyectos_inversion_activos"
+        "porcentaje_ejecucion_fdl", "inversion_fdl_per_capita_millones", "inversion_fdl_per_capita_cop",
+        "presupuesto_social_sdis_millones", "inversion_social_sdis_per_capita_cop",
+        "inversion_educacion_ejecutada_millones", "inversion_educacion_per_capita_cop",
+        "inversion_presupuesto_participativo_millones", "inversion_pp_per_capita_cop",
+        "inversion_total_consolidada_per_capita_cop", "proyectos_inversion_activos"
     ]
     existing = [c for c in cols if c in df.columns]
     return df[existing].copy()
@@ -155,8 +163,9 @@ def build_vulnerabilidad_social_master(df: pd.DataFrame) -> pd.DataFrame:
     cols = [
         "codigo_localidad", "nombre_localidad", "codigo_divipola", "poblacion",
         "vendedores_informales_promedio", "rivi_por_10000_hab_2017_2019",
-        "presupuesto_social_sdis_millones", "beneficiarios_transferencias_monetarias",
-        "comedores_comunitarios_activos", "centros_cuidado_primera_infancia"
+        "presupuesto_social_sdis_millones", "inversion_social_sdis_per_capita_cop",
+        "beneficiarios_transferencias_monetarias", "tasa_beneficiarios_transferencias_pct",
+        "comedores_comunitarios_activos", "comedores_por_10k_hab", "centros_cuidado_primera_infancia"
     ]
     existing = [c for c in cols if c in df.columns]
     return df[existing].copy()
@@ -206,6 +215,9 @@ def build_participacion_master(df: pd.DataFrame) -> pd.DataFrame:
     cols = [
         "codigo_localidad", "nombre_localidad", "codigo_divipola", "poblacion",
         "total_pqr_recibidas", "pqr_por_10k_hab", "pqr_resueltas_a_tiempo_pct",
+        "total_votantes_pp", "tasa_votantes_pp_por_10k_hab",
+        "propuestas_ciudadanas_radicadas", "propuestas_ciudadanas_por_10k_hab",
+        "inversion_presupuesto_participativo_millones", "inversion_pp_per_capita_cop",
         "tema_frecuente_1", "tema_frecuente_2", "tema_frecuente_3"
     ]
     existing = [c for c in cols if c in df.columns]
