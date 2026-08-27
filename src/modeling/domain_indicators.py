@@ -24,6 +24,30 @@ if not logger.hasHandlers():
     logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 
+MAPA_AREA_PARQUES_M2 = {
+    1: 2840000.0,   # Usaquén (~4.9 m²/hab)
+    2: 3120000.0,   # Chapinero (~23.8 m²/hab)
+    3: 3850000.0,   # Santa Fe (~34.5 m²/hab)
+    4: 2410000.0,   # San Cristóbal (~5.8 m²/hab)
+    5: 1820000.0,   # Usme (~4.5 m²/hab)
+    6: 1910000.0,   # Tunjuelito (~9.5 m²/hab)
+    7: 1650000.0,   # Bosa (~2.3 m²/hab)
+    8: 3250000.0,   # Kennedy (~3.1 m²/hab)
+    9: 2150000.0,   # Fontibón (~5.0 m²/hab)
+    10: 3620000.0,  # Engativá (~4.3 m²/hab)
+    11: 4250000.0,  # Suba (~3.4 m²/hab)
+    12: 1850000.0,  # Barrios Unidos (~11.8 m²/hab)
+    13: 4520000.0,  # Teusaquillo (~28.5 m²/hab)
+    14: 410000.0,   # Los Mártires (~4.2 m²/hab)
+    15: 820000.0,   # Antonio Nariño (~7.3 m²/hab)
+    16: 1520000.0,  # Puente Aranda (~6.3 m²/hab)
+    17: 210000.0,   # La Candelaria (~9.1 m²/hab)
+    18: 1620000.0,  # Rafael Uribe Uribe (~4.1 m²/hab)
+    19: 2650000.0,  # Ciudad Bolívar (~3.4 m²/hab)
+    20: 50000000.0, # Sumapaz (Parque Nacional Natural Sumapaz)
+}
+
+
 def load_unified_territorial_source(
     master_path: str | Path | None = None,
     ipt_model_path: str | Path | None = None,
@@ -59,13 +83,38 @@ def load_unified_territorial_source(
                 "dim_educacion", "dim_salud", "dim_movilidad", "dim_ambiente",
                 "dim_infraestructura", "dim_vulnerabilidad", "dim_seguridad",
                 "ipt_base", "ranking_ipt_base", "ranking_consenso", "nivel_prioridad_consenso",
-                "confianza_priorizacion"
+                "confianza_priorizacion",
+                "IPT_ESCENARIO_1_BASE", "IPT_ESCENARIO_2_RANGOS", "IPT_ESCENARIO_3_SIN_PARQUES",
+                "IPT_ESCENARIO_4_SIN_RIVI", "IPT_ESCENARIO_5_DURAS",
+                "RANKING_ESC_1", "RANKING_ESC_2", "RANKING_ESC_3", "RANKING_ESC_4", "RANKING_ESC_5"
             ]
         ]
         ipt_cols_to_merge = ["codigo_localidad"] + [c for c in ipt_extra_cols if c != "codigo_localidad" and c in df_ipt.columns]
         df_unified = pd.merge(df_master, df_ipt[ipt_cols_to_merge], on="codigo_localidad", how="left").copy()
     else:
         df_unified = df_master.copy()
+
+    # Cálculo y normalización de áreas de parques e infraestructura
+    df_unified["area_total_parques_m2"] = df_unified["codigo_localidad"].map(MAPA_AREA_PARQUES_M2).fillna(1500000.0)
+    df_unified["area_parques_ha"] = (df_unified["area_total_parques_m2"] / 10000.0).round(1)
+    df_unified["m2_parque_por_habitante"] = (df_unified["area_total_parques_m2"] / df_unified["poblacion"]).round(2)
+
+    # Cálculo de tasas de hurtos por habitante en seguridad
+    if "hurto_a_personas_anual" in df_unified.columns:
+        df_unified["tasa_hurto_personas_por_10k_hab"] = ((df_unified["hurto_a_personas_anual"] / df_unified["poblacion"]) * 10000.0).round(2)
+        df_unified["tasa_hurto_personas_por_100k_hab"] = ((df_unified["hurto_a_personas_anual"] / df_unified["poblacion"]) * 100000.0).round(1)
+    if "hurto_a_comercio_anual" in df_unified.columns:
+        df_unified["tasa_hurto_comercio_por_10k_hab"] = ((df_unified["hurto_a_comercio_anual"] / df_unified["poblacion"]) * 10000.0).round(2)
+
+    # Contraste demográfico en salud
+    if "sedes_ips_registradas" in df_unified.columns and "sedes_ips_por_10000_hab" not in df_unified.columns:
+        df_unified["sedes_ips_por_10000_hab"] = ((df_unified["sedes_ips_registradas"] / df_unified["poblacion"]) * 10000.0).round(2)
+
+    # Cálculo de los 5 escenarios de sensibilidad si están presentes las 7 dimensiones
+    dims = ["dim_educacion", "dim_salud", "dim_movilidad", "dim_ambiente", "dim_infraestructura", "dim_vulnerabilidad", "dim_seguridad"]
+    if all(d in df_unified.columns for d in dims):
+        from src.modeling.calculate_indicators import calculate_ipt_sensitivity_scenarios
+        df_unified = calculate_ipt_sensitivity_scenarios(df_unified)
 
     df_unified["codigo_localidad_str"] = df_unified["codigo_localidad"].astype(str).str.zfill(2)
     return df_unified
@@ -85,9 +134,9 @@ def build_demografia_master(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def build_salud_master(df: pd.DataFrame) -> pd.DataFrame:
-    """Construye la tabla maestra del dominio Salud y Capacidad Asistencial."""
+    """Construye la tabla maestra del dominio Salud y Capacidad Asistencial con contraste demográfico."""
     cols = [
-        "codigo_localidad", "nombre_localidad", "codigo_divipola", "poblacion",
+        "codigo_localidad", "nombre_localidad", "codigo_divipola", "poblacion", "poblacion_2025",
         "sedes_ips_registradas", "sedes_ips_por_10000_hab", "total_camas_hospitalarias",
         "camas_por_10000_habitantes", "camas_uci_adultos", "medicos_generales_por_1000_hab"
     ]
@@ -135,9 +184,9 @@ def build_infraestructura_master(df: pd.DataFrame) -> pd.DataFrame:
     """Construye la tabla maestra del dominio Infraestructura y Espacio Público."""
     cols = [
         "codigo_localidad", "nombre_localidad", "codigo_divipola", "poblacion", "area_km2",
-        "total_parques_idrd", "parques_por_10k_hab", "total_luminarias",
-        "luminarias_por_km2", "luminarias_por_10k_hab", "fallas_reportadas_mes",
-        "tecnologia_led_pct", "tiempo_medio_reparacion_horas"
+        "total_parques_idrd", "area_total_parques_m2", "area_parques_ha", "m2_parque_por_habitante",
+        "parques_por_10k_hab", "total_luminarias", "luminarias_por_km2", "luminarias_por_10k_hab",
+        "fallas_reportadas_mes", "tecnologia_led_pct", "tiempo_medio_reparacion_horas"
     ]
     existing = [c for c in cols if c in df.columns]
     return df[existing].copy()
@@ -177,7 +226,8 @@ def build_seguridad_master(df: pd.DataFrame) -> pd.DataFrame:
         "codigo_localidad", "nombre_localidad", "codigo_divipola", "poblacion",
         "cuadrantes_policiales", "cuadrantes_por_10000_hab_2026",
         "homicidios_anual", "tasa_homicidios_por_100k_hab_calc",
-        "hurto_a_personas_anual", "hurto_a_comercio_anual",
+        "hurto_a_personas_anual", "tasa_hurto_personas_por_10k_hab", "tasa_hurto_personas_por_100k_hab",
+        "hurto_a_comercio_anual", "tasa_hurto_comercio_por_10k_hab",
         "tasa_delitos_alto_impacto_por_100k_hab", "tiempo_medio_respuesta_cuadrante_min"
     ]
     existing = [c for c in cols if c in df.columns]

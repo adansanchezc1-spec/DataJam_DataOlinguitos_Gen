@@ -2,7 +2,7 @@
 
 **Fase PDCO**: DEVELOPMENT → OPERATIONS  
 **Estándares**: DAMA-BOK / SWEBOK Cap. 2 y 4 / ISO/IEC 25010 / OECD-JRC  
-**Fecha de Generación**: 2026-08-23  
+**Fecha de Generación**: 2026-08-26  
 **Cobertura Territorial**: 100% (20 Localidades Oficiales de Bogotá D.C.)  
 
 ---
@@ -10,26 +10,28 @@
 ## 1. Resumen Ejecutivo y Pregunta Rectora
 > **Pregunta Rectora**: ¿En qué localidades de Bogotá D.C. la combinación de mayor necesidad social, riesgo ambiental y déficit de equipamientos requiere la focalización urgente de la inversión pública distrital?
 
-El **Índice de Priorización Territorial (IPT)** sintetiza 7 dimensiones canónicas normalizadas en una escala continua $[0, 100]$. A través de 5 escenarios de sensibilidad (Base, Rangos/Percentiles, Sin Parques, Sin RIVI, Sin Proxies) y remuestreo estocástico *Bootstrap Dirichlet* ($B = 1.000$ réplicas), se evaluó la robustez de los rankings para establecer una clasificación de consenso libre de sesgos metodológicos y certificada bajo el marco de la **OCDE / JRC**.
+El **Índice de Priorización Territorial (IPT)** sintetiza 7 dimensiones canónicas normalizadas en una escala continua $[0, 100]$. A través de 5 escenarios de sensibilidad (Base, Rangos/Percentiles, Sin Parques, Sin RIVI, Cinco Dimensiones Duras) y remuestreo estocástico *Bootstrap Dirichlet* ($B = 1.000$ réplicas), se evaluó la robustez de los rankings para establecer una clasificación de consenso libre de sesgos metodológicos y certificada bajo el marco de la **OCDE / JRC**.
 
 ---
 
-## 2. Visualización Estratégica Multi-Panel
+## 2. Visualización Geoespacial y Analítica Multi-Panel (3 Paneles)
 ![Priorización Territorial IPT](../figures/fig_00_priorizacion_ipt_consenso.png)
 
+*Figura 00: (A) Mapa coroplético oficial de Bogotá D.C. con la distribución territorial del IPT; (B) Ranking de consenso territorial con intervalos de confianza Bootstrap al 95%; (C) Dispersión y estratificación por nivel de prioridad.*
+
 ---
 
-## 3. Catálogo de Indicadores Estructurales del IPT
+## 3. Escenarios de Sensibilidad y Robustez Metodológica (OCDE/JRC)
 
-| Código | Dimensión | Indicador Base | Fórmula Matemática | Polaridad | Fuente Oficial |
-|---|---|---|---|:---:|---|
-| `EDU-001` | Educación | Cupos por 1k hab (5-17 años) | $$t_{\text{edu}} = \frac{\text{Cupos Regular}}{\text{Pob 5-17}} \times 1\,000$$ | Inversa | SED / DANE |
-| `SAL-001` | Salud | Sedes IPS por 10k hab | $$t_{\text{ips}} = \frac{\text{Sedes IPS}}{\text{Población}} \times 10\,000$$ | Inversa | SDS / REPS |
-| `MOV-001` | Movilidad | Densidad Estaciones y Paraderos | $$d_{\text{mov}} = \frac{\text{Estaciones} + \text{Paraderos}}{\text{Área km}^2}$$ | Inversa | TransMilenio |
-| `AMB-001` | Ambiente | Conflictos Ambientales SAC/km² | $$d_{\text{sac}} = \frac{\text{Conflictos SAC}}{\text{Área km}^2}$$ | Directa | SDA / SAC |
-| `INF-001` | Infraestructura | Parques IDRD por 10k hab | $$t_{\text{parq}} = \frac{\text{Parques IDRD}}{\text{Población}} \times 10\,000$$ | Inversa | IDRD |
-| `VUL-001` | Vulnerabilidad | Vendedores RIVI por 10k hab | $$t_{\text{rivi}} = \frac{\text{Vendedores RIVI}}{\text{Población}} \times 10\,000$$ | Directa | IPES / RIVI |
-| `SEG-001` | Seguridad | Cuadrantes MEBOG por 10k hab | $$t_{\text{cuad}} = \frac{\text{Cuadrantes}}{\text{Población}} \times 10\,000$$ | Inversa | MEBOG / SCJ |
+Para garantizar independencia respecto a proxies y decisiones de modelado, se evaluaron 5 escenarios de sensibilidad:
+
+| Escenario k | Nombre | Dimensiones Utilizadas (D_k) | Ecuación / Formulación |
+|---|---|---|---|
+| **Escenario 1** | Base Lineal | 7 dimensiones canónicas | IPT_1 = (1/7) * sum(s_id) * 100 |
+| **Escenario 2** | Rangos (Percentiles) | 7 dimensiones no paramétricas | IPT_2 = (1/7) * sum((rank(x_id) - 1) / 19) * 100 |
+| **Escenario 3** | Sin Proxy Parques | 6 dimensiones (excluye IDRD) | IPT_3 = (1/6) * sum(s_id [sin parques]) * 100 |
+| **Escenario 4** | Sin RIVI | 6 dimensiones (excluye vendedores informales) | IPT_4 = (1/6) * sum(s_id [sin RIVI]) * 100 |
+| **Escenario 5** | Cinco Dimensiones Duras | 5 dimensiones canónicas duras | IPT_5 = (1/5) * sum(s_id [5 dimensiones duras]) * 100 |
 
 ---
 

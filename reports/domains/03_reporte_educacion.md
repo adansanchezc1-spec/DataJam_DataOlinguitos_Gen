@@ -3,7 +3,7 @@
 **Fase PDCO**: DEVELOPMENT → OPERATIONS  
 **Dominio**: Educación y Logro Académico  
 **Estándares**: DAMA-BOK / SWEBOK Cap. 2 y 4 / ISO/IEC 25010  
-**Fecha de Emisión**: 2026-08-23  
+**Fecha de Emisión**: 2026-08-26  
 **Cobertura**: 100% (20 Localidades Oficiales de Bogotá D.C.)  
 **Certificación de Calidad**: ISO/IEC 25010 Conforme (100% Completitud Territorial)  
 
@@ -12,18 +12,20 @@
 ## 1. Pregunta de Negocio y Resumen Ejecutivo
 > **Pregunta Clave**: ¿Dónde existen mayores brechas de calidad educativa, cupos y deserción escolar?
 
-El presente informe expone el comportamiento multidimensional de los indicadores de **Educación y Logro Académico** a lo largo de las 20 localidades del Distrito Capital, evaluando la distribución de capacidades, brechas estructurales y focos de intervención prioritaria.
+El presente informe expone el comportamiento multidimensional de los indicadores de **Educación y Logro Académico** a lo largo de las 20 localidades del Distrito Capital, evaluando la distribución de capacidades, brechas estructurales, patrones geoespaciales y focos de intervención prioritaria.
 
 ---
 
-## 2. Visualización Analítica Multi-Panel
+## 2. Visualización Analítica y Geoespacial Multi-Panel (3 Paneles)
 ![Gráfica Sectorial](../figures/fig_03_educacion_saber11_cupos.png)
+
+*Figura: (A) Mapa coroplético oficial de Bogotá D.C.; (B) Ranking y distribución territorial; (C) Dispersión bivariada y brechas estructurales.*
 
 ---
 
 ## 3. Catálogo de Indicadores Calculados del Dominio
 
-| Código | Indicador | Fórmula en $\LaTeX$ | Unidad | Polaridad IPT | Fuente |
+| Código | Indicador | Fórmula Matemática | Unidad | Polaridad IPT | Fuente |
 |---|---|---|---|:---:|---|
 | `EDU-001` | **Oferta de Cupos Escolares por 1.000 hab (5-17 años)** | $$t_{\text{edu}} = \frac{\text{Oferta Regular Cupos}}{\text{Población 5-17 años}} \times 1\,000$$ | cupos/1k hab escolar | `Inversa (Carencia = 1 - Norm)` | SED / SIMAT |
 | `EDU-002` | **Puntaje Promedio Saber 11** | $$\overline{P}_{\text{Saber11}} = \frac{1}{N} \sum_{i=1}^N P_i$$ | Puntos (0-500) | `Inversa (Carencia = 1 - Norm)` | ICFES / SED |
@@ -31,14 +33,14 @@ El presente informe expone el comportamiento multidimensional de los indicadores
 
 ---
 
-## 4. Hallazgos Analíticos y Brechas Territoriales
+## 4. Hallazgos Analíticos, Espaciales y Brechas Territoriales
 - **Brecha de Logro Académico (>45 Puntos)**: Teusaquillo (`322.4 pts`), Chapinero (`318.1 pts`) y Usaquén superan ampliamente el estándar nacional, mientras Usme (`264.2 pts`), Ciudad Bolívar (`268.5 pts`) y Bosa quedan rezagadas.
 - **Déficit de Cupos Escolares**: Ciudad Bolívar y Bosa presentan una razón de cupos regulares inferior a `620 cupos por cada 1.000 niños en edad escolar`, forzando desplazamientos interlocales.
 - **Jornada Única**: Menos del 22% de las sedes oficiales en el sur cuentan con jornada única completa.
 
 ### 4.1. Diagnóstico Estadístico y Distribución Multivariada (DAMA-BOK)
 
-| Variable / Indicador | Media ($\mu$) | Mediana ($Q_2$) | Desv. Est. ($\sigma$) | IQR | Mín | Máx | CV (%) | Asimetría ($g_1$) |
+| Variable / Indicador | Media (μ) | Mediana (Q2) | Desv. Est. (σ) | IQR | Mín | Máx | CV (%) | Asimetría (g1) |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | `oferta_regular_cupos` | 38,606.85 | 24,816.50 | 36,827.11 | 56,954.50 | 1,590.00 | 111,490.00 | 95.4% | +0.81 |
 | `cupos_por_1000_pob_5_17` | 859.00 | 708.76 | 766.77 | 349.30 | 188.76 | 3,707.98 | 89.3% | +3.02 |
@@ -88,9 +90,9 @@ El presente informe expone el comportamiento multidimensional de los indicadores
 - **Impacto Cuantificable**: Tasa de retención escolar superior al 97.5%.
 
 ### C. Protocolo de Semaforización de Alertas Tempranas
-- 🔴 **Alerta Crítica (Rojo)**: Puntaje Saber 11 $< 270$ pts o Cupos $< 650$ por 1k niños.
-- 🟠 **Alerta Media (Naranja)**: Puntaje Saber 11 entre $270$ y $295$ pts.
-- 🟢 **Condición Estable (Verde)**: Puntaje Saber 11 $\ge 295$ pts con deserción $< 2.0\%$.
+- 🔴 **Alerta Crítica (Rojo)**: Puntaje Saber 11 < 270 pts o Cupos < 650 por 1k niños.
+- 🟠 **Alerta Media (Naranja)**: Puntaje Saber 11 entre 270 y 295 pts.
+- 🟢 **Condición Estable (Verde)**: Puntaje Saber 11 >= 295 pts con deserción < 2.0%.
 
 ---
 

@@ -313,4 +313,35 @@ class TestPipelineModelingViz:
             curated_file = Path("data/curated") / f"{domain}.csv"
             assert curated_file.exists()
 
+    def test_calculate_ipt_sensitivity_scenarios_produces_5_scenarios_and_rankings(self) -> None:
+        """Verifica el cómputo exacto de los 5 escenarios metodológicos de sensibilidad del IPT."""
+        # Arrange
+        from src.modeling.calculate_indicators import calculate_ipt_sensitivity_scenarios
+        df_master = pd.read_csv("data/curated/master_indicadores_territoriales.csv")
+
+        # Act
+        df_sens = calculate_ipt_sensitivity_scenarios(df_master)
+
+        # Assert
+        assert len(df_sens) == 20
+        scenario_cols = [
+            "IPT_ESCENARIO_1_BASE",
+            "IPT_ESCENARIO_2_RANGOS",
+            "IPT_ESCENARIO_3_SIN_PARQUES",
+            "IPT_ESCENARIO_4_SIN_RIVI",
+            "IPT_ESCENARIO_5_DURAS",
+        ]
+        for i, col in enumerate(scenario_cols, 1):
+            assert col in df_sens.columns
+            assert f"RANKING_ESC_{i}" in df_sens.columns
+            # Puntajes en rango formal [0, 100]
+            assert df_sens[col].min() >= 0.0
+            assert df_sens[col].max() <= 100.0
+            # Rankings deterministas sin duplicados [1..20]
+            assert set(df_sens[f"RANKING_ESC_{i}"].astype(int)) == set(range(1, 21))
+        
+        assert "RANKING_CONSENSO_ESCENARIOS" in df_sens.columns
+        assert set(df_sens["RANKING_CONSENSO_ESCENARIOS"].astype(int)) == set(range(1, 21))
+
+
 

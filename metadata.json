@@ -1,10 +1,10 @@
 {
   "project": "DataJam_DataOlinguitos_Gen",
-  "version": "1.1.0",
-  "description": "Pipeline y plataforma SIPTA (Sistema de Indicadores y Priorización Territorial y Alertas Tempranas) - Integración de Inversión Distrital y Dashboard IHC v1.1.0",
+  "version": "1.2.2",
+  "description": "Pipeline y plataforma SIPTA (Sistema de Indicadores y Priorización Territorial y Alertas Tempranas) - Integración de 5 Escenarios de Sensibilidad IPT, 35 Indicadores Catalogados, Soporte Universal Google Colab/Local y 13 Reportes Cartográficos Sectoriales v1.2.2",
   "pdco_phase": "OPERATIONS",
   "active_skill": "software-development",
-  "sdlc_stage": "release_v1_1_0_evaluator_feedback",
+  "sdlc_stage": "release_v1_2_2_colab_support_and_robust_indicators",
   "last_updated": "2026-08-26",
   "team": {
     "lead": "Persona A (Adan Sánchez - Scrum Master & Lead Data Engineer)",
@@ -133,7 +133,6 @@
         "tests/test_features.py",
         "tests/test_evaluation.py",
         "tests/test_eda_viz.py",
-        "tests/test_evaluation.py",
         "tests/test_validation.py",
         "tests/test_visualization.py",
         "tests/test_pipeline_modeling_viz.py",
@@ -185,8 +184,8 @@
     }
   },
   "metrics": {
-    "total_automated_tests": 193,
-    "unit_tests_passing": "193/193 (100%)",
+    "total_automated_tests": 194,
+    "unit_tests_passing": "194/194 (100%)",
     "test_execution_time_seconds": 58.2,
     "notebooks_validated_and_tested": "26/26 (100%)",
     "domains_validated": 13,
@@ -197,7 +196,7 @@
     "technical_debt_days": 0,
     "open_bugs": 0,
     "github_issues_resolved": "50/50 (100% closed with formal traceability)",
-    "datasets_cataloged": 31
+    "datasets_cataloged": 35
   },
   "patterns_applied": [
     "Factory / Reader Strategy",

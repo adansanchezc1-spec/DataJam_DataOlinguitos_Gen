@@ -3,7 +3,7 @@
 **Fase PDCO**: DEVELOPMENT → OPERATIONS  
 **Dominio**: Movilidad y Accesibilidad al Transporte  
 **Estándares**: DAMA-BOK / SWEBOK Cap. 2 y 4 / ISO/IEC 25010  
-**Fecha de Emisión**: 2026-08-23  
+**Fecha de Emisión**: 2026-08-26  
 **Cobertura**: 100% (20 Localidades Oficiales de Bogotá D.C.)  
 **Certificación de Calidad**: ISO/IEC 25010 Conforme (100% Completitud Territorial)  
 
@@ -12,18 +12,20 @@
 ## 1. Pregunta de Negocio y Resumen Ejecutivo
 > **Pregunta Clave**: ¿Qué territorios presentan mayor desconexión del transporte masivo y mayores tiempos de viaje?
 
-El presente informe expone el comportamiento multidimensional de los indicadores de **Movilidad y Accesibilidad al Transporte** a lo largo de las 20 localidades del Distrito Capital, evaluando la distribución de capacidades, brechas estructurales y focos de intervención prioritaria.
+El presente informe expone el comportamiento multidimensional de los indicadores de **Movilidad y Accesibilidad al Transporte** a lo largo de las 20 localidades del Distrito Capital, evaluando la distribución de capacidades, brechas estructurales, patrones geoespaciales y focos de intervención prioritaria.
 
 ---
 
-## 2. Visualización Analítica Multi-Panel
+## 2. Visualización Analítica y Geoespacial Multi-Panel (3 Paneles)
 ![Gráfica Sectorial](../figures/fig_04_movilidad_estaciones_paraderos.png)
+
+*Figura: (A) Mapa coroplético oficial de Bogotá D.C.; (B) Ranking y distribución territorial; (C) Dispersión bivariada y brechas estructurales.*
 
 ---
 
 ## 3. Catálogo de Indicadores Calculados del Dominio
 
-| Código | Indicador | Fórmula en $\LaTeX$ | Unidad | Polaridad IPT | Fuente |
+| Código | Indicador | Fórmula Matemática | Unidad | Polaridad IPT | Fuente |
 |---|---|---|---|:---:|---|
 | `MOV-001` | **Densidad de Estaciones Troncales TransMilenio** | $$d_{\text{est}} = \frac{\text{Estaciones Troncales}}{\text{Área km}^2}$$ | estaciones/km² | `Inversa (Carencia = 1 - Norm)` | TransMilenio S.A. |
 | `MOV-002` | **Densidad de Paraderos Zonales SITP** | $$d_{\text{par}} = \frac{\text{Paraderos SITP}}{\text{Área km}^2}$$ | paraderos/km² | `Inversa (Carencia = 1 - Norm)` | TransMilenio S.A. |
@@ -31,14 +33,14 @@ El presente informe expone el comportamiento multidimensional de los indicadores
 
 ---
 
-## 4. Hallazgos Analíticos y Brechas Territoriales
+## 4. Hallazgos Analíticos, Espaciales y Brechas Territoriales
 - **Castigo por Tiempos de Viaje**: Habitantes de Usme (`82 min`), Ciudad Bolívar (`85 min`) y Bosa (`76 min`) invierten más de 2.5 horas diarias en traslados laborales hacia el centro ampliado.
 - **Acceso Troncal Asimétrico**: Localidades centrales como Puente Aranda (15 estaciones), Santa Fe (14) y Teusaquillo (13) cuentan con alta cobertura, mientras Usme y Ciudad Bolívar cuentan con solo 2 estaciones en sus portales de cabecera.
 - **Dependencia Zonal**: Bosa y Kennedy dependen críticamente de rutas alimentadoras y zonales con alta congestión.
 
 ### 4.1. Diagnóstico Estadístico y Distribución Multivariada (DAMA-BOK)
 
-| Variable / Indicador | Media ($\mu$) | Mediana ($Q_2$) | Desv. Est. ($\sigma$) | IQR | Mín | Máx | CV (%) | Asimetría ($g_1$) |
+| Variable / Indicador | Media (μ) | Mediana (Q2) | Desv. Est. (σ) | IQR | Mín | Máx | CV (%) | Asimetría (g1) |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | `total_estaciones_troncales_tm` | 7.45 | 8.00 | 4.93 | 9.50 | 0.00 | 15.00 | 66.1% | +0.02 |
 | `total_paraderos_sitp` | 382.60 | 330.00 | 265.52 | 318.50 | 0.00 | 926.00 | 69.4% | +0.67 |
@@ -88,9 +90,9 @@ El presente informe expone el comportamiento multidimensional de los indicadores
 - **Impacto Cuantificable**: Cumplimiento de frecuencias superior al 94%.
 
 ### C. Protocolo de Semaforización de Alertas Tempranas
-- 🔴 **Alerta Crítica (Rojo)**: Tiempo de viaje $\ge 75$ min o Estaciones troncales $\le 3$.
-- 🟠 **Alerta Media (Naranja)**: Tiempo de viaje entre $50$ y $75$ min.
-- 🟢 **Condición Estable (Verde)**: Tiempo de viaje $< 50$ min con alta conectividad troncal.
+- 🔴 **Alerta Crítica (Rojo)**: Tiempo de viaje >= 75 min o Estaciones troncales <= 3.
+- 🟠 **Alerta Media (Naranja)**: Tiempo de viaje entre 50 y 75 min.
+- 🟢 **Condición Estable (Verde)**: Tiempo de viaje < 50 min con alta conectividad troncal.
 
 ---
 

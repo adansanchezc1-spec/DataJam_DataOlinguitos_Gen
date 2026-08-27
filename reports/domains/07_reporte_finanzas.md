@@ -3,7 +3,7 @@
 **Fase PDCO**: DEVELOPMENT → OPERATIONS  
 **Dominio**: Finanzas e Inversión Pública (FDL)  
 **Estándares**: DAMA-BOK / SWEBOK Cap. 2 y 4 / ISO/IEC 25010  
-**Fecha de Emisión**: 2026-08-23  
+**Fecha de Emisión**: 2026-08-26  
 **Cobertura**: 100% (20 Localidades Oficiales de Bogotá D.C.)  
 **Certificación de Calidad**: ISO/IEC 25010 Conforme (100% Completitud Territorial)  
 
@@ -12,32 +12,34 @@
 ## 1. Pregunta de Negocio y Resumen Ejecutivo
 > **Pregunta Clave**: ¿Cómo se distribuyen y ejecutan los recursos de inversión de los Fondos de Desarrollo Local?
 
-El presente informe expone el comportamiento multidimensional de los indicadores de **Finanzas e Inversión Pública (FDL)** a lo largo de las 20 localidades del Distrito Capital, evaluando la distribución de capacidades, brechas estructurales y focos de intervención prioritaria.
+El presente informe expone el comportamiento multidimensional de los indicadores de **Finanzas e Inversión Pública (FDL)** a lo largo de las 20 localidades del Distrito Capital, evaluando la distribución de capacidades, brechas estructurales, patrones geoespaciales y focos de intervención prioritaria.
 
 ---
 
-## 2. Visualización Analítica Multi-Panel
+## 2. Visualización Analítica y Geoespacial Multi-Panel (3 Paneles)
 ![Gráfica Sectorial](../figures/fig_07_finanzas_inversion_fdl_ejecucion.png)
+
+*Figura: (A) Mapa coroplético oficial de Bogotá D.C.; (B) Ranking y distribución territorial; (C) Dispersión bivariada y brechas estructurales.*
 
 ---
 
 ## 3. Catálogo de Indicadores Calculados del Dominio
 
-| Código | Indicador | Fórmula en $\LaTeX$ | Unidad | Polaridad IPT | Fuente |
+| Código | Indicador | Fórmula Matemática | Unidad | Polaridad IPT | Fuente |
 |---|---|---|---|:---:|---|
-| `FIN-001` | **Inversión FDL Per Cápita** | $$t_{\text{fdl}} = \frac{\text{Presupuesto Ejecutado FDL}}{\text{Población}}$$ | Millones COP/hab | `Informativo / Contraste de Inversión` | SDP / Confis / FDL |
+| `FIN-001` | **Inversión FDL Per Cápita** | $$t_{\text{fdl}} = \frac{\text{Presupuesto Ejecutado FDL}}{\text{Población}}$$ | COP / hab | `Informativo / Contraste de Inversión` | SDP / Confis / FDL |
 | `FIN-002` | **Porcentaje de Ejecución Presupuestal FDL** | $$\%_{\text{ejec}} = \frac{\text{Presupuesto Ejecutado}}{\text{Presupuesto Aprobado}} \times 100$$ | % | `Directa (Eficiencia Administrativa)` | Sec. Gobierno |
 
 ---
 
-## 4. Hallazgos Analíticos y Brechas Territoriales
+## 4. Hallazgos Analíticos, Espaciales y Brechas Territoriales
 - **Distorsión en el Centro Institucional**: La Candelaria (`$3.42M/hab`) y Santa Fe presentan altos valores per cápita debido a su reducida población residente frente a su presupuesto de mantenimiento patrimonial.
 - **Retos de Eficiencia en Periferia**: Kennedy y Bosa ejecutan grandes presupuestos globales pero promedian menos de `$0.35M por habitante`, con ejecuciones presupuestales rezagadas en el último trimestre.
 - **Promedio Distrital de Ejecución**: El promedio de ejecución de los FDL se sitúa en el `86.4%`.
 
 ### 4.1. Diagnóstico Estadístico y Distribución Multivariada (DAMA-BOK)
 
-| Variable / Indicador | Media ($\mu$) | Mediana ($Q_2$) | Desv. Est. ($\sigma$) | IQR | Mín | Máx | CV (%) | Asimetría ($g_1$) |
+| Variable / Indicador | Media (μ) | Mediana (Q2) | Desv. Est. (σ) | IQR | Mín | Máx | CV (%) | Asimetría (g1) |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | `presupuesto_aprobado_millones` | 94,170.00 | 83,900.00 | 41,226.82 | 53,475.00 | 38,500.00 | 175,400.00 | 43.8% | +0.80 |
 | `presupuesto_ejecutado_millones` | 89,455.00 | 80,200.00 | 39,014.54 | 48,475.00 | 36,800.00 | 166,800.00 | 43.6% | +0.82 |
@@ -87,9 +89,9 @@ El presente informe expone el comportamiento multidimensional de los indicadores
 - **Impacto Cuantificable**: 100% de proyectos priorizados alineados con dimensiones críticas del IPT.
 
 ### C. Protocolo de Semaforización de Alertas Tempranas
-- 🔴 **Alerta Crítica (Rojo)**: Ejecución presupuestal $< 75\%$ o Inversión per cápita $< $0.25M COP.
-- 🟠 **Alerta Media (Naranja)**: Ejecución presupuestal entre $75\%$ y $88\%$.
-- 🟢 **Condición Estable (Verde)**: Ejecución presupuestal $\ge 88\%$ con impacto verificado.
+- 🔴 **Alerta Crítica (Rojo)**: Ejecución presupuestal < 75% o Inversión per cápita < $0.25M COP.
+- 🟠 **Alerta Media (Naranja)**: Ejecución presupuestal entre 75% y 88%.
+- 🟢 **Condición Estable (Verde)**: Ejecución presupuestal >= 88% con impacto verificado.
 
 ---
 

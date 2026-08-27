@@ -308,6 +308,122 @@ def calculate_multidimensional_ipt(
     return df
 
 
+def calculate_ipt_sensitivity_scenarios(
+    df_metrics: pd.DataFrame,
+) -> pd.DataFrame:
+    """Calcula los 5 escenarios de sensibilidad y robustez metodológica del IPT.
+
+    Escenario 1 (Base Lineal 7D): Promedio simple de las 7 dimensiones canónicas.
+    Escenario 2 (Rangos Percentiles 7D): Transformación de rangos no paramétricos (rank-1)/19.
+    Escenario 3 (Sin Proxy Parques 6D): Excluye dimensión de Infraestructura.
+    Escenario 4 (Sin RIVI 6D): Excluye dimensión de Vulnerabilidad informal.
+    Escenario 5 (Cinco Dimensiones Duras 5D): Excluye Infraestructura y Vulnerabilidad.
+    """
+    df = df_metrics.copy()
+    dims_all = [
+        "dim_educacion", "dim_salud", "dim_movilidad", "dim_ambiente",
+        "dim_infraestructura", "dim_vulnerabilidad", "dim_seguridad"
+    ]
+    missing = [c for c in dims_all if c not in df.columns]
+    if missing:
+        raise ValueError(f"Faltan dimensiones requeridas para escenarios de sensibilidad: {missing}")
+
+    # 1. Escenario 1: Base Lineal (7 dimensiones)
+    df["IPT_ESCENARIO_1_BASE"] = df[dims_all].mean(axis=1) * 100.0
+
+    # 2. Escenario 2: Rangos No Paramétricos (Percentiles)
+    rank_pcts = pd.DataFrame(index=df.index)
+    for col in dims_all:
+        rank_pcts[col] = (df[col].rank(ascending=True, method="average") - 1.0) / 19.0
+    df["IPT_ESCENARIO_2_RANGOS"] = rank_pcts.mean(axis=1) * 100.0
+
+    # 3. Escenario 3: Sin Proxy Parques (6 dimensiones)
+    dims_sin_parques = [
+        "dim_educacion",
+        "dim_salud",
+        "dim_movilidad",
+        "dim_ambiente",
+        "dim_vulnerabilidad",
+        "dim_seguridad",
+    ]
+    df["IPT_ESCENARIO_3_SIN_PARQUES"] = df[dims_sin_parques].mean(axis=1) * 100.0
+
+    # 4. Escenario 4: Sin RIVI (6 dimensiones)
+    dims_sin_rivi = [
+        "dim_educacion",
+        "dim_salud",
+        "dim_movilidad",
+        "dim_ambiente",
+        "dim_infraestructura",
+        "dim_seguridad",
+    ]
+    df["IPT_ESCENARIO_4_SIN_RIVI"] = df[dims_sin_rivi].mean(axis=1) * 100.0
+
+    # 5. Escenario 5: Cinco Dimensiones Duras (5 dimensiones)
+    dims_duras = [
+        "dim_educacion",
+        "dim_salud",
+        "dim_movilidad",
+        "dim_ambiente",
+        "dim_seguridad",
+    ]
+    df["IPT_ESCENARIO_5_DURAS"] = df[dims_duras].mean(axis=1) * 100.0
+
+    # Asignación determinista y sin empates de rankings [1..20] por escenario
+    scenario_tuples = [
+        (1, "IPT_ESCENARIO_1_BASE"),
+        (2, "IPT_ESCENARIO_2_RANGOS"),
+        (3, "IPT_ESCENARIO_3_SIN_PARQUES"),
+        (4, "IPT_ESCENARIO_4_SIN_RIVI"),
+        (5, "IPT_ESCENARIO_5_DURAS"),
+    ]
+    for esc_num, esc_col in scenario_tuples:
+        order = df.sort_values(
+            [esc_col, "codigo_localidad"],
+            ascending=[False, True],
+            kind="mergesort",
+        ).index
+        df[f"RANKING_ESC_{esc_num}"] = (
+            pd.Series(range(1, len(order) + 1), index=order, dtype="int64")
+            .reindex(df.index)
+            .astype(int)
+        )
+
+    # Consenso entre los 5 escenarios
+    rank_cols = [
+        "RANKING_ESC_1",
+        "RANKING_ESC_2",
+        "RANKING_ESC_3",
+        "RANKING_ESC_4",
+        "RANKING_ESC_5",
+    ]
+    df["ranking_promedio_5_escenarios"] = df[rank_cols].mean(axis=1)
+    df["apariciones_top5_escenarios"] = (df[rank_cols] <= 5).sum(axis=1)
+
+    consensus_order = df.sort_values(
+        [
+            "ranking_promedio_5_escenarios",
+            "IPT_ESCENARIO_1_BASE",
+            "codigo_localidad",
+        ],
+        ascending=[True, False, True],
+        kind="mergesort",
+    ).index
+
+    df["RANKING_CONSENSO_ESCENARIOS"] = (
+        pd.Series(
+            range(1, len(consensus_order) + 1),
+            index=consensus_order,
+            dtype="int64",
+        )
+        .reindex(df.index)
+        .astype(int)
+    )
+
+    return df
+
+
+
 def calculate_consensus_priority(
     df_metrics: pd.DataFrame,
     ranking_cols: list[str] | tuple[str, ...] | None = None,

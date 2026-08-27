@@ -33,7 +33,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
         "color_base": "#e11d48",
         "paleta": "RdYlGn_r",  # Invertida: Rojo = Alta prioridad / privación
         "polaridad": "alta_es_privacion",
-        "descripcion": "Índice de Priorización Territorial multidimensional compuesto (7 dimensiones, OCDE/JRC).",
+        "descripcion": "Índice de Priorización Territorial multidimensional compuesto (7 dimensiones, OCDE/JRC) y escenarios de robustez.",
         "indicador_principal": "IPT_MULTIDIMENSIONAL",
         "investment_key": "inversion_total_consolidada_per_capita_cop",
         "investment_label": "Inversión Distrital Consolidada per Cápita",
@@ -41,10 +41,42 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
         "indicadores": [
             {
                 "col": "IPT_MULTIDIMENSIONAL",
-                "nombre": "IPT Base Lineal (0-100)",
+                "nombre": "IPT Escenario 1 (Base Lineal 7D)",
                 "unidad": "pts",
                 "formato": "{:.2f}",
-                "desc": "Índice compuesto lineal ponderado (1/7 por dimensión). Mayor puntaje = mayor privación y urgencia.",
+                "desc": "Índice compuesto base lineal (1/7 por dimensión). Mayor puntaje = mayor privación y urgencia.",
+                "polaridad": "alta_es_privacion",
+            },
+            {
+                "col": "IPT_ESCENARIO_2_RANGOS",
+                "nombre": "IPT Escenario 2 (Rangos Percentiles No Paramétricos)",
+                "unidad": "pts",
+                "formato": "{:.2f}",
+                "desc": "Transformación de rangos no paramétricos (rank-1)/19 sobre las 7 dimensiones canónicas.",
+                "polaridad": "alta_es_privacion",
+            },
+            {
+                "col": "IPT_ESCENARIO_3_SIN_PARQUES",
+                "nombre": "IPT Escenario 3 (Sin Proxy Parques - 6D)",
+                "unidad": "pts",
+                "formato": "{:.2f}",
+                "desc": "Sensibilidad excluyendo la dimensión de Infraestructura y Parques.",
+                "polaridad": "alta_es_privacion",
+            },
+            {
+                "col": "IPT_ESCENARIO_4_SIN_RIVI",
+                "nombre": "IPT Escenario 4 (Sin Vulnerabilidad RIVI - 6D)",
+                "unidad": "pts",
+                "formato": "{:.2f}",
+                "desc": "Sensibilidad excluyendo la dimensión de Vulnerabilidad informal (RIVI).",
+                "polaridad": "alta_es_privacion",
+            },
+            {
+                "col": "IPT_ESCENARIO_5_DURAS",
+                "nombre": "IPT Escenario 5 (Cinco Dimensiones Duras - 5D)",
+                "unidad": "pts",
+                "formato": "{:.2f}",
+                "desc": "Modelo estricto de derechos y servicios esenciales (Educación, Salud, Movilidad, Ambiente, Seguridad).",
                 "polaridad": "alta_es_privacion",
             },
             {
@@ -52,7 +84,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "IPT Geométrico No Compensatorio",
                 "unidad": "pts",
                 "formato": "{:.2f}",
-                "desc": "Agregación geométrica que penaliza desbalances dimensionales críticos.",
+                "desc": "Agregación geométrica ponderada que penaliza desbalances dimensionales críticos.",
                 "polaridad": "alta_es_privacion",
             },
             {
@@ -60,7 +92,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Ranking de Prioridad Consenso",
                 "unidad": "puesto",
                 "formato": "{:.0f}",
-                "desc": "Puesto distrital de vulnerabilidad (1 = máxima urgencia social).",
+                "desc": "Puesto distrital de vulnerabilidad consolidado (1 = máxima urgencia social).",
                 "polaridad": "baja_es_privacion",
             },
             {
@@ -119,7 +151,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
         "color_base": "#0284c7",
         "paleta": "Blues",
         "polaridad": "baja_es_privacion",
-        "descripcion": "Oferta de servicios de salud, sedes IPS y camas hospitalarias.",
+        "descripcion": "Oferta de servicios de salud, sedes IPS y camas hospitalarias contrastadas con la población.",
         "indicador_principal": "sedes_ips_por_10000_hab",
         "investment_key": "inversion_fdl_per_capita_cop",
         "investment_label": "Inversión FDL per Cápita",
@@ -130,7 +162,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Sedes IPS por 10.000 hab",
                 "unidad": "sedes/10k",
                 "formato": "{:.2f}",
-                "desc": "Disponibilidad de infraestructura prestadora de salud por escala de habitantes.",
+                "desc": "Disponibilidad de infraestructura prestadora de salud contrastada con la población de la localidad.",
                 "polaridad": "baja_es_privacion",
             },
             {
@@ -138,14 +170,30 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Camas Hospitalarias por 10.000 hab",
                 "unidad": "camas/10k",
                 "formato": "{:.2f}",
-                "desc": "Capacidad de internación hospitalaria general instalada.",
+                "desc": "Capacidad de internación hospitalaria general contrastada con la población de la localidad.",
+                "polaridad": "baja_es_privacion",
+            },
+            {
+                "col": "total_camas_hospitalarias",
+                "nombre": "Total Camas Hospitalarias (Capacidad Absoluta)",
+                "unidad": "camas",
+                "formato": "{:,.0f}",
+                "desc": "Capacidad física total instalada de camas hospitalarias en la localidad.",
+                "polaridad": "baja_es_privacion",
+            },
+            {
+                "col": "sedes_ips_registradas",
+                "nombre": "Total Sedes IPS Registradas",
+                "unidad": "sedes",
+                "formato": "{:,.0f}",
+                "desc": "Conteo absoluto de sedes de salud habilitadas en el Registro Especial de Prestadores (REPS).",
                 "polaridad": "baja_es_privacion",
             },
             {
                 "col": "camas_uci_adultos",
                 "nombre": "Camas UCI Adultos",
                 "unidad": "camas",
-                "formato": "{:.0f}",
+                "formato": "{:,.0f}",
                 "desc": "Camas de cuidados intensivos para adultos habilitadas.",
                 "polaridad": "baja_es_privacion",
             },
@@ -156,7 +204,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
         "nombre": "Educación y Logro",
         "icono": "graduation-cap",
         "color_base": "#059669",
-        "paleta": "Viridis",
+        "paleta": "Greens",  # Paleta esmeralda/verde accesible sin negros
         "polaridad": "baja_es_privacion",
         "descripcion": "Oferta de cupos oficiales SED, desempeño Saber 11 y deserción escolar.",
         "indicador_principal": "cupos_por_1000_pob_5_17",
@@ -169,7 +217,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Cupos SED por 1.000 niños (5-17 años)",
                 "unidad": "cupos/1k",
                 "formato": "{:.1f}",
-                "desc": "Capacidad de absorción de matrícula en colegios oficiales.",
+                "desc": "Capacidad de absorción de matrícula en colegios oficiales SED.",
                 "polaridad": "baja_es_privacion",
             },
             {
@@ -244,12 +292,28 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
         "color_base": "#10b981",
         "paleta": "Greens",
         "polaridad": "baja_es_privacion",
-        "descripcion": "Espacio público recreativo, parques administrados por IDRD y cobertura de alumbrado público.",
-        "indicador_principal": "parques_por_10k_hab",
+        "descripcion": "Espacio público recreativo, superficie de parques IDRD y alumbrado público.",
+        "indicador_principal": "m2_parque_por_habitante",
         "investment_key": "inversion_fdl_per_capita_cop",
         "investment_label": "Inversión FDL per Cápita",
         "investment_unit": "COP/hab",
         "indicadores": [
+            {
+                "col": "m2_parque_por_habitante",
+                "nombre": "Espacio Público (m² de Parque / hab)",
+                "unidad": "m²/hab",
+                "formato": "{:.2f}",
+                "desc": "Metros cuadrados de parques administrados por IDRD por habitante de la localidad.",
+                "polaridad": "baja_es_privacion",
+            },
+            {
+                "col": "area_total_parques_m2",
+                "nombre": "Área Total de Parques (m²)",
+                "unidad": "m²",
+                "formato": "{:,.0f}",
+                "desc": "Superficie total de parques y zonas recreativas IDRD en la localidad.",
+                "polaridad": "baja_es_privacion",
+            },
             {
                 "col": "parques_por_10k_hab",
                 "nombre": "Parques IDRD por 10.000 hab",
@@ -273,22 +337,6 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "formato": "{:,.0f}",
                 "desc": "Dotación de alumbrado público por cada 10.000 habitantes.",
                 "polaridad": "baja_es_privacion",
-            },
-            {
-                "col": "total_luminarias",
-                "nombre": "Total Luminarias Instaladas",
-                "unidad": "luminarias",
-                "formato": "{:,.0f}",
-                "desc": "Parque total de iluminación pública en la localidad.",
-                "polaridad": "neutro",
-            },
-            {
-                "col": "fallas_reportadas_mes",
-                "nombre": "Fallas de Alumbrado Reportadas / Mes",
-                "unidad": "fallas/mes",
-                "formato": "{:,.0f}",
-                "desc": "Incidencias mensuales reportadas en la red de iluminación pública.",
-                "polaridad": "alta_es_privacion",
             },
         ],
     },
@@ -453,22 +501,22 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
         "id": "09_seguridad",
         "nombre": "Seguridad y Convivencia",
         "icono": "shield-alert",
-        "color_base": "#991b1b",
-        "paleta": "Inferno",
+        "color_base": "#881337",
+        "paleta": "Reds",  # Carmesí y vino profundo sin negros
         "polaridad": "alta_es_privacion",
-        "descripcion": "Cuadrantes de vigilancia policial, homicidios y delitos de alto impacto.",
-        "indicador_principal": "cuadrantes_por_10000_hab_2026",
+        "descripcion": "Tasas de hurtos por habitante, homicidios y cobertura de cuadrantes policiales.",
+        "indicador_principal": "tasa_hurto_personas_por_10k_hab",
         "investment_key": "inversion_fdl_per_capita_cop",
         "investment_label": "Inversión FDL per Cápita",
         "investment_unit": "COP/hab",
         "indicadores": [
             {
-                "col": "cuadrantes_por_10000_hab_2026",
-                "nombre": "Cuadrantes Policiales por 10.000 hab",
-                "unidad": "cuadrantes/10k",
+                "col": "tasa_hurto_personas_por_10k_hab",
+                "nombre": "Tasa Hurtos a Personas por 10.000 hab",
+                "unidad": "hurtos/10k",
                 "formato": "{:.2f}",
-                "desc": "Cobertura preventiva y de patrullaje policial por escala poblacional.",
-                "polaridad": "baja_es_privacion",
+                "desc": "Frecuencia anual de denuncias por hurto a personas normalizada por la población de la localidad.",
+                "polaridad": "alta_es_privacion",
             },
             {
                 "col": "tasa_homicidios_por_100k_hab_calc",
@@ -480,11 +528,19 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
             },
             {
                 "col": "hurto_a_personas_anual",
-                "nombre": "Hurtos a Personas Anuales",
+                "nombre": "Total Hurtos a Personas Anuales",
                 "unidad": "casos",
                 "formato": "{:,.0f}",
-                "desc": "Conteo total anual de denuncias por hurto a personas.",
+                "desc": "Conteo total anual de denuncias por hurto a personas registradas por MEBOG / SIEDCO.",
                 "polaridad": "alta_es_privacion",
+            },
+            {
+                "col": "cuadrantes_por_10000_hab_2026",
+                "nombre": "Cuadrantes Policiales por 10.000 hab",
+                "unidad": "cuadrantes/10k",
+                "formato": "{:.2f}",
+                "desc": "Cobertura preventiva y de patrullaje policial por escala poblacional.",
+                "polaridad": "baja_es_privacion",
             },
         ],
     },
@@ -525,22 +581,14 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "desc": "Tiempo promedio de interrupción en la prestación del servicio de agua.",
                 "polaridad": "alta_es_privacion",
             },
-            {
-                "col": "luminarias_por_km2",
-                "nombre": "Densidad de Alumbrado por km²",
-                "unidad": "lum/km²",
-                "formato": "{:.1f}",
-                "desc": "Luminarias de alumbrado público instaladas por kilómetro cuadrado.",
-                "polaridad": "baja_es_privacion",
-            },
         ],
     },
     "11_empleo_economia": {
         "id": "11_empleo_economia",
         "nombre": "Mercado Laboral y Salarios",
         "icono": "briefcase",
-        "color_base": "#4f46e5",
-        "paleta": "Cividis",
+        "color_base": "#b45309",
+        "paleta": "YlOrBr",  # Ámbar y ocre dorado sin negro
         "polaridad": "alta_es_privacion",
         "descripcion": "Movilidad residencia-trabajo, salarios promedio por trabajador e informalidad.",
         "indicador_principal": "ocupados_conmutan_a_otras_localidades_pct",
@@ -561,7 +609,7 @@ DOMAIN_CATALOG: Dict[str, Dict[str, Any]] = {
                 "nombre": "Ingreso Laboral Promedio Mensual ($ COP / ocupado)",
                 "unidad": "COP/mes",
                 "formato": "${:,.0f}",
-                "desc": "Remuneración salarial promedio de los trabajadores ocupados en la localidad (GEIH / DANE / OSB), no ponderado por 10k hab.",
+                "desc": "Remuneración salarial promedio de los trabajadores ocupados en la localidad (GEIH / DANE / OSB).",
                 "polaridad": "baja_es_privacion",
             },
             {
@@ -765,12 +813,12 @@ def load_point_overlay_layers() -> Dict[str, Any]:
         "estaciones_tm": (
             PROCESSED_DIR / "MOVILIDAD" / "estaciones_troncales.geojson",
             "Estaciones TransMilenio",
-            "#dc2626",
+            "#ef4444",
         ),
         "estaciones_metro": (
             PROCESSED_DIR / "MOVILIDAD" / "estaciones_linea1.geojson",
-            "Estaciones Metro L1",
-            "#16a34a",
+            "Estaciones Metro L1 (16 Estaciones)",
+            "#06b6d4",
         ),
         "calidad_aire": (
             PROCESSED_DIR / "AMBIENTE" / "estacion_calidad_aire.geojson",
@@ -782,12 +830,12 @@ def load_point_overlay_layers() -> Dict[str, Any]:
             / "FINANZAS_INVERSION_PUBLICA"
             / "Punto de encuentro vendedores. Bogotá D.C..geojson",
             "Puntos Encuentro RIVI",
-            "#ea580c",
+            "#f97316",
         ),
         "cupos_sed": (
             PROCESSED_DIR / "EDUCACION" / "ofertacupos_032025_wgs84.geojson",
             "Oferta Colegios SED",
-            "#9333ea",
+            "#059669",
         ),
     }
 
@@ -1135,6 +1183,9 @@ def generate_interactive_gis_dashboard(
           <span>Media: <b id="legend-mean" class="text-blue-400"></b></span>
           <span>Máx: <b id="legend-max" class="text-slate-200"></b></span>
         </div>
+        <div id="legend-semantic-guide" class="mt-2.5 pt-2 border-t border-slate-800/80 text-[10px] text-center font-medium leading-tight">
+          <!-- Dynamically populated semantic guide -->
+        </div>
       </div>
     </main>
 
@@ -1277,33 +1328,56 @@ def generate_interactive_gis_dashboard(
         </div>
       </div>
 
-      <!-- KPI Summary Cards -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
-        <div class="p-3 bg-slate-950/70 border border-slate-800 rounded-xl">
-          <span class="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Correlación (Pearson r)</span>
-          <div class="flex items-baseline gap-1.5">
-            <span id="inv-kpi-pearson" class="text-lg font-extrabold text-sky-400 font-mono">--</span>
-            <span id="inv-kpi-spearman" class="text-[10px] text-slate-400 font-mono">ρ: --</span>
+      <!-- KPI Summary Cards (All 4 Quadrants Explicitly Represented) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 text-xs">
+        <div class="p-2.5 bg-blue-950/40 border border-blue-500/40 rounded-xl cursor-pointer hover:bg-blue-900/40 transition" onclick="filterInvTable('I. Prioridad Atendida')">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[10px] uppercase font-bold text-sky-400">🔵 Cuadrante I</span>
+            <span id="inv-kpi-q1-count" class="text-base font-extrabold text-sky-300 font-mono">0 / 20</span>
           </div>
-          <p id="inv-kpi-corr-desc" class="text-[10px] text-slate-400 mt-1 truncate">Evaluando progresividad...</p>
+          <b class="text-white text-xs block truncate">Prioridad Atendida</b>
+          <p class="text-[10px] text-sky-300/80 mt-0.5">Alta Necesidad + Alta Inversión</p>
         </div>
 
-        <div class="p-3 bg-slate-950/70 border border-slate-800 rounded-xl">
-          <span class="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Inversión Media Distrital</span>
-          <span id="inv-kpi-mean" class="text-lg font-extrabold text-white font-mono">$ --</span>
-          <p id="inv-kpi-mean-unit" class="text-[10px] text-slate-400 mt-1">COP / hab promedio</p>
+        <div class="p-2.5 bg-rose-950/40 border border-rose-500/40 rounded-xl cursor-pointer hover:bg-rose-900/40 transition" onclick="filterInvTable('II. Brecha Crítica')">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[10px] uppercase font-bold text-rose-400">🔴 Cuadrante II</span>
+            <span id="inv-kpi-q2-count" class="text-base font-extrabold text-rose-300 font-mono">0 / 20</span>
+          </div>
+          <b class="text-white text-xs block truncate">Brecha Crítica (Déficit)</b>
+          <p class="text-[10px] text-rose-300/80 mt-0.5">Alta Necesidad + Baja Inversión</p>
         </div>
 
-        <div class="p-3 bg-rose-950/30 border border-rose-500/30 rounded-xl">
-          <span class="text-[10px] uppercase font-bold text-rose-400 block mb-0.5">Localidades en Brecha Crítica</span>
-          <span id="inv-kpi-gaps-count" class="text-lg font-extrabold text-rose-300 font-mono">0 / 20</span>
-          <p class="text-[10px] text-rose-300/80 mt-1">Cuadrante II: Alta Necesidad + Baja Inversión</p>
+        <div class="p-2.5 bg-emerald-950/40 border border-emerald-500/40 rounded-xl cursor-pointer hover:bg-emerald-900/40 transition" onclick="filterInvTable('III. Autosuficiencia')">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[10px] uppercase font-bold text-emerald-400">🟢 Cuadrante III</span>
+            <span id="inv-kpi-q3-count" class="text-base font-extrabold text-emerald-300 font-mono">0 / 20</span>
+          </div>
+          <b class="text-white text-xs block truncate">Autosuficiencia</b>
+          <p class="text-[10px] text-emerald-300/80 mt-0.5">Baja Necesidad + Baja Inversión</p>
         </div>
 
-        <div class="p-3 bg-slate-950/70 border border-slate-800 rounded-xl">
-          <span class="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Diagnóstico Fiscal</span>
-          <span id="inv-kpi-diagnosis" class="text-xs font-bold text-amber-300 block">Progresivo Moderado</span>
-          <p class="text-[10px] text-slate-400 mt-1">Focalización presupuestal</p>
+        <div class="p-2.5 bg-amber-950/40 border border-amber-500/40 rounded-xl cursor-pointer hover:bg-amber-900/40 transition" onclick="filterInvTable('IV. Eficiencia a Revisar')">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[10px] uppercase font-bold text-amber-400">🟠 Cuadrante IV</span>
+            <span id="inv-kpi-q4-count" class="text-base font-extrabold text-amber-300 font-mono">0 / 20</span>
+          </div>
+          <b class="text-white text-xs block truncate">Eficiencia a Revisar</b>
+          <p class="text-[10px] text-amber-300/80 mt-0.5">Baja Necesidad + Alta Inversión</p>
+        </div>
+      </div>
+
+      <!-- Statistical Summary Strip -->
+      <div class="p-2.5 bg-slate-950/80 border border-slate-800 rounded-xl flex flex-wrap items-center justify-between gap-2 text-xs">
+        <div class="flex items-center gap-3">
+          <span class="text-slate-400 font-mono">Pearson r: <b id="inv-kpi-pearson" class="text-sky-400 font-bold">--</b></span>
+          <span class="text-slate-400 font-mono">Spearman <span id="inv-kpi-spearman" class="text-slate-300 font-bold">ρ: --</span></span>
+          <span class="text-slate-400">Inversión Media: <b id="inv-kpi-mean" class="text-white font-mono">$ --</b> <span id="inv-kpi-mean-unit" class="text-[10px] text-slate-400">COP/hab</span></span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-slate-400">Diagnóstico Fiscal:</span>
+          <span id="inv-kpi-diagnosis" class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-600/30 text-sky-300 border border-sky-400/30">Progresivo Moderado</span>
+          <span id="inv-kpi-corr-desc" class="text-[10px] text-slate-400 hidden sm:inline"></span>
         </div>
       </div>
 
@@ -1342,9 +1416,16 @@ def generate_interactive_gis_dashboard(
 
       <!-- Locality Table with Quadrant & Gap Assessment -->
       <div class="border border-slate-800 rounded-xl overflow-hidden">
-        <div class="p-3 bg-slate-950/70 border-b border-slate-800 flex items-center justify-between">
-          <span class="text-xs font-bold text-slate-300 uppercase tracking-wider">Tabla Comparativa Distrital por Localidad</span>
-          <button id="btn-export-inv-csv" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded border border-slate-700 flex items-center gap-1 transition">
+        <div class="p-2.5 bg-slate-950/70 border-b border-slate-800 flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <span class="text-xs font-bold text-slate-300 uppercase tracking-wider mr-2">Filtrar:</span>
+            <button id="btn-flt-all" onclick="filterInvTable('all')" class="px-2.5 py-1 rounded text-xs font-bold bg-blue-600 text-white transition cursor-pointer">Todos (20)</button>
+            <button id="btn-flt-q1" onclick="filterInvTable('I. Prioridad Atendida')" class="px-2.5 py-1 rounded text-xs font-medium text-sky-300 bg-sky-950/60 border border-sky-500/40 hover:bg-sky-900/60 transition cursor-pointer">🔵 Q1 Atendida (<span id="cnt-flt-q1">0</span>)</button>
+            <button id="btn-flt-q2" onclick="filterInvTable('II. Brecha Crítica')" class="px-2.5 py-1 rounded text-xs font-medium text-rose-300 bg-rose-950/60 border border-rose-500/40 hover:bg-rose-900/60 transition cursor-pointer">🔴 Q2 Brecha Crítica (<span id="cnt-flt-q2">0</span>)</button>
+            <button id="btn-flt-q3" onclick="filterInvTable('III. Autosuficiencia')" class="px-2.5 py-1 rounded text-xs font-medium text-emerald-300 bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-900/60 transition cursor-pointer">🟢 Q3 Autosuficiente (<span id="cnt-flt-q3">0</span>)</button>
+            <button id="btn-flt-q4" onclick="filterInvTable('IV. Eficiencia a Revisar')" class="px-2.5 py-1 rounded text-xs font-medium text-amber-300 bg-amber-950/60 border border-amber-500/40 hover:bg-amber-900/60 transition cursor-pointer">🟠 Q4 Eficiencia (<span id="cnt-flt-q4">0</span>)</button>
+          </div>
+          <button id="btn-export-inv-csv" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded border border-slate-700 flex items-center gap-1 transition cursor-pointer">
             <i data-lucide="download" class="h-3 w-3" aria-hidden="true"></i> Exportar Cruce CSV
           </button>
         </div>
@@ -1503,20 +1584,21 @@ def generate_interactive_gis_dashboard(
     let map, geojsonLayer, overlaysLayers = {{}};
     let rankingChart = null, radarChart = null, investmentScatterChart = null;
 
-    // Color Palettes (Standard & Accessible Colorblind Viridis/Cividis)
+    // Color Palettes (Auditoría Cromática Estricta: Cero Negros #000000 / #000004)
+    // Gradientes secuenciales armónicos de alto contraste perceptivo
     const COLOR_PALETTES = {{
       RdYlGn_r: ['#1a9641', '#a6d96a', '#ffffbf', '#fdae61', '#d7191c'],
-      Purples: ['#f2f0f7', '#cbc9e2', '#9e9ac8', '#756bb1', '#54278f'],
-      Blues: ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'],
-      Viridis: ['#440154', '#3b528b', '#21918c', '#5ec962', '#fde725'],
-      Plasma: ['#0d0887', '#6a00a8', '#b12a90', '#e16462', '#fca636'],
-      Greens: ['#edf8e9', '#bae4b3', '#74c476', '#31a354', '#006d2c'],
-      YlOrBr: ['#ffffd4', '#fed98e', '#fe9929', '#d95f0e', '#993404'],
-      Reds: ['#fee5d9', '#fcae91', '#fb6a4a', '#de2d26', '#a50f15'],
-      Inferno: ['#000004', '#57106e', '#bb3754', '#f98e09', '#fcffa4'],
+      Purples:  ['#f2f0f7', '#cbc9e2', '#9e9ac8', '#756bb1', '#4c1d95'], // Violeta profundo
+      Blues:    ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#1e3a8a'], // Azul noche
+      Viridis:  ['#fde725', '#5ec962', '#21918c', '#3b528b', '#312e81'], // Índigo accesible
+      Plasma:   ['#fca636', '#e16462', '#b12a90', '#6a00a8', '#1e1b4b'], // Violeta noche
+      Greens:   ['#ecfdf5', '#a7f3d0', '#34d399', '#059669', '#064e3b'], // Esmeralda bosque
+      YlOrBr:   ['#fef3c7', '#fde68a', '#f59e0b', '#d97706', '#78350f'], // Ámbar tostado sin negro
+      Reds:     ['#fee2e2', '#fca5a5', '#ef4444', '#b91c1c', '#881337'], // Carmesí profundo sin negro
+      Inferno:  ['#fef08a', '#f97316', '#dc2626', '#86198f', '#4a044e'], // Ciruela oscuro sin negro
       RdYlBu_r: ['#4575b4', '#91bfdb', '#ffffbf', '#fee090', '#fc8d59'],
-      Cividis: ['#00204d', '#414d6b', '#7c7b78', '#bdaf69', '#ffea46'],
-      PuRd: ['#f1eef6', '#d7b5d8', '#df65b0', '#dd1c77', '#980043']
+      Cividis:  ['#ffea46', '#bdaf69', '#7c7b78', '#414d6b', '#0f172a'], // Azul noche sin negro
+      PuRd:     ['#f1eef6', '#d7b5d8', '#df65b0', '#be185d', '#831843']  // Magenta vino
     }};
 
     // Dynamic Ranking Engine (Solves Professor Feedback #1: Rank responds dynamically to active indicator)
@@ -1594,7 +1676,7 @@ def generate_interactive_gis_dashboard(
       updateCharts();
     }}
 
-    // Get Active Color for a Value based on Classification Breaks
+    // Get Active Color for a Value based on Classification Breaks & Indicator Polarity
     function getColor(val) {{
       if (val === null || val === undefined || isNaN(val)) return '#475569';
       
@@ -1603,8 +1685,17 @@ def generate_interactive_gis_dashboard(
       
       const breaks = breaksInfo[currentMethod] || [breaksInfo.min, breaksInfo.max];
       const domMeta = domainCatalog[currentDomain];
+      const indMeta = domMeta.indicadores.find(i => i.col === currentIndicator);
+      const polarity = indMeta?.polaridad || domMeta.polaridad;
+      
       const paletteKey = isColorblindMode ? 'Viridis' : (domMeta.paleta || 'Blues');
-      const colors = COLOR_PALETTES[paletteKey] || COLOR_PALETTES.Blues;
+      let colors = (COLOR_PALETTES[paletteKey] || COLOR_PALETTES.Blues).slice();
+
+      // Inversión semántica: cuando menor valor representa carencia/déficit ('baja_es_privacion'),
+      // los valores más bajos deben recibir el color más oscuro/crítico de alerta.
+      if (polarity === 'baja_es_privacion') {{
+        colors.reverse();
+      }}
 
       for (let i = 0; i < breaks.length - 1; i++) {{
         if (val <= breaks[i + 1] || i === breaks.length - 2) {{
@@ -1645,11 +1736,34 @@ def generate_interactive_gis_dashboard(
           const formattedVal = (val !== null && val !== undefined) ? Number(val).toLocaleString(undefined, {{maximumFractionDigits: 2}}) : 'N/D';
           const dynamicRank = rankingData.rankMap[props.codigo_localidad] || '--';
 
+          let extraContext = '';
+          const pobStr = Number(props.poblacion_2025 || props.poblacion || 0).toLocaleString();
+          if (currentDomain === '02_salud') {{
+            const ips = Number(props.sedes_ips_registradas || 0).toLocaleString();
+            const camas = Number(props.total_camas_hospitalarias || 0).toLocaleString();
+            extraContext = `<div class="text-[10px] text-sky-200 mt-1 border-t border-slate-700/60 pt-1">
+              Sedes IPS: <b>${{ips}}</b> | Camas: <b>${{camas}}</b> | Pob: <b>${{pobStr}} hab</b>
+            </div>`;
+          }} else if (currentDomain === '05_infraestructura' && props.area_total_parques_m2) {{
+            const m2p = Number(props.m2_parque_por_habitante || 0).toFixed(2);
+            const areaHa = Number(props.area_parques_ha || 0).toLocaleString();
+            extraContext = `<div class="text-[10px] text-emerald-200 mt-1 border-t border-slate-700/60 pt-1">
+              Área Parques: <b>${{areaHa}} ha</b> (${{m2p}} m²/hab | Pob: ${{pobStr}})
+            </div>`;
+          }} else if (currentDomain === '09_seguridad' && props.hurto_a_personas_anual) {{
+            const hurtos = Number(props.hurto_a_personas_anual || 0).toLocaleString();
+            const hom = Number(props.homicidios_anual || 0).toLocaleString();
+            extraContext = `<div class="text-[10px] text-rose-200 mt-1 border-t border-slate-700/60 pt-1">
+              Hurtos: <b>${{hurtos}}</b> | Homicidios: <b>${{hom}}</b> | Pob: <b>${{pobStr}}</b>
+            </div>`;
+          }}
+
           layer.bindTooltip(`
             <div class="sipta-tooltip font-sans">
               <div class="font-bold text-sm text-sky-400 mb-0.5">${{props.nombre_localidad || props.LOCNOMBRE}}</div>
               <div class="text-[11px] text-slate-300">${{indMeta ? indMeta.nombre : currentIndicator}}: <b class="text-white font-mono">${{formattedVal}} ${{indMeta?.unidad || ''}}</b></div>
               <div class="text-[10px] text-slate-400 mt-1">Puesto Indicador: <b class="text-amber-400 font-mono">#${{dynamicRank}} / 20</b> | Consenso IPT: <b class="text-rose-400 font-mono">#${{props.RANKING_PRIORIDAD || '--'}}</b></div>
+              ${{extraContext}}
             </div>
           `, {{ sticky: true, opacity: 1, className: 'custom-leaflet-tooltip' }});
 
@@ -1700,8 +1814,14 @@ def generate_interactive_gis_dashboard(
       const breaks = breaksInfo[currentMethod] || [breaksInfo.min, breaksInfo.max];
       const domMeta = domainCatalog[currentDomain];
       const indMeta = domMeta.indicadores.find(i => i.col === currentIndicator);
+      const polarity = indMeta?.polaridad || domMeta.polaridad;
+      
       const paletteKey = isColorblindMode ? 'Viridis' : (domMeta.paleta || 'Blues');
-      const colors = COLOR_PALETTES[paletteKey] || COLOR_PALETTES.Blues;
+      let colors = (COLOR_PALETTES[paletteKey] || COLOR_PALETTES.Blues).slice();
+      
+      if (polarity === 'baja_es_privacion') {{
+        colors.reverse();
+      }}
 
       document.getElementById('legend-title').innerText = indMeta?.nombre || currentIndicator;
       document.getElementById('legend-unit').innerText = indMeta?.unidad || '';
@@ -1723,6 +1843,18 @@ def generate_interactive_gis_dashboard(
             <span class="text-slate-300 font-mono text-[11px]">${{b1}} &ndash; ${{b2}}</span>
           </div>
         `;
+      }}
+
+      // Semantic Direction Guide in Legend
+      const semGuide = document.getElementById('legend-semantic-guide');
+      if (semGuide) {{
+        if (polarity === 'baja_es_privacion') {{
+          semGuide.innerHTML = '<span class="text-amber-400 font-semibold">● Oscuro = Mayor Carencia</span> <span class="text-slate-500 mx-1">|</span> <span class="text-slate-400">● Claro = Adecuado</span>';
+        }} else if (polarity === 'alta_es_privacion') {{
+          semGuide.innerHTML = '<span class="text-slate-400">● Claro = Bajo</span> <span class="text-slate-500 mx-1">|</span> <span class="text-rose-400 font-semibold">● Oscuro = Mayor Urgencia</span>';
+        }} else {{
+          semGuide.innerHTML = '<span class="text-slate-400">● Claro = Menor</span> <span class="text-slate-500 mx-1">|</span> <span class="text-sky-400">● Oscuro = Mayor Magnitud</span>';
+        }}
       }}
     }}
 
@@ -1989,6 +2121,59 @@ def generate_interactive_gis_dashboard(
 
     let currentInvModalMode = 'ipt';
 
+    let currentClassifiedPoints = [];
+    let currentFilteredQuadrant = 'all';
+
+    function filterInvTable(quadKey) {{
+      currentFilteredQuadrant = quadKey;
+      const tableBody = document.getElementById('table-inv-body');
+      if (!tableBody) return;
+      tableBody.innerHTML = '';
+
+      const btnMap = {{
+        'all': document.getElementById('btn-flt-all'),
+        'I. Prioridad Atendida': document.getElementById('btn-flt-q1'),
+        'II. Brecha Crítica': document.getElementById('btn-flt-q2'),
+        'III. Autosuficiencia': document.getElementById('btn-flt-q3'),
+        'IV. Eficiencia a Revisar': document.getElementById('btn-flt-q4')
+      }};
+
+      Object.entries(btnMap).forEach(([k, btn]) => {{
+        if (!btn) return;
+        if (k === quadKey) {{
+          btn.className = 'px-2.5 py-1 rounded text-xs font-bold bg-blue-600 text-white shadow transition cursor-pointer';
+        }} else {{
+          btn.className = 'px-2.5 py-1 rounded text-xs font-medium text-slate-300 bg-slate-900 border border-slate-700 hover:bg-slate-800 transition cursor-pointer';
+        }}
+      }});
+
+      const filtered = quadKey === 'all'
+        ? currentClassifiedPoints
+        : currentClassifiedPoints.filter(p => p.quadName === quadKey);
+
+      filtered.forEach(row => {{
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-800/80 transition cursor-pointer';
+        const formattedX = isNaN(Number(row.x)) ? '0' : Number(row.x).toLocaleString(undefined, {{maximumFractionDigits: 2}});
+        const formattedY = Math.round(row.y).toLocaleString();
+        const unitSpan = row.xUnit ? '<span class="text-[10px] text-slate-400">' + row.xUnit + '</span>' : '';
+
+        tr.innerHTML = '<td class="p-2.5 font-bold text-white flex items-center gap-1.5">' +
+            '<span class="h-2 w-2 rounded-full" style="background-color: ' + row.quadColor + '"></span>' +
+            row.name +
+          '</td>' +
+          '<td class="p-2.5">' + row.quadBadge + '</td>' +
+          '<td class="p-2.5 text-right font-mono text-slate-200">' + formattedX + ' ' + unitSpan + '</td>' +
+          '<td class="p-2.5 text-right font-mono text-sky-300">$ ' + formattedY + '</td>' +
+          '<td class="p-2.5 text-center">' +
+            '<button class="px-2 py-1 bg-blue-600/30 hover:bg-blue-600 text-sky-200 hover:text-white rounded text-[10px] font-semibold transition cursor-pointer" onclick="selectLocalityFromModal(' + row.code + ')">' +
+              'Ver' +
+            '</button>' +
+          '</td>';
+        tableBody.appendChild(tr);
+      }});
+    }}
+
     // Investment Cross Analysis Modal Controller
     function openInvestmentModal(mode) {{
       if (mode === 'ipt' || mode === 'active') {{
@@ -2031,8 +2216,8 @@ def generate_interactive_gis_dashboard(
         const btnIpt = document.getElementById('btn-inv-mode-ipt');
         const btnAct = document.getElementById('btn-inv-mode-active');
         if (btnIpt && btnAct) {{
-          btnIpt.className = 'px-2.5 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5';
-          btnAct.className = 'px-2.5 py-1 rounded-md text-xs font-bold bg-blue-600 text-white shadow transition flex items-center gap-1.5';
+          btnIpt.className = 'px-2.5 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5 cursor-pointer';
+          btnAct.className = 'px-2.5 py-1 rounded-md text-xs font-bold bg-blue-600 text-white shadow transition flex items-center gap-1.5 cursor-pointer';
         }}
       }} else {{
         const titleEl = document.getElementById('modal-inv-title');
@@ -2043,8 +2228,8 @@ def generate_interactive_gis_dashboard(
         const btnIpt = document.getElementById('btn-inv-mode-ipt');
         const btnAct = document.getElementById('btn-inv-mode-active');
         if (btnIpt && btnAct) {{
-          btnIpt.className = 'px-2.5 py-1 rounded-md text-xs font-bold bg-blue-600 text-white shadow transition flex items-center gap-1.5';
-          btnAct.className = 'px-2.5 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5';
+          btnIpt.className = 'px-2.5 py-1 rounded-md text-xs font-bold bg-blue-600 text-white shadow transition flex items-center gap-1.5 cursor-pointer';
+          btnAct.className = 'px-2.5 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5 cursor-pointer';
         }}
       }}
 
@@ -2088,7 +2273,7 @@ def generate_interactive_gis_dashboard(
       const pEl = document.getElementById('inv-kpi-pearson');
       if (pEl) pEl.innerText = stats.pearson.toFixed(2);
       const sEl = document.getElementById('inv-kpi-spearman');
-      if (sEl) sEl.innerText = '\u03c1: ' + stats.spearman.toFixed(2);
+      if (sEl) sEl.innerText = 'ρ: ' + stats.spearman.toFixed(2);
       const mEl = document.getElementById('inv-kpi-mean');
       if (mEl) mEl.innerText = '$ ' + Math.round(stats.meanY).toLocaleString();
       const muEl = document.getElementById('inv-kpi-mean-unit');
@@ -2098,64 +2283,70 @@ def generate_interactive_gis_dashboard(
       if (stats.pearson > 0.4) corrText = 'Directa / Progresiva';
       else if (stats.pearson < -0.4) corrText = 'Inversa / Regresiva';
       else corrText = 'Baja focalización';
-      document.getElementById('inv-kpi-corr-desc').innerText = corrText;
+      const corrDescEl = document.getElementById('inv-kpi-corr-desc');
+      if (corrDescEl) corrDescEl.innerText = corrText;
 
-      // Classify Quadrants
-      let gapCount = 0;
-      const classifiedPoints = pointsData.map(pt => {{
+      // Classify All 4 Quadrants
+      let q1Count = 0, q2Count = 0, q3Count = 0, q4Count = 0;
+      currentClassifiedPoints = pointsData.map(pt => {{
         let isHighPriv = polarity === 'baja_es_privacion' ? (pt.x <= medianX) : (pt.x >= medianX);
         let isHighInv = pt.y >= medianY;
 
-        let quadName = '', quadBadge = '', quadColor = '#3b82f6';
+        let quadKey = '', quadName = '', quadBadge = '', quadColor = '#3b82f6';
         if (isHighPriv && isHighInv) {{
+          quadKey = 'Q1';
           quadName = 'I. Prioridad Atendida';
           quadBadge = '<span class="px-2 py-0.5 rounded bg-blue-500/20 text-sky-300 font-semibold text-[10px]">🔵 Atendida</span>';
           quadColor = '#38bdf8';
+          q1Count++;
         }} else if (isHighPriv && !isHighInv) {{
+          quadKey = 'Q2';
           quadName = 'II. Brecha Crítica';
           quadBadge = '<span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-bold text-[10px]">🔴 Brecha Crítica</span>';
           quadColor = '#f43f5e';
-          gapCount++;
+          q2Count++;
         }} else if (!isHighPriv && !isHighInv) {{
+          quadKey = 'Q3';
           quadName = 'III. Autosuficiencia';
           quadBadge = '<span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-semibold text-[10px]">🟢 Autosuficiente</span>';
           quadColor = '#10b981';
+          q3Count++;
         }} else {{
+          quadKey = 'Q4';
           quadName = 'IV. Eficiencia a Revisar';
           quadBadge = '<span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-semibold text-[10px]">🟠 Eficiencia</span>';
           quadColor = '#f59e0b';
+          q4Count++;
         }}
 
-        return {{ ...pt, quadName, quadBadge, quadColor, isHighPriv, isHighInv }};
+        return {{ ...pt, quadKey, quadName, quadBadge, quadColor, isHighPriv, isHighInv, xUnit }};
       }});
 
-      document.getElementById('inv-kpi-gaps-count').innerText = gapCount + ' / 20';
-      document.getElementById('inv-kpi-diagnosis').innerText = gapCount > 5 ? 'Déficit Territorial Acentuado' : (gapCount > 0 ? 'Focalización Moderada' : 'Alta Progresividad');
+      // Update all 4 KPI Cards
+      const q1El = document.getElementById('inv-kpi-q1-count');
+      if (q1El) q1El.innerText = q1Count + ' / 20';
+      const q2El = document.getElementById('inv-kpi-q2-count');
+      if (q2El) q2El.innerText = q2Count + ' / 20';
+      const q3El = document.getElementById('inv-kpi-q3-count');
+      if (q3El) q3El.innerText = q3Count + ' / 20';
+      const q4El = document.getElementById('inv-kpi-q4-count');
+      if (q4El) q4El.innerText = q4Count + ' / 20';
 
-      // Populate Table
-      const tableBody = document.getElementById('table-inv-body');
-      tableBody.innerHTML = '';
-      classifiedPoints.sort((a, b) => (a.quadName === 'II. Brecha Crítica' ? -1 : 1)).forEach(row => {{
-        const tr = document.createElement('tr');
-        tr.className = 'hover:bg-slate-800/80 transition cursor-pointer';
-        const formattedX = isNaN(Number(row.x)) ? '0' : Number(row.x).toLocaleString();
-        const formattedY = Math.round(row.y).toLocaleString();
-        const unitSpan = xUnit ? '<span class="text-[10px] text-slate-400">' + xUnit + '</span>' : '';
+      const cntQ1 = document.getElementById('cnt-flt-q1');
+      if (cntQ1) cntQ1.innerText = q1Count;
+      const cntQ2 = document.getElementById('cnt-flt-q2');
+      if (cntQ2) cntQ2.innerText = q2Count;
+      const cntQ3 = document.getElementById('cnt-flt-q3');
+      if (cntQ3) cntQ3.innerText = q3Count;
+      const cntQ4 = document.getElementById('cnt-flt-q4');
+      if (cntQ4) cntQ4.innerText = q4Count;
 
-        tr.innerHTML = '<td class="p-2.5 font-bold text-white flex items-center gap-1.5">' +
-            '<span class="h-2 w-2 rounded-full" style="background-color: ' + row.quadColor + '"></span>' +
-            row.name +
-          '</td>' +
-          '<td class="p-2.5">' + row.quadBadge + '</td>' +
-          '<td class="p-2.5 text-right font-mono text-slate-200">' + formattedX + ' ' + unitSpan + '</td>' +
-          '<td class="p-2.5 text-right font-mono text-sky-300">$ ' + formattedY + '</td>' +
-          '<td class="p-2.5 text-center">' +
-            '<button class="px-2 py-1 bg-blue-600/30 hover:bg-blue-600 text-sky-200 hover:text-white rounded text-[10px] font-semibold transition" onclick="selectLocalityFromModal(' + row.code + ')">' +
-              'Ver' +
-            '</button>' +
-          '</td>';
-        tableBody.appendChild(tr);
-      }});
+      const diagEl = document.getElementById('inv-kpi-diagnosis');
+      if (diagEl) diagEl.innerText = q2Count > 5 ? 'Déficit Territorial Acentuado' : (q2Count > 0 ? 'Focalización Moderada' : 'Alta Progresividad');
+
+      // Sort and populate table
+      currentClassifiedPoints.sort((a, b) => (a.quadName === 'II. Brecha Crítica' ? -1 : 1));
+      filterInvTable('all');
 
       // Render Scatter Chart
       const ctx = document.getElementById('chart-investment-scatter').getContext('2d');
@@ -2168,12 +2359,12 @@ def generate_interactive_gis_dashboard(
         data: {{
           datasets: [{{
             label: 'Localidades',
-            data: classifiedPoints.map(p => ({{ x: p.x, y: p.y, name: p.name, code: p.code, quad: p.quadName }})),
-            backgroundColor: classifiedPoints.map(p => p.quadColor),
-            pointRadius: classifiedPoints.map(p => p.code === selectedLocalityCode ? 9 : 6),
+            data: currentClassifiedPoints.map(p => ({{ x: p.x, y: p.y, name: p.name, code: p.code, quad: p.quadName }})),
+            backgroundColor: currentClassifiedPoints.map(p => p.quadColor),
+            pointRadius: currentClassifiedPoints.map(p => p.code === selectedLocalityCode ? 9 : 6),
             pointHoverRadius: 9,
             borderColor: '#ffffff',
-            borderWidth: classifiedPoints.map(p => p.code === selectedLocalityCode ? 2.5 : 1)
+            borderWidth: currentClassifiedPoints.map(p => p.code === selectedLocalityCode ? 2.5 : 1)
           }}]
         }},
         options: {{
@@ -2186,7 +2377,7 @@ def generate_interactive_gis_dashboard(
                 label: function(c) {{
                   const raw = c.raw;
                   const u = xUnit ? ' ' + xUnit : '';
-                  return raw.name + ' [' + raw.quad + ']: (' + raw.x.toLocaleString() + u + ', $' + Math.round(raw.y).toLocaleString() + ' COP)';
+                  return raw.name + ' [' + raw.quad + ']: (' + raw.x.toLocaleString(undefined, {{maximumFractionDigits: 2}}) + u + ', $' + Math.round(raw.y).toLocaleString() + ' COP)';
                 }}
               }}
             }}
@@ -2206,7 +2397,7 @@ def generate_interactive_gis_dashboard(
           onClick: function(e, elements) {{
             if (elements.length > 0) {{
               const idx = elements[0].index;
-              const target = classifiedPoints[idx];
+              const target = currentClassifiedPoints[idx];
               selectLocalityFromModal(target.code);
             }}
           }}

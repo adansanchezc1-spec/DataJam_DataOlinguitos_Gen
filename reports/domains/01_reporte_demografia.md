@@ -3,7 +3,7 @@
 **Fase PDCO**: DEVELOPMENT → OPERATIONS  
 **Dominio**: Demografía y Dinámica Espacial  
 **Estándares**: DAMA-BOK / SWEBOK Cap. 2 y 4 / ISO/IEC 25010  
-**Fecha de Emisión**: 2026-08-23  
+**Fecha de Emisión**: 2026-08-26  
 **Cobertura**: 100% (20 Localidades Oficiales de Bogotá D.C.)  
 **Certificación de Calidad**: ISO/IEC 25010 Conforme (100% Completitud Territorial)  
 
@@ -12,32 +12,34 @@
 ## 1. Pregunta de Negocio y Resumen Ejecutivo
 > **Pregunta Clave**: ¿Cómo se distribuye la concentración poblacional y la presión de ocupación sobre el territorio distrital?
 
-El presente informe expone el comportamiento multidimensional de los indicadores de **Demografía y Dinámica Espacial** a lo largo de las 20 localidades del Distrito Capital, evaluando la distribución de capacidades, brechas estructurales y focos de intervención prioritaria.
+El presente informe expone el comportamiento multidimensional de los indicadores de **Demografía y Dinámica Espacial** a lo largo de las 20 localidades del Distrito Capital, evaluando la distribución de capacidades, brechas estructurales, patrones geoespaciales y focos de intervención prioritaria.
 
 ---
 
-## 2. Visualización Analítica Multi-Panel
+## 2. Visualización Analítica y Geoespacial Multi-Panel (3 Paneles)
 ![Gráfica Sectorial](../figures/fig_01_demografia_densidad.png)
+
+*Figura: (A) Mapa coroplético oficial de Bogotá D.C.; (B) Ranking y distribución territorial; (C) Dispersión bivariada y brechas estructurales.*
 
 ---
 
 ## 3. Catálogo de Indicadores Calculados del Dominio
 
-| Código | Indicador | Fórmula en $\LaTeX$ | Unidad | Polaridad IPT | Fuente |
+| Código | Indicador | Fórmula Matemática | Unidad | Polaridad IPT | Fuente |
 |---|---|---|---|:---:|---|
 | `DEM-001` | **Densidad Poblacional** | $$\text{Densidad} = \frac{\text{Población}}{\text{Área km}^2}$$ | hab/km² | `Informativo / Divisor` | SDP / DANE |
 | `DEM-002` | **Proyección Poblacional Total** | $$P_i = \sum \text{Habitantes Censados}$$ | Habitantes | `Denominador Per Cápita` | DANE Proyecciones |
 
 ---
 
-## 4. Hallazgos Analíticos y Brechas Territoriales
+## 4. Hallazgos Analíticos, Espaciales y Brechas Territoriales
 - **Densidad Extrema en Borde Suroccidente**: Bosa (`28,842 hab/km²`) y Kennedy (`27,088 hab/km²`) presentan una concentración demográfica que triplica el promedio urbano de la capital, generando saturación extrema sobre vías, transporte y colegios.
 - **Volumen Absoluto**: Suba (`1,232,535 hab`) y Kennedy (`1,091,115 hab`) concentran juntas más del 29% de toda la población de Bogotá D.C.
 - **Contrastes de Ruralidad Extensa**: Sumapaz (`780.96 km²`, 45% del área distrital) registra apenas `18 hab/km²` y 3.678 habitantes, imponiendo desafíos logísticos de atención dispersa.
 
 ### 4.1. Diagnóstico Estadístico y Distribución Multivariada (DAMA-BOK)
 
-| Variable / Indicador | Media ($\mu$) | Mediana ($Q_2$) | Desv. Est. ($\sigma$) | IQR | Mín | Máx | CV (%) | Asimetría ($g_1$) |
+| Variable / Indicador | Media (μ) | Mediana (Q2) | Desv. Est. (σ) | IQR | Mín | Máx | CV (%) | Asimetría (g1) |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | `poblacion` | 390,716.20 | 298,087.00 | 363,111.66 | 471,680.50 | 3,678.00 | 1,232,535.00 | 92.9% | +1.05 |
 | `area_km2` | 76.03 | 35.88 | 169.00 | 36.62 | 2.06 | 780.96 | 222.3% | +4.22 |
@@ -86,9 +88,9 @@ El presente informe expone el comportamiento multidimensional de los indicadores
 - **Impacto Cuantificable**: Cobertura institucional del 100% en veredas rurales dispersas.
 
 ### C. Protocolo de Semaforización de Alertas Tempranas
-- 🔴 **Alerta Crítica (Rojo)**: Densidad $\ge 25,000$ hab/km² con déficit de equipamientos.
-- 🟠 **Alerta Media (Naranja)**: Densidad entre $15,000$ y $25,000$ hab/km².
-- 🟢 **Condición Estable (Verde)**: Densidad $< 15,000$ hab/km² con equilibrio de espacio.
+- 🔴 **Alerta Crítica (Rojo)**: Densidad >= 25,000 hab/km² con déficit de equipamientos.
+- 🟠 **Alerta Media (Naranja)**: Densidad entre 15,000 y 25,000 hab/km².
+- 🟢 **Condición Estable (Verde)**: Densidad < 15,000 hab/km² con equilibrio de espacio.
 
 ---
 

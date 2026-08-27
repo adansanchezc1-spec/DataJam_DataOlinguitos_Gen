@@ -3,7 +3,7 @@
 **Fase PDCO**: DEVELOPMENT → OPERATIONS  
 **Dominio**: Vulnerabilidad Social y Economía Informal  
 **Estándares**: DAMA-BOK / SWEBOK Cap. 2 y 4 / ISO/IEC 25010  
-**Fecha de Emisión**: 2026-08-23  
+**Fecha de Emisión**: 2026-08-26  
 **Cobertura**: 100% (20 Localidades Oficiales de Bogotá D.C.)  
 **Certificación de Calidad**: ISO/IEC 25010 Conforme (100% Completitud Territorial)  
 
@@ -12,32 +12,34 @@
 ## 1. Pregunta de Negocio y Resumen Ejecutivo
 > **Pregunta Clave**: ¿Qué sectores concentran mayor dependencia económica del trabajo informal y demanda de subsidios sociales?
 
-El presente informe expone el comportamiento multidimensional de los indicadores de **Vulnerabilidad Social y Economía Informal** a lo largo de las 20 localidades del Distrito Capital, evaluando la distribución de capacidades, brechas estructurales y focos de intervención prioritaria.
+El presente informe expone el comportamiento multidimensional de los indicadores de **Vulnerabilidad Social y Economía Informal** a lo largo de las 20 localidades del Distrito Capital, evaluando la distribución de capacidades, brechas estructurales, patrones geoespaciales y focos de intervención prioritaria.
 
 ---
 
-## 2. Visualización Analítica Multi-Panel
+## 2. Visualización Analítica y Geoespacial Multi-Panel (3 Paneles)
 ![Gráfica Sectorial](../figures/fig_08_vulnerabilidad_rivi_sdis.png)
+
+*Figura: (A) Mapa coroplético oficial de Bogotá D.C.; (B) Ranking y distribución territorial; (C) Dispersión bivariada y brechas estructurales.*
 
 ---
 
 ## 3. Catálogo de Indicadores Calculados del Dominio
 
-| Código | Indicador | Fórmula en $\LaTeX$ | Unidad | Polaridad IPT | Fuente |
+| Código | Indicador | Fórmula Matemática | Unidad | Polaridad IPT | Fuente |
 |---|---|---|---|:---:|---|
 | `VUL-001` | **Tasa de Vendedores Informales RIVI por 10.000 Hab.** | $$t_{\text{rivi}} = \frac{\text{Vendedores RIVI}}{\text{Población}} \times 10\,000$$ | vendedores/10k hab | `Directa (Vulnerabilidad = Norm)` | IPES / RIVI |
 | `VUL-002` | **Beneficiarios de Transferencias Monetarias** | $$\text{Benef}_i = \sum \text{Hogares en Pobreza Extrema/Moderada}$$ | Hogares | `Informativo / Focalización SDIS` | SDIS |
 
 ---
 
-## 4. Hallazgos Analíticos y Brechas Territoriales
+## 4. Hallazgos Analíticos, Espaciales y Brechas Territoriales
 - **Nodos de Trabajo Informal**: Santa Fe (`182.4 vendedores/10k hab`) y Los Mártires (`145.2 vendedores/10k hab`) registran la mayor concentración de economía informal en espacio público.
 - **Volumen de Vulnerabilidad en la Periferia**: Kennedy, Bosa y Ciudad Bolívar concentran la mayor masa de familias dependientes de transferencias monetarias del programa 'Ingreso Mínimo Garantizado'.
 - **Comedores Comunitarios**: Usme y San Cristóbal presentan la mayor tasa de cobertura de raciones calóricas asistidas por comedores comunitarios de la SDIS.
 
 ### 4.1. Diagnóstico Estadístico y Distribución Multivariada (DAMA-BOK)
 
-| Variable / Indicador | Media ($\mu$) | Mediana ($Q_2$) | Desv. Est. ($\sigma$) | IQR | Mín | Máx | CV (%) | Asimetría ($g_1$) |
+| Variable / Indicador | Media (μ) | Mediana (Q2) | Desv. Est. (σ) | IQR | Mín | Máx | CV (%) | Asimetría (g1) |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | `vendedores_informales_promedio` | 2,445.97 | 1,954.67 | 2,120.40 | 1,648.33 | 19.00 | 10,102.67 | 86.7% | +2.62 |
 | `rivi_por_10000_hab_2017_2019` | 180.90 | 59.72 | 293.97 | 102.83 | 11.17 | 1,005.66 | 162.5% | +2.39 |
@@ -87,9 +89,9 @@ El presente informe expone el comportamiento multidimensional de los indicadores
 - **Impacto Cuantificable**: Cobertura del 100% de hogares en pobreza extrema según Sisbén IV.
 
 ### C. Protocolo de Semaforización de Alertas Tempranas
-- 🔴 **Alerta Crítica (Rojo)**: Tasa RIVI $\ge 50.0$ por 10k hab o pobreza multidimensional $> 20\%$.
-- 🟠 **Alerta Media (Naranja)**: Tasa RIVI entre $20.0$ y $50.0$ por 10k hab.
-- 🟢 **Condición Estable (Verde)**: Tasa RIVI $< 20.0$ por 10k hab con alta formalidad.
+- 🔴 **Alerta Crítica (Rojo)**: Tasa RIVI >= 50.0 por 10k hab o pobreza multidimensional > 20%.
+- 🟠 **Alerta Media (Naranja)**: Tasa RIVI entre 20.0 y 50.0 por 10k hab.
+- 🟢 **Condición Estable (Verde)**: Tasa RIVI < 20.0 por 10k hab con alta formalidad.
 
 ---
 
