@@ -2033,7 +2033,11 @@ def generate_interactive_gis_dashboard(
       }}
 
       if (radarChart) {{
-        radarChart.destroy();
+        radarChart.data.datasets[0].label = localityLabel;
+        radarChart.data.datasets[0].data = localityValues;
+        radarChart.data.datasets[1].data = districtMeans;
+        radarChart.update('none');
+        return;
       }}
 
       radarChart = new Chart(ctx, {{
@@ -2063,6 +2067,7 @@ def generate_interactive_gis_dashboard(
         options: {{
           responsive: true,
           maintainAspectRatio: false,
+          animation: false,
           scales: {{
             r: {{
               angleLines: {{ color: 'rgba(255, 255, 255, 0.1)' }},
@@ -2478,7 +2483,7 @@ def generate_interactive_gis_dashboard(
         currentIndicator = domainCatalog[currentDomain].indicadores[0].col;
         updateSidebarDomainInfo();
         renderChoropleth();
-        updateCharts();
+        updateBarChart();
         showToast(`Sector cambiado a: ${{domainCatalog[currentDomain].nombre}}`, 'info');
       }});
 
@@ -2488,7 +2493,7 @@ def generate_interactive_gis_dashboard(
         currentIndicator = e.target.value;
         updateSidebarDomainInfo();
         renderChoropleth();
-        updateCharts();
+        updateBarChart();
         showToast(`Indicador activo actualizado`, 'info');
       }});
 
@@ -2541,7 +2546,7 @@ def generate_interactive_gis_dashboard(
         isColorblindMode = !isColorblindMode;
         this.className = isColorblindMode ? 'px-2.5 py-1.5 bg-amber-500/20 text-amber-300 text-xs font-medium rounded-lg border border-amber-500/40 flex items-center gap-1.5 transition-all' : 'px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5 transition-all';
         renderChoropleth();
-        updateCharts();
+        updateBarChart();
         showToast(isColorblindMode ? 'Modo Accesible Viridis Activado' : 'Paleta Estándar Restaurada', 'success');
       }});
 

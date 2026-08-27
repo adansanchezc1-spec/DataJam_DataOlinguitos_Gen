@@ -19,9 +19,11 @@ htmlcov/
 # VS Code
 .vscode/
 
-# EDA Benchmarking & Cache
+# EDA Benchmarking, Cache & Temporary
 reports/eda/tiempos/
 reports/eda/cache/
+scratch/
+
 
 # Data / outputs
 data/raw/**/.*

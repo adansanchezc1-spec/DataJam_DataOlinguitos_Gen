@@ -75,6 +75,41 @@ def build_ipt(
     return ipt
 
 
+def load_ipt_weights_config(config_path: Path | str | None = None) -> dict:
+    """Carga de forma desacoplada la configuración declarativa de ponderaciones del IPT."""
+    import json
+    candidates = [
+        Path(config_path) if config_path else None,
+        ROOT / "config" / "ipt_weights.json",
+        ROOT / "models" / "ipt_config_weights.json",
+    ]
+    for c in candidates:
+        if c and c.exists():
+            try:
+                with open(c, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception:
+                pass
+
+    # Configuración canónica por defecto si no se encuentra archivo
+    return {
+        "version": "1.0.0",
+        "scenarios": {
+            "escenario_1_base": {
+                "pesos": {
+                    "dim_educacion": 1.0 / 7.0,
+                    "dim_salud": 1.0 / 7.0,
+                    "dim_movilidad": 1.0 / 7.0,
+                    "dim_ambiente": 1.0 / 7.0,
+                    "dim_infraestructura": 1.0 / 7.0,
+                    "dim_vulnerabilidad": 1.0 / 7.0,
+                    "dim_seguridad": 1.0 / 7.0,
+                }
+            }
+        }
+    }
+
+
 DIMENSION_COLUMNS = (
     "dim_educacion",
     "dim_salud",
@@ -84,6 +119,7 @@ DIMENSION_COLUMNS = (
     "dim_vulnerabilidad",
     "dim_seguridad",
 )
+
 
 
 def build_consolidated_locality_metrics(

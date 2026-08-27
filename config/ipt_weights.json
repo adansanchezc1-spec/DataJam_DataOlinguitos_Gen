@@ -1,0 +1,104 @@
+{
+  "version": "1.0.0",
+  "project": "SIPTA",
+  "scale": [0, 100],
+  "scenarios": {
+    "escenario_1_base": {
+      "nombre": "IPT Base (7 Dimensiones Equilibradas)",
+      "descripcion": "Ponderación balanceada homogénea entre todas las dimensiones canónicas validadas",
+      "pesos": {
+        "dim_educacion": 0.14285714285714285,
+        "dim_salud": 0.14285714285714285,
+        "dim_movilidad": 0.14285714285714285,
+        "dim_ambiente": 0.14285714285714285,
+        "dim_infraestructura": 0.14285714285714285,
+        "dim_vulnerabilidad": 0.14285714285714285,
+        "dim_seguridad": 0.14285714285714285
+      },
+      "divisor": 7
+    },
+    "escenario_2_rangos": {
+      "nombre": "IPT Normalización por Rangos (Percentiles)",
+      "descripcion": "Transformación no paramétrica basada en rangos ordinales para reducir sesgo por valores atípicos",
+      "pesos": {
+        "dim_educacion": 0.14285714285714285,
+        "dim_salud": 0.14285714285714285,
+        "dim_movilidad": 0.14285714285714285,
+        "dim_ambiente": 0.14285714285714285,
+        "dim_infraestructura": 0.14285714285714285,
+        "dim_vulnerabilidad": 0.14285714285714285,
+        "dim_seguridad": 0.14285714285714285
+      },
+      "divisor": 7
+    },
+    "escenario_3_sin_parques": {
+      "nombre": "IPT Sin Proxy Infraestructura (6 Dimensiones)",
+      "descripcion": "Excluye la dimensión de infraestructura al ser un proxy de conteo de parques",
+      "pesos": {
+        "dim_educacion": 0.16666666666666666,
+        "dim_salud": 0.16666666666666666,
+        "dim_movilidad": 0.16666666666666666,
+        "dim_ambiente": 0.16666666666666666,
+        "dim_infraestructura": 0.0,
+        "dim_vulnerabilidad": 0.16666666666666666,
+        "dim_seguridad": 0.16666666666666666
+      },
+      "divisor": 6
+    },
+    "escenario_4_sin_rivi": {
+      "nombre": "IPT Sin RIVI Vendedores (6 Dimensiones)",
+      "descripcion": "Excluye la dimensión de vulnerabilidad económica por desfase temporal de los censos RIVI 2017-2019",
+      "pesos": {
+        "dim_educacion": 0.16666666666666666,
+        "dim_salud": 0.16666666666666666,
+        "dim_movilidad": 0.16666666666666666,
+        "dim_ambiente": 0.16666666666666666,
+        "dim_infraestructura": 0.16666666666666666,
+        "dim_vulnerabilidad": 0.0,
+        "dim_seguridad": 0.16666666666666666
+      },
+      "divisor": 6
+    },
+    "escenario_5_sin_proxies": {
+      "nombre": "IPT Sin Proxies (5 Dimensiones Duras)",
+      "descripcion": "Modelo restrictivo que evalúa únicamente dimensiones de oferta formal dura sin depender de aproximaciones",
+      "pesos": {
+        "dim_educacion": 0.2,
+        "dim_salud": 0.2,
+        "dim_movilidad": 0.2,
+        "dim_ambiente": 0.2,
+        "dim_infraestructura": 0.0,
+        "dim_vulnerabilidad": 0.0,
+        "dim_seguridad": 0.2
+      },
+      "divisor": 5
+    },
+    "escenario_6_geometrico": {
+      "nombre": "IPT Agregación Geométrica Ponderada (No Compensatoria OCDE)",
+      "descripcion": "Agregación multiplicativa que penaliza fuertemente a localidades con déficits extremos en dimensiones individuales",
+      "pesos": {
+        "dim_educacion": 0.14285714285714285,
+        "dim_salud": 0.14285714285714285,
+        "dim_movilidad": 0.14285714285714285,
+        "dim_ambiente": 0.14285714285714285,
+        "dim_infraestructura": 0.14285714285714285,
+        "dim_vulnerabilidad": 0.14285714285714285,
+        "dim_seguridad": 0.14285714285714285
+      },
+      "tipo_agregacion": "geometrica",
+      "epsilon": 0.01
+    }
+  },
+  "consensus_rules": {
+    "sorting_criteria": [
+      "ranking_promedio_escenarios ASC",
+      "ranking_ipt_base ASC",
+      "codigo_localidad ASC"
+    ],
+    "confidence_thresholds": {
+      "Alta": 4,
+      "Media": 2,
+      "Baja": 0
+    }
+  }
+}

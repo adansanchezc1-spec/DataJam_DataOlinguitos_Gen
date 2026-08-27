@@ -1,6 +1,6 @@
 # Conclusiones del EDA — SIPTA Bogotá
 
-Generado: 2026-08-26 19:10 | modo smoke: True
+Generado: 2026-08-27 10:39 | modo smoke: True
 
 ## 1. Inventario y calidad
 

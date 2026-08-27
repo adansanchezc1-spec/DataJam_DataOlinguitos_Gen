@@ -1,11 +1,11 @@
 {
   "project": "DataJam_DataOlinguitos_Gen",
-  "version": "1.2.2",
-  "description": "Pipeline y plataforma SIPTA (Sistema de Indicadores y Priorización Territorial y Alertas Tempranas) - Integración de 5 Escenarios de Sensibilidad IPT, 35 Indicadores Catalogados, Soporte Universal Google Colab/Local y 13 Reportes Cartográficos Sectoriales v1.2.2",
+  "version": "1.0.0",
+  "description": "Pipeline y plataforma SIPTA (Sistema de Indicadores y Priorización Territorial y Alertas Tempranas) - Estandarización Canónica de Arquitectura, Empaquetado pyproject.toml, Desacoplamiento Declarativo config/ipt_weights.json y 13 Reportes Cartográficos Sectoriales v1.0.0",
   "pdco_phase": "OPERATIONS",
-  "active_skill": "software-development",
-  "sdlc_stage": "release_v1_2_2_colab_support_and_robust_indicators",
-  "last_updated": "2026-08-26",
+  "active_skill": "maintenance-refactoring",
+  "sdlc_stage": "release_v1_0_0_canonical_architecture_and_packaging",
+  "last_updated": "2026-08-27",
   "team": {
     "lead": "Persona A (Adan Sánchez - Scrum Master & Lead Data Engineer)",
     "members": [
@@ -18,6 +18,7 @@
     "code_style_python": "PEP 8 + Type Hints",
     "code_style_java": "Google Java Style",
     "architecture": "Hexagonal / Modular Pipeline",
+    "packaging": "PEP 517 / PEP 518 / PEP 621 (pyproject.toml)",
     "testing_framework": "pytest 8.0+",
     "testing_pattern": "AAA (Arrange-Act-Assert)",
     "testing_standards": "SWEBOK Cap. 5 / IEEE 829 / ISO 29119 / ISO/IEC 25010",
@@ -31,6 +32,7 @@
         "docs/01-requirements/requirements.md",
         "docs/01-requirements/use-cases.md",
         "docs/01-requirements/entity-map.md",
+        "docs/01-requirements/FORMULARIO_CARACTERIZACION_FORMULACION_PROBLEMAS.md",
         "docs/01-requirements/E01_inventario_datos.md",
         "docs/01-requirements/E02_diccionario_datos.md",
         "docs/01-requirements/alcance_supuestos_restricciones.md",
@@ -52,9 +54,13 @@
       "files": [
         "docs/02-architecture/README.md",
         "docs/02-architecture/architecture.md",
+        "docs/02-architecture/NOTA_TECNICA_INTEGRACION_DATOS_PUBLICOS.md",
         "docs/02-architecture/patterns.md",
         "docs/02-architecture/ADR/ADR-001.md",
         "docs/02-architecture/ADR/ADR-002.md",
+        "docs/02-architecture/ADR/ADR-003.md",
+        "docs/02-architecture/ADR/ADR-004.md",
+        "docs/02-architecture/ADR/ADR-005.md",
         "docs/02-architecture/diagrams/class-diagram.md",
         "docs/02-architecture/diagrams/sequence-diagram.md",
         "docs/02-architecture/diagrams/component-diagram.md",
@@ -72,6 +78,8 @@
         "docs/03-development/api-docs.md",
         "docs/03-development/analisis_exploratorio_nuevos_dominios.md",
         "docs/03-development/technical-debt.md",
+        "pyproject.toml",
+        "config/ipt_weights.json",
         "src/ingestion/ingest_data.py",
         "src/validation/validate_data.py",
         "src/cleaning/clean_data.py",
@@ -178,6 +186,8 @@
         "reports/domains/11_reporte_empleo_economia.md",
         "reports/domains/12_reporte_participacion_ciudadana.md",
         "scripts/generate_domain_reports.py",
+        "scripts/download_missing_data.py",
+        "scripts/prepare_education_geojson.py",
         "notebooks/README.md",
         "src/README.md"
       ]
@@ -206,7 +216,8 @@
     "Indicator Derivation Specification",
     "AAA (Arrange-Act-Assert) Testing Pattern",
     "Automated Notebook Headless Runner",
-    "Automated Multi-Domain Reporting Generator"
+    "Automated Multi-Domain Reporting Generator",
+    "Declarative Configuration Provider (ADR-005)"
   ],
   "antipatterns_detected": [],
   "solid_violations": []

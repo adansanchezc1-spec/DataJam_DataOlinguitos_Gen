@@ -20,6 +20,7 @@ docs/
 │   ├── requirements.md                     ← Especificación formal IEEE 830 (RF-001..017, RNF-001..008)
 │   ├── use-cases.md                        ← Casos de uso estructurados por entidad
 │   ├── entity-map.md                       ← Mapa de entidades y modelo entidad-relación
+│   ├── FORMULARIO_CARACTERIZACION_FORMULACION_PROBLEMAS.md ← Caracterización de necesidades públicas
 │   ├── E01_inventario_datos.md             ← Inventario maestro de fuentes y 25 datasets oficiales
 │   ├── E02_diccionario_datos.md            ← Diccionario de datos y metadatos técnicos (13 dominios)
 │   ├── fichas_tecnicas_indicadores_base.md ← Fichas técnicas conceptuales de indicadores base
@@ -37,8 +38,14 @@ docs/
 ├── 02-architecture/                        ← FASE PLAN → DEVELOPMENT: Diseño del Sistema
 │   ├── README.md                           ← Guía y catálogo de la fase de Arquitectura
 │   ├── architecture.md                     ← Documento principal de Arquitectura de Software SAD v1.0.0
+│   ├── NOTA_TECNICA_INTEGRACION_DATOS_PUBLICOS.md ← Arquitectura de integración territorial multidominio
 │   ├── patterns.md                         ← Catálogo de patrones GoF y GRASP aplicados
 │   ├── ADR/                                ← Architecture Decision Records (ADR-001..005)
+│   │   ├── ADR-001.md                      ← Arquitectura Modular Hexagonal
+│   │   ├── ADR-002.md                      ← Modelo Compuesto IPT y 10 Pasos OCDE/JRC
+│   │   ├── ADR-003.md                      ← Sistema de Homologación Territorial Canónica
+│   │   ├── ADR-004.md                      ← Bootstrap Dirichlet y Factor de Inflación VIF
+│   │   └── ADR-005.md                      ← Estandarización Canónica y pyproject.toml
 │   └── diagrams/                           ← Diagramas UML de Clases, Secuencia, Componentes y Comunicación
 │
 ├── 03-development/                         ← FASE DEVELOPMENT: Implementación, Modelado y APIs
@@ -54,11 +61,11 @@ docs/
 ├── 04-testing/                             ← FASE CONTROL: Aseguramiento de Calidad y Tests
 │   ├── README.md                           ← Guía y catálogo de la fase de Pruebas
 │   ├── test-plan.md                        ← Plan maestro de pruebas unitarias y de integración
-│   └── test-results.md                     ← Reporte formal de ejecución (193/193 tests passed, 100%)
+│   └── test-results.md                     ← Reporte formal de ejecución (194/194 tests passed, 100%)
 │
 └── 05-maintenance/                         ← FASE OPERATIONS: Mantenimiento y Evolución
     ├── README.md                           ← Guía y catálogo de la fase de Mantenimiento
-    ├── changelog.md                        ← Registro de cambios y versiones SemVer (v1.0.0)
+    ├── changelog.md                        ← Registro de cambios y versiones SemVer (v1.3.0)
     ├── refactoring-log.md                  ← Bitácora de optimizaciones y refactorización continua
     └── migration_manifest.md               ← Manifiesto de migración y trazabilidad de datasets
 ```
@@ -69,9 +76,9 @@ docs/
 
 Adicionalmente, el repositorio incluye los siguientes directorios clave de entrega:
 
-- 🏛️ **Gobernanza de Modelos (`models/`)**:
+- 🏛️ **Gobernanza de Modelos (`models/`) y Configuración (`config/`)**:
+  - `config/ipt_weights.json`: Ponderaciones declarativas de los 5 escenarios de sensibilidad y 7 dimensiones canónicas.
   - `models/model_card.json`: Ficha técnica de gobernanza del modelo IPT (v1.0.0).
-  - `models/ipt_config_weights.json`: Ponderaciones de las 7 dimensiones canónicas y 5 escenarios de sensibilidad.
   - `models/transformers/minmax_scalers_config.json`: Parámetros de normalización y polaridad por indicador.
 - 🗺️ **Aplicación Web GIS Autónoma**: [`reports/dashboard_geografico_sipta.html`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/reports/dashboard_geografico_sipta.html) (Leaflet.js + Chart.js para exploración multicapa de 13 dominios).
 - 📑 **Informe Maestro de Auditoría Estadística**: [`reports/00_auditoria_estadistica_formal.md`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/reports/00_auditoria_estadistica_formal.md) (Dictamen cuantitativo OCDE/JRC, VIF, Bootstrap, Moran).
@@ -88,5 +95,5 @@ Adicionalmente, el repositorio incluye los siguientes directorios clave de entre
 | **PLAN** | [`01-requirements/`](01-requirements/README.md) | [`requirements.md`](01-requirements/requirements.md) | IEEE 830 / ISO 29148 / DAMA-BOK |
 | **DESIGN** | [`02-architecture/`](02-architecture/README.md) | [`architecture.md`](02-architecture/architecture.md) | SWEBOK Cap. 2 / SOLID / ADR |
 | **DEVELOPMENT** | [`03-development/`](03-development/README.md) | [`api-docs.md`](03-development/api-docs.md) | Clean Code / PEP 8 / Type Hints |
-| **CONTROL** | [`04-testing/`](04-testing/README.md) | [`test-results.md`](04-testing/test-results.md) | IEEE 829 / ISO 29119 / 193 tests |
+| **CONTROL** | [`04-testing/`](04-testing/README.md) | [`test-results.md`](04-testing/test-results.md) | IEEE 829 / ISO 29119 / 194 tests |
 | **OPERATIONS** | [`05-maintenance/`](05-maintenance/README.md) | [`changelog.md`](05-maintenance/changelog.md) | SemVer / Keep a Changelog |

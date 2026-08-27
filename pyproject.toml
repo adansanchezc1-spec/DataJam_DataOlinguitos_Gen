@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sipta"
+version = "1.0.0"
+description = "Sistema de Indicadores y Priorización Territorial y Alertas Tempranas - DataJam Bogotá"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Adan Sánchez", email = "adansanchez@example.com" },
+    { name = "Yesid Bello", email = "yesidbello@example.com" },
+    { name = "Sofía Hidalgo", email = "sofiahidalgo@example.com" }
+]
+keywords = ["datajam", "bogota", "territorial-analytics", "composite-indicators", "sipta"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: GIS",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "geopandas>=0.14.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "openpyxl>=3.1.0",
+    "pyogrio>=0.7.0",
+    "pytest>=8.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "flake8>=6.0",
+    "mypy>=1.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
