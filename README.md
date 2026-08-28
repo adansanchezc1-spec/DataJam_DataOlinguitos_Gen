@@ -46,6 +46,39 @@ El sistema implementa de forma exhaustiva los estándares internacionales rector
 
 ---
 
+## 🚀 Guía de Inicio Rápido y Manual del Usuario
+
+> 📘 **Manual Completo**: Para instrucciones detalladas paso a paso sobre instalación, uso del dashboard, ejecución de notebooks y reproducción de pruebas, consulte la [**Guía de Uso Oficial (`GUIA_DE_USO.md`)**](GUIA_DE_USO.md).
+
+### 1. Instalación Rápida
+```bash
+# Clonar y configurar entorno
+git clone https://github.com/adansanchezc1-spec/DataJam_DataOlinguitos_Gen.git
+cd DataJam_DataOlinguitos_Gen
+python -m venv .venv && .\.venv\Scripts\Activate.ps1  # En Linux/macOS: source .venv/bin/activate
+pip install -e .
+```
+
+### 2. Abrir el Dashboard Web GIS Interactivo
+El dashboard es autónomo e interactivo. Ábrelo directamente en tu navegador:
+```bash
+# En Windows:
+start reports/dashboard_geografico_sipta.html
+# En Linux: xdg-open reports/dashboard_geografico_sipta.html | En macOS: open reports/dashboard_geografico_sipta.html
+```
+
+### 3. Regenerar Reportes y Figuras Cartográficas (300 DPI)
+```bash
+python scripts/generate_domain_reports.py
+```
+
+### 4. Ejecutar la Suite de Pruebas Automatizadas
+```bash
+pytest
+```
+
+---
+
 ## 🗺️ Visualización Geoespacial y Dashboard Web GIS
 
 SIPTA integra un subsistema de visualización interactiva y autónoma que no requiere servidores externos ni software GIS comercial:

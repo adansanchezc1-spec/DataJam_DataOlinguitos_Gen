@@ -40,12 +40,13 @@ docs/
 │   ├── architecture.md                     ← Documento principal de Arquitectura de Software SAD v1.0.0
 │   ├── NOTA_TECNICA_INTEGRACION_DATOS_PUBLICOS.md ← Arquitectura de integración territorial multidominio
 │   ├── patterns.md                         ← Catálogo de patrones GoF y GRASP aplicados
-│   ├── ADR/                                ← Architecture Decision Records (ADR-001..005)
+│   ├── ADR/                                ← Architecture Decision Records (ADR-001..006)
 │   │   ├── ADR-001.md                      ← Arquitectura Modular Hexagonal
 │   │   ├── ADR-002.md                      ← Modelo Compuesto IPT y 10 Pasos OCDE/JRC
-│   │   ├── ADR-003.md                      ← Sistema de Homologación Territorial Canónica
+│   │   ├── ADR-003.md                      ← Agregación Geométrica No Compensatoria (IPT_Geom)
 │   │   ├── ADR-004.md                      ← Bootstrap Dirichlet y Factor de Inflación VIF
-│   │   └── ADR-005.md                      ← Estandarización Canónica y pyproject.toml
+│   │   ├── ADR-005.md                      ← Estandarización Canónica y pyproject.toml
+│   │   └── ADR-006.md                      ← Consolidación Demográfica DANE 2025 y Microdatos PUA SDIS
 │   └── diagrams/                           ← Diagramas UML de Clases, Secuencia, Componentes y Comunicación
 │
 ├── 03-development/                         ← FASE DEVELOPMENT: Implementación, Modelado y APIs
@@ -56,7 +57,8 @@ docs/
 │   ├── formulacion_matematica_ipt.md       ← Formulación matemática y metodológica del IPT v1.0.0
 │   ├── api-docs.md                         ← Documentación técnica de módulos y paquetes en src/
 │   ├── analisis_exploratorio_nuevos_dominios.md ← Síntesis exploratoria y brechas territoriales
-│   └── technical-debt.md                   ← Análisis de deuda técnica y buenas prácticas
+│   ├── technical-debt.md                   ← Análisis de deuda técnica y buenas prácticas
+│   └── workflow_guia.md                    ← Guía de flujo de trabajo Git Flow y ejecución de pipeline
 │
 ├── 04-testing/                             ← FASE CONTROL: Aseguramiento de Calidad y Tests
 │   ├── README.md                           ← Guía y catálogo de la fase de Pruebas

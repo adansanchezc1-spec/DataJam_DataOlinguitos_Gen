@@ -80,6 +80,7 @@
         "docs/03-development/analisis_exploratorio_nuevos_dominios.md",
         "docs/03-development/technical-debt.md",
         "docs/03-development/workflow_guia.md",
+        "GUIA_DE_USO.md",
         "scripts/README.md",
         "pyproject.toml",
         "config/ipt_weights.json",
