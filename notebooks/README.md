@@ -84,3 +84,12 @@ notebooks/
 | `04_modeling/`  | `02_diccionario_indicadores_ipt.ipynb` | Diccionario IPT | DEVELOPMENT | Persona B (Yesid Bello) & Persona A (Adan Sánchez) |
 | `05_visualization/`| `01_visualization_dashboard.ipynb` | Dashboard | DEVELOPMENT | Persona C (Sofía Hidalgo) & Persona A (Adan Sánchez) |
 
+---
+
+## 📌 Fuentes Oficiales y Calidad Certificada
+
+Todos los cuadernos operan exclusivamente bajo las **fuentes oficiales canónicas**:
+- **Demografía**: `data/raw/DEMOGRAFIA/anexo-proyecciones-poblacion-bogota-desagreacion-loc-2018-2035-UPZ-2018-2024.xlsx` (DANE / SDP, corte 2025: 8.101.412 hab).
+- **Vulnerabilidad Social**: `data/raw/VULNERABILIDAD/pua_riesgo_y_anon_20250911_193636-1.xlsx` (1.048.575 registros administrativos SDIS: Ingreso Mínimo Garantizado, Comedores y Comisarías).
+- **Ejecución Automatizada**: Suite de pruebas `pytest tests/test_notebooks.py` certificada al 100% (26 de 26 cuadernos ejecutables sin errores).
+

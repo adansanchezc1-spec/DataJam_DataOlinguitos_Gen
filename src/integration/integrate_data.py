@@ -125,88 +125,107 @@ def merge_by_locality(
 
 
 def load_demografia_localidades(processed_dir: Path) -> pd.DataFrame:
-    """Carga y procesa la población proyectada por localidad desde el dataset OSB."""
-    demo_path = processed_dir / "DEMOGRAFIA" / "osb_demografia-poblacion-localidad.csv"
-    if not demo_path.exists():
-        return pd.DataFrame(
-            {
-                "codigo_localidad": list(range(1, 21)),
-                "poblacion": [500000.0] * 20,
+    """Carga y procesa la población proyectada oficial por localidad desde DANE / SDP (2025)."""
+    demo_2025_path = processed_dir / "DEMOGRAFIA" / "poblacion_localidad_2025.csv"
+    demo_path = processed_dir / "DEMOGRAFIA" / "poblacion_localidad_dane_sdp.csv"
+
+    if demo_2025_path.exists():
+        df_2025 = pd.read_csv(demo_2025_path)
+        df_2025 = df_2025.rename(
+            columns={
+                "poblacion_total": "poblacion",
+                "poblacion_5_17": "poblacion_5_17_anos",
+                "poblacion_60_mas": "poblacion_60_mas_anos",
             }
         )
+        df_2025["codigo_localidad"] = df_2025["codigo_localidad"].astype(int)
+        return df_2025[[
+            "codigo_localidad", "poblacion", "poblacion_hombres", "poblacion_mujeres",
+            "poblacion_0_5", "poblacion_6_11", "poblacion_12_17", "poblacion_5_17_anos",
+            "poblacion_18_59", "poblacion_60_mas_anos"
+        ]]
 
-    try:
-        df = pd.read_csv(demo_path, sep=None, engine="python")
-    except Exception:
-        df = pd.read_csv(demo_path, sep=";")
-
-    df = standardize_column_names(df)
-
-    cod_col = "codigo_localidad" if "codigo_localidad" in df.columns else "cod_loc"
-    pob_col = "poblacion" if "poblacion" in df.columns else "total_poblacion"
-    ano_col = "ano" if "ano" in df.columns else "anio"
-
-    if cod_col in df.columns and pob_col in df.columns:
-        df = df[df[cod_col] != 0]
-        if ano_col in df.columns:
-            latest_year = df[ano_col].max()
-            df = df[df[ano_col] == latest_year]
-
-        demo_agg = (
-            df.groupby(cod_col)[pob_col]
-            .sum()
-            .reset_index()
-            .rename(columns={cod_col: "codigo_localidad", pob_col: "poblacion"})
+    if demo_path.exists():
+        df = pd.read_csv(demo_path)
+        df = df[(df["ano"] == 2025) & (df["area"] == "Total")].copy()
+        df = df.rename(
+            columns={
+                "poblacion_total": "poblacion",
+                "poblacion_5_17": "poblacion_5_17_anos",
+                "poblacion_60_mas": "poblacion_60_mas_anos",
+            }
         )
-        return demo_agg
+        df["codigo_localidad"] = df["codigo_localidad"].astype(int)
+        return df[[
+            "codigo_localidad", "poblacion", "poblacion_hombres", "poblacion_mujeres",
+            "poblacion_0_5", "poblacion_6_11", "poblacion_12_17", "poblacion_5_17_anos",
+            "poblacion_18_59", "poblacion_60_mas_anos"
+        ]]
 
-    return pd.DataFrame({"codigo_localidad": list(range(1, 21)), "poblacion": [500000.0] * 20})
+    # Fallback si no existen procesados
+    return pd.DataFrame(
+        {
+            "codigo_localidad": list(range(1, 21)),
+            "poblacion": [500000.0] * 20,
+        }
+    )
 
 
 def load_movilidad_infraestructura_coverage(reports_dir: Path | None = None) -> pd.DataFrame | None:
     """Carga paraderos SITP, estaciones troncales y parques desde la matriz territorial."""
     rep_dir = reports_dir or REPORTS_DIR
     cov_file = rep_dir / "matriz_cobertura_localidad.csv"
-    if not cov_file.exists():
-        return None
+    if cov_file.exists():
+        try:
+            df = pd.read_csv(cov_file)
+            first_col = df.columns[0]
+            homo = homologate_localidad(df[first_col])
+            df["codigo_localidad"] = homo["codigo_localidad"]
 
-    try:
-        cov_df = pd.read_csv(cov_file)
-        first_col = cov_df.columns[0]
-        homo = homologate_localidad(cov_df[first_col])
-        cov_df["codigo_localidad"] = homo["codigo_localidad"]
-        
-        cols_to_keep = ["codigo_localidad"]
-        rename_map: dict[str, str] = {}
-        
-        if "parques_idrd" in cov_df.columns:
-            cols_to_keep.append("parques_idrd")
-            rename_map["parques_idrd"] = "total_parques_idrd"
-        if "paraderos_sitp" in cov_df.columns:
-            cols_to_keep.append("paraderos_sitp")
-            rename_map["paraderos_sitp"] = "total_paraderos_sitp"
-        if "estaciones_troncales" in cov_df.columns:
-            cols_to_keep.append("estaciones_troncales")
-            rename_map["estaciones_troncales"] = "total_estaciones_troncales_tm"
-            
-        res = cov_df[cols_to_keep].dropna(subset=["codigo_localidad"]).rename(columns=rename_map)
-        res["codigo_localidad"] = res["codigo_localidad"].astype(int)
-        return res
-    except Exception as e:
-        logger.warning(f"No se pudo cargar matriz de cobertura de movilidad/infraestructura: {e}")
-        return None
+            cols_map = {
+                "estaciones_troncales": "total_estaciones_troncales",
+                "paraderos_sitp": "total_paraderos_sitp",
+                "parques_idrd": "total_parques_idrd",
+                "conflictos_ambientales_registrados": "conflictos_ambientales",
+            }
+            df = df.rename(columns=cols_map)
+            df = df.dropna(subset=["codigo_localidad"]).copy()
+            df["codigo_localidad"] = df["codigo_localidad"].astype(int)
+            keep_cols = ["codigo_localidad"] + [c for c in cols_map.values() if c in df.columns]
+            return df[keep_cols]
+        except Exception as e:
+            logger.warning(f"No se pudo cargar matriz_cobertura_localidad.csv: {e}")
+    return None
+
+
+def load_vulnerabilidad_social_sdis(processed_dir: Path | None = None) -> pd.DataFrame | None:
+    """Carga indicadores de vulnerabilidad social y transferencias monetarias PUA SDIS."""
+    proc_dir = processed_dir or PROCESSED_DIR
+    vuln_path = proc_dir / "VULNERABILIDAD" / "pua_sdis_indicadores_localidad.csv"
+    if vuln_path.exists():
+        try:
+            df = pd.read_csv(vuln_path)
+            df["codigo_localidad"] = df["codigo_localidad"].astype(int)
+            return df
+        except Exception as e:
+            logger.warning(f"No se pudo cargar pua_sdis_indicadores_localidad.csv: {e}")
+    return None
 
 
 def build_master_table(
-    processed_dir: Path | None = None, reports_dir: Path | None = None
+    processed_dir: Path | None = None,
+    reports_dir: Path | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Construye el Tablón Maestro Territorial integrando todos los dominios de SIPTA.
-    
-    Aplica limpieza canónica (src.cleaning), feature engineering de ratios y densidades
-    (src.features), integración multidominio y reporte de calidad (src.evaluation).
-    
-    Returns:
-        tuple[pd.DataFrame, pd.DataFrame]: (master_df, quality_report_df)
+    """Construye el Tablón Maestro Multidominio Territorial SIPTA unificando los 7 sectores.
+
+    Pasos:
+    1. Inicializa con la base canónica oficial de 20 localidades (DIVIPOLA / SDP).
+    2. Cruza demografía oficial DANE/SDP 2025.
+    3. Cruza infraestructura y movilidad.
+    4. Cruza indicadores sectoriales procesados (Salud, Educación, Finanzas, PUA SDIS, etc.).
+    5. Realiza Feature Engineering (densidades, tasas por 10k/100k hab, coberturas).
+    6. Aplica evaluación de calidad de datos DAMA-BOK.
+    7. Persiste `master_localidades.csv` y reportes asociados.
     """
     proc_dir = processed_dir or PROCESSED_DIR
     rep_dir = reports_dir or REPORTS_DIR
@@ -216,7 +235,7 @@ def build_master_table(
     # 1. Base Canónica (20 Localidades)
     master = get_canonical_localities_base()
 
-    # 2. Dominio Demografía (OSB / DANE)
+    # 2. Dominio Demografía (DANE / SDP 2025)
     demo_df = load_demografia_localidades(proc_dir)
     master = merge_by_locality(master, demo_df, locality_col="codigo_localidad")
 
@@ -233,6 +252,7 @@ def build_master_table(
         ("FINANZAS_INVERSION_PUBLICA", "inversion_fondos_desarrollo_local_fdl.csv"),
         ("FINANZAS_INVERSION_PUBLICA", "metas_inversion_social_sdis_localidad.csv"),
         ("FINANZAS_INVERSION_PUBLICA", "presupuestos_participativos_propuestas_priorizadas.csv"),
+        ("VULNERABILIDAD", "pua_sdis_indicadores_localidad.csv"),
         ("SERVICIOS_PUBLICOS", "eaab_cobertura_acueducto_localidad.csv"),
         ("SERVICIOS_PUBLICOS", "eaab_calidad_agua_irca_localidad.csv"),
         ("SERVICIOS_PUBLICOS", "uaesp_alumbrado_publico_localidad.csv"),
@@ -299,11 +319,24 @@ def build_master_table(
         master["luminarias_por_km2"] = (master["total_luminarias"] / master["area_km2"]).round(2)
         master["luminarias_por_10k_hab"] = ((master["total_luminarias"] / master["poblacion"]) * 10000).round(2)
 
-    # 5.4. Vulnerabilidad Social normalizada
-    if "comedores_comunitarios_activos" in master.columns:
-        master["comedores_por_10k_hab"] = ((master["comedores_comunitarios_activos"] / master["poblacion"]) * 10000).round(3)
-    if "beneficiarios_transferencias_monetarias" in master.columns:
+    # 5.4. Vulnerabilidad Social y Asistencia SDIS
+    if "beneficiarios_transferencias_monetarias_img" in master.columns:
+        master["beneficiarios_transferencias_monetarias"] = master["beneficiarios_transferencias_monetarias_img"]
+        master["tasa_beneficiarios_transferencias_pct"] = ((master["beneficiarios_transferencias_monetarias_img"] / master["poblacion"]) * 100).round(2)
+        master["tasa_transferencias_img_por_10k_hab"] = ((master["atenciones_transferencias_img"] / master["poblacion"]) * 10000).round(2)
+    elif "beneficiarios_transferencias_monetarias" in master.columns:
         master["tasa_beneficiarios_transferencias_pct"] = ((master["beneficiarios_transferencias_monetarias"] / master["poblacion"]) * 100).round(2)
+
+    if "beneficiarios_comedores_comunitarios" in master.columns:
+        master["comedores_por_10k_hab"] = ((master["beneficiarios_comedores_comunitarios"] / master["poblacion"]) * 10000).round(2)
+    elif "comedores_comunitarios_activos" in master.columns:
+        master["comedores_por_10k_hab"] = ((master["comedores_comunitarios_activos"] / master["poblacion"]) * 10000).round(3)
+
+    if "atenciones_totales_sdis" in master.columns:
+        master["tasa_atenciones_sdis_por_10k_hab"] = ((master["atenciones_totales_sdis"] / master["poblacion"]) * 10000).round(2)
+
+    if "atenciones_comisarias_familia" in master.columns:
+        master["tasa_comisarias_por_10k_hab"] = ((master["atenciones_comisarias_familia"] / master["poblacion"]) * 10000).round(2)
 
     # 5.5. Participación Ciudadana y Presupuestos Participativos
     if "total_votantes_pp" in master.columns:

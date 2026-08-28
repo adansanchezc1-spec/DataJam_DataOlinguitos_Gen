@@ -5,10 +5,7 @@ AMBIENTE\estacion_calidad_aire_20260731.csv,AMBIENTE,CSV,0.0
 AMBIENTE\situacion_ambiental_conflictiva.csv,AMBIENTE,CSV,0.29
 AMBIENTE\situacion_ambiental_conflictiva.geojson,AMBIENTE,GEOJSON,0.63
 AMBIENTE\situacion_ambiental_conflictiva_20260731.csv,AMBIENTE,CSV,0.3
-DEMOGRAFIA\osb_demografia-poblacion-localidad.csv,DEMOGRAFIA,CSV,6.82
-DEMOGRAFIA\osb_demografia-poblacion-upl.csv,DEMOGRAFIA,CSV,9.8
-DEMOGRAFIA_POBLACION\osb_demografia-poblacion-localidad.csv,DEMOGRAFIA_POBLACION,CSV,6.82
-DEMOGRAFIA_POBLACION\osb_demografia-poblacion-upl.csv,DEMOGRAFIA_POBLACION,CSV,9.8
+DEMOGRAFIA\anexo-proyecciones-poblacion-bogota-desagreacion-loc-2018-2035-UPZ-2018-2024.xlsx,DEMOGRAFIA,XLSX,2.68
 EDUCACION\calidad_educativa_saber11_retencion_localidad.csv,EDUCACION,CSV,0.0
 EDUCACION\colegios122025.gpkg,EDUCACION,GPKG,1.12
 EDUCACION\matricula_total_colegios_oficiales.gpkg,EDUCACION,GPKG,0.47
@@ -120,3 +117,4 @@ SERVICIOS_PUBLICOS\cobertura_conectividad_tic_localidad.csv,SERVICIOS_PUBLICOS,C
 SERVICIOS_PUBLICOS\eaab_calidad_agua_irca_localidad.csv,SERVICIOS_PUBLICOS,CSV,0.0
 SERVICIOS_PUBLICOS\eaab_cobertura_acueducto_localidad.csv,SERVICIOS_PUBLICOS,CSV,0.0
 SERVICIOS_PUBLICOS\uaesp_alumbrado_publico_localidad.csv,SERVICIOS_PUBLICOS,CSV,0.0
+VULNERABILIDAD\pua_riesgo_y_anon_20250911_193636-1.xlsx,VULNERABILIDAD,XLSX,67.61

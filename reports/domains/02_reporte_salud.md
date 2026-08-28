@@ -43,7 +43,7 @@ El presente informe expone el comportamiento multidimensional de los indicadores
 | Variable / Indicador | Media (μ) | Mediana (Q2) | Desv. Est. (σ) | IQR | Mín | Máx | CV (%) | Asimetría (g1) |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | `sedes_ips_registradas` | 145.00 | 73.50 | 160.01 | 163.50 | 3.00 | 560.00 | 110.4% | +1.61 |
-| `sedes_ips_por_10000_hab` | 6.47 | 3.70 | 7.66 | 7.22 | 0.60 | 31.71 | 118.4% | +2.19 |
+| `sedes_ips_por_10000_hab` | 5.90 | 3.52 | 6.73 | 5.88 | 0.57 | 27.66 | 114.2% | +2.10 |
 | `total_camas_hospitalarias` | 874.60 | 765.00 | 618.72 | 990.00 | 12.00 | 2,120.00 | 70.7% | +0.46 |
 | `camas_por_10000_habitantes` | 27.21 | 19.10 | 20.51 | 32.48 | 3.50 | 68.40 | 75.4% | +0.82 |
 
@@ -53,26 +53,26 @@ El presente informe expone el comportamiento multidimensional de los indicadores
 
 | Código | Localidad | `sedes_ips_registradas` | `sedes_ips_por_10000_hab` | `total_camas_hospitalarias` | `camas_por_10000_habitantes` |
 | :---: | :--- | :---: | :---: | :---: | :---: |
-| `01` | **USAQUEN** | 560 | 9.55 | 1,850 | 42.50 |
-| `02` | **CHAPINERO** | 511 | 31.71 | 2,120 | 68.40 |
-| `03` | **SANTA FE** | 78 | 6.88 | 1,420 | 58.20 |
-| `04` | **SAN CRISTOBAL** | 31 | 0.79 | 420 | 12.10 |
-| `05` | **USME** | 24 | 0.60 | 280 | 8.40 |
-| `06` | **TUNJUELITO** | 33 | 1.88 | 380 | 14.50 |
-| `07` | **BOSA** | 46 | 0.60 | 310 | 6.80 |
-| `08` | **KENNEDY** | 193 | 1.75 | 1,450 | 19.80 |
-| `09` | **FONTIBON** | 137 | 3.55 | 890 | 24.50 |
-| `10` | **ENGATIVA** | 172 | 2.07 | 1,120 | 18.20 |
-| `11` | **SUBA** | 312 | 2.49 | 1,340 | 15.40 |
-| `12` | **BARRIOS UNIDOS** | 210 | 15.52 | 1,240 | 48.50 |
-| `13` | **TEUSAQUILLO** | 270 | 17.41 | 1,650 | 62.40 |
-| `14` | **LOS MARTIRES** | 34 | 4.51 | 980 | 52.10 |
-| `15` | **ANTONIO NARINO** | 69 | 8.92 | 640 | 28.50 |
-| `16` | **PUENTE ARANDA** | 96 | 3.85 | 520 | 18.40 |
-| `17` | **LA CANDELARIA** | 10 | 6.03 | 120 | 25.00 |
-| `18` | **RAFAEL URIBE URIBE** | 61 | 1.63 | 340 | 9.80 |
-| `19` | **CIUDAD BOLIVAR** | 50 | 0.73 | 410 | 7.20 |
-| `20` | **SUMAPAZ** | 3 | 8.99 | 12 | 3.50 |
+| `01` | **USAQUEN** | 560 | 9.30 | 1,850 | 42.50 |
+| `02` | **CHAPINERO** | 511 | 27.66 | 2,120 | 68.40 |
+| `03` | **SANTA FE** | 78 | 7.23 | 1,420 | 58.20 |
+| `04` | **SAN CRISTOBAL** | 31 | 0.75 | 420 | 12.10 |
+| `05` | **USME** | 24 | 0.57 | 280 | 8.40 |
+| `06` | **TUNJUELITO** | 33 | 1.77 | 380 | 14.50 |
+| `07` | **BOSA** | 46 | 0.62 | 310 | 6.80 |
+| `08` | **KENNEDY** | 193 | 1.85 | 1,450 | 19.80 |
+| `09` | **FONTIBON** | 137 | 3.33 | 890 | 24.50 |
+| `10` | **ENGATIVA** | 172 | 2.09 | 1,120 | 18.20 |
+| `11` | **SUBA** | 312 | 2.34 | 1,340 | 15.40 |
+| `12` | **BARRIOS UNIDOS** | 210 | 13.19 | 1,240 | 48.50 |
+| `13` | **TEUSAQUILLO** | 270 | 16.42 | 1,650 | 62.40 |
+| `14` | **LOS MARTIRES** | 34 | 4.10 | 980 | 52.10 |
+| `15` | **ANTONIO NARINO** | 69 | 8.01 | 640 | 28.50 |
+| `16` | **PUENTE ARANDA** | 96 | 3.70 | 520 | 18.40 |
+| `17` | **LA CANDELARIA** | 10 | 5.28 | 120 | 25.00 |
+| `18` | **RAFAEL URIBE URIBE** | 61 | 1.55 | 340 | 9.80 |
+| `19` | **CIUDAD BOLIVAR** | 50 | 0.74 | 410 | 7.20 |
+| `20` | **SUMAPAZ** | 3 | 7.46 | 12 | 3.50 |
 
 ---
 

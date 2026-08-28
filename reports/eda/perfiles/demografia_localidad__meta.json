@@ -5,7 +5,7 @@
   "corte": "Serie anual según columna ANO",
   "valor_publico": "Tamaño y estructura de la población por localidad: insumo para indicadores per cápita de salud, educación, espacio público e inversión",
   "indicadores": "POB-01, POB-02, POB-03, POB-04 y denominadores per cápita de todos los sectores",
-  "path": "data/raw/DEMOGRAFIA_POBLACION/osb_demografia-poblacion-localidad.csv",
+  "path": "data/processed/DEMOGRAFIA/poblacion_localidad_2025.csv",
   "capa": "",
   "tipo": ""
 }

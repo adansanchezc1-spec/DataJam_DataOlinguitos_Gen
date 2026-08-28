@@ -157,15 +157,20 @@ $$\text{Tasa Parques}_i = \left( \frac{\text{Parques Registrados}_i}{\text{Pobla
 
 ---
 
-### 3.7. Dominio Vulnerabilidad Económica y Social (SOC / EMP)
+### 3.7. Dominio Vulnerabilidad Social y Asistencia SDIS (VUL / PUA)
 
-#### SOC-001: Tasa de Vendedores Informales (RIVI)
-Incidencia de población en informalidad comercial en el espacio público registrada en el Registro Individual de Vendedores Informales (RIVI).
+#### VUL-001: Tasa de Atenciones de Transferencias Monetarias IMG (PUA SDIS)
+Incidencia de transferencias monetarias del Ingreso Mínimo Garantizado (IMG) registradas en el Plan Único de Atención de la Secretaría Distrital de Integración Social (SDIS):
 
-$$\text{Tasa RIVI}_i = \left( \frac{\text{Promedio Vendedores Informales}_i}{\text{Población Total}_i} \right) \times 10\,000 \quad \left[\frac{\text{vendedores}}{10\,000\text{ hab}}\right]$$
+$$\text{Tasa IMG}_i = \left( \frac{\text{Atenciones IMG SDIS}_i}{\text{Población DANE 2025}_i} \right) \times 10\,000 \quad \left[\frac{\text{atenciones}}{10\,000\text{ hab}}\right]$$
 
-- **Score de Vulnerabilidad Económica (Sentido Directo)**:
-  $$s_{i, \text{vuln}} = \text{Norm}_{\text{MinMax}}(\text{Tasa RIVI}_i)$$
+#### VUL-002: Tasa de Vendedores Informales (RIVI)
+Incidencia de población en informalidad comercial en el espacio público (IPES / RIVI):
+
+$$\text{Tasa RIVI}_i = \left( \frac{\text{Promedio Vendedores Informales}_i}{\text{Población DANE 2025}_i} \right) \times 10\,000 \quad \left[\frac{\text{vendedores}}{10\,000\text{ hab}}\right]$$
+
+- **Score de Vulnerabilidad Social Consolidado (Sentido Directo)**:
+  $$s_{i, \text{vuln}} = 0.70 \cdot \text{Norm}_{\text{MinMax}}(\text{Tasa IMG}_i) + 0.30 \cdot \text{Norm}_{\text{MinMax}}(\text{Tasa RIVI}_i)$$
 
 ---
 

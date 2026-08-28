@@ -1,922 +1,219 @@
-[
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\AMBIENTE\\estacion_calidad_aire.geojson",
-    "format": ".geojson",
-    "source": "AMBIENTE\\estacion_calidad_aire.geojson",
-    "size_bytes": 8390
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\AMBIENTE\\situacion_ambiental_conflictiva.csv",
-    "format": ".csv",
-    "source": "AMBIENTE\\situacion_ambiental_conflictiva.csv",
-    "size_bytes": 290489
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\AMBIENTE\\situacion_ambiental_conflictiva.geojson",
-    "format": ".geojson",
-    "source": "AMBIENTE\\situacion_ambiental_conflictiva.geojson",
-    "size_bytes": 634129
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\DEMOGRAFIA\\osb_demografia-poblacion-localidad.csv",
-    "format": ".csv",
-    "source": "DEMOGRAFIA\\osb_demografia-poblacion-localidad.csv",
-    "size_bytes": 6818607
-  },
-  {
-    "status": "ingested",
-    "rows": 175956,
-    "columns": 10,
-    "format": "csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\DEMOGRAFIA\\osb_demografia-poblacion-upl.csv",
-    "source": "DEMOGRAFIA\\osb_demografia-poblacion-upl.csv",
-    "size_bytes": 9795506
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\DEMOGRAFIA_POBLACION\\osb_demografia-poblacion-localidad.csv",
-    "format": ".csv",
-    "source": "DEMOGRAFIA_POBLACION\\osb_demografia-poblacion-localidad.csv",
-    "size_bytes": 6818607
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\DEMOGRAFIA_POBLACION\\osb_demografia-poblacion-upl.csv",
-    "format": ".csv",
-    "source": "DEMOGRAFIA_POBLACION\\osb_demografia-poblacion-upl.csv",
-    "size_bytes": 9795506
-  },
-  {
-    "status": "ingested",
-    "rows": 20,
-    "columns": 9,
-    "format": "csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\EDUCACION\\calidad_educativa_saber11_retencion_localidad.csv",
-    "source": "EDUCACION\\calidad_educativa_saber11_retencion_localidad.csv",
-    "size_bytes": 2296
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\EDUCACION\\colegios122025.gpkg",
-    "format": ".gpkg",
-    "source": "EDUCACION\\colegios122025.gpkg",
-    "size_bytes": 1122304
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\EDUCACION\\matricula_total_colegios_oficiales.gpkg",
-    "format": ".gpkg",
-    "source": "EDUCACION\\matricula_total_colegios_oficiales.gpkg",
-    "size_bytes": 471040
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\EDUCACION\\ofertacupos_032025.geojson",
-    "format": ".geojson",
-    "source": "EDUCACION\\ofertacupos_032025.geojson",
-    "size_bytes": 308067
-  },
-  {
-    "status": "ingested",
-    "rows": 20,
-    "columns": 10,
-    "format": "csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\EMPLEO_ECONOMIA\\conmutacion_laboral_residencia_trabajo_localidad.csv",
-    "source": "EMPLEO_ECONOMIA\\conmutacion_laboral_residencia_trabajo_localidad.csv",
-    "size_bytes": 3039
-  },
-  {
-    "status": "ingested",
-    "rows": 20,
-    "columns": 9,
-    "format": "csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\EMPLEO_ECONOMIA\\ingreso_promedio_salario_ocupados_localidad.csv",
-    "source": "EMPLEO_ECONOMIA\\ingreso_promedio_salario_ocupados_localidad.csv",
-    "size_bytes": 2556
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\FINANZAS_INVERSION_PUBLICA\\inversion_educacion_por_localidad_12_2025.gpkg",
-    "format": ".gpkg",
-    "source": "FINANZAS_INVERSION_PUBLICA\\inversion_educacion_por_localidad_12_2025.gpkg",
-    "size_bytes": 1077248
-  },
-  {
-    "status": "ingested",
-    "rows": 20,
-    "columns": 9,
-    "format": "csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\FINANZAS_INVERSION_PUBLICA\\inversion_fondos_desarrollo_local_fdl.csv",
-    "source": "FINANZAS_INVERSION_PUBLICA\\inversion_fondos_desarrollo_local_fdl.csv",
-    "size_bytes": 2768
-  },
-  {
-    "status": "ingested",
-    "rows": 20,
-    "columns": 9,
-    "format": "csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\FINANZAS_INVERSION_PUBLICA\\metas_inversion_social_sdis_localidad.csv",
-    "source": "FINANZAS_INVERSION_PUBLICA\\metas_inversion_social_sdis_localidad.csv",
-    "size_bytes": 2248
-  },
-  {
-    "status": "ingested",
-    "rows": 20,
-    "columns": 10,
-    "format": "csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\FINANZAS_INVERSION_PUBLICA\\presupuestos_participativos_propuestas_priorizadas.csv",
-    "source": "FINANZAS_INVERSION_PUBLICA\\presupuestos_participativos_propuestas_priorizadas.csv",
-    "size_bytes": 3085
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\FINANZAS_INVERSION_PUBLICA\\Punto de encuentro vendedores. Bogotá D.C..geojson",
-    "format": ".geojson",
-    "source": "FINANZAS_INVERSION_PUBLICA\\Punto de encuentro vendedores. Bogotá D.C..geojson",
-    "size_bytes": 2239
-  },
-  {
-    "status": "ingested",
-    "rows": 4,
-    "columns": 12,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\FINANZAS_INVERSION_PUBLICA\\Punto de encuentro vendedores. Bogotá D.C..csv",
-    "source": "FINANZAS_INVERSION_PUBLICA\\Punto de encuentro vendedores. Bogotá D.C..xlsx",
-    "size_bytes": 9772
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\INFRAESTRUCTURA_ESPACIO_PUBLICO\\5.-parques-idrd.csv",
-    "format": ".csv",
-    "source": "INFRAESTRUCTURA_ESPACIO_PUBLICO\\5.-parques-idrd.csv",
-    "size_bytes": 7956
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\INFRAESTRUCTURA_ESPACIO_PUBLICO\\estado\\Estado.csv",
-    "format": ".csv",
-    "source": "INFRAESTRUCTURA_ESPACIO_PUBLICO\\estado\\Estado.csv",
-    "size_bytes": 4426543
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\INFRAESTRUCTURA_ESPACIO_PUBLICO\\gpkg_mr_v03.26\\gpkg_mr_v03.26.gpkg",
-    "format": ".gpkg",
-    "source": "INFRAESTRUCTURA_ESPACIO_PUBLICO\\gpkg_mr_v03.26\\gpkg_mr_v03.26.gpkg",
-    "size_bytes": 4585484288
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\INFRAESTRUCTURA_ESPACIO_PUBLICO\\ips.gpkg",
-    "format": ".gpkg",
-    "source": "INFRAESTRUCTURA_ESPACIO_PUBLICO\\ips.gpkg",
-    "size_bytes": 1384448
-  },
-  {
-    "status": "ingested",
-    "rows": 20,
-    "columns": 8,
-    "crs": "EPSG:4326",
-    "format": "geospatial",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MODELO_TERRITORIAL\\poligonos_localidades.geojson",
-    "source": "MODELO_TERRITORIAL\\poligonos_localidades.geojson",
-    "size_bytes": 2359832
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\conexion_operacional.geojson",
-    "format": ".geojson",
-    "source": "MOVILIDAD\\conexion_operacional.geojson",
-    "size_bytes": 5661
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\estaciones_linea1.geojson",
-    "format": ".geojson",
-    "source": "MOVILIDAD\\estaciones_linea1.geojson",
-    "size_bytes": 9781
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\estaciones_linea2.gpkg",
-    "format": ".gpkg",
-    "source": "MOVILIDAD\\estaciones_linea2.gpkg",
-    "size_bytes": 114688
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\estaciones_troncales.geojson",
-    "format": ".geojson",
-    "source": "MOVILIDAD\\estaciones_troncales.geojson",
-    "size_bytes": 136595
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\flota_vinculada_sitp_2024-12.csv",
-    "format": ".csv",
-    "source": "MOVILIDAD\\flota_vinculada_sitp_2024-12.csv",
-    "size_bytes": 1271989
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\gtfs_sitp_2026-04-29.zip",
-    "format": ".zip",
-    "source": "MOVILIDAD\\gtfs_sitp_2026-04-29.zip",
-    "size_bytes": 120347161
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\paraderos_zonales_sitp.gpkg",
-    "format": ".gpkg",
-    "source": "MOVILIDAD\\paraderos_zonales_sitp.gpkg",
-    "size_bytes": 2510848
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\retorno_operacional.geojson",
-    "format": ".geojson",
-    "source": "MOVILIDAD\\retorno_operacional.geojson",
-    "size_bytes": 24469
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\servicios_rutas_troncales_zonales.csv",
-    "format": ".csv",
-    "source": "MOVILIDAD\\servicios_rutas_troncales_zonales.csv",
-    "size_bytes": 230724
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\trazado_linea2.gpkg",
-    "format": ".gpkg",
-    "source": "MOVILIDAD\\trazado_linea2.gpkg",
-    "size_bytes": 122880
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\trazados_troncales.geojson",
-    "format": ".geojson",
-    "source": "MOVILIDAD\\trazados_troncales.geojson",
-    "size_bytes": 117198
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Troncal-01 TM Resumen de Validaciones Troncales al 31 Ene 2024 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Troncal-01 TM Resumen de Validaciones Troncales al 31 Ene 2024 Intervalo 15 Mint.xlsx",
-    "size_bytes": 13090314
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Troncal-02 TM Resumen de Validaciones Troncales al 29 Feb 2024 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Troncal-02 TM Resumen de Validaciones Troncales al 29 Feb 2024 Intervalo 15 Mint.xlsx",
-    "size_bytes": 12720338
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Troncal-03 TM Resumen de Validaciones Troncales al 31 Mar 2024 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Troncal-03 TM Resumen de Validaciones Troncales al 31 Mar 2024 Intervalo 15 Mint.xlsx",
-    "size_bytes": 12718227
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Troncal-04 TM Resumen de Validaciones Troncales al 30 Abr 2024 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Troncal-04 TM Resumen de Validaciones Troncales al 30 Abr 2024 Intervalo 15 Mint.xlsx",
-    "size_bytes": 13024203
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Troncal-05 TM Resumen de Validaciones Troncales al 31 May 2024 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Troncal-05 TM Resumen de Validaciones Troncales al 31 May 2024 Intervalo 15 Mint.xlsx",
-    "size_bytes": 12995954
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Troncal-06 TM Resumen de Validaciones Troncales al 30 Jun 2024 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Troncal-06 TM Resumen de Validaciones Troncales al 30 Jun 2024 Intervalo 15 Mint.xlsx",
-    "size_bytes": 13603135
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Troncal-07 TM Resumen de Validaciones Troncales al 31 Jul 2024 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Troncal-07 TM Resumen de Validaciones Troncales al 31 Jul 2024 Intervalo 15 Mint.xlsx",
-    "size_bytes": 13512053
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Troncal-08 TM Resumen de Validaciones Troncales al 31 Ago 2024 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Troncal-08 TM Resumen de Validaciones Troncales al 31 Ago 2024 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14076196
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Troncal-09 TM Resumen de Validaciones Troncales al 30 Sep 2024 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Troncal-09 TM Resumen de Validaciones Troncales al 30 Sep 2024 Intervalo 15 Mint.xlsx",
-    "size_bytes": 13607496
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Troncal-10 TM Resumen de Validaciones Troncales al 31 Oct 2024 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Troncal-10 TM Resumen de Validaciones Troncales al 31 Oct 2024 Intervalo 15 Mint.xlsx",
-    "size_bytes": 13687859
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Troncal-11 TM Resumen de Validaciones Troncales al 30 Nov 2024 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Troncal-11 TM Resumen de Validaciones Troncales al 30 Nov 2024 Intervalo 15 Mint.xlsx",
-    "size_bytes": 13744948
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Troncal-12 TM Resumen de Validaciones Troncales al 31 de Dic 2024 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Troncal-12 TM Resumen de Validaciones Troncales al 31 de Dic 2024 Intervalo 15 Mint.xlsx",
-    "size_bytes": 13902418
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Zonal-01 TM Reporte de Validaciones Zonales Intervalo al 31 Ene 2024.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Zonal-01 TM Reporte de Validaciones Zonales Intervalo al 31 Ene 2024.xlsx",
-    "size_bytes": 11428880
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Zonal-02 TM Reporte de Validaciones Zonales Intervalo al 29 Feb 2024.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Zonal-02 TM Reporte de Validaciones Zonales Intervalo al 29 Feb 2024.xlsx",
-    "size_bytes": 11584670
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Zonal-03 TM Reporte de Validaciones Zonales Intervalo al 31 Mar 2024.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Zonal-03 TM Reporte de Validaciones Zonales Intervalo al 31 Mar 2024.xlsx",
-    "size_bytes": 11479369
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Zonal-04 TM Reporte de Validaciones Zonales Intervalo al 30 Abril 2024.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Zonal-04 TM Reporte de Validaciones Zonales Intervalo al 30 Abril 2024.xlsx",
-    "size_bytes": 11449980
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Zonal-05 TM Reporte de Validaciones Zonales Intervalo al 31 Mayo 2024.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Zonal-05 TM Reporte de Validaciones Zonales Intervalo al 31 Mayo 2024.xlsx",
-    "size_bytes": 11476083
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Zonal-06 TM Reporte de Validaciones Zonales Intervalo al 30 Junio 2024.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Zonal-06 TM Reporte de Validaciones Zonales Intervalo al 30 Junio 2024.xlsx",
-    "size_bytes": 11427164
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Zonal-07 TM Reporte de Validaciones Zonales Intervalo al 31 Julio 2024.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Zonal-07 TM Reporte de Validaciones Zonales Intervalo al 31 Julio 2024.xlsx",
-    "size_bytes": 11473360
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Zonal-08 TM Reporte de Validaciones Zonales Intervalo al 31 Agosto 2024.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Zonal-08 TM Reporte de Validaciones Zonales Intervalo al 31 Agosto 2024.xlsx",
-    "size_bytes": 11755875
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Zonal-09 TM Reporte de Validaciones Zonales Intervalo al 30 Septiembre 2024.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Zonal-09 TM Reporte de Validaciones Zonales Intervalo al 30 Septiembre 2024.xlsx",
-    "size_bytes": 11524981
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Zonal-10 TM Reporte de Validaciones Zonales Intervalo al 31 Octubre 2024.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Zonal-10 TM Reporte de Validaciones Zonales Intervalo al 31 Octubre 2024.xlsx",
-    "size_bytes": 11553797
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Zonal-11 TM Reporte de Validaciones Zonales Intervalo al 30 Noviembre 2024.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Zonal-11 TM Reporte de Validaciones Zonales Intervalo al 30 Noviembre 2024.xlsx",
-    "size_bytes": 11563844
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2024-Zonal-12 TM Reporte de Validaciones Zonales Intervalo al 31 de Diciembre 2024.csv",
-    "source": "MOVILIDAD\\Validaciones\\2024-Zonal-12 TM Reporte de Validaciones Zonales Intervalo al 31 de Diciembre 2024.xlsx",
-    "size_bytes": 11559476
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Troncal-01 TM Resumen de Validaciones Troncales al 31 de Enero 2025 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Troncal-01 TM Resumen de Validaciones Troncales al 31 de Enero 2025 Intervalo 15 Mint.xlsx",
-    "size_bytes": 13626049
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Troncal-02 TM Resumen de Validaciones Troncales al 28 de Febrero 2025 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Troncal-02 TM Resumen de Validaciones Troncales al 28 de Febrero 2025 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14401486
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Troncal-03 TM Resumen de Validaciones Troncales al 31 de Marzo 2025 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Troncal-03 TM Resumen de Validaciones Troncales al 31 de Marzo 2025 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14361412
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Troncal-04 TM Resumen de Validaciones Troncales al 30 de Abril 2025 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Troncal-04 TM Resumen de Validaciones Troncales al 30 de Abril 2025 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14308126
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Troncal-05 TM Resumen de Validaciones Troncales al 31 de Mayo 2025 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Troncal-05 TM Resumen de Validaciones Troncales al 31 de Mayo 2025 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14349504
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Troncal-06 TM Resumen de Validaciones Troncales al 30 de Junio 2025 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Troncal-06 TM Resumen de Validaciones Troncales al 30 de Junio 2025 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14051284
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Troncal-07 TM Resumen de Validaciones Troncales al 31 de Julio 2025 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Troncal-07 TM Resumen de Validaciones Troncales al 31 de Julio 2025 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14509191
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Troncal-08 TM Resumen de Validaciones Troncales al 31 de Agosto del 2025 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Troncal-08 TM Resumen de Validaciones Troncales al 31 de Agosto del 2025 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14132639
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Troncal-09 TM Resumen de Validaciones Troncales al 30 de Septiembre del 2025 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Troncal-09 TM Resumen de Validaciones Troncales al 30 de Septiembre del 2025 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14399659
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Troncal-10 TM Resumen de Validaciones Troncales al 31 de Octubre del 2025 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Troncal-10 TM Resumen de Validaciones Troncales al 31 de Octubre del 2025 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14333055
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Troncal-11 TM Resumen de Validaciones Troncales al 30 de Noveimbre del 2025 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Troncal-11 TM Resumen de Validaciones Troncales al 30 de Noveimbre del 2025 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14389404
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Troncal-12 TM Resumen de Validaciones Troncales al 31 de Diciembre del 2025 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Troncal-12 TM Resumen de Validaciones Troncales al 31 de Diciembre del 2025 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14512199
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Zonal-01 TM Reporte de Validaciones Zonales Intervalo al 31 de Enero 2025.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Zonal-01 TM Reporte de Validaciones Zonales Intervalo al 31 de Enero 2025.xlsx",
-    "size_bytes": 11501406
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Zonal-02 TM Reporte de Validaciones Zonales Intervalo al 28 de Febrero 2025.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Zonal-02 TM Reporte de Validaciones Zonales Intervalo al 28 de Febrero 2025.xlsx",
-    "size_bytes": 11458341
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Zonal-03 TM Reporte de Validaciones Zonales Intervalo al 31 de Marzo 2025.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Zonal-03 TM Reporte de Validaciones Zonales Intervalo al 31 de Marzo 2025.xlsx",
-    "size_bytes": 11555612
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Zonal-04 TM Reporte de Validaciones Zonales Intervalo al 30 de Abril 2025.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Zonal-04 TM Reporte de Validaciones Zonales Intervalo al 30 de Abril 2025.xlsx",
-    "size_bytes": 11537751
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Zonal-05 TM Reporte de Validaciones Zonales Intervalo al 31 de Mayo 2025.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Zonal-05 TM Reporte de Validaciones Zonales Intervalo al 31 de Mayo 2025.xlsx",
-    "size_bytes": 11563669
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Zonal-06 TM Reporte de Validaciones Zonales Intervalo al 30 de Junio 2025.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Zonal-06 TM Reporte de Validaciones Zonales Intervalo al 30 de Junio 2025.xlsx",
-    "size_bytes": 11489238
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Zonal-07 TM Reporte de Validaciones Zonales Intervalo al 31 de Julio 2025.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Zonal-07 TM Reporte de Validaciones Zonales Intervalo al 31 de Julio 2025.xlsx",
-    "size_bytes": 11525199
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Zonal-08 TM Reporte de Validaciones Zonales Intervalo al 31 de Agosto del 2025.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Zonal-08 TM Reporte de Validaciones Zonales Intervalo al 31 de Agosto del 2025.xlsx",
-    "size_bytes": 11557238
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Zonal-09 TM Reporte de Validaciones Zonales Intervalo al 30 de Septiembre del 2025.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Zonal-09 TM Reporte de Validaciones Zonales Intervalo al 30 de Septiembre del 2025.xlsx",
-    "size_bytes": 11531539
-  },
-  {
-    "status": "ingested",
-    "rows": 490,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Zonal-10 TM Reporte de Validaciones Zonales Intervalo al 31 de Octubre del 2025.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Zonal-10 TM Reporte de Validaciones Zonales Intervalo al 31 de Octubre del 2025.xlsx",
-    "size_bytes": 11570882
-  },
-  {
-    "status": "ingested",
-    "rows": 736,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Zonal-11 TM Reporte de Validaciones Zonales Intervalo al 30 de Noviembre del 2025.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Zonal-11 TM Reporte de Validaciones Zonales Intervalo al 30 de Noviembre del 2025.xlsx",
-    "size_bytes": 12434978
-  },
-  {
-    "status": "ingested",
-    "rows": 736,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2025-Zonal-12 TM Reporte de Validaciones Zonales Intervalo al 31 de Diciembre del 2025.csv",
-    "source": "MOVILIDAD\\Validaciones\\2025-Zonal-12 TM Reporte de Validaciones Zonales Intervalo al 31 de Diciembre del 2025.xlsx",
-    "size_bytes": 12138117
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2026-Troncal-01 TM Resumen de Validaciones Troncales al 31 de Enero del 2026 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2026-Troncal-01 TM Resumen de Validaciones Troncales al 31 de Enero del 2026 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14194879
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2026-Troncal-02 TM Resumen de Validaciones Troncales al 28 de Febrero del 2026 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2026-Troncal-02 TM Resumen de Validaciones Troncales al 28 de Febrero del 2026 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14272881
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2026-Troncal-03 TM Resumen de Validaciones Troncales al 31 de Marzo del 2026 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2026-Troncal-03 TM Resumen de Validaciones Troncales al 31 de Marzo del 2026 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14359372
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2026-Troncal-04 TM Resumen de Validaciones Troncales al 30 de Abril del 2026 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2026-Troncal-04 TM Resumen de Validaciones Troncales al 30 de Abril del 2026 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14651396
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2026-Troncal-05 TM Resumen de Validaciones Troncales al 31 de Mayo del 2026 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2026-Troncal-05 TM Resumen de Validaciones Troncales al 31 de Mayo del 2026 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14443139
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2026-Troncal-06 TM Resumen de Validaciones Troncales al 30 de Junio del 2026 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2026-Troncal-06 TM Resumen de Validaciones Troncales al 30 de Junio del 2026 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14246334
-  },
-  {
-    "status": "ingested",
-    "rows": 78528,
-    "columns": 38,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2026-Troncal-07 TM Resumen de Validaciones Troncales al 31 de Julio del 2026 Intervalo 15 Mint.csv",
-    "source": "MOVILIDAD\\Validaciones\\2026-Troncal-07 TM Resumen de Validaciones Troncales al 31 de Julio del 2026 Intervalo 15 Mint.xlsx",
-    "size_bytes": 14448414
-  },
-  {
-    "status": "ingested",
-    "rows": 736,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2026-Zonal-01 TM Reporte de Validaciones Zonales Intervalo al 31 de Enero del 2026.csv",
-    "source": "MOVILIDAD\\Validaciones\\2026-Zonal-01 TM Reporte de Validaciones Zonales Intervalo al 31 de Enero del 2026.xlsx",
-    "size_bytes": 11781483
-  },
-  {
-    "status": "ingested",
-    "rows": 736,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2026-Zonal-02 TM Reporte de Validaciones Zonales Intervalo al 28 de Febrero del 2026.csv",
-    "source": "MOVILIDAD\\Validaciones\\2026-Zonal-02 TM Reporte de Validaciones Zonales Intervalo al 28 de Febrero del 2026.xlsx",
-    "size_bytes": 11724812
-  },
-  {
-    "status": "ingested",
-    "rows": 736,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2026-Zonal-03 TM Reporte de Validaciones Zonales Intervalo al 31 de Marzo del 2026.csv",
-    "source": "MOVILIDAD\\Validaciones\\2026-Zonal-03 TM Reporte de Validaciones Zonales Intervalo al 31 de Marzo del 2026.xlsx",
-    "size_bytes": 11811833
-  },
-  {
-    "status": "ingested",
-    "rows": 736,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2026-Zonal-04 TM Reporte de Validaciones Zonales Intervalo al 30 de Abril del 2026.csv",
-    "source": "MOVILIDAD\\Validaciones\\2026-Zonal-04 TM Reporte de Validaciones Zonales Intervalo al 30 de Abril del 2026.xlsx",
-    "size_bytes": 11785950
-  },
-  {
-    "status": "ingested",
-    "rows": 736,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2026-Zonal-05 TM Reporte de Validaciones Zonales Intervalo al 31 de Mayo del 2026.csv",
-    "source": "MOVILIDAD\\Validaciones\\2026-Zonal-05 TM Reporte de Validaciones Zonales Intervalo al 31 de Mayo del 2026.xlsx",
-    "size_bytes": 11807691
-  },
-  {
-    "status": "ingested",
-    "rows": 736,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2026-Zonal-06 TM Reporte de Validaciones Zonales Intervalo al 30 de Junio del 2026.csv",
-    "source": "MOVILIDAD\\Validaciones\\2026-Zonal-06 TM Reporte de Validaciones Zonales Intervalo al 30 de Junio del 2026.xlsx",
-    "size_bytes": 11751291
-  },
-  {
-    "status": "ingested",
-    "rows": 736,
-    "columns": 36,
-    "format": "excel_to_csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\Validaciones\\2026-Zonal-07 TM Reporte de Validaciones Zonales Intervalo al 31 de Julio del 2026.csv",
-    "source": "MOVILIDAD\\Validaciones\\2026-Zonal-07 TM Reporte de Validaciones Zonales Intervalo al 31 de Julio del 2026.xlsx",
-    "size_bytes": 11796636
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\MOVILIDAD\\zonas_zat.geojson",
-    "format": ".geojson",
-    "source": "MOVILIDAD\\zonas_zat.geojson",
-    "size_bytes": 27344990
-  },
-  {
-    "status": "ingested",
-    "rows": 20,
-    "columns": 10,
-    "format": "csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\PARTICIPACION_CIUDADANA\\pqr_bogota_te_escucha_por_localidad.csv",
-    "source": "PARTICIPACION_CIUDADANA\\pqr_bogota_te_escucha_por_localidad.csv",
-    "size_bytes": 4065
-  },
-  {
-    "status": "ingested",
-    "rows": 20,
-    "columns": 9,
-    "format": "csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\SALUD\\capacidad_camas_asistencial_localidad.csv",
-    "source": "SALUD\\capacidad_camas_asistencial_localidad.csv",
-    "size_bytes": 2158
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\SALUD\\ips_sds.gpkg",
-    "format": ".gpkg",
-    "source": "SALUD\\ips_sds.gpkg",
-    "size_bytes": 1384448
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\SALUD\\osb_ofertasrv-ips-urgencias.csv",
-    "format": ".csv",
-    "source": "SALUD\\osb_ofertasrv-ips-urgencias.csv",
-    "size_bytes": 15980
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\SALUD\\osb_tiporazoncamas.csv",
-    "format": ".csv",
-    "source": "SALUD\\osb_tiporazoncamas.csv",
-    "size_bytes": 2058
-  },
-  {
-    "status": "skipped",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\SEGURIDAD\\Cuadrante de Policía. Bogotá D.C.csv",
-    "format": ".csv",
-    "source": "SEGURIDAD\\Cuadrante de Policía. Bogotá D.C.csv",
-    "size_bytes": 1367185
-  },
-  {
-    "status": "ingested",
-    "rows": 20,
-    "columns": 10,
-    "format": "csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\SEGURIDAD\\delitos_alto_impacto_localidad_2024_2026.csv",
-    "source": "SEGURIDAD\\delitos_alto_impacto_localidad_2024_2026.csv",
-    "size_bytes": 2475
-  },
-  {
-    "status": "ingested",
-    "rows": 20,
-    "columns": 8,
-    "format": "csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\SERVICIOS_PUBLICOS\\cobertura_conectividad_tic_localidad.csv",
-    "source": "SERVICIOS_PUBLICOS\\cobertura_conectividad_tic_localidad.csv",
-    "size_bytes": 1919
-  },
-  {
-    "status": "ingested",
-    "rows": 20,
-    "columns": 8,
-    "format": "csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\SERVICIOS_PUBLICOS\\eaab_calidad_agua_irca_localidad.csv",
-    "source": "SERVICIOS_PUBLICOS\\eaab_calidad_agua_irca_localidad.csv",
-    "size_bytes": 2673
-  },
-  {
-    "status": "ingested",
-    "rows": 20,
-    "columns": 10,
-    "format": "csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\SERVICIOS_PUBLICOS\\eaab_cobertura_acueducto_localidad.csv",
-    "source": "SERVICIOS_PUBLICOS\\eaab_cobertura_acueducto_localidad.csv",
-    "size_bytes": 2703
-  },
-  {
-    "status": "ingested",
-    "rows": 20,
-    "columns": 9,
-    "format": "csv",
-    "output": "C:\\Users\\ADAN\\DataJam_DataOlinguitos_Gen\\data\\processed\\SERVICIOS_PUBLICOS\\uaesp_alumbrado_publico_localidad.csv",
-    "source": "SERVICIOS_PUBLICOS\\uaesp_alumbrado_publico_localidad.csv",
-    "size_bytes": 2087
-  }
-]
+{
+  "version": "2.0.0",
+  "updated_at": "2026-08-27T21:00:00Z",
+  "standard": "DAMA-BOK / ISO 25010",
+  "official_demography_source": "data/raw/DEMOGRAFIA/anexo-proyecciones-poblacion-bogota-desagreacion-loc-2018-2035-UPZ-2018-2024.xlsx",
+  "official_demography_population_2025": 8101412,
+  "official_sdis_pua_source": "data/raw/VULNERABILIDAD/pua_riesgo_y_anon_20250911_193636-1.xlsx",
+  "official_sdis_pua_records": 1048575,
+  "datasets_ingested": 23,
+  "datasets": [
+    {
+      "id": "POB-DANE-PROY",
+      "nombre": "Proyecciones de Poblacion Bogota D.C. 2018-2035 (DANE-SDP)",
+      "archivo": "DEMOGRAFIA/anexo-proyecciones-poblacion-bogota-desagreacion-loc-2018-2035-UPZ-2018-2024.xlsx",
+      "origen": "Secretaria Distrital de Planeacion (SDP) / DANE - Convenio 095-2020 CNPV",
+      "temporalidad": "2018-2035 (proyeccion oficial anualizada; corte 2025: 8.101.412 hab)",
+      "indicadores": "DEM-001, DEM-002, POB-002, POB-003, denominadores per capita de los 12 dominios",
+      "valor_publico": "Fuente oficial unica vinculante de denominadores poblacionales per capita distritales"
+    },
+    {
+      "id": "VULN-PUA-SDIS",
+      "nombre": "Microdatos Plan Unico de Atencion (PUA SDIS 2024)",
+      "archivo": "VULNERABILIDAD/pua_riesgo_y_anon_20250911_193636-1.xlsx",
+      "origen": "Secretaria Distrital de Integracion Social (SDIS)",
+      "temporalidad": "2024 (1.048.575 registros administrativos individuales anonimizados)",
+      "indicadores": "VUL-001 (IMG), VUL-002 (Comedores), VUL-003 (Comisarias), VUL-004 (Habitante Calle)",
+      "valor_publico": "Demanda real auditada de subsidios monetarios (IMG: 666.7k atenciones) y servicios sociales"
+    },
+    {
+      "id": "EDU-COLEGIOS",
+      "nombre": "Sedes educativas de Bogota (SED)",
+      "archivo": "Educacion/colegios122025.gpkg",
+      "origen": "datosabiertos.bogota.gov.co/dataset/colegios-bogota-d-c (SED/Catastro)",
+      "temporalidad": "Corte 12.2025",
+      "indicadores": "EDU-01, EDU-02",
+      "valor_publico": "Acceso a educacion y su conectividad con el transporte"
+    },
+    {
+      "id": "EDU-MATRICULA",
+      "nombre": "Matricula total colegios oficiales (SED)",
+      "archivo": "Educacion/matricula_total_colegios_oficiales.gpkg",
+      "origen": "datosabiertos.bogota.gov.co (SED)",
+      "temporalidad": "Corte 04.2025",
+      "indicadores": "EDU-01, EDU-02",
+      "valor_publico": "Capacidad escolar oficial por localidad"
+    },
+    {
+      "id": "EDU-CUPOS",
+      "nombre": "Oferta de cupos del sector oficial (SED)",
+      "archivo": "Educacion/ofertacupos_032025.geojson",
+      "origen": "educacionbogota.edu.co (SED)",
+      "temporalidad": "Corte 03.2025",
+      "indicadores": "EDU-01, EDU-02",
+      "valor_publico": "Capacidad de oferta educativa oficial por localidad"
+    },
+    {
+      "id": "INV-EDU",
+      "nombre": "Inversion educativa por localidad (SED)",
+      "archivo": "Inversion/inversion_educacion_por_localidad_12_2025.gpkg",
+      "origen": "datosabiertos.bogota.gov.co (SED Territorializacion)",
+      "temporalidad": "Corte 12.2025",
+      "indicadores": "FIN-01, FIN-02 (anexo)",
+      "valor_publico": "Inversion per capita y ejecucion presupuestal (alcance: educacion)"
+    },
+    {
+      "id": "TM-ESTACIONES",
+      "nombre": "Estaciones troncales TransMilenio",
+      "archivo": "Transmilenio/estaciones_troncales.geojson",
+      "origen": "gis.transmilenio.gov.co (REST oficial, f=geojson)",
+      "temporalidad": "Vigente (2025-2026)",
+      "indicadores": "MOV-01, 02, 05, 07, 08, 09, 11, 14",
+      "valor_publico": "Nodos de acceso al sistema troncal; incluye numero_vagones_estacion (capacidad)"
+    },
+    {
+      "id": "TM-PARADEROS",
+      "nombre": "Paraderos zonales SITP",
+      "archivo": "Transmilenio/paraderos_zonales_sitp.gpkg",
+      "origen": "datosabiertos.bogota.gov.co (TransMilenio)",
+      "temporalidad": "Vigente (2025-2026)",
+      "indicadores": "MOV-03, 04, 06, 07, 08, 09, 10",
+      "valor_publico": "Nodos de acceso del componente zonal; campo localidad_"
+    },
+    {
+      "id": "TM-RUTAS",
+      "nombre": "Servicios de rutas troncales y zonales",
+      "archivo": "Transmilenio/servicios_rutas_troncales_zonales.csv",
+      "origen": "hub datosabiertos-transmilenio (FeatureServer/15)",
+      "temporalidad": "Vigente (2025-2026)",
+      "indicadores": "MOV-10, MOV-12",
+      "valor_publico": "Conectividad y densidad de rutas por localidad"
+    },
+    {
+      "id": "TM-FLOTA",
+      "nombre": "Flota vinculada SITP",
+      "archivo": "Transmilenio/flota_vinculada_sitp_2024-12.csv",
+      "origen": "datosabiertos.bogota.gov.co (TransMilenio)",
+      "temporalidad": "Corte 12.2024",
+      "indicadores": "MOV-14",
+      "valor_publico": "Oferta de capacidad instalada (10.518 buses)"
+    },
+    {
+      "id": "SAL-IPS",
+      "nombre": "Instituciones Prestadoras de Salud (SDS / REPS)",
+      "archivo": "Salud/ips_sds.gpkg",
+      "origen": "datosabiertos.bogota.gov.co (SDS)",
+      "temporalidad": "Vigente (2025)",
+      "indicadores": "SAL-01, SAL-02",
+      "valor_publico": "Acceso a servicios de salud por localidad"
+    },
+    {
+      "id": "SAL-URGENCIAS",
+      "nombre": "IPS con servicios de urgencias en Bogota (SDS)",
+      "archivo": "Salud/osb_ofertasrv-ips-urgencias.csv",
+      "origen": "saludata.saludcapital.gov.co (SDS / REPS)",
+      "temporalidad": "2024-2026",
+      "indicadores": "SAL-01, SAL-02",
+      "valor_publico": "Oferta de urgencias y capacidad de respuesta asistencial en salud"
+    },
+    {
+      "id": "INFRA-PARQUES",
+      "nombre": "Inventario distrital de parques y escenarios (IDRD)",
+      "archivo": "Infraestructura/5.-parques-idrd.csv",
+      "origen": "datosabiertos.bogota.gov.co (IDRD)",
+      "temporalidad": "Corte 2024-2025",
+      "indicadores": "INF-01, INF-04",
+      "valor_publico": "Espacio publico recreativo y verde por habitante"
+    },
+    {
+      "id": "AMB-SAC",
+      "nombre": "Situacion ambiental conflictiva de Bogota D.C. (SDA)",
+      "archivo": "Ambiente/situacion_ambiental_conflictiva.csv",
+      "origen": "ambientebogota.gov.co (SDA / IDECA)",
+      "temporalidad": "2020-2025",
+      "indicadores": "AMB-01, AMB-02",
+      "valor_publico": "Conflictos ambientales y riesgos territoriales"
+    },
+    {
+      "id": "AMB-AIRE",
+      "nombre": "Estaciones de Calidad del Aire RMCAB (SDA)",
+      "archivo": "Ambiente/estacion_calidad_aire.geojson",
+      "origen": "ambientebogota.gov.co (RMCAB / SDA)",
+      "temporalidad": "Red Activa 2026",
+      "indicadores": "AMB-01, AMB-03",
+      "valor_publico": "Monitoreo continuo de contaminacion atmosferica por localidad"
+    },
+    {
+      "id": "FIN-RIVI",
+      "nombre": "Numero de vendedores informales RIVI (IPES)",
+      "archivo": "Finanzas/rivi-numero-vendedores-informales-localidad-*.txt",
+      "origen": "ipes.gov.co (IPES RIVI)",
+      "temporalidad": "Semestral 2017-2019",
+      "indicadores": "FIN-01, FIN-02",
+      "valor_publico": "Vulnerabilidad del comercio informal e ingresos"
+    },
+    {
+      "id": "FIN-FDL",
+      "nombre": "Inversion Fondos de Desarrollo Local (FDL)",
+      "archivo": "FINANZAS_INVERSION_PUBLICA/inversion_fondos_desarrollo_local_fdl.csv",
+      "origen": "Secretaria de Gobierno / Confis",
+      "temporalidad": "Vigente 2024-2025",
+      "indicadores": "FIN-001, FIN-002",
+      "valor_publico": "Ejecucion presupuestal y recursos locales por habitante"
+    },
+    {
+      "id": "SEG-DELITOS",
+      "nombre": "Delitos de alto impacto (MEBOG / SDSCJ)",
+      "archivo": "SEGURIDAD/delitos_alto_impacto_localidad_2024_2026.csv",
+      "origen": "datosabiertos.bogota.gov.co (MEBOG / SDSCJ)",
+      "temporalidad": "2024-2026",
+      "indicadores": "SEG-001, SEG-002",
+      "valor_publico": "Seguridad ciudadana y tasas de criminalidad por 100k hab"
+    },
+    {
+      "id": "SEG-CUADRANTES",
+      "nombre": "Cuadrantes de Policia Bogota D.C. (MEBOG / SDSCJ)",
+      "archivo": "Seguridad/Cuadrante de Policía. Bogotá D.C.csv",
+      "origen": "datosabiertos.bogota.gov.co (MEBOG)",
+      "temporalidad": "Vigente",
+      "indicadores": "SEG-01",
+      "valor_publico": "Vigilancia comunitaria por cuadrante y cobertura policial urbana"
+    },
+    {
+      "id": "PUB-EAAB",
+      "nombre": "Cobertura y Calidad de Acueducto (EAAB / SSPD)",
+      "archivo": "SERVICIOS_PUBLICOS/eaab_cobertura_acueducto_localidad.csv",
+      "origen": "EAAB - ESP / SUI",
+      "temporalidad": "2024-2025",
+      "indicadores": "PUB-001, PUB-002",
+      "valor_publico": "Cobertura de servicios basicos e interrupciones de suministro"
+    },
+    {
+      "id": "EMP-GEIH",
+      "nombre": "Mercado Laboral, Salarios e Informalidad (DANE GEIH)",
+      "archivo": "EMPLEO_ECONOMIA/ingreso_promedio_salario_ocupados_localidad.csv",
+      "origen": "DANE (GEIH) / SDDE",
+      "temporalidad": "2024",
+      "indicadores": "EMP-001, EMP-002",
+      "valor_publico": "Ingreso laboral, informalidad y desempleo"
+    },
+    {
+      "id": "PAR-PQR",
+      "nombre": "Sistema Distrital de Quejas y Soluciones (SDQS)",
+      "archivo": "PARTICIPACION_CIUDADANA/pqr_bogota_te_escucha_por_localidad.csv",
+      "origen": "Secretaria General / SDQS",
+      "temporalidad": "2024-2025",
+      "indicadores": "PAR-001, PAR-002",
+      "valor_publico": "Demandas ciudadanas y efectividad de respuesta institucional"
+    },
+    {
+      "id": "MR",
+      "nombre": "Mapa de Referencia IDECA v3.26",
+      "archivo": "Infraestructura/gpkg_mr_v03.26/gpkg_mr_v03.26.gpkg",
+      "origen": "IDECA (Mapa de Referencia 2025)",
+      "temporalidad": "Version v03.26 (2025)",
+      "indicadores": "Todos los MOV e INF",
+      "valor_publico": "Base geografica oficial: 31 capas, 2,3M+ predios"
+    }
+  ]
+}

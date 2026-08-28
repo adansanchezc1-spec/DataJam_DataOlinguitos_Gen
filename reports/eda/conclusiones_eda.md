@@ -1,15 +1,15 @@
 # Conclusiones del EDA — SIPTA Bogotá
 
-Generado: 2026-08-27 10:39 | modo smoke: True
+Generado: 2026-08-27 21:01 | modo smoke: True
 
 ## 1. Inventario y calidad
 
-- **121** archivos físicos en `data/raw` en 14 sectores.
-- % de nulos medio por fuente: **6.0%** (mediana 0.0%).
+- **119** archivos físicos en `data/raw` en 14 sectores.
+- % de nulos medio por fuente: **5.8%** (mediana 0.0%).
 
 ## 2. Cobertura territorial
 
-- Matriz de cobertura: 20 localidades x 10 fuentes; en promedio cada fuente cubre **82%** de las localidades.
+- Matriz de cobertura: 20 localidades x 5 fuentes; en promedio cada fuente cubre **100%** de las localidades.
 - Fuentes con dato en las 20 localidades: 5.
 
 ## 3. Indicadores

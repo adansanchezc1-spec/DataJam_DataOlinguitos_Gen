@@ -1295,33 +1295,22 @@ def generate_interactive_gis_dashboard(
 
   </div>
 
-  <!-- MODAL: CRUCE CON INVERSIÓN DISTRITAL (ANÁLISIS BIVARIADO 4 CUADRANTES) -->
+  <!-- MODAL: CRUCE CON INVERSIÓN DISTRITAL (ANÁLISIS BIVARIADO 4 CUADRANTES & SEMÁFORO DE ALERTAS) -->
   <div id="modal-investment" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-md" role="dialog" aria-modal="true" aria-labelledby="modal-inv-title">
     <div class="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl max-w-5xl w-full p-6 space-y-5 text-slate-200 max-h-[92vh] overflow-y-auto">
       
       <!-- Modal Header -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-3 gap-3">
         <div class="flex items-center gap-3">
-          <div class="p-2.5 rounded-xl bg-gradient-to-tr from-amber-500 to-indigo-600 text-white shadow-lg shrink-0">
+          <div class="p-2.5 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-indigo-600 text-white shadow-lg shrink-0">
             <i data-lucide="scale" class="h-6 w-6" aria-hidden="true"></i>
           </div>
           <div>
-            <h3 id="modal-inv-title" class="text-base sm:text-lg font-bold text-white tracking-tight">Cruce Analítico: IPT vs Inversión Distrital</h3>
-            <p id="modal-inv-subtitle" class="text-xs text-slate-400 font-medium">Contraste entre necesidad territorial y asignación presupuestal per cápita</p>
+            <h3 id="modal-inv-title" class="text-base sm:text-lg font-bold text-white tracking-tight">Cruce Macro: IPT Multidimensional vs Inversión Consolidada</h3>
+            <p id="modal-inv-subtitle" class="text-xs text-slate-400 font-medium">Evaluación de progresividad fiscal: Asignación consolidada per cápita vs Privación multidimensional (IPT)</p>
           </div>
         </div>
         <div class="flex items-center gap-2 self-end sm:self-center">
-          <!-- Mode Tabs: IPT vs Active Indicator -->
-          <div class="inline-flex rounded-lg bg-slate-950 p-1 border border-slate-800 text-xs">
-            <button id="btn-inv-mode-ipt" onclick="openInvestmentModal('ipt')" class="px-2.5 py-1 rounded-md text-xs font-bold transition flex items-center gap-1.5 bg-blue-600 text-white shadow cursor-pointer">
-              <i data-lucide="target" class="h-3.5 w-3.5 text-rose-300"></i>
-              <span>IPT vs Inversión</span>
-            </button>
-            <button id="btn-inv-mode-active" onclick="openInvestmentModal('active')" class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5 cursor-pointer">
-              <i data-lucide="activity" class="h-3.5 w-3.5 text-sky-400"></i>
-              <span id="btn-inv-mode-active-label">Indicador Activo</span>
-            </button>
-          </div>
           <button id="btn-close-inv" onclick="document.getElementById('modal-investment').classList.add('hidden')" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer" aria-label="Cerrar ventana de cruce de inversión">
             <i data-lucide="x" class="h-5 w-5" aria-hidden="true"></i>
           </button>
@@ -1330,36 +1319,36 @@ def generate_interactive_gis_dashboard(
 
       <!-- KPI Summary Cards (All 4 Quadrants Explicitly Represented) -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 text-xs">
-        <div class="p-2.5 bg-blue-950/40 border border-blue-500/40 rounded-xl cursor-pointer hover:bg-blue-900/40 transition" onclick="filterInvTable('I. Prioridad Atendida')">
+        <div class="p-2.5 bg-blue-950/40 border border-blue-500/40 rounded-xl cursor-pointer hover:bg-blue-900/40 transition" onclick="filterInvTable('quad:I. Prioridad Atendida')">
           <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] uppercase font-bold text-sky-400">🔵 Cuadrante I</span>
+            <span class="text-[10px] uppercase font-bold text-sky-400">🔵 CUADRANTE I</span>
             <span id="inv-kpi-q1-count" class="text-base font-extrabold text-sky-300 font-mono">0 / 20</span>
           </div>
           <b class="text-white text-xs block truncate">Prioridad Atendida</b>
           <p class="text-[10px] text-sky-300/80 mt-0.5">Alta Necesidad + Alta Inversión</p>
         </div>
 
-        <div class="p-2.5 bg-rose-950/40 border border-rose-500/40 rounded-xl cursor-pointer hover:bg-rose-900/40 transition" onclick="filterInvTable('II. Brecha Crítica')">
+        <div class="p-2.5 bg-rose-950/40 border border-rose-500/40 rounded-xl cursor-pointer hover:bg-rose-900/40 transition" onclick="filterInvTable('quad:II. Brecha Crítica')">
           <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] uppercase font-bold text-rose-400">🔴 Cuadrante II</span>
+            <span class="text-[10px] uppercase font-bold text-rose-400">🔴 CUADRANTE II</span>
             <span id="inv-kpi-q2-count" class="text-base font-extrabold text-rose-300 font-mono">0 / 20</span>
           </div>
           <b class="text-white text-xs block truncate">Brecha Crítica (Déficit)</b>
           <p class="text-[10px] text-rose-300/80 mt-0.5">Alta Necesidad + Baja Inversión</p>
         </div>
 
-        <div class="p-2.5 bg-emerald-950/40 border border-emerald-500/40 rounded-xl cursor-pointer hover:bg-emerald-900/40 transition" onclick="filterInvTable('III. Autosuficiencia')">
+        <div class="p-2.5 bg-emerald-950/40 border border-emerald-500/40 rounded-xl cursor-pointer hover:bg-emerald-900/40 transition" onclick="filterInvTable('quad:III. Autosuficiencia')">
           <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] uppercase font-bold text-emerald-400">🟢 Cuadrante III</span>
+            <span class="text-[10px] uppercase font-bold text-emerald-400">🟢 CUADRANTE III</span>
             <span id="inv-kpi-q3-count" class="text-base font-extrabold text-emerald-300 font-mono">0 / 20</span>
           </div>
           <b class="text-white text-xs block truncate">Autosuficiencia</b>
           <p class="text-[10px] text-emerald-300/80 mt-0.5">Baja Necesidad + Baja Inversión</p>
         </div>
 
-        <div class="p-2.5 bg-amber-950/40 border border-amber-500/40 rounded-xl cursor-pointer hover:bg-amber-900/40 transition" onclick="filterInvTable('IV. Eficiencia a Revisar')">
+        <div class="p-2.5 bg-amber-950/40 border border-amber-500/40 rounded-xl cursor-pointer hover:bg-amber-900/40 transition" onclick="filterInvTable('quad:IV. Eficiencia a Revisar')">
           <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] uppercase font-bold text-amber-400">🟠 Cuadrante IV</span>
+            <span class="text-[10px] uppercase font-bold text-amber-400">🟠 CUADRANTE IV</span>
             <span id="inv-kpi-q4-count" class="text-base font-extrabold text-amber-300 font-mono">0 / 20</span>
           </div>
           <b class="text-white text-xs block truncate">Eficiencia a Revisar</b>
@@ -1389,28 +1378,68 @@ def generate_interactive_gis_dashboard(
           </h4>
           <span class="text-[10px] text-slate-400 italic">Haga clic en un punto para seleccionar la localidad en el mapa</span>
         </div>
-        <div class="h-72 w-full relative">
+        <div class="h-64 w-full relative">
           <canvas id="chart-investment-scatter"></canvas>
         </div>
       </div>
 
-      <!-- Quadrant Interpretation Guide -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 text-xs">
-        <div class="p-2.5 rounded-lg bg-blue-950/30 border border-blue-500/30 text-blue-200">
-          <b class="text-sky-300 block mb-0.5">🔵 I. Prioridad Atendida</b>
-          <p class="text-[10px] text-slate-300">Alta privación acompañada de alta asignación presupuestal distrital.</p>
+      <!-- Semáforo Institucional de Alertas Tempranas (Matriz Normativa) -->
+      <div class="border border-slate-800 rounded-xl overflow-hidden bg-slate-950/50">
+        <div class="p-3 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
+          <h4 class="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
+            <i data-lucide="traffic-cone" class="h-4 w-4 text-amber-400" aria-hidden="true"></i> Sistema Semafórico de Alertas Tempranas Territorial
+          </h4>
+          <span class="text-[10px] text-slate-400 font-mono">Marco Metodológico OCDE / DAMA-BOK</span>
         </div>
-        <div class="p-2.5 rounded-lg bg-rose-950/40 border border-rose-500/40 text-rose-200">
-          <b class="text-rose-300 block mb-0.5">🔴 II. Brecha Crítica (Déficit)</b>
-          <p class="text-[10px] text-rose-200/90">Alta privación con baja inversión per cápita. <b>Máxima urgencia de rebalanceo presupuestal.</b></p>
-        </div>
-        <div class="p-2.5 rounded-lg bg-emerald-950/30 border border-emerald-500/30 text-emerald-200">
-          <b class="text-emerald-300 block mb-0.5">🟢 III. Autosuficiencia</b>
-          <p class="text-[10px] text-slate-300">Baja privación y baja demanda de recursos extraordinarios (mantenimiento).</p>
-        </div>
-        <div class="p-2.5 rounded-lg bg-amber-950/30 border border-amber-500/30 text-amber-200">
-          <b class="text-amber-300 block mb-0.5">🟠 IV. Eficiencia a Revisar</b>
-          <p class="text-[10px] text-slate-300">Baja privación con alta inversión per cápita. Requiere auditoría de retorno social.</p>
+        <div class="overflow-x-auto text-xs">
+          <table class="w-full text-left divide-y divide-slate-800">
+            <thead class="bg-slate-950/90 text-slate-400 font-semibold text-[11px]">
+              <tr>
+                <th class="p-3">Nivel de Alerta</th>
+                <th class="p-3">Rango IPT / Score</th>
+                <th class="p-3">Significado Territorial</th>
+                <th class="p-3">Acción Recomendada</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60 text-[11px] leading-relaxed">
+              <tr class="hover:bg-rose-950/20 transition cursor-pointer" onclick="filterInvTable('sem:Rojo')">
+                <td class="p-3 font-bold text-rose-300 flex items-center gap-2">
+                  <span class="h-2.5 w-2.5 rounded-full bg-rose-500 shadow-md shadow-rose-500/50 shrink-0"></span>
+                  🔴 Rojo (Crítica)
+                </td>
+                <td class="p-3 font-mono text-rose-200 font-semibold">IPT &ge; 60 o Score &ge; 0.75</td>
+                <td class="p-3 text-slate-300">Déficit agudo y vulnerabilidad multidimensional severa</td>
+                <td class="p-3 text-rose-200 font-medium">Intervención prioritaria inmediata de recursos FDL y programas SDIS</td>
+              </tr>
+              <tr class="hover:bg-amber-950/20 transition cursor-pointer" onclick="filterInvTable('sem:Naranja')">
+                <td class="p-3 font-bold text-amber-300 flex items-center gap-2">
+                  <span class="h-2.5 w-2.5 rounded-full bg-amber-500 shadow-md shadow-amber-500/50 shrink-0"></span>
+                  🟠 Naranja (Alta)
+                </td>
+                <td class="p-3 font-mono text-amber-200 font-semibold">45 &le; IPT &lt; 60 o 0.50 &le; s &lt; 0.75</td>
+                <td class="p-3 text-slate-300">Carencia sectorial significativa en dimensiones clave</td>
+                <td class="p-3 text-amber-200 font-medium">Focalización presupuestal y monitoreo trimestral</td>
+              </tr>
+              <tr class="hover:bg-yellow-950/20 transition cursor-pointer" onclick="filterInvTable('sem:Amarillo')">
+                <td class="p-3 font-bold text-yellow-300 flex items-center gap-2">
+                  <span class="h-2.5 w-2.5 rounded-full bg-yellow-400 shadow-md shadow-yellow-400/50 shrink-0"></span>
+                  🟡 Amarillo (Media)
+                </td>
+                <td class="p-3 font-mono text-yellow-200 font-semibold">30 &le; IPT &lt; 45 o 0.25 &le; s &lt; 0.50</td>
+                <td class="p-3 text-slate-300">Cobertura media con oportunidades de optimización</td>
+                <td class="p-3 text-yellow-200 font-medium">Mantenimiento preventivo de infraestructura y servicios</td>
+              </tr>
+              <tr class="hover:bg-emerald-950/20 transition cursor-pointer" onclick="filterInvTable('sem:Verde')">
+                <td class="p-3 font-bold text-emerald-300 flex items-center gap-2">
+                  <span class="h-2.5 w-2.5 rounded-full bg-emerald-500 shadow-md shadow-emerald-500/50 shrink-0"></span>
+                  🟢 Verde (Baja)
+                </td>
+                <td class="p-3 font-mono text-emerald-200 font-semibold">IPT &lt; 30 o Score &lt; 0.25</td>
+                <td class="p-3 text-slate-300">Alta disponibilidad de oferta y baja vulnerabilidad relativa</td>
+                <td class="p-3 text-emerald-200 font-medium">Sostenibilidad operativa y transferencia de buenas prácticas</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
@@ -1418,26 +1447,28 @@ def generate_interactive_gis_dashboard(
       <div class="border border-slate-800 rounded-xl overflow-hidden">
         <div class="p-2.5 bg-slate-950/70 border-b border-slate-800 flex flex-wrap items-center justify-between gap-2">
           <div class="flex items-center gap-1.5 flex-wrap">
-            <span class="text-xs font-bold text-slate-300 uppercase tracking-wider mr-2">Filtrar:</span>
+            <span class="text-xs font-bold text-slate-300 uppercase tracking-wider mr-2">Filtrar por Semáforo:</span>
             <button id="btn-flt-all" onclick="filterInvTable('all')" class="px-2.5 py-1 rounded text-xs font-bold bg-blue-600 text-white transition cursor-pointer">Todos (20)</button>
-            <button id="btn-flt-q1" onclick="filterInvTable('I. Prioridad Atendida')" class="px-2.5 py-1 rounded text-xs font-medium text-sky-300 bg-sky-950/60 border border-sky-500/40 hover:bg-sky-900/60 transition cursor-pointer">🔵 Q1 Atendida (<span id="cnt-flt-q1">0</span>)</button>
-            <button id="btn-flt-q2" onclick="filterInvTable('II. Brecha Crítica')" class="px-2.5 py-1 rounded text-xs font-medium text-rose-300 bg-rose-950/60 border border-rose-500/40 hover:bg-rose-900/60 transition cursor-pointer">🔴 Q2 Brecha Crítica (<span id="cnt-flt-q2">0</span>)</button>
-            <button id="btn-flt-q3" onclick="filterInvTable('III. Autosuficiencia')" class="px-2.5 py-1 rounded text-xs font-medium text-emerald-300 bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-900/60 transition cursor-pointer">🟢 Q3 Autosuficiente (<span id="cnt-flt-q3">0</span>)</button>
-            <button id="btn-flt-q4" onclick="filterInvTable('IV. Eficiencia a Revisar')" class="px-2.5 py-1 rounded text-xs font-medium text-amber-300 bg-amber-950/60 border border-amber-500/40 hover:bg-amber-900/60 transition cursor-pointer">🟠 Q4 Eficiencia (<span id="cnt-flt-q4">0</span>)</button>
+            <button id="btn-flt-sem-rojo" onclick="filterInvTable('sem:Rojo')" class="px-2.5 py-1 rounded text-xs font-medium text-rose-300 bg-rose-950/60 border border-rose-500/40 hover:bg-rose-900/60 transition cursor-pointer">🔴 Crítica (<span id="cnt-sem-rojo">0</span>)</button>
+            <button id="btn-flt-sem-naranja" onclick="filterInvTable('sem:Naranja')" class="px-2.5 py-1 rounded text-xs font-medium text-amber-300 bg-amber-950/60 border border-amber-500/40 hover:bg-amber-900/60 transition cursor-pointer">🟠 Alta (<span id="cnt-sem-naranja">0</span>)</button>
+            <button id="btn-flt-sem-amarillo" onclick="filterInvTable('sem:Amarillo')" class="px-2.5 py-1 rounded text-xs font-medium text-yellow-300 bg-yellow-950/60 border border-yellow-500/40 hover:bg-yellow-900/60 transition cursor-pointer">🟡 Media (<span id="cnt-sem-amarillo">0</span>)</button>
+            <button id="btn-flt-sem-verde" onclick="filterInvTable('sem:Verde')" class="px-2.5 py-1 rounded text-xs font-medium text-emerald-300 bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-900/60 transition cursor-pointer">🟢 Baja (<span id="cnt-sem-verde">0</span>)</button>
           </div>
           <button id="btn-export-inv-csv" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded border border-slate-700 flex items-center gap-1 transition cursor-pointer">
             <i data-lucide="download" class="h-3 w-3" aria-hidden="true"></i> Exportar Cruce CSV
           </button>
         </div>
-        <div class="max-h-52 overflow-y-auto text-xs">
+        <div class="max-h-60 overflow-y-auto text-xs">
           <table class="w-full text-left divide-y divide-slate-800">
             <thead class="bg-slate-950 text-slate-400 font-mono text-[10px] uppercase sticky top-0">
               <tr>
                 <th class="p-2.5">Localidad</th>
+                <th class="p-2.5 text-center">Nivel Semáforo</th>
+                <th class="p-2.5 text-right">IPT / Score</th>
                 <th class="p-2.5">Cuadrante</th>
-                <th class="p-2.5 text-right">Indicador Activo</th>
                 <th class="p-2.5 text-right">Inversión per Cápita</th>
-                <th class="p-2.5 text-center">Acción</th>
+                <th class="p-2.5">Acción Recomendada</th>
+                <th class="p-2.5 text-center">Mapa</th>
               </tr>
             </thead>
             <tbody id="table-inv-body" class="divide-y divide-slate-800/60 font-medium">
@@ -2127,34 +2158,39 @@ def generate_interactive_gis_dashboard(
     let currentInvModalMode = 'ipt';
 
     let currentClassifiedPoints = [];
-    let currentFilteredQuadrant = 'all';
+    let currentFilteredKey = 'all';
 
-    function filterInvTable(quadKey) {{
-      currentFilteredQuadrant = quadKey;
+    function filterInvTable(filterKey) {{
+      currentFilteredKey = filterKey;
       const tableBody = document.getElementById('table-inv-body');
       if (!tableBody) return;
       tableBody.innerHTML = '';
 
       const btnMap = {{
         'all': document.getElementById('btn-flt-all'),
-        'I. Prioridad Atendida': document.getElementById('btn-flt-q1'),
-        'II. Brecha Crítica': document.getElementById('btn-flt-q2'),
-        'III. Autosuficiencia': document.getElementById('btn-flt-q3'),
-        'IV. Eficiencia a Revisar': document.getElementById('btn-flt-q4')
+        'sem:Rojo': document.getElementById('btn-flt-sem-rojo'),
+        'sem:Naranja': document.getElementById('btn-flt-sem-naranja'),
+        'sem:Amarillo': document.getElementById('btn-flt-sem-amarillo'),
+        'sem:Verde': document.getElementById('btn-flt-sem-verde')
       }};
 
       Object.entries(btnMap).forEach(([k, btn]) => {{
         if (!btn) return;
-        if (k === quadKey) {{
+        if (k === filterKey) {{
           btn.className = 'px-2.5 py-1 rounded text-xs font-bold bg-blue-600 text-white shadow transition cursor-pointer';
         }} else {{
           btn.className = 'px-2.5 py-1 rounded text-xs font-medium text-slate-300 bg-slate-900 border border-slate-700 hover:bg-slate-800 transition cursor-pointer';
         }}
       }});
 
-      const filtered = quadKey === 'all'
-        ? currentClassifiedPoints
-        : currentClassifiedPoints.filter(p => p.quadName === quadKey);
+      let filtered = currentClassifiedPoints;
+      if (filterKey.startsWith('sem:')) {{
+        const semTarget = filterKey.replace('sem:', '');
+        filtered = currentClassifiedPoints.filter(p => p.semColor === semTarget);
+      }} else if (filterKey.startsWith('quad:')) {{
+        const quadTarget = filterKey.replace('quad:', '');
+        filtered = currentClassifiedPoints.filter(p => p.quadName === quadTarget);
+      }}
 
       filtered.forEach(row => {{
         const tr = document.createElement('tr');
@@ -2167,9 +2203,11 @@ def generate_interactive_gis_dashboard(
             '<span class="h-2 w-2 rounded-full" style="background-color: ' + row.quadColor + '"></span>' +
             row.name +
           '</td>' +
-          '<td class="p-2.5">' + row.quadBadge + '</td>' +
+          '<td class="p-2.5 text-center">' + row.semBadge + '</td>' +
           '<td class="p-2.5 text-right font-mono text-slate-200">' + formattedX + ' ' + unitSpan + '</td>' +
-          '<td class="p-2.5 text-right font-mono text-sky-300">$ ' + formattedY + '</td>' +
+          '<td class="p-2.5">' + row.quadBadge + '</td>' +
+          '<td class="p-2.5 text-right font-mono text-sky-300 font-semibold">$ ' + formattedY + '</td>' +
+          '<td class="p-2.5 text-slate-300 text-[11px] leading-tight">' + row.semAction + '</td>' +
           '<td class="p-2.5 text-center">' +
             '<button class="px-2 py-1 bg-blue-600/30 hover:bg-blue-600 text-sky-200 hover:text-white rounded text-[10px] font-semibold transition cursor-pointer" onclick="selectLocalityFromModal(' + row.code + ')">' +
               'Ver' +
@@ -2193,9 +2231,6 @@ def generate_interactive_gis_dashboard(
         lucide.createIcons();
       }}
 
-      const domMeta = domainCatalog[currentDomain] || domainCatalog['00_ipt'];
-      const indMeta = domMeta && domMeta.indicadores ? domMeta.indicadores.find(i => i.col === currentIndicator) : null;
-
       let xCol = 'IPT_MULTIDIMENSIONAL';
       let xName = 'Índice de Priorización Territorial (IPT)';
       let xUnit = 'pts (0-100)';
@@ -2204,61 +2239,21 @@ def generate_interactive_gis_dashboard(
       let invUnit = 'COP/hab';
       let polarity = 'alta_es_privacion';
 
-      if (currentInvModalMode === 'active') {{
-        xCol = currentIndicator;
-        xName = indMeta && indMeta.nombre ? indMeta.nombre : currentIndicator;
-        xUnit = indMeta && indMeta.unidad ? indMeta.unidad : '';
-        invKey = domMeta.investment_key || 'inversion_total_consolidada_per_capita_cop';
-        invLabel = domMeta.investment_label || 'Inversión per Cápita';
-        invUnit = domMeta.investment_unit || 'COP/hab';
-        polarity = indMeta && indMeta.polaridad ? indMeta.polaridad : domMeta.polaridad;
-
-        const titleEl = document.getElementById('modal-inv-title');
-        if (titleEl) titleEl.innerText = 'Cruce Sectorial: ' + xName + ' vs ' + invLabel;
-        const subEl = document.getElementById('modal-inv-subtitle');
-        if (subEl) subEl.innerText = 'Contraste espacial de necesidad frente al flujo de inversión pública distrital (' + invLabel + ')';
-
-        const btnIpt = document.getElementById('btn-inv-mode-ipt');
-        const btnAct = document.getElementById('btn-inv-mode-active');
-        if (btnIpt && btnAct) {{
-          btnIpt.className = 'px-2.5 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5 cursor-pointer';
-          btnAct.className = 'px-2.5 py-1 rounded-md text-xs font-bold bg-blue-600 text-white shadow transition flex items-center gap-1.5 cursor-pointer';
-        }}
-      }} else {{
-        const titleEl = document.getElementById('modal-inv-title');
-        if (titleEl) titleEl.innerText = 'Cruce Macro: IPT Multidimensional vs Inversión Consolidada';
-        const subEl = document.getElementById('modal-inv-subtitle');
-        if (subEl) subEl.innerText = 'Evaluación de progresividad fiscal: Asignación consolidada per cápita vs Privación multidimensional (IPT)';
-
-        const btnIpt = document.getElementById('btn-inv-mode-ipt');
-        const btnAct = document.getElementById('btn-inv-mode-active');
-        if (btnIpt && btnAct) {{
-          btnIpt.className = 'px-2.5 py-1 rounded-md text-xs font-bold bg-blue-600 text-white shadow transition flex items-center gap-1.5 cursor-pointer';
-          btnAct.className = 'px-2.5 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5 cursor-pointer';
-        }}
-      }}
-
-      const activeLabelEl = document.getElementById('btn-inv-mode-active-label');
-      if (activeLabelEl && indMeta && indMeta.nombre) {{
-        activeLabelEl.innerText = indMeta.nombre.length > 16 ? indMeta.nombre.substring(0, 16) + '...' : indMeta.nombre;
-      }}
+      const titleEl = document.getElementById('modal-inv-title');
+      if (titleEl) titleEl.innerText = 'Cruce Macro: IPT Multidimensional vs Inversión Consolidada';
+      const subEl = document.getElementById('modal-inv-subtitle');
+      if (subEl) subEl.innerText = 'Evaluación de progresividad fiscal: Asignación consolidada per cápita vs Privación multidimensional (IPT)';
 
       const features = (geojsonData && geojsonData.features) ? geojsonData.features : [];
       const xVals = [], yVals = [], pointsData = [];
 
       features.forEach(f => {{
         const p = f.properties || {{}};
-        let xVal = Number(p[xCol]);
-        if ((isNaN(xVal) || xVal === undefined) && currentInvModalMode === 'ipt') {{
-          xVal = Number(p.ipt_consenso_score || p.ipt_base || p.indice_privacion_multidimensional || p.IPT_MULTIDIMENSIONAL || 0);
-        }} else if (isNaN(xVal)) {{
-          xVal = 0;
-        }}
+        let xVal = Number(p.ipt_consenso_score || p.ipt_base || p.indice_privacion_multidimensional || p.IPT_MULTIDIMENSIONAL || 0);
+        if (isNaN(xVal)) xVal = 0;
 
-        let yVal = Number(p[invKey]);
-        if (isNaN(yVal) || yVal === undefined) {{
-          yVal = Number(p.inversion_total_consolidada_per_capita_cop || p.inversion_fdl_per_capita_cop || 0);
-        }}
+        let yVal = Number(p.inversion_total_consolidada_per_capita_cop || p.inversion_fdl_per_capita_cop || 0);
+        if (isNaN(yVal)) yVal = 0;
 
         xVals.push(xVal);
         yVals.push(yVal);
@@ -2291,10 +2286,12 @@ def generate_interactive_gis_dashboard(
       const corrDescEl = document.getElementById('inv-kpi-corr-desc');
       if (corrDescEl) corrDescEl.innerText = corrText;
 
-      // Classify All 4 Quadrants
+      // Classify All 4 Quadrants & 4 Semáforo Levels
       let q1Count = 0, q2Count = 0, q3Count = 0, q4Count = 0;
+      let semRojoCount = 0, semNaranjaCount = 0, semAmarilloCount = 0, semVerdeCount = 0;
+
       currentClassifiedPoints = pointsData.map(pt => {{
-        let isHighPriv = polarity === 'baja_es_privacion' ? (pt.x <= medianX) : (pt.x >= medianX);
+        let isHighPriv = (pt.x >= medianX);
         let isHighInv = pt.y >= medianY;
 
         let quadKey = '', quadName = '', quadBadge = '', quadColor = '#3b82f6';
@@ -2324,10 +2321,34 @@ def generate_interactive_gis_dashboard(
           q4Count++;
         }}
 
-        return {{ ...pt, quadKey, quadName, quadBadge, quadColor, isHighPriv, isHighInv, xUnit }};
+        // Semáforo Institucional (Rojo, Naranja, Amarillo, Verde)
+        let semColor = 'Verde', semBadge = '', semAction = '';
+        if (pt.x >= 60.0) {{
+          semColor = 'Rojo';
+          semBadge = '<span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/40 font-bold text-[10px] inline-flex items-center gap-1">🔴 Crítica</span>';
+          semAction = 'Intervención prioritaria inmediata de recursos FDL y programas SDIS';
+          semRojoCount++;
+        }} else if (pt.x >= 45.0) {{
+          semColor = 'Naranja';
+          semBadge = '<span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 font-bold text-[10px] inline-flex items-center gap-1">🟠 Alta</span>';
+          semAction = 'Focalización presupuestal y monitoreo trimestral';
+          semNaranjaCount++;
+        }} else if (pt.x >= 30.0) {{
+          semColor = 'Amarillo';
+          semBadge = '<span class="px-2 py-0.5 rounded bg-yellow-500/20 text-yellow-300 border border-yellow-500/40 font-bold text-[10px] inline-flex items-center gap-1">🟡 Media</span>';
+          semAction = 'Mantenimiento preventivo de infraestructura y servicios';
+          semAmarilloCount++;
+        }} else {{
+          semColor = 'Verde';
+          semBadge = '<span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold text-[10px] inline-flex items-center gap-1">🟢 Baja</span>';
+          semAction = 'Sostenibilidad operativa y transferencia de buenas prácticas';
+          semVerdeCount++;
+        }}
+
+        return {{ ...pt, quadKey, quadName, quadBadge, quadColor, semColor, semBadge, semAction, isHighPriv, isHighInv, xUnit }};
       }});
 
-      // Update all 4 KPI Cards
+      // Update all 4 Quadrant KPI Cards
       const q1El = document.getElementById('inv-kpi-q1-count');
       if (q1El) q1El.innerText = q1Count + ' / 20';
       const q2El = document.getElementById('inv-kpi-q2-count');
@@ -2337,20 +2358,21 @@ def generate_interactive_gis_dashboard(
       const q4El = document.getElementById('inv-kpi-q4-count');
       if (q4El) q4El.innerText = q4Count + ' / 20';
 
-      const cntQ1 = document.getElementById('cnt-flt-q1');
-      if (cntQ1) cntQ1.innerText = q1Count;
-      const cntQ2 = document.getElementById('cnt-flt-q2');
-      if (cntQ2) cntQ2.innerText = q2Count;
-      const cntQ3 = document.getElementById('cnt-flt-q3');
-      if (cntQ3) cntQ3.innerText = q3Count;
-      const cntQ4 = document.getElementById('cnt-flt-q4');
-      if (cntQ4) cntQ4.innerText = q4Count;
+      // Update Semáforo Filter Counts
+      const cntRojo = document.getElementById('cnt-sem-rojo');
+      if (cntRojo) cntRojo.innerText = semRojoCount;
+      const cntNaranja = document.getElementById('cnt-sem-naranja');
+      if (cntNaranja) cntNaranja.innerText = semNaranjaCount;
+      const cntAmarillo = document.getElementById('cnt-sem-amarillo');
+      if (cntAmarillo) cntAmarillo.innerText = semAmarilloCount;
+      const cntVerde = document.getElementById('cnt-sem-verde');
+      if (cntVerde) cntVerde.innerText = semVerdeCount;
 
       const diagEl = document.getElementById('inv-kpi-diagnosis');
       if (diagEl) diagEl.innerText = q2Count > 5 ? 'Déficit Territorial Acentuado' : (q2Count > 0 ? 'Focalización Moderada' : 'Alta Progresividad');
 
-      // Sort and populate table
-      currentClassifiedPoints.sort((a, b) => (a.quadName === 'II. Brecha Crítica' ? -1 : 1));
+      // Sort and populate table (descending by IPT score)
+      currentClassifiedPoints.sort((a, b) => b.x - a.x);
       filterInvTable('all');
 
       // Render Scatter Chart

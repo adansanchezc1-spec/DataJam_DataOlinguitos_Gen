@@ -161,7 +161,7 @@ def build_movilidad_master(df: pd.DataFrame) -> pd.DataFrame:
     """Construye la tabla maestra del dominio Movilidad y Accesibilidad."""
     cols = [
         "codigo_localidad", "nombre_localidad", "codigo_divipola", "area_km2", "poblacion",
-        "total_estaciones_troncales_tm", "total_paraderos_sitp", "paraderos_por_10k_hab",
+        "total_estaciones_troncales", "total_estaciones_troncales_tm", "total_paraderos_sitp", "paraderos_por_10k_hab",
         "estaciones_por_km2", "paraderos_por_km2",
         "tiempo_promedio_desplazamiento_laboral_min", "modo_transporte_principal_trabajo"
     ]
@@ -208,13 +208,18 @@ def build_finanzas_master(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def build_vulnerabilidad_social_master(df: pd.DataFrame) -> pd.DataFrame:
-    """Construye la tabla maestra del dominio Vulnerabilidad Social y Gasto SDIS."""
+    """Construye la tabla maestra del dominio Vulnerabilidad Social y Gasto SDIS (PUA 1.04M registros)."""
     cols = [
         "codigo_localidad", "nombre_localidad", "codigo_divipola", "poblacion",
+        "atenciones_totales_sdis", "beneficiarios_unicos_total_sdis", "tasa_atenciones_sdis_por_10k_hab",
+        "beneficiarios_transferencias_monetarias_img", "beneficiarios_transferencias_monetarias",
+        "atenciones_transferencias_img", "tasa_transferencias_img_por_10k_hab", "tasa_beneficiarios_transferencias_pct",
+        "beneficiarios_comedores_comunitarios", "comedores_comunitarios_activos", "comedores_por_10k_hab",
+        "atenciones_comisarias_familia", "tasa_comisarias_por_10k_hab",
+        "beneficiarios_vejez_sdis", "beneficiarios_infancia_sdis", "atenciones_habitante_calle_sdis",
+        "beneficiarios_discapacidad_sdis", "beneficiarios_victimas_sdis", "beneficiarios_migrantes_sdis",
         "vendedores_informales_promedio", "rivi_por_10000_hab_2017_2019",
         "presupuesto_social_sdis_millones", "inversion_social_sdis_per_capita_cop",
-        "beneficiarios_transferencias_monetarias", "tasa_beneficiarios_transferencias_pct",
-        "comedores_comunitarios_activos", "comedores_por_10k_hab", "centros_cuidado_primera_infancia"
     ]
     existing = [c for c in cols if c in df.columns]
     return df[existing].copy()

@@ -38,19 +38,19 @@ Para garantizar independencia respecto a proxies y decisiones de modelado, se ev
 ## 4. Hallazgos Analíticos y Estratificación Territorial
 
 ### A. Localidades en Nivel de Prioridad Alta (Top 1 a 5)
-Las localidades con mayor índice de vulnerabilidad y necesidad crítica en el Distrito Capital son: **USME, RAFAEL URIBE URIBE, SUBA, SAN CRISTOBAL, CIUDAD BOLIVAR**.
+Las localidades con mayor índice de vulnerabilidad y necesidad crítica en el Distrito Capital son: **RAFAEL URIBE URIBE, BOSA, SUBA, USME, KENNEDY**.
 - **Usme y Ciudad Bolívar**: Presentan déficits acumulados severos en dotación de camas hospitalarias per cápita, oferta de transporte troncal y alta vulnerabilidad socioeconómica.
 - **San Cristóbal y Rafael Uribe Uribe**: Concentran alta densidad de ocupación con severo déficit de metros cuadrados de espacio público y parques estructurantes.
 - **Bosa**: Su alta densidad poblacional genera presión crítica sobre la cobertura hospitalaria y accesibilidad a estaciones troncales.
 
 ### B. Localidades en Nivel de Prioridad Baja (Menor Carencia Relativa)
-Las localidades con menor nivel de carencia relativa son: **TEUSAQUILLO, CHAPINERO, CANDELARIA, LOS MARTIRES, BARRIOS UNIDOS**.
+Las localidades con menor nivel de carencia relativa son: **TEUSAQUILLO, CHAPINERO, LOS MARTIRES, BARRIOS UNIDOS, LA CANDELARIA**.
 - **Chapinero, Teusaquillo y Usaquén**: Cuentan con la mayor concentración distrital de infraestructura médica de alta complejidad (REPS), conectividad vial estructurante y mejores promedios en Pruebas Saber 11.
 - **Sumapaz**: Su condición rural extrema (baja densidad poblacional) reduce la presión de equipamientos urbanos, con estabilidad garantizada mediante suavizamiento bayesiano de Marshall.
 
 ### C. Diagnóstico de Rigor Estadístico (OCDE/JRC)
-- **Multicolinealidad (VIF)**: $\text{VIF}_{\max} = 6.24$, promedio distrital de `3.21 < 10.0` (Sin redundancia dimensional).
-- **Autocorrelación Espacial Global**: Índice de Moran $I = +0.1530$ ($p = 0.0860$), confirmando dependencia espacial y cluster de vulnerabilidad en el sur.
+- **Multicolinealidad (VIF)**: $\text{VIF}_{\max} = 7.06$, promedio distrital de `3.17 < 10.0` (Sin redundancia dimensional).
+- **Autocorrelación Espacial Global**: Índice de Moran $I = +0.4200$ ($p = 0.0030$), confirmando dependencia espacial y cluster de vulnerabilidad en el sur.
 - **Agregación Geométrica No Compensatoria**: Correlación de Spearman $\rho = 0.962$ con el modelo lineal base.
 
 ---
@@ -59,26 +59,26 @@ Las localidades con menor nivel de carencia relativa son: **TEUSAQUILLO, CHAPINE
 
 | Código | Localidad | IPT Base | $\text{IC}_{\text{inf}}^{95\%}$ | $\text{IC}_{\text{sup}}^{95\%}$ | Ranking Base | Ranking Consenso | Nivel Prioridad | Confianza |
 | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| `05` | **USME** | 65.59 | 32.1 | 87.3 | #3 | #1 | **Alta** | Alta |
-| `18` | **RAFAEL URIBE URIBE** | 70.36 | 41.7 | 88.0 | #1 | #2 | **Alta** | Alta |
-| `11` | **SUBA** | 64.72 | 29.5 | 86.7 | #4 | #3 | **Alta** | Alta |
-| `04` | **SAN CRISTOBAL** | 64.57 | 31.5 | 85.6 | #5 | #4 | **Alta** | Alta |
-| `19` | **CIUDAD BOLIVAR** | 64.46 | 30.0 | 85.8 | #6 | #5 | **Alta** | Media |
-| `09` | **FONTIBON** | 63.15 | 29.4 | 84.2 | #7 | #6 | **Media-alta** | Baja |
-| `06` | **TUNJUELITO** | 62.86 | 37.9 | 81.9 | #8 | #7 | **Media-alta** | Baja |
-| `03` | **SANTA FE** | 66.69 | 46.0 | 82.5 | #2 | #8 | **Media-alta** | Media |
-| `07` | **BOSA** | 61.05 | 30.4 | 83.7 | #10 | #9 | **Media-alta** | Baja |
-| `08` | **KENNEDY** | 60.50 | 30.4 | 83.7 | #12 | #10 | **Media-alta** | Baja |
-| `01` | **USAQUEN** | 61.50 | 29.4 | 82.5 | #9 | #11 | **Media** | Baja |
-| `15` | **ANTONIO NARIÑO** | 60.78 | 39.8 | 74.2 | #11 | #12 | **Media** | Baja |
-| `10` | **ENGATIVA** | 59.83 | 29.2 | 83.0 | #13 | #13 | **Media** | Baja |
-| `16` | **PUENTE ARANDA** | 55.14 | 28.0 | 78.8 | #14 | #14 | **Media** | Baja |
-| `20` | **SUMAPAZ** | 54.01 | 21.2 | 83.2 | #15 | #15 | **Media** | Baja |
-| `13` | **TEUSAQUILLO** | 52.75 | 30.2 | 74.8 | #16 | #16 | **Baja** | Baja |
-| `02` | **CHAPINERO** | 51.85 | 25.0 | 76.2 | #17 | #17 | **Baja** | Baja |
-| `17` | **CANDELARIA** | 51.59 | 25.2 | 75.5 | #18 | #18 | **Baja** | Baja |
-| `14` | **LOS MARTIRES** | 50.05 | 26.2 | 71.2 | #19 | #19 | **Baja** | Baja |
-| `12` | **BARRIOS UNIDOS** | 43.71 | 23.4 | 64.0 | #20 | #20 | **Baja** | Baja |
+| `18` | **RAFAEL URIBE URIBE** | 78.24 | 66.0 | 89.5 | #1 | #1 | **Alta** | Alta |
+| `07` | **BOSA** | 68.56 | 46.8 | 84.8 | #4 | #2 | **Alta** | Alta |
+| `11` | **SUBA** | 66.49 | 35.6 | 85.7 | #6 | #3 | **Alta** | Media |
+| `05` | **USME** | 68.88 | 44.4 | 86.0 | #3 | #4 | **Alta** | Media |
+| `08` | **KENNEDY** | 65.57 | 40.3 | 83.5 | #8 | #5 | **Alta** | Media |
+| `19` | **CIUDAD BOLIVAR** | 69.30 | 43.7 | 85.8 | #2 | #6 | **Media-alta** | Media |
+| `09` | **FONTIBON** | 63.43 | 32.5 | 83.0 | #10 | #7 | **Media-alta** | Media |
+| `10` | **ENGATIVA** | 63.49 | 36.2 | 82.6 | #9 | #8 | **Media-alta** | Baja |
+| `04` | **SAN CRISTOBAL** | 67.43 | 42.6 | 84.3 | #5 | #9 | **Media-alta** | Media |
+| `06` | **TUNJUELITO** | 65.72 | 50.5 | 81.6 | #7 | #10 | **Media-alta** | Baja |
+| `01` | **USAQUEN** | 61.21 | 32.9 | 80.6 | #12 | #11 | **Media** | Baja |
+| `15` | **ANTONIO NARINO** | 60.76 | 44.6 | 72.8 | #13 | #12 | **Media** | Baja |
+| `20` | **SUMAPAZ** | 62.45 | 31.4 | 87.0 | #11 | #13 | **Media** | Baja |
+| `03` | **SANTA FE** | 55.16 | 37.6 | 70.4 | #14 | #14 | **Media** | Baja |
+| `16` | **PUENTE ARANDA** | 54.27 | 28.6 | 76.0 | #15 | #15 | **Media** | Baja |
+| `13` | **TEUSAQUILLO** | 50.26 | 26.8 | 73.5 | #16 | #16 | **Baja** | Baja |
+| `02` | **CHAPINERO** | 47.25 | 21.6 | 73.0 | #17 | #17 | **Baja** | Baja |
+| `14` | **LOS MARTIRES** | 47.17 | 24.8 | 68.1 | #18 | #18 | **Baja** | Baja |
+| `12` | **BARRIOS UNIDOS** | 43.63 | 25.6 | 62.1 | #19 | #19 | **Baja** | Baja |
+| `17` | **LA CANDELARIA** | 39.78 | 18.5 | 62.9 | #20 | #20 | **Baja** | Baja |
 
 ---
 

@@ -36,6 +36,8 @@ Bogotá D.C. presenta marcadas disparidades socio-espaciales en acceso y calidad
 | **RF-015** | Calcular el Índice de Moran Global ($I$) y su significancia por permutación Monte Carlo para verificar dependencia espacial. | Alta | Econometría Espacial | UC-013 |
 | **RF-016** | Generar 13 informes analíticos sectoriales en `reports/domains/` acompañados de figuras multi-panel a 300 DPI. | Alta | Generación de Informes | UC-014 |
 | **RF-017** | Compilar la aplicación Web GIS autónoma (`reports/dashboard_geografico_sipta.html`) con selector de 13 dominios, clasificación Fisher-Jenks y exportar la capa GeoJSON curada (`data/curated/sipta_localidades_multidominio.geojson`). | Alta | Visualización Web GIS | UC-015 |
+| **RF-018** | Consolidar las Proyecciones Oficiales de Población DANE / SDP (2018-2035) como única fuente demográfica vinculante para el cálculo de tasas y denominadores per cápita distritales. | Alta | Demografía / Ingesta | UC-001 |
+| **RF-019** | Procesar los 1.048.575 registros administrativos del Plan Único de Atención (PUA) 2024 de la SDIS para modelar atenciones y transferencias del Ingreso Mínimo Garantizado (IMG), comedores comunitarios y comisarías de familia. | Alta | Vulnerabilidad / Ingesta | UC-001 |
 
 ---
 

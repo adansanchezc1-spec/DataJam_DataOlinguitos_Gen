@@ -5,7 +5,7 @@
   "corte": "Serie anual según columna ANO",
   "valor_publico": "Desagregación territorial más fina que la localidad (UPL): útil para movilidad y planeación local",
   "indicadores": "POB-01/02/03 desagregados por UPL; MOV-* a nivel UPL",
-  "path": "data/raw/DEMOGRAFIA_POBLACION/osb_demografia-poblacion-upl.csv",
+  "path": "data/raw/DEMOGRAFIA/osb_demografia-poblacion-upl.csv",
   "capa": "",
   "tipo": ""
 }

@@ -148,23 +148,24 @@
 
 ## 8. Implementación del Subsistema de Visualización Geoespacial Web GIS (v1.0.0)
 
-**Fecha**: 2026-08-24  
+## Sprint 5: Integración de Demografía Oficial DANE/SDP 2025 y Microdatos PUA SDIS 2024
+
+**Fecha**: 2026-08-27  
 **Participantes**: Persona A (Adan Sánchez), Persona B (Yesid Bello), Persona C (Sofía Hidalgo)  
-**Fase PDCO**: DEVELOPMENT → OPERATIONS  
+**Fase PDCO**: DEVELOPMENT → CONTROL → OPERATIONS  
 
 ### Actividades y Entregables Completados:
-1. **Motor Geoespacial Multidominio (`src/visualization/geo_dashboard.py`)**:
-   - Cruce vectorial determinista entre polígonos oficiales WGS84 (`poligonos_localidades.geojson`) y los indicadores consolidados de los 13 dominios.
-   - Algoritmo en Python puro de *Fisher-Jenks Natural Breaks* y *Cuantiles* para clasificación cartográfica no arbitraria de coropletas.
-   - Carga de capas vectoriales de puntos overlay (TransMilenio, Metro Línea 1, Estaciones de Calidad del Aire, Puntos de Venta Informales IPES, Oferta de Cupos Escolares).
-2. **Dashboard Web GIS Autónomo (`reports/dashboard_geografico_sipta.html`)**:
-   - Compilación en un archivo HTML interactivo autónomo basado en Leaflet.js, Chart.js, Tailwind CSS y Lucide Icons.
-   - Selector dinámico de 13 dominios, semaforización de alertas tempranas, visualización de intervalos de confianza Bootstrap 95% y gráficos comparativos de radar.
-3. **Capa GeoJSON Curada (`data/curated/sipta_localidades_multidominio.geojson`)**:
-   - Exportación de la capa espacial completa estandarizada RFC 7946 para uso en QGIS, ArcGIS o Mapbox.
-4. **Documentación Técnica del Subsistema**:
-   - Creación de `docs/03-development/sistema_visualizacion.md`.
-5. **Control de Calidad y Pruebas**:
-   - 193 de 193 pruebas automatizadas aprobadas al 100% en `tests/`.
+1. **Auditoría y Unificación Demográfica**:
+   - Auditoría de coincidencia MD5 entre fuentes demográficas y corrección de agregaciones duplicadas en datos históricos.
+   - Adopción de `anexo-proyecciones-poblacion-bogota-desagreacion-loc-2018-2035-UPZ-2018-2024.xlsx` (DANE / SDP) como única fuente oficial de población distrital (8.101.412 habitantes a 2025).
+   - Implementación de `src/ingestion/parse_demografia_dane.py` para generar proyecciones por localidad y UPZ.
+2. **Ingesta Masiva de PUA SDIS 2024**:
+   - Procesamiento de 1.048.575 registros administrativos del Plan Único de Atención en `src/ingestion/parse_pua_sdis.py`.
+   - Extracción de indicadores por localidad y UPZ para transferencias IMG (666.7k atenciones), comedores comunitarios (43.6k beneficiarios), habitabilidad en calle y comisarías de familia.
+3. **Actualización de Integración y Modelado**:
+   - Conexión de nuevos datos en `src/integration/integrate_data.py` y `scripts/recalculate_ipt_model.py`.
+   - Regeneración de `data/curated/master_indicadores_territoriales.csv`, `ipt_modelo_localidad.csv`, `ipt_priorizacion_localidades.csv` y los 12 tablones temáticos.
+4. **Regeneración de Reportes y Dashboard**:
+   - Regeneración de los 13 reportes en `reports/domains/`, figuras geoespaciales en `reports/figures/` y el dashboard interactivo `reports/dashboard_geografico_sipta.html`.
 
 

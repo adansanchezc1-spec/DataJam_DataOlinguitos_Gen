@@ -1,7 +1,7 @@
 # SIPTA — Sistema de Indicadores y Priorización Territorial y Alertas Tempranas
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
-[![Tests Passing](https://img.shields.io/badge/tests-193%2F193%20passing-brightgreen.svg)](tests/)
+[![Tests Passing](https://img.shields.io/badge/tests-194%2F194%20passing-brightgreen.svg)](tests/)
 [![Coverage](https://img.shields.io/badge/coverage-%E2%89%A595%25-success.svg)](tests/)
 [![Standards](https://img.shields.io/badge/standards-SWEBOK%20%7C%20DAMA--BOK%20%7C%20ISO%2025010%20%7C%20OECD%20JRC-orange.svg)](docs/)
 [![Statistical Audit](https://img.shields.io/badge/statistical%20audit-CERTIFIED%20%26%20APPROVED-success.svg)](reports/00_auditoria_estadistica_formal.md)
@@ -23,7 +23,9 @@ Plataforma integral de analítica de datos territoriales, modelado multicriterio
 
 El sistema implementa de forma exhaustiva los estándares internacionales rectores:
 - **SWEBOK v3 / ISO 29148**: Gestión del ciclo de vida del software y especificación formal de requerimientos (IEEE 830).
-- **DAMA-BOK**: Gobierno de datos, linaje, diccionario de datos y calidad multivariada sobre 25 datasets oficiales.
+- **DAMA-BOK**: Gobierno de datos, linaje, diccionario de datos y calidad multivariada sobre **fuentes oficiales únicas**:
+  - **Demografía DANE / SDP (2018–2035)**: 8.101.412 habitantes a 2025 para denominadores per cápita distritales.
+  - **Microdatos PUA SDIS 2024 (1.048.575 registros)**: Transferencias Monetarias IMG (666.7k atenciones), Comedores Comunitarios (43.6k beneficiarios) y Comisarías de Familia.
 - **OECD / JRC Composite Indicators Handbook**: Metodología de 10 etapas para el diseño, ponderación, normalización, agregación no compensatoria y análisis global de sensibilidad del **Índice de Priorización Territorial (IPT)**.
 - **ISO/IEC 25010**: Modelo de calidad de producto de software (completitud, exactitud, consistencia, interoperabilidad y mantenibilidad).
 - **Clean Code & PEP 8**: Código tipado estáticamente (`Type Hints`), desacoplado, modular y con pruebas unitarias exhaustivas bajo patrón AAA (*Arrange-Act-Assert*).
@@ -35,10 +37,10 @@ El sistema implementa de forma exhaustiva los estándares internacionales rector
 │  1. ADQUISICIÓN │   2. INGESTA Y   │  3. INTEGRACIÓN │  4. MODELADO E   │ 5. AUDITORÍA  │
 │   Y DESCARGA    │    VALIDACIÓN    │   TERRITORIAL   │   IPT COMPUESTO  │  ESTADÍSTICA  │
 ├─────────────────┼──────────────────┼─────────────────┼──────────────────┼───────────────┤
-│ 25 Datasets     │ ISO 25010 Checks │ Homologación a  │ Normalización    │ VIF < 10.0    │
-│ IDECA / EAAB    │ 13 Dominios      │ 20 Localidades  │ 7 Dimensiones    │ Moran's I     │
-│ SDIS / DANE     │ Ingestion        │ Spatial Joins   │ 5 Escenarios     │ Bootstrap 95% │
-│ MEBOG / SED     │ Manifest JSON    │ Master Table    │ Consenso Ranking │ OCDE Aprobado │
+│ DANE SDP 2025   │ ISO 25010 Checks │ Homologación a  │ Normalización    │ VIF < 10.0    │
+│ PUA SDIS 1.04M  │ 13 Dominios      │ 20 Localidades  │ 7 Dimensiones    │ Moran's I     │
+│ REPS / SED / TM │ Ingestion        │ Spatial Joins   │ 5 Escenarios     │ Bootstrap 95% │
+│ MEBOG / EAAB    │ Manifest JSON    │ 111 Variables   │ Consenso Ranking │ OCDE Aprobado │
 └─────────────────┴──────────────────┴─────────────────┴──────────────────┴───────────────┘
 ```
 
@@ -49,7 +51,7 @@ El sistema implementa de forma exhaustiva los estándares internacionales rector
 SIPTA integra un subsistema de visualización interactiva y autónoma que no requiere servidores externos ni software GIS comercial:
 
 - **Dashboard Web GIS Interactivo**: [`reports/dashboard_geografico_sipta.html`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/reports/dashboard_geografico_sipta.html) (aplicación web completa basada en Leaflet.js, Chart.js, Tailwind CSS y Lucide Icons).
-- **Exploración de 13 Dominios y más de 30 Indicadores**: Selector dinámico con cambio de clasificaciones cartográficas no arbitrarias (**Fisher-Jenks Natural Breaks** y **Cuantiles**).
+- **Exploración de 13 Dominios y más de 35 Indicadores**: Selector dinámico con cambio de clasificaciones cartográficas no arbitrarias (**Fisher-Jenks Natural Breaks** y **Cuantiles**).
 - **Rigor Estadístico Integrado en Tooltips**: Despliegue en tiempo real de intervalos de confianza Bootstrap al 95% ($\text{IC}_{95\%}$), semáforos de riesgo y gráficos comparativos de radar.
 - **Capa Espacial Curada (RFC 7946)**: [`data/curated/sipta_localidades_multidominio.geojson`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/data/curated/sipta_localidades_multidominio.geojson) lista para consumir en QGIS, ArcGIS o Mapbox.
 - **Documentación Técnica del Subsistema**: [`docs/03-development/sistema_visualizacion.md`](file:///c:/Users/ADAN/DataJam_DataOlinguitos_Gen/docs/03-development/sistema_visualizacion.md).
@@ -63,7 +65,7 @@ El **Índice de Priorización Territorial (IPT)** sintetiza las brechas estructu
 ### 1. Sub-Índices Dimensionales ($s_{i, d} \in [0, 1]$)
 $$\hat{x}_{i, d} = \frac{x_{i, d} - \min(X_d)}{\max(X_d) - \min(X_d)}$$
 - **Capacidades e Infraestructura (Polaridad Inversa)**: $s_{i, d} = 1 - \hat{x}_{i, d}$ (Educación, Salud, Movilidad, Infraestructura, Seguridad).
-- **Riesgo y Vulnerabilidad (Polaridad Directa)**: $s_{i, d} = \hat{x}_{i, d}$ (Ambiente SAC, Vulnerabilidad RIVI).
+- **Riesgo y Vulnerabilidad (Polaridad Directa)**: $s_{i, d} = \hat{x}_{i, d}$ (Ambiente SAC, Vulnerabilidad Social PUA SDIS e IMG).
 
 ### 2. Agregación Lineal y Agregación Geométrica No Compensatoria
 - **IPT Base Lineal**:
@@ -74,7 +76,7 @@ $$\hat{x}_{i, d} = \frac{x_{i, d} - \min(X_d)}{\max(X_d) - \min(X_d)}$$
 ### 3. Diagnóstico de Incertidumbre y Sensibilidad
 - **Factor de Inflación de la Varianza**: $\text{VIF}_j = \frac{1}{1 - R_j^2} < 10.0 \quad \forall j$ (Promedio distrital: $3.21$).
 - **Autocorrelación Espacial Global**: Índice de Moran $I = 0.412$ ($p = 0.008$), corroborando el conglomerado contiguo de vulnerabilidad en el sur.
-- **Intervalos de Confianza Bootstrap al 95%**: Remuestreo Dirichlet ($B = 1.000$ réplicas) con estabilidad demostrada en el Top 5 (**Usme, Ciudad Bolívar, San Cristóbal, Rafael Uribe Uribe, Bosa**).
+- **Intervalos de Confianza Bootstrap al 95%**: Remuestreo Dirichlet ($B = 1.000$ réplicas) con estabilidad demostrada en el Top 5 (**Rafael Uribe Uribe, Bosa, Suba, Usme, Kennedy**).
 
 ---
 

@@ -716,10 +716,13 @@ def build_all_reports() -> None:
         ax_mid.set_xlabel("Minutos de Desplazamiento")
         ax_mid.set_ylabel("")
 
-        sns.scatterplot(data=df, x="total_estaciones_troncales_tm", y="tiempo_promedio_desplazamiento_laboral_min", size="total_paraderos_sitp", sizes=(40, 300), ax=ax_right, color="#ea580c", legend=False)
+        col_est = "total_estaciones_troncales" if "total_estaciones_troncales" in df.columns else ("total_estaciones_troncales_tm" if "total_estaciones_troncales_tm" in df.columns else "estaciones_por_km2")
+        col_par = "total_paraderos_sitp" if "total_paraderos_sitp" in df.columns else ("paraderos_zonales" if "paraderos_zonales" in df.columns else "paraderos_por_10k_hab")
+
+        sns.scatterplot(data=df, x=col_est, y="tiempo_promedio_desplazamiento_laboral_min", size=col_par, sizes=(40, 300), ax=ax_right, color="#ea580c", legend=False)
         for _, row in df.iterrows():
-            if row["tiempo_promedio_desplazamiento_laboral_min"] > 75 or row["total_estaciones_troncales_tm"] > 10:
-                ax_right.text(row["total_estaciones_troncales_tm"] + 0.3, row["tiempo_promedio_desplazamiento_laboral_min"], row["nombre_localidad"].title(), fontsize=7.5, fontweight="bold")
+            if row["tiempo_promedio_desplazamiento_laboral_min"] > 75 or row[col_est] > 10:
+                ax_right.text(row[col_est] + 0.3, row["tiempo_promedio_desplazamiento_laboral_min"], row["nombre_localidad"].title(), fontsize=7.5, fontweight="bold")
         ax_right.set_title("C. Estaciones Troncales vs Tiempo de Viaje", fontsize=11, fontweight="bold", pad=8)
         ax_right.set_xlabel("Estaciones Troncales TM")
         ax_right.set_ylabel("Tiempo de Viaje (min)")
@@ -764,7 +767,7 @@ def build_all_reports() -> None:
         key_insights="""- **Castigo por Tiempos de Viaje**: Habitantes de Usme (`82 min`), Ciudad Bolívar (`85 min`) y Bosa (`76 min`) invierten más de 2.5 horas diarias en traslados laborales hacia el centro ampliado.
 - **Acceso Troncal Asimétrico**: Localidades centrales como Puente Aranda (15 estaciones), Santa Fe (14) y Teusaquillo (13) cuentan con alta cobertura, mientras Usme y Ciudad Bolívar cuentan con solo 2 estaciones en sus portales de cabecera.
 - **Dependencia Zonal**: Bosa y Kennedy dependen críticamente de rutas alimentadoras y zonales con alta congestión.""",
-        table_cols=["total_estaciones_troncales_tm", "total_paraderos_sitp", "paraderos_por_10k_hab", "tiempo_promedio_desplazamiento_laboral_min"],
+        table_cols=["total_paraderos_sitp", "paraderos_por_10k_hab", "estaciones_por_km2", "tiempo_promedio_desplazamiento_laboral_min"],
         recommendations={
             "crit_locs": "Usme, Ciudad Bolívar, Bosa, San Cristóbal",
             "resp_entity": "Secretaría Distrital de Movilidad (SDM), TransMilenio S.A. y Empresa Metro de Bogotá",
@@ -974,64 +977,76 @@ def build_all_reports() -> None:
 
     # 08. Vulnerabilidad Social
     def plot_vuln(df, ax_mid, ax_right):
-        df_sorted = df.sort_values("rivi_por_10000_hab_2017_2019", ascending=False)
-        sns.barplot(data=df_sorted, x="rivi_por_10000_hab_2017_2019", y="nombre_localidad", ax=ax_mid, hue="nombre_localidad", palette="OrRd_r", legend=False)
-        ax_mid.set_title("B. Vendedores RIVI / 10k hab", fontsize=11, fontweight="bold", pad=8)
-        ax_mid.set_xlabel("Vendedores / 10k hab")
+        sort_col = "tasa_transferencias_img_por_10k_hab" if "tasa_transferencias_img_por_10k_hab" in df.columns else "rivi_por_10000_hab_2017_2019"
+        df_sorted = df.sort_values(sort_col, ascending=False)
+        sns.barplot(data=df_sorted, x=sort_col, y="nombre_localidad", ax=ax_mid, hue="nombre_localidad", palette="OrRd_r", legend=False)
+        ax_mid.set_title("B. Tasa Transferencias IMG / 10k hab (PUA SDIS)", fontsize=10.5, fontweight="bold", pad=8)
+        ax_mid.set_xlabel("Atenciones IMG / 10k hab")
         ax_mid.set_ylabel("")
 
-        sns.scatterplot(data=df, x="vendedores_informales_promedio", y="beneficiarios_transferencias_monetarias", size="comedores_por_10k_hab", sizes=(40, 300), ax=ax_right, color="#ea580c", legend=False)
+        x_col = "atenciones_transferencias_img" if "atenciones_transferencias_img" in df.columns else "vendedores_informales_promedio"
+        y_col = "beneficiarios_comedores_comunitarios" if "beneficiarios_comedores_comunitarios" in df.columns else "beneficiarios_transferencias_monetarias"
+
+        sns.scatterplot(data=df, x=x_col, y=y_col, size="comedores_por_10k_hab", sizes=(40, 300), ax=ax_right, color="#ea580c", legend=False)
         for _, row in df.iterrows():
-            if row["beneficiarios_transferencias_monetarias"] > 80000 or row["vendedores_informales_promedio"] > 6000:
-                ax_right.text(row["vendedores_informales_promedio"] + 150, row["beneficiarios_transferencias_monetarias"], row["nombre_localidad"].title(), fontsize=7.5, fontweight="bold")
-        ax_right.set_title("C. RIVI vs Beneficiarios Subsidios SDIS", fontsize=11, fontweight="bold", pad=8)
-        ax_right.set_xlabel("Vendedores Informales (RIVI)")
-        ax_right.set_ylabel("Beneficiarios Transferencias SDIS")
+            if row.get(y_col, 0) > 6000 or row.get(x_col, 0) > 70000:
+                ax_right.text(row[x_col] + 1500, row[y_col], row["nombre_localidad"].title(), fontsize=7.5, fontweight="bold")
+        ax_right.set_title("C. Transferencias IMG vs Comedores Comunitarios", fontsize=10.5, fontweight="bold", pad=8)
+        ax_right.set_xlabel("Atenciones IMG (SDIS 2024)")
+        ax_right.set_ylabel("Beneficiarios Comedores")
 
     build_sector_report(
         domain_id="08",
-        domain_name="Vulnerabilidad Social y Economía Informal",
+        domain_name="Vulnerabilidad Social, PUA SDIS y Economía Informal",
         csv_file="master_vulnerabilidad_social.csv",
         fig_filename="fig_08_vulnerabilidad_rivi_sdis.png",
-        map_col="rivi_por_10000_hab_2017_2019",
-        map_title="Vendedores RIVI / 10k hab",
+        map_col="tasa_transferencias_img_por_10k_hab",
+        map_title="Tasa Transferencias IMG / 10k",
         map_cmap="OrRd",
-        map_legend="Vendedores RIVI / 10k",
+        map_legend="Atenciones IMG / 10k hab",
         plot_fn=plot_vuln,
-        business_q="¿Qué sectores concentran mayor dependencia económica del trabajo informal y demanda de subsidios sociales?",
+        business_q="¿Qué sectores concentran mayor demanda de transferencias del Ingreso Mínimo Garantizado, comedores comunitarios y vulnerabilidad social?",
         indicators_meta=[
             {
                 "code": "VUL-001",
-                "name": "Tasa de Vendedores Informales RIVI por 10.000 Hab.",
-                "formula": "$$t_{\\text{rivi}} = \\frac{\\text{Vendedores RIVI}}{\\text{Población}} \\times 10\\,000$$",
-                "unit": "vendedores/10k hab",
+                "name": "Tasa de Atenciones de Transferencias Monetarias IMG",
+                "formula": "$$t_{\\text{img}} = \\frac{\\text{Atenciones IMG SDIS}}{\\text{Población DANE 2025}} \\times 10\\,000$$",
+                "unit": "atenciones/10k hab",
                 "polarity": "Directa (Vulnerabilidad = Norm)",
-                "source": "IPES / RIVI",
+                "source": "SDIS (Plan Único de Atención PUA 2024)",
             },
             {
                 "code": "VUL-002",
-                "name": "Beneficiarios de Transferencias Monetarias",
-                "formula": "$$\\text{Benef}_i = \\sum \\text{Hogares en Pobreza Extrema/Moderada}$$",
-                "unit": "Hogares",
-                "polarity": "Informativo / Focalización SDIS",
-                "source": "SDIS",
+                "name": "Beneficiarios de Comedores Comunitarios SDIS",
+                "formula": "$$\\text{Comed}_i = \\sum \\text{Personas Asistidas en Comedores Comunitarios}$$",
+                "unit": "Personas",
+                "polarity": "Directa (Carencia Alimentaria)",
+                "source": "SDIS (PUA 2024)",
+            },
+            {
+                "code": "VUL-003",
+                "name": "Vendedores Informales RIVI por 10.000 Hab.",
+                "formula": "$$t_{\\text{rivi}} = \\frac{\\text{Vendedores RIVI}}{\\text{Población}} \\times 10\\,000$$",
+                "unit": "vendedores/10k hab",
+                "polarity": "Directa (Informalidad)",
+                "source": "IPES / RIVI",
             }
         ],
-        key_insights="""- **Nodos de Trabajo Informal**: Santa Fe (`182.4 vendedores/10k hab`) y Los Mártires (`145.2 vendedores/10k hab`) registran la mayor concentración de economía informal en espacio público.
-- **Volumen de Vulnerabilidad en la Periferia**: Kennedy, Bosa y Ciudad Bolívar concentran la mayor masa de familias dependientes de transferencias monetarias del programa 'Ingreso Mínimo Garantizado'.
-- **Comedores Comunitarios**: Usme y San Cristóbal presentan la mayor tasa de cobertura de raciones calóricas asistidas por comedores comunitarios de la SDIS.""",
-        table_cols=["vendedores_informales_promedio", "rivi_por_10000_hab_2017_2019", "presupuesto_social_sdis_millones", "beneficiarios_transferencias_monetarias"],
+        key_insights="""- **Concentración Masiva de IMG**: Ciudad Bolívar (110.521 atenciones), Bosa (95.656 atenciones), Kennedy (79.030 atenciones) y Suba (70.747 atenciones) concentran más del 53% de las transferencias monetarias del Ingreso Mínimo Garantizado del Distrito Capital.
+- **Asistencia Nutricional en Comedores**: Kennedy (11.872 beneficiarios), Suba (9.166), Ciudad Bolívar (8.708) y Bosa (8.107) demandan el mayor contingente asistencial de comedores comunitarios.
+- **Atención a Habitabilidad en Calle**: Los Mártires (5.464 atenciones) y Puente Aranda (2.664 atenciones) concentran los mayores centros de atención a población habitante de y en calle.""",
+        table_cols=["atenciones_totales_sdis", "atenciones_transferencias_img", "tasa_transferencias_img_por_10k_hab", "beneficiarios_comedores_comunitarios", "atenciones_comisarias_familia"],
         recommendations={
-            "crit_locs": "Santa Fe, Los Mártires, Ciudad Bolívar, Bosa, Kennedy",
-            "resp_entity": "Instituto para la Economía Social (IPES) y Secretaría de Integración Social (SDIS)",
-            "action": "Ampliación de quioscos comerciales formales, ferias temporales reguladas y líneas de microcrédito condicionado a formalización para vendedores informales.",
-            "expected_kpi": "Vincular a 8.000 vendedores informales a esquemas de emprendimiento formal y seguridad social.",
-            "sust_scope": "Red de Asistencia SDIS",
-            "sust_action": "Bancarización universal del Ingreso Mínimo Garantizado en hogares con jefatura femenina monoparental.",
-            "sust_kpi": "Cobertura del 100% de hogares en pobreza extrema según Sisbén IV.",
-            "sem_red": "Tasa RIVI >= 50.0 por 10k hab o pobreza multidimensional > 20%.",
-            "sem_orange": "Tasa RIVI entre 20.0 y 50.0 por 10k hab.",
-            "sem_green": "Tasa RIVI < 20.0 por 10k hab con alta formalidad.",
+            "crit_locs": "Ciudad Bolívar, Bosa, Usme, San Cristóbal, Kennedy, Los Mártires",
+            "resp_entity": "Secretaría Distrital de Integración Social (SDIS) e IPES",
+            "action": "Ampliación de cobertura y montos del Ingreso Mínimo Garantizado focalizado en pobreza extrema (Sisbén IV A1-A5), expansión de comedores comunitarios móviles y fortalecimiento de comisarías de familia.",
+            "expected_kpi": "Alcanzar cobertura del 100% de hogares en pobreza extrema con transferencias no condicionadas y reducir en 15% el tiempo de respuesta de comisarías.",
+            "sust_scope": "Red Distrital de Cuidado y Protección Social",
+            "sust_action": "Bancarización universal digital y articulación de subsidios con rutas de empleo y formación del SENA.",
+            "sust_kpi": "Tasa de graduación de beneficiarios hacia empleo o emprendimiento formal > 12% anual.",
+            "sem_red": "Tasa IMG >= 1.500 por 10k hab o Pobreza extrema Sisbén A > 15%.",
+            "sem_orange": "Tasa IMG entre 800 y 1.500 por 10k hab.",
+            "sem_green": "Tasa IMG < 800 por 10k hab con alta autonomía socioeconómica.",
         }
     )
 

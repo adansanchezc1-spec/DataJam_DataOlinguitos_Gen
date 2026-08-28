@@ -42,37 +42,37 @@ El presente informe expone el comportamiento multidimensional de los indicadores
 
 | Variable / Indicador | Media (μ) | Mediana (Q2) | Desv. Est. (σ) | IQR | Mín | Máx | CV (%) | Asimetría (g1) |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `total_estaciones_troncales_tm` | 7.45 | 8.00 | 4.93 | 9.50 | 0.00 | 15.00 | 66.1% | +0.02 |
 | `total_paraderos_sitp` | 382.60 | 330.00 | 265.52 | 318.50 | 0.00 | 926.00 | 69.4% | +0.67 |
-| `paraderos_por_10k_hab` | 12.73 | 11.07 | 6.40 | 9.30 | 0.00 | 24.59 | 50.3% | +0.26 |
+| `paraderos_por_10k_hab` | 11.45 | 10.11 | 5.17 | 6.59 | 0.00 | 20.16 | 45.1% | +0.02 |
+| `estaciones_por_km2` | 0.42 | 0.28 | 0.41 | 0.48 | 0.00 | 1.38 | 97.8% | +1.02 |
 | `tiempo_promedio_desplazamiento_laboral_min` | 54.35 | 49.50 | 21.78 | 28.25 | 30.00 | 110.00 | 40.1% | +0.97 |
 
 ---
 
 ## 5. Tabla de Datos Oficiales de las 20 Localidades
 
-| Código | Localidad | `total_estaciones_troncales_tm` | `total_paraderos_sitp` | `paraderos_por_10k_hab` | `tiempo_promedio_desplazamiento_laboral_min` |
+| Código | Localidad | `total_paraderos_sitp` | `paraderos_por_10k_hab` | `estaciones_por_km2` | `tiempo_promedio_desplazamiento_laboral_min` |
 | :---: | :--- | :---: | :---: | :---: | :---: |
-| `01` | **USAQUEN** | 10 | 698 | 12.68 | 42.00 |
-| `02` | **CHAPINERO** | 9 | 333 | 22.49 | 32.00 |
-| `03` | **SANTA FE** | 14 | 194 | 17.39 | 34.00 |
-| `04` | **SAN CRISTOBAL** | 3 | 408 | 10.65 | 68.00 |
-| `05` | **USME** | 2 | 327 | 7.89 | 82.00 |
-| `06` | **TUNJUELITO** | 4 | 192 | 11.50 | 58.00 |
-| `07` | **BOSA** | 5 | 485 | 6.05 | 76.00 |
-| `08` | **KENNEDY** | 10 | 926 | 8.49 | 64.00 |
-| `09` | **FONTIBON** | 2 | 388 | 10.60 | 40.00 |
-| `10` | **ENGATIVA** | 12 | 784 | 9.86 | 54.00 |
-| `11` | **SUBA** | 13 | 844 | 6.85 | 58.00 |
-| `12` | **BARRIOS UNIDOS** | 13 | 234 | 18.58 | 36.00 |
-| `13` | **TEUSAQUILLO** | 13 | 271 | 18.64 | 30.00 |
-| `14` | **LOS MARTIRES** | 9 | 167 | 22.80 | 38.00 |
-| `15` | **ANTONIO NARINO** | 5 | 92 | 13.18 | 45.00 |
-| `16` | **PUENTE ARANDA** | 15 | 377 | 15.79 | 38.00 |
-| `17` | **LA CANDELARIA** | 1 | 37 | 24.59 | 32.00 |
-| `18` | **RAFAEL URIBE URIBE** | 7 | 302 | 8.45 | 65.00 |
-| `19` | **CIUDAD BOLIVAR** | 2 | 593 | 8.19 | 85.00 |
-| `20` | **SUMAPAZ** | 0 | 0 | 0.00 | 110.00 |
+| `01` | **USAQUEN** | 698 | 11.59 | 0.15 | 42.00 |
+| `02` | **CHAPINERO** | 333 | 18.02 | 0.24 | 32.00 |
+| `03` | **SANTA FE** | 194 | 17.99 | 0.31 | 34.00 |
+| `04` | **SAN CRISTOBAL** | 408 | 9.91 | 0.06 | 68.00 |
+| `05` | **USME** | 327 | 7.74 | 0.01 | 82.00 |
+| `06` | **TUNJUELITO** | 192 | 10.32 | 0.40 | 58.00 |
+| `07` | **BOSA** | 485 | 6.57 | 0.21 | 76.00 |
+| `08` | **KENNEDY** | 926 | 8.89 | 0.26 | 64.00 |
+| `09` | **FONTIBON** | 388 | 9.43 | 0.06 | 40.00 |
+| `10` | **ENGATIVA** | 784 | 9.53 | 0.33 | 54.00 |
+| `11` | **SUBA** | 844 | 6.33 | 0.13 | 58.00 |
+| `12` | **BARRIOS UNIDOS** | 234 | 14.70 | 1.09 | 36.00 |
+| `13` | **TEUSAQUILLO** | 271 | 16.49 | 0.92 | 30.00 |
+| `14` | **LOS MARTIRES** | 167 | 20.16 | 1.38 | 38.00 |
+| `15` | **ANTONIO NARINO** | 92 | 10.68 | 1.02 | 45.00 |
+| `16` | **PUENTE ARANDA** | 377 | 14.54 | 0.87 | 38.00 |
+| `17` | **LA CANDELARIA** | 37 | 19.53 | 0.49 | 32.00 |
+| `18` | **RAFAEL URIBE URIBE** | 302 | 7.67 | 0.51 | 65.00 |
+| `19` | **CIUDAD BOLIVAR** | 593 | 8.83 | 0.02 | 85.00 |
+| `20` | **SUMAPAZ** | 0 | 0.00 | 0.00 | 110.00 |
 
 ---
 
