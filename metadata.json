@@ -86,7 +86,6 @@
         "src/ingestion/ingest_data.py",
         "src/ingestion/parse_demografia_dane.py",
         "src/ingestion/parse_pua_sdis.py",
-        "scripts/recalculate_ipt_model.py",
         "src/validation/validate_data.py",
         "src/cleaning/clean_data.py",
         "src/integration/integrate_data.py",
