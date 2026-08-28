@@ -38,13 +38,13 @@ Para garantizar independencia respecto a proxies y decisiones de modelado, se ev
 ## 4. Hallazgos Analíticos y Estratificación Territorial
 
 ### A. Localidades en Nivel de Prioridad Alta (Top 1 a 5)
-Las localidades con mayor índice de vulnerabilidad y necesidad crítica en el Distrito Capital son: **RAFAEL URIBE URIBE, BOSA, SUBA, USME, KENNEDY**.
+Las localidades con mayor índice de vulnerabilidad y necesidad crítica en el Distrito Capital son: **USME, RAFAEL URIBE URIBE, SUBA, SAN CRISTOBAL, CIUDAD BOLIVAR**.
 - **Usme y Ciudad Bolívar**: Presentan déficits acumulados severos en dotación de camas hospitalarias per cápita, oferta de transporte troncal y alta vulnerabilidad socioeconómica.
 - **San Cristóbal y Rafael Uribe Uribe**: Concentran alta densidad de ocupación con severo déficit de metros cuadrados de espacio público y parques estructurantes.
 - **Bosa**: Su alta densidad poblacional genera presión crítica sobre la cobertura hospitalaria y accesibilidad a estaciones troncales.
 
 ### B. Localidades en Nivel de Prioridad Baja (Menor Carencia Relativa)
-Las localidades con menor nivel de carencia relativa son: **TEUSAQUILLO, CHAPINERO, LOS MARTIRES, BARRIOS UNIDOS, LA CANDELARIA**.
+Las localidades con menor nivel de carencia relativa son: **TEUSAQUILLO, CHAPINERO, LA CANDELARIA, LOS MARTIRES, BARRIOS UNIDOS**.
 - **Chapinero, Teusaquillo y Usaquén**: Cuentan con la mayor concentración distrital de infraestructura médica de alta complejidad (REPS), conectividad vial estructurante y mejores promedios en Pruebas Saber 11.
 - **Sumapaz**: Su condición rural extrema (baja densidad poblacional) reduce la presión de equipamientos urbanos, con estabilidad garantizada mediante suavizamiento bayesiano de Marshall.
 
@@ -59,26 +59,26 @@ Las localidades con menor nivel de carencia relativa son: **TEUSAQUILLO, CHAPINE
 
 | Código | Localidad | IPT Base | $\text{IC}_{\text{inf}}^{95\%}$ | $\text{IC}_{\text{sup}}^{95\%}$ | Ranking Base | Ranking Consenso | Nivel Prioridad | Confianza |
 | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| `18` | **RAFAEL URIBE URIBE** | 78.24 | 66.0 | 89.5 | #1 | #1 | **Alta** | Alta |
-| `07` | **BOSA** | 68.56 | 46.8 | 84.8 | #4 | #2 | **Alta** | Alta |
-| `11` | **SUBA** | 66.49 | 35.6 | 85.7 | #6 | #3 | **Alta** | Media |
-| `05` | **USME** | 68.88 | 44.4 | 86.0 | #3 | #4 | **Alta** | Media |
-| `08` | **KENNEDY** | 65.57 | 40.3 | 83.5 | #8 | #5 | **Alta** | Media |
-| `19` | **CIUDAD BOLIVAR** | 69.30 | 43.7 | 85.8 | #2 | #6 | **Media-alta** | Media |
-| `09` | **FONTIBON** | 63.43 | 32.5 | 83.0 | #10 | #7 | **Media-alta** | Media |
-| `10` | **ENGATIVA** | 63.49 | 36.2 | 82.6 | #9 | #8 | **Media-alta** | Baja |
-| `04` | **SAN CRISTOBAL** | 67.43 | 42.6 | 84.3 | #5 | #9 | **Media-alta** | Media |
-| `06` | **TUNJUELITO** | 65.72 | 50.5 | 81.6 | #7 | #10 | **Media-alta** | Baja |
+| `05` | **USME** | 68.88 | 44.4 | 86.0 | #3 | #1 | **Alta** | Alta |
+| `18` | **RAFAEL URIBE URIBE** | 78.24 | 66.0 | 89.5 | #1 | #2 | **Alta** | Alta |
+| `11` | **SUBA** | 66.49 | 35.6 | 85.7 | #6 | #3 | **Alta** | Alta |
+| `04` | **SAN CRISTOBAL** | 67.43 | 42.6 | 84.3 | #5 | #4 | **Alta** | Alta |
+| `19` | **CIUDAD BOLIVAR** | 69.30 | 43.7 | 85.8 | #2 | #5 | **Alta** | Media |
+| `09` | **FONTIBON** | 63.43 | 32.5 | 83.0 | #10 | #6 | **Media-alta** | Baja |
+| `06` | **TUNJUELITO** | 65.72 | 50.5 | 81.6 | #7 | #7 | **Media-alta** | Baja |
+| `03` | **SANTA FE** | 55.16 | 37.6 | 70.4 | #14 | #8 | **Media-alta** | Media |
+| `07` | **BOSA** | 68.56 | 46.8 | 84.8 | #4 | #9 | **Media-alta** | Baja |
+| `08` | **KENNEDY** | 65.57 | 40.3 | 83.5 | #8 | #10 | **Media-alta** | Baja |
 | `01` | **USAQUEN** | 61.21 | 32.9 | 80.6 | #12 | #11 | **Media** | Baja |
 | `15` | **ANTONIO NARINO** | 60.76 | 44.6 | 72.8 | #13 | #12 | **Media** | Baja |
-| `20` | **SUMAPAZ** | 62.45 | 31.4 | 87.0 | #11 | #13 | **Media** | Baja |
-| `03` | **SANTA FE** | 55.16 | 37.6 | 70.4 | #14 | #14 | **Media** | Baja |
-| `16` | **PUENTE ARANDA** | 54.27 | 28.6 | 76.0 | #15 | #15 | **Media** | Baja |
+| `10` | **ENGATIVA** | 63.49 | 36.2 | 82.6 | #9 | #13 | **Media** | Baja |
+| `16` | **PUENTE ARANDA** | 54.27 | 28.6 | 76.0 | #15 | #14 | **Media** | Baja |
+| `20` | **SUMAPAZ** | 62.45 | 31.4 | 87.0 | #11 | #15 | **Media** | Baja |
 | `13` | **TEUSAQUILLO** | 50.26 | 26.8 | 73.5 | #16 | #16 | **Baja** | Baja |
 | `02` | **CHAPINERO** | 47.25 | 21.6 | 73.0 | #17 | #17 | **Baja** | Baja |
-| `14` | **LOS MARTIRES** | 47.17 | 24.8 | 68.1 | #18 | #18 | **Baja** | Baja |
-| `12` | **BARRIOS UNIDOS** | 43.63 | 25.6 | 62.1 | #19 | #19 | **Baja** | Baja |
-| `17` | **LA CANDELARIA** | 39.78 | 18.5 | 62.9 | #20 | #20 | **Baja** | Baja |
+| `17` | **LA CANDELARIA** | 39.78 | 18.5 | 62.9 | #20 | #18 | **Baja** | Baja |
+| `14` | **LOS MARTIRES** | 47.17 | 24.8 | 68.1 | #18 | #19 | **Baja** | Baja |
+| `12` | **BARRIOS UNIDOS** | 43.63 | 25.6 | 62.1 | #19 | #20 | **Baja** | Baja |
 
 ---
 
