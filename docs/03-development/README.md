@@ -22,3 +22,4 @@ Esta fase agrupa la documentación de implementación del código fuente en `src
 | [`api-docs.md`](api-docs.md) | Documentación técnica de contratos e interfaces públicas de los módulos en `src/`. |
 | [`analisis_exploratorio_nuevos_dominios.md`](analisis_exploratorio_nuevos_dominios.md) | Síntesis exploratoria de hallazgos estadísticos y brechas territoriales. |
 | [`technical-debt.md`](technical-debt.md) | Análisis de deuda técnica, refactorizaciones aplicadas y buenas prácticas. |
+| [`workflow_guia.md`](workflow_guia.md) | Guía de flujo de trabajo Git Flow, ejecución de notebooks y pipeline modular. |
